@@ -1,7 +1,8 @@
-package com.zahra.yummyrecipes
+package com.zahra.yummyrecipes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zahra.yummyrecipes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
