@@ -2,7 +2,15 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.YummyRecipes" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/portland_orange</item>
+        <item name="colorPrimaryVariant">@color/baby_powder</item>
+        <item name="colorOnPrimary">@color/baby_powder</item>
+        <item name="android:background">@color/baby_powder</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
     <style name="Theme.YummyRecipes" parent="Base.Theme.YummyRecipes" />
