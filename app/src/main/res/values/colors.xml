@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="onyx">#FF373737</color>
+    <color name="eerie_black">#FF1D1D1D</color>
+    <color name="chinese_black">#FF111111</color>
+    <color name="portland_orange">#FFFF5435</color>
+    <color name="congo_pink">#FFFF8877</color>
 </resources>
