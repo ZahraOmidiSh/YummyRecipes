@@ -13,5 +13,11 @@
 
     </style>
 
+    <!--EditTextStyle-->
+    <style name="EditTextStyle" >
+        <item name="hintTextColor">@color/portland_orange</item>
+        <item name="drawableTint">@color/portland_orange</item>
+    </style>
+
     <style name="Theme.YummyRecipes" parent="Base.Theme.YummyRecipes" />
 </resources>
