@@ -15,6 +15,29 @@
         app:layout_constraintStart_toStartOf="@+id/registerButton"
         app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_20mdp"
+            android:orientation="vertical">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50mdp"
+                android:id="@+id/firstNameEdt"
+                android:hint="@string/first_name"
+                android:padding="@dimen/_8mdp"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="@dimen/_12mdp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_marginTop="@dimen/_32mdp"
+                android:layout_marginStart="@dimen/_32mdp"
+                android:layout_marginEnd="@dimen/_32mdp"
+                android:background="@drawable/edittext_background"
+
+
+        </LinearLayout>
+
 
     </ScrollView>
 
