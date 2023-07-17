@@ -33,18 +33,16 @@
             <!--FirstName-->
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_50mdp"
+                android:layout_height="@dimen/_45mdp"
                 android:id="@+id/firstNameEdt"
                 android:hint="@string/first_name"
-                android:padding="@dimen/_8mdp"
+                android:padding="@dimen/_2mdp"
                 android:drawableStart="@drawable/baseline_person_24"
-                android:drawablePadding="@dimen/_12mdp"
+                android:drawablePadding="@dimen/_6mdp"
                 android:ems="10"
                 style="@style/EditTextStyle"
                 android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_32mdp"
-                android:layout_marginStart="@dimen/_32mdp"
-                android:layout_marginEnd="@dimen/_32mdp"/>
+                android:layout_marginTop="@dimen/_32mdp"/>
             <!--LastName-->
             <EditText
                 android:layout_width="match_parent"
@@ -57,9 +55,7 @@
                 android:ems="10"
                 style="@style/EditTextStyle"
                 android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_32mdp"
-                android:layout_marginStart="@dimen/_32mdp"
-                android:layout_marginEnd="@dimen/_32mdp"/>
+                android:layout_marginTop="@dimen/_27mdp"/>
             <!--UserName-->
             <EditText
                 android:layout_width="match_parent"
@@ -72,9 +68,7 @@
                 android:ems="10"
                 style="@style/EditTextStyle"
                 android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_32mdp"
-                android:layout_marginStart="@dimen/_32mdp"
-                android:layout_marginEnd="@dimen/_32mdp"/>
+                android:layout_marginTop="@dimen/_27mdp"/>
             <!--Email-->
             <EditText
                 android:layout_width="match_parent"
@@ -87,9 +81,7 @@
                 android:ems="10"
                 style="@style/EditTextStyle"
                 android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_32mdp"
-                android:layout_marginStart="@dimen/_32mdp"
-                android:layout_marginEnd="@dimen/_32mdp"/>
+                android:layout_marginTop="@dimen/_27mdp"/>
 
 
         </LinearLayout>
@@ -102,9 +94,12 @@
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="@dimen/_45mdp"
-        android:layout_margin="@dimen/_20mdp"
+        android:layout_marginHorizontal="@dimen/_45mdp"
+        android:layout_marginBottom="@dimen/_40mdp"
         android:text="@string/register"
         android:textSize="@dimen/_15font_mdp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

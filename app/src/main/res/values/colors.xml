@@ -8,6 +8,8 @@
     <color name="eerie_black">#FF1D1D1D</color>
     <color name="chinese_black">#FF111111</color>
     <color name="portland_orange">#FFFF5435</color>
+    <color name="portland_orange_alpha">#66FF5435</color>
     <color name="congo_pink">#FFFF8877</color>
+    <color name="congo_pink_alpha">#80FF8877</color>
     <color name="baby_powder">#FFFFFFFB</color>
 </resources>

@@ -14,7 +14,7 @@
     <!--EditTextStyle-->
     <style name="EditTextStyle" >
         <item name="drawableTint">@color/congo_pink</item>
-        <item name="android:textColorHint">@color/white</item>
+<!--        <item name="android:textColorHint">@color/congo_pink_alpha</item>-->
         <item name="android:background">@drawable/edittext_background_dark</item>
     </style>
 </resources>
