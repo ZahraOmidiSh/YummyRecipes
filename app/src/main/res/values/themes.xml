@@ -15,8 +15,9 @@
 
     <!--EditTextStyle-->
     <style name="EditTextStyle" >
-        <item name="hintTextColor">@color/portland_orange</item>
         <item name="drawableTint">@color/portland_orange</item>
+        <item name="android:textColorHint">@color/portland_orange</item>
+        <item name="android:background">@drawable/edittext_background_light</item>
     </style>
 
     <style name="Theme.YummyRecipes" parent="Base.Theme.YummyRecipes" />

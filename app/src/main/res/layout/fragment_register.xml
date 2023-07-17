@@ -33,8 +33,7 @@
                 android:inputType="textPersonName"
                 android:layout_marginTop="@dimen/_32mdp"
                 android:layout_marginStart="@dimen/_32mdp"
-                android:layout_marginEnd="@dimen/_32mdp"
-                android:background="@drawable/edittext_background"/>
+                android:layout_marginEnd="@dimen/_32mdp"/>
 
 
         </LinearLayout>
