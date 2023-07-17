@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.register.RegisterFragment">
+    <!--Scroll-->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintEnd_toEndOf="@+id/registerButton"
+        app:layout_constraintStart_toStartOf="@+id/registerButton"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    </ScrollView>
+
+    <!--Register Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/registerButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45mdp"
+        android:layout_margin="@dimen/_20mdp"
+        android:text="@string/register"
+        android:textSize="@dimen/_15font_mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
    
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
