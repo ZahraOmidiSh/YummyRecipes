@@ -20,6 +20,17 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/_20mdp"
             android:orientation="vertical">
+            <!--Cover-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/coverImg"
+                android:adjustViewBounds="true"
+                android:src="@drawable/food"
+                android:padding="@dimen/_20mdp"
+                android:layout_marginTop="@dimen/_20mdp"/>
+
+            <!--FirstName-->
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50mdp"
@@ -27,6 +38,51 @@
                 android:hint="@string/first_name"
                 android:padding="@dimen/_8mdp"
                 android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="@dimen/_12mdp"
+                android:ems="10"
+                style="@style/EditTextStyle"
+                android:inputType="textPersonName"
+                android:layout_marginTop="@dimen/_32mdp"
+                android:layout_marginStart="@dimen/_32mdp"
+                android:layout_marginEnd="@dimen/_32mdp"/>
+            <!--LastName-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50mdp"
+                android:id="@+id/lastNameEdt"
+                android:hint="@string/lastname"
+                android:padding="@dimen/_8mdp"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="@dimen/_12mdp"
+                android:ems="10"
+                style="@style/EditTextStyle"
+                android:inputType="textPersonName"
+                android:layout_marginTop="@dimen/_32mdp"
+                android:layout_marginStart="@dimen/_32mdp"
+                android:layout_marginEnd="@dimen/_32mdp"/>
+            <!--UserName-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50mdp"
+                android:id="@+id/userNameEdt"
+                android:hint="@string/username"
+                android:padding="@dimen/_8mdp"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="@dimen/_12mdp"
+                android:ems="10"
+                style="@style/EditTextStyle"
+                android:inputType="textPersonName"
+                android:layout_marginTop="@dimen/_32mdp"
+                android:layout_marginStart="@dimen/_32mdp"
+                android:layout_marginEnd="@dimen/_32mdp"/>
+            <!--Email-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50mdp"
+                android:id="@+id/e_mailEdt"
+                android:hint="@string/email"
+                android:padding="@dimen/_8mdp"
+                android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="@dimen/_12mdp"
                 android:ems="10"
                 style="@style/EditTextStyle"
