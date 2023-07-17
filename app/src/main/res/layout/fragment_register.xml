@@ -29,11 +29,12 @@
                 android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="@dimen/_12mdp"
                 android:ems="10"
+                style="@style/EditTextStyle"
                 android:inputType="textPersonName"
                 android:layout_marginTop="@dimen/_32mdp"
                 android:layout_marginStart="@dimen/_32mdp"
                 android:layout_marginEnd="@dimen/_32mdp"
-                android:background="@drawable/edittext_background"
+                android:background="@drawable/edittext_background"/>
 
 
         </LinearLayout>
