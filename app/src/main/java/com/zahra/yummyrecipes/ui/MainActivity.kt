@@ -18,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //Setup nav host
+        navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
+
+    }
+
+    override fun onNavigateUp(): Boolean {
+        return navHost.navController.navigateUp() || super.onNavigateUp()
     }
 
     override fun onDestroy() {
