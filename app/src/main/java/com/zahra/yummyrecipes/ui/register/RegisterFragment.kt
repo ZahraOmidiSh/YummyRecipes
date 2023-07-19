@@ -49,24 +49,28 @@ class RegisterFragment : Fragment() {
             eMailEdt.addTextChangedListener {
                 eMailEdt.error = null
             }
-                //Register Btn Click
-                registerButton.setOnClickListener {
-                    val firstname = firstNameEdt.text.toString()
-                    val lastname = lastNameEdt.text.toString()
-                    val username = userNameEdt.text.toString()
-                    val email = eMailEdt.text.toString()
-                    if (firstname.isEmpty() || lastname.isEmpty() || username.isEmpty() || email.isEmpty()) {
-                        Toast.makeText(requireContext(), "Please fill all the boxes!!", Toast.LENGTH_SHORT).show()
-                    }else{
-                        if(!email.contains("@") || !email.contains(".com")){
-                            eMailEdt.error="Email is not valid"
-                        }else{
-                            //Body
-                            body.email=email
-                            body.firstName=firstname
-                            body.lastName=lastname
-                            body.username=username
-                            //CheckNetwork
+            //Register Btn Click
+            registerButton.setOnClickListener {
+                val firstname = firstNameEdt.text.toString()
+                val lastname = lastNameEdt.text.toString()
+                val username = userNameEdt.text.toString()
+                val email = eMailEdt.text.toString()
+                if (firstname.isEmpty() || lastname.isEmpty() || username.isEmpty() || email.isEmpty()) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Please fill all the boxes!!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    if (!email.contains("@") || !email.contains(".com")) {
+                        eMailEdt.error = "Email is not valid"
+                    } else {
+                        //Body
+                        body.email = email
+                        body.firstName = firstname
+                        body.lastName = lastname
+                        body.username = username
+                        //CheckNetwork
 //                            lifecycleScope.launch {
 //                                withStarted {
 //                                    networkChecker.checkNetworkAvailability().collect {state ->
@@ -75,8 +79,9 @@ class RegisterFragment : Fragment() {
 //                                }
 //
 //                            }
-
-                        }
+//
+//                        }
+//                    }
                     }
                 }
             }
