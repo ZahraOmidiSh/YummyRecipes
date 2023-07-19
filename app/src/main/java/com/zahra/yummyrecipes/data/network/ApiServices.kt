@@ -10,8 +10,6 @@ import retrofit2.http.Query
 
 interface ApiServices {
     @POST("users/connect")
-    suspend fun postRegister(
-        @Query(API_KEY) apikey: String,
-        @Body body: BodyRegister
+    suspend fun postRegister(@Query(API_KEY) apikey: String, @Body body: BodyRegister
     ): Response<ResponseRegister>
 }
