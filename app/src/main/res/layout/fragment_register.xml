@@ -10,6 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
+        android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="@+id/registerButton"
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10mdp"
                 android:adjustViewBounds="true"
-                android:padding="@dimen/_20mdp"
+                android:padding="@dimen/_10mdp"
                 android:src="@drawable/food" />
 
             <!--FirstName-->
