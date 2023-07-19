@@ -24,6 +24,7 @@
         <item name="android:inputType">textPersonName</item>
         <item name="android:padding">@dimen/_2mdp</item>
         <item name="colorError">@color/red</item>
+        <item name="android:strokeColor">@color/red</item>
     </style>
 
     <style name="Theme.YummyRecipes" parent="Base.Theme.YummyRecipes" />
