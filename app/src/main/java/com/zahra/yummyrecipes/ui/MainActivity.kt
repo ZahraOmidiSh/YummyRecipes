@@ -7,9 +7,10 @@ import androidx.navigation.fragment.NavHostFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ActivityMainBinding
 import com.zahra.yummyrecipes.utils.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
     //Binding
     private var _binding: ActivityMainBinding? = null
