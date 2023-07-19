@@ -1,12 +1,16 @@
 package com.zahra.yummyrecipes.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ActivityMainBinding
+import com.zahra.yummyrecipes.utils.BaseActivity
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : BaseActivity() {
     //Binding
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
 
     }
+
 
     override fun onNavigateUp(): Boolean {
         return navHost.navController.navigateUp() || super.onNavigateUp()
