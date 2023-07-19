@@ -18,70 +18,42 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/_20mdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_20mdp">
             <!--Cover-->
             <ImageView
+                android:id="@+id/coverImg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/coverImg"
+                android:layout_marginTop="@dimen/_10mdp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/food"
                 android:padding="@dimen/_20mdp"
-                android:layout_marginTop="@dimen/_20mdp"/>
+                android:src="@drawable/food" />
 
             <!--FirstName-->
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_45mdp"
                 android:id="@+id/firstNameEdt"
-                android:hint="@string/first_name"
-                android:padding="@dimen/_2mdp"
-                android:drawableStart="@drawable/baseline_person_24"
-                android:drawablePadding="@dimen/_6mdp"
-                android:ems="10"
                 style="@style/EditTextStyle"
-                android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_32mdp"/>
+                android:drawableStart="@drawable/baseline_person_24"
+                android:hint="@string/first_name"/>
             <!--LastName-->
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50mdp"
                 android:id="@+id/lastNameEdt"
-                android:hint="@string/lastname"
-                android:padding="@dimen/_8mdp"
-                android:drawableStart="@drawable/baseline_person_24"
-                android:drawablePadding="@dimen/_12mdp"
-                android:ems="10"
                 style="@style/EditTextStyle"
-                android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_27mdp"/>
+                android:drawableStart="@drawable/baseline_person_24"
+                android:hint="@string/lastname" />
             <!--UserName-->
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50mdp"
                 android:id="@+id/userNameEdt"
-                android:hint="@string/username"
-                android:padding="@dimen/_8mdp"
-                android:drawableStart="@drawable/baseline_person_24"
-                android:drawablePadding="@dimen/_12mdp"
-                android:ems="10"
                 style="@style/EditTextStyle"
-                android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_27mdp"/>
+                android:drawableStart="@drawable/baseline_person_24"
+                android:hint="@string/username"/>
             <!--Email-->
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50mdp"
                 android:id="@+id/e_mailEdt"
-                android:hint="@string/email"
-                android:padding="@dimen/_8mdp"
-                android:drawableStart="@drawable/baseline_email_24"
-                android:drawablePadding="@dimen/_12mdp"
-                android:ems="10"
                 style="@style/EditTextStyle"
-                android:inputType="textPersonName"
-                android:layout_marginTop="@dimen/_27mdp"/>
+                android:drawableStart="@drawable/baseline_email_24"
+                android:hint="@string/email" />
 
 
         </LinearLayout>
@@ -96,14 +68,13 @@
         android:layout_height="@dimen/_45mdp"
         android:layout_marginHorizontal="@dimen/_45mdp"
         android:layout_marginBottom="@dimen/_40mdp"
-        android:text="@string/register"
-        android:textSize="@dimen/_15font_mdp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:text="@string/register"
+        android:textSize="@dimen/_15font_mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-   
 
 </androidx.constraintlayout.widget.ConstraintLayout>
