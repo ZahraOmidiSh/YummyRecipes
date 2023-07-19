@@ -21,13 +21,15 @@ object CheckConnection {
     fun provideConnectivityManager(@ApplicationContext context: Context) =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
+    @Provides
+    @Singleton
     fun provideNetworkRequest() :NetworkRequest = NetworkRequest.Builder().apply {
         addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
         addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
         //Android M
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+//            addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
         //Android P
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
             addCapability(NetworkCapabilities.NET_CAPABILITY_FOREGROUND)
