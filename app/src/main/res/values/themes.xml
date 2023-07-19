@@ -9,7 +9,7 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
     </style>
 
@@ -23,6 +23,7 @@
         <item name="android:drawablePadding">@dimen/_6mdp</item>
         <item name="android:inputType">textPersonName</item>
         <item name="android:padding">@dimen/_2mdp</item>
+        <item name="colorError">@color/red</item>
     </style>
 
     <style name="Theme.YummyRecipes" parent="Base.Theme.YummyRecipes" />
