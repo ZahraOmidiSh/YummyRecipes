@@ -8,4 +8,5 @@
     <string name="email">Email</string>
     <string name="email_is_not_valid">Email is not valid</string>
     <string name="check_internet">Please Check Internet Connection</string>
+    <string name="version">version</string>
 </resources>

@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_20mdp"
         android:textSize="@dimen/_10font_mdp"
-        android:text="dkfjguihfgvuiwdsjvs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
