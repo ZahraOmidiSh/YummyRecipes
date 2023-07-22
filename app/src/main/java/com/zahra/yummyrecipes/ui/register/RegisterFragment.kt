@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
+import androidx.navigation.fragment.findNavController
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRegisterBinding
 import com.zahra.yummyrecipes.models.register.BodyRegister
@@ -96,6 +97,11 @@ class RegisterFragment : Fragment() {
             when (response) {
                 is NetworkRequest.Loading -> {}
                 is NetworkRequest.Success -> {
+                    response.data?.let {data ->
+                        viewModel.saveData(data.username.toString() , data.hash.toString())
+//                        findNavController().popBackStack(R.id.registerFragment,true)
+//                        findNavController().navigate()
+                    }
 
                 }
 
