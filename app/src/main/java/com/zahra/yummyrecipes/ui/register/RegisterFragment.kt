@@ -60,7 +60,11 @@ class RegisterFragment : Fragment() {
                 val username = userNameEdt.text.toString()
                 val email = eMailEdt.text.toString()
                 if (firstname.isEmpty() || lastname.isEmpty() || username.isEmpty() || email.isEmpty()) {
-                    Toast.makeText(requireContext(), "Please fill all the boxes!!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Please fill all the boxes!!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     if (!email.contains("@") || !email.contains(".com")) {
                         eMailEdt.error = getString(R.string.email_is_not_valid)
@@ -97,9 +101,9 @@ class RegisterFragment : Fragment() {
             when (response) {
                 is NetworkRequest.Loading -> {}
                 is NetworkRequest.Success -> {
-                    response.data?.let {data ->
-                        viewModel.saveData(data.username.toString() , data.hash.toString())
-                        findNavController().popBackStack(R.id.registerFragment,true)
+                    response.data?.let { data ->
+                        viewModel.saveData(data.username.toString(), data.hash.toString())
+                        findNavController().popBackStack(R.id.registerFragment, true)
                         findNavController().navigate(R.id.actionToRecipe)
                     }
 
