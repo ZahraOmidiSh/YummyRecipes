@@ -99,8 +99,8 @@ class RegisterFragment : Fragment() {
                 is NetworkRequest.Success -> {
                     response.data?.let {data ->
                         viewModel.saveData(data.username.toString() , data.hash.toString())
-//                        findNavController().popBackStack(R.id.registerFragment,true)
-//                        findNavController().navigate()
+                        findNavController().popBackStack(R.id.registerFragment,true)
+                        findNavController().navigate(R.id.actionToRecipe)
                     }
 
                 }

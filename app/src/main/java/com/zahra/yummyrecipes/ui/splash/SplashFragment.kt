@@ -7,9 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withStarted
+import androidx.navigation.fragment.findNavController
+import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentSplashBinding
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -46,6 +53,19 @@ class SplashFragment : Fragment() {
             val versionName = info?.versionName
             versionTxt.text = versionName
             //Auto navigate
+            lifecycleScope.launch {
+                withStarted {}
+                delay(2500)
+                //Check user info
+                viewModel.readData.asLiveData().observe(viewLifecycleOwner){
+                    findNavController().popBackStack(R.id.splashFragment,true)
+                    if(it.username.isNotEmpty()){
+                        findNavController().navigate(R.id.actionToRecipe)
+                    }else{
+                        findNavController().navigate(R.id.actionToRegister)
+                    }
+                }
+            }
 
 
         }
