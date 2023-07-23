@@ -51,11 +51,11 @@ class SplashFragment : Fragment() {
                 )
             }
             val versionName = info?.versionName
-            versionTxt.text = versionName
+            versionTxt.text = "version : $versionName"
             //Auto navigate
             lifecycleScope.launch {
                 withStarted {}
-                delay(2500)
+                delay(3000)
                 //Check user info
                 viewModel.readData.asLiveData().observe(viewLifecycleOwner){
                     findNavController().popBackStack(R.id.splashFragment,true)
