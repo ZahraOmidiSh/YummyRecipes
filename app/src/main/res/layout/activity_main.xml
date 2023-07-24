@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
+    <!--Nav Host-->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHost"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -15,8 +16,8 @@
         app:navGraph="@navigation/navigation_main" />
     <!--Bottom menu-->
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:layout_width="match_parent"
         android:id="@+id/mainBottomAppbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/white"
@@ -24,13 +25,22 @@
         app:fabCradleMargin="@dimen/_10mdp"
         app:fabCradleRoundedCornerRadius="@dimen/_15mdp"
         app:fabCradleVerticalOffset="@dimen/_10mdp">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:layout_width="match_parent"
             android:id="@+id/mainBottomNav"
-            app:menu="@menu/menu_main"
+            style="@style/BottomNavMainStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_7mdp"
             app:labelVisibilityMode="selected"
-            android:layout_height="wrap_content"/>
-
+            app:menu="@menu/menu_main" />
     </com.google.android.material.bottomappbar.BottomAppBar>
+    <!--Menu-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cartFab"
+        style="@style/FabStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cart_shopping"
+        app:layout_anchor="@id/mainBottomNav" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

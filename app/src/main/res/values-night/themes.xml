@@ -23,4 +23,16 @@
         <item name="android:padding">@dimen/_2mdp</item>
         <item name="colorError">@color/red</item>
     </style>
+
+    <!--Bottom Nav Style-->
+    <style name="BottomNavMainStyle">
+        <item name="itemTextColor">@color/item_bottom_nav_tint_dark</item>
+        <item name="itemIconTint">@color/item_bottom_nav_tint_dark</item>
+    </style>
+
+    <!--Fab Style-->
+    <style name="FabStyle">
+        <item name="backgroundTint">@color/congo_pink</item>
+        <item name="tint">@color/white</item>
+    </style>
 </resources>

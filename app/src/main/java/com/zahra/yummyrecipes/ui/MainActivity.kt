@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ActivityMainBinding
 import com.zahra.yummyrecipes.utils.BaseActivity
@@ -25,6 +26,9 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         //Setup nav host
         navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
+        binding.mainBottomNav.background=null
+        binding.mainBottomNav.setupWithNavController(navHost.navController)
+
 
     }
 
