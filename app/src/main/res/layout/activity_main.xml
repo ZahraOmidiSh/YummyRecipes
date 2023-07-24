@@ -23,6 +23,9 @@
         app:fabCradleMargin="@dimen/_10mdp"
         app:fabCradleRoundedCornerRadius="@dimen/_15mdp"
         app:fabCradleVerticalOffset="@dimen/_10mdp">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
