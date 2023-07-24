@@ -16,6 +16,7 @@
     <!--Bottom menu-->
     <com.google.android.material.bottomappbar.BottomAppBar
         android:layout_width="match_parent"
+        android:id="@+id/mainBottomAppbar"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/white"
@@ -25,6 +26,10 @@
         app:fabCradleVerticalOffset="@dimen/_10mdp">
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
+            android:id="@+id/mainBottomNav"
+            app:menu="@menu/menu_main"
+            android:layout_marginEnd="@dimen/_7mdp"
+            app:labelVisibilityMode="selected"
             android:layout_height="wrap_content"/>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
