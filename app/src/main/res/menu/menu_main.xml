@@ -9,8 +9,10 @@
         android:title="@string/search"
         android:icon="@drawable/magnifying_glass"/>
 
-    <item android:id="@+id/emptyGap"
-        android:title=""/>
+    <item
+        android:id="@+id/emptyGap"
+        android:enabled="false"
+        android:title="" />
 
     <item android:id="@+id/collectionFragment"
         android:title="@string/collection"
