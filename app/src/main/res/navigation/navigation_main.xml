@@ -34,5 +34,21 @@
         android:name="com.zahra.yummyrecipes.ui.recipe.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.zahra.yummyrecipes.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/collectionFragment"
+        android:name="com.zahra.yummyrecipes.ui.collection.CollectionFragment"
+        android:label="fragment_collection"
+        tools:layout="@layout/fragment_collection" />
+    <fragment
+        android:id="@+id/mealPlannerFragment"
+        android:name="com.zahra.yummyrecipes.ui.mealplanner.MealPlannerFragment"
+        android:label="fragment_meal_planner"
+        tools:layout="@layout/fragment_meal_planner" />
+
 
 </navigation>

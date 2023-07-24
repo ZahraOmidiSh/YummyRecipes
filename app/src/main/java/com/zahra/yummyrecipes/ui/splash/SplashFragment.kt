@@ -57,11 +57,11 @@ class SplashFragment : Fragment() {
                 withStarted {}
                 delay(3000)
                 //Check user info
-                viewModel.readData.asLiveData().observe(viewLifecycleOwner){
-                    findNavController().popBackStack(R.id.splashFragment,true)
-                    if(it.username.isNotEmpty()){
+                viewModel.readData.asLiveData().observe(viewLifecycleOwner) {
+                    findNavController().popBackStack(R.id.splashFragment, true)
+                    if (it.username.isNotEmpty()) {
                         findNavController().navigate(R.id.actionToRecipe)
-                    }else{
+                    } else {
                         findNavController().navigate(R.id.actionToRegister)
                     }
                 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/recipeFragment"
+        android:title="@string/recipe"
+        android:icon="@drawable/fork_knife"/>
+
+    <item android:id="@+id/searchFragment"
+        android:title="@string/search"
+        android:icon="@drawable/magnifying_glass"/>
+
+    <item android:id="@+id/collectionFragment"
+        android:title="@string/collection"
+        android:icon="@drawable/bookmark"/>
+
+    <item android:id="@+id/mealPlannerFragment"
+        android:title="@string/mealPlanner"
+        android:icon="@drawable/calendar_days"/>
+
+</menu>

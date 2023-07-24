@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,4 +13,24 @@
         android:layout_height="match_parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation_main" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Bottom menu-->
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:layout_width="match_parent"
+        android:id="@+id/mainBottomAppbar"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:fabAnimationMode="scale"
+        app:fabCradleMargin="@dimen/_10mdp"
+        app:fabCradleRoundedCornerRadius="@dimen/_15mdp"
+        app:fabCradleVerticalOffset="@dimen/_10mdp">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:id="@+id/mainBottomNav"
+            app:menu="@menu/menu_main"
+            android:layout_marginEnd="@dimen/_7mdp"
+            app:labelVisibilityMode="selected"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
