@@ -25,7 +25,8 @@
         app:fabAnimationMode="scale"
         app:fabCradleMargin="@dimen/_10mdp"
         app:fabCradleRoundedCornerRadius="@dimen/_15mdp"
-        app:fabCradleVerticalOffset="@dimen/_10mdp">
+        app:fabCradleVerticalOffset="@dimen/_10mdp"
+        >
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/mainBottomNav"
