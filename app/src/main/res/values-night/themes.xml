@@ -25,13 +25,14 @@
     </style>
 
     <!--Bottom Nav Style-->
-    <style name="BottomNavMainStyle">
+    <style name="BottomNavMainStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@android:color/transparent</item>
         <item name="itemTextColor">@color/item_bottom_nav_tint_dark</item>
         <item name="itemIconTint">@color/item_bottom_nav_tint_dark</item>
     </style>
 
     <!--Fab Style-->
-    <style name="FabStyle">
+    <style name="FabStyle" parent="Widget.Design.FloatingActionButton">
         <item name="backgroundTint">@color/congo_pink</item>
         <item name="tint">@color/white</item>
     </style>

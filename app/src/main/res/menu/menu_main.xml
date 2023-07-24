@@ -19,7 +19,7 @@
         android:icon="@drawable/bookmark"/>
 
     <item android:id="@+id/mealPlannerFragment"
-        android:title="@string/mealPlanner"
+        android:title="@string/Planner"
         android:icon="@drawable/calendar_days"/>
 
 </menu>

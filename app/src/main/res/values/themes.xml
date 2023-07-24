@@ -27,13 +27,13 @@
     </style>
 
     <!--Bottom Nav Style-->
-    <style name="BottomNavMainStyle">
+    <style name="BottomNavMainStyle" >
         <item name="itemTextColor">@color/item_bottom_nav_tint_light</item>
         <item name="itemIconTint">@color/item_bottom_nav_tint_light</item>
     </style>
 
     <!--Fab Style-->
-    <style name="FabStyle">
+    <style name="FabStyle" parent="Widget.Design.FloatingActionButton">
         <item name="backgroundTint">@color/portland_orange</item>
         <item name="tint">@color/white</item>
     </style>

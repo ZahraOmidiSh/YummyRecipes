@@ -1,6 +1,8 @@
 package com.zahra.yummyrecipes.ui
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -18,7 +20,7 @@ class MainActivity : BaseActivity() {
     private val binding get() = _binding!!
 
     //Other
-    private lateinit var navHost : NavHostFragment
+    private lateinit var navHost: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,9 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         //Setup nav host
         navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
-        binding.mainBottomNav.background=null
+        binding.mainBottomNav.apply {
+            background=null
+        }
         binding.mainBottomNav.setupWithNavController(navHost.navController)
 
 
@@ -39,7 +43,7 @@ class MainActivity : BaseActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 }
 
