@@ -32,7 +32,7 @@
             style="@style/BottomNavMainStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_7mdp"
+            android:layout_marginEnd="@dimen/_15mdp"
             app:labelVisibilityMode="selected"
             app:menu="@menu/menu_main" />
     </com.google.android.material.bottomappbar.BottomAppBar>
