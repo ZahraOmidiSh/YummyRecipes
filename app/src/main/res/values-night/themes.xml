@@ -1,11 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.YummyRecipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.YummyRecipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <item name="colorPrimary">@color/congo_pink</item>
         <item name="colorPrimaryVariant">@color/chinese_black</item>
         <item name="colorOnPrimary">@color/chinese_black</item>
-        <item name="android:background">@color/chinese_black</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
@@ -25,14 +24,13 @@
     </style>
 
     <!--Bottom Nav Style-->
-    <style name="BottomNavMainStyle" parent="Widget.Design.BottomNavigationView">
-        <item name="android:background">@android:color/transparent</item>
+    <style name="BottomNavMainStyle">
         <item name="itemTextColor">@color/item_bottom_nav_tint_dark</item>
         <item name="itemIconTint">@color/item_bottom_nav_tint_dark</item>
     </style>
 
     <!--Fab Style-->
-    <style name="FabStyle" parent="Widget.Design.FloatingActionButton">
+    <style name="FabStyle">
         <item name="backgroundTint">@color/congo_pink</item>
         <item name="tint">@color/white</item>
     </style>
