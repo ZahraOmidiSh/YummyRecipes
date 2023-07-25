@@ -37,4 +37,9 @@
         <item name="tint">@color/white</item>
     </style>
 
+    <!--Avatar Style-->
+    <style name="AvatarStyle">
+        <item name="tint">@color/portland_orange</item>
+    </style>
+
 </resources>

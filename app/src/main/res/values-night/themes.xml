@@ -34,4 +34,9 @@
         <item name="backgroundTint">@color/congo_pink</item>
         <item name="tint">@color/white</item>
     </style>
+
+    <!--Avatar Style-->
+    <style name="AvatarStyle">
+        <item name="tint">@color/congo_pink</item>
+    </style>
 </resources>
