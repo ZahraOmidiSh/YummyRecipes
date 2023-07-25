@@ -1,8 +1,10 @@
 package com.zahra.yummyrecipes.ui
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.zahra.yummyrecipes.R
@@ -28,11 +30,29 @@ class MainActivity : BaseActivity() {
         navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         binding.mainBottomNav.background=null
         binding.mainBottomNav.setupWithNavController(navHost.navController)
+        //Gone bottom menu
+        navHost.navController.addOnDestinationChangedListener{_,destination,_ ->
+            when(destination.id){
+                R.id.splashFragment -> visibilityBottomMenu(false)
+                R.id.registerFragment -> visibilityBottomMenu(false)
+            }
+        }
 
 
     }
 
 
+    private fun visibilityBottomMenu(isVisibility: Boolean){
+        binding.apply {
+            if(isVisibility){
+                mainBottomAppbar.isVisible=true
+                cartFab.isVisible=true
+            }else{
+                mainBottomAppbar.isVisible=false
+                cartFab.isVisible=false
+            }
+        }
+    }
     override fun onNavigateUp(): Boolean {
         return navHost.navController.navigateUp() || super.onNavigateUp()
     }
