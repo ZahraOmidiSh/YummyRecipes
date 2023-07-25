@@ -35,6 +35,7 @@ class MainActivity : BaseActivity() {
             when(destination.id){
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
+                else -> visibilityBottomMenu(true)
             }
         }
 
