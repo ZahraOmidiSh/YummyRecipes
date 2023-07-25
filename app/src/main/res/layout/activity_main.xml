@@ -44,5 +44,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/cart_shopping"
         app:layout_anchor="@id/mainBottomAppbar"
-        app:layout_anchorGravity="center_horizontal"/>
+        app:layout_anchorGravity="center_horizontal"
+        android:contentDescription="@string/app_name" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
