@@ -2,9 +2,11 @@ package com.zahra.yummyrecipes.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.zahra.yummyrecipes.data.network.ApiServices
-import com.zahra.yummyrecipes.utils.Constants.BASE_URL
+import com.zahra.yummyrecipes.data.network.QuotesApiServices
+import com.zahra.yummyrecipes.data.network.SpoonacularApiServices
 import com.zahra.yummyrecipes.utils.Constants.NETWORK_TIMEOUT
+import com.zahra.yummyrecipes.utils.Constants.QUOTES_BASE_URL
+import com.zahra.yummyrecipes.utils.Constants.SPOONACULAR_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,40 +24,46 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideBaseUrl()= BASE_URL
+    fun provideNetworkTime() = NETWORK_TIMEOUT
 
     @Provides
     @Singleton
-    fun provideNetworkTime()= NETWORK_TIMEOUT
+    fun provideGson(): Gson = GsonBuilder().setLenient().create()
 
     @Provides
     @Singleton
-    fun provideGson():Gson = GsonBuilder().setLenient().create()
-
-    @Provides
-    @Singleton
-    fun provideBodyInterceptor()=HttpLoggingInterceptor().apply {
-        level=HttpLoggingInterceptor.Level.BODY
+    fun provideBodyInterceptor() = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 
     @Provides
     @Singleton
-    fun provideClient(time:Long , body:HttpLoggingInterceptor)=OkHttpClient.Builder()
+    fun provideClient(time: Long, body: HttpLoggingInterceptor) = OkHttpClient.Builder()
         .addInterceptor(body)
-        .connectTimeout(time,TimeUnit.SECONDS)
-        .readTimeout(time,TimeUnit.SECONDS)
-        .writeTimeout(time,TimeUnit.SECONDS)
+        .connectTimeout(time, TimeUnit.SECONDS)
+        .readTimeout(time, TimeUnit.SECONDS)
+        .writeTimeout(time, TimeUnit.SECONDS)
         .retryOnConnectionFailure(true)
         .build()
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl:String,client:OkHttpClient , gson :Gson): ApiServices =
+    fun provideSpoonacularRetrofit(client: OkHttpClient, gson: Gson): SpoonacularApiServices =
         Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(SPOONACULAR_BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(ApiServices::class.java)
+            .create(SpoonacularApiServices::class.java)
+
+    @Provides
+    @Singleton
+    fun provideQuotesRetrofit(client: OkHttpClient, gson: Gson): QuotesApiServices =
+        Retrofit.Builder()
+            .baseUrl(QUOTES_BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(QuotesApiServices::class.java)
 
 }
