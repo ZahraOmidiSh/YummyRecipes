@@ -27,7 +27,7 @@ class RegisterViewModel @Inject constructor(private val repository: RegisterRepo
     fun saveData(username:String , hash:String) = viewModelScope.launch {
         repository.saveRegisterData(username, hash)
     }
-    fun cancelDatastoreStack() = viewModelScope.launch {
+    fun cancelDatastoreScope() = viewModelScope.launch {
         repository.dataStoreScope.cancel()
     }
 

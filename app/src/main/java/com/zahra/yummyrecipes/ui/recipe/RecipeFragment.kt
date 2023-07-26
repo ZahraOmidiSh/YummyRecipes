@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
 
 
 @AndroidEntryPoint
@@ -45,6 +44,6 @@ class RecipeFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        registerViewModel.cancelDatastoreStack()
+        registerViewModel.cancelDatastoreScope()
     }
 }
