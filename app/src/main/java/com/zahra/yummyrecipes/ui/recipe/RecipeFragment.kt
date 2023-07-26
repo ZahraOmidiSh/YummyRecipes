@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
+import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
@@ -19,11 +20,9 @@ class RecipeFragment : Fragment() {
     private var _binding: FragmentRecipeBinding? = null
     private val binding get() = _binding!!
 
-    //Others
-    private val timeViewModel: TimeViewModel by viewModels()
-
     //other
     private val registerViewModel: RegisterViewModel by viewModels()
+    private val recipeViewModel: RecipeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,8 +42,8 @@ class RecipeFragment : Fragment() {
 
             val calendar = Calendar.getInstance()
             val hour = calendar.get(Calendar.HOUR_OF_DAY)
-//            timeTxt.text=current
 
+            /*
             when (hour) {
                 in 7..12 -> {
                     timeTxt.text = getString(R.string.goodMorning)
@@ -62,8 +61,14 @@ class RecipeFragment : Fragment() {
                     timeTxt.text = getString(R.string.goodNight)
                 }
             }
+            */
+
         }
 
+    }
+
+    private fun callQuotesApi(){
+        recipeViewModel.callQuoteApi()
     }
 
     override fun onDestroy() {

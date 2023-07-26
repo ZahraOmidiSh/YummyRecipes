@@ -3,7 +3,7 @@ package com.zahra.yummyrecipes.models.recipe
 
 import com.google.gson.annotations.SerializedName
 
-class QuotesResponse : ArrayList<QuotesResponse.QuotesResponseItem>(){
+class ResponseQuotes : ArrayList<ResponseQuotes.QuotesResponseItem>(){
     data class QuotesResponseItem(
         @SerializedName("author")
         val author: String?, // Jonathan Sacks
