@@ -10,6 +10,7 @@ class RemoteDataSource @Inject constructor(
     private val quotesApi: QuotesApiServices
 ) {
     suspend fun postRegister(apiKey: String, body: BodyRegister) = spoonacularApi.postRegister(apiKey, body)
+    suspend fun getQuote(apiKey: String, category: String) = quotesApi.getQuote(apiKey, category)
 
 
 }
