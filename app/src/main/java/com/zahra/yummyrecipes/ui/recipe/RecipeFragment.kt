@@ -63,6 +63,7 @@ class RecipeFragment : Fragment() {
                 }
             }
             */
+            callQuotesApi()
 
         }
 

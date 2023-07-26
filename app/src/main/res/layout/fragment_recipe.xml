@@ -27,7 +27,6 @@
             style="@style/AvatarStyle" />
         <TextView
             android:id="@+id/timeTxt"
-            android:textSize="@dimen/_30mdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
