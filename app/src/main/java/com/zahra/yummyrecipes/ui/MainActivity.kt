@@ -23,6 +23,15 @@ class MainActivity : BaseActivity() {
 
     //Other
     private lateinit var navHost : NavHostFragment
+    private val callback = object : OnBackPressedCallback(false){
+        override fun handleOnBackPressed() {
+            if (navHost.navController.currentDestination?.id == R.id.recipeFragment){
+                finish()
+            }else{
+                navHost.navController.navigate(R.id.actionToRecipe)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +48,7 @@ class MainActivity : BaseActivity() {
             when(destination.id){
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
-                else -> visibilityBottomMenu(true)
+
                 R.id.recipeFragment ->{
                     visibilityBottomMenu(true)
                     if (!callback.isEnabled){
@@ -64,6 +73,7 @@ class MainActivity : BaseActivity() {
                         callback.isEnabled = true
                     }
                 }
+                else -> visibilityBottomMenu(true)
             }
         }
 
