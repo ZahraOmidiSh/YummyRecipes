@@ -1,5 +1,4 @@
 package com.zahra.yummyrecipes.ui
-
 import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
@@ -75,10 +74,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-
     }
-
-
     private fun visibilityBottomMenu(isVisibility: Boolean){
         binding.apply {
             if(isVisibility){
@@ -93,10 +89,9 @@ class MainActivity : BaseActivity() {
     override fun onNavigateUp(): Boolean {
         return navHost.navController.navigateUp() || super.onNavigateUp()
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding=null
+        exitProcess(0)
     }
 }
-
