@@ -2,7 +2,7 @@ package com.zahra.yummyrecipes.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.zahra.yummyrecipes.data.network.ApiServices
+import com.zahra.yummyrecipes.data.network.SpoonacularApiServices
 import com.zahra.yummyrecipes.utils.Constants.BASE_URL
 import com.zahra.yummyrecipes.utils.Constants.NETWORK_TIMEOUT
 import dagger.Module
@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkProvider {
+object SpoonacularNetworkProvider {
 
     @Provides
     @Singleton
@@ -50,12 +50,12 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl:String,client:OkHttpClient , gson :Gson): ApiServices =
+    fun provideRetrofit(baseUrl:String,client:OkHttpClient , gson :Gson): SpoonacularApiServices =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(ApiServices::class.java)
+            .create(SpoonacularApiServices::class.java)
 
 }
