@@ -5,13 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
-import com.zahra.yummyrecipes.viewmodel.TimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.LocalDateTime
-import java.util.Calendar
 
 
 @AndroidEntryPoint
@@ -22,6 +17,9 @@ class RecipeFragment : Fragment() {
 
     //Others
     private val timeViewModel: TimeViewModel by viewModels()
+
+    //other
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,5 +64,10 @@ class RecipeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        registerViewModel.cancelDatastoreStack()
     }
 }

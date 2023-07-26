@@ -9,6 +9,7 @@ import com.zahra.yummyrecipes.models.register.ResponseRegister
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +26,9 @@ class RegisterViewModel @Inject constructor(private val repository: RegisterRepo
     //Stored data
     fun saveData(username:String , hash:String) = viewModelScope.launch {
         repository.saveRegisterData(username, hash)
+    }
+    fun cancelDatastoreStack() = viewModelScope.launch {
+        repository.dataStoreScope.cancel()
     }
 
     val readData = repository.readRegisterData

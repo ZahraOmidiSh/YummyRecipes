@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.ui
 import android.content.Context
 import android.opengl.Visibility
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.NavHostFragment
@@ -12,6 +13,7 @@ import com.zahra.yummyrecipes.databinding.ActivityMainBinding
 import com.zahra.yummyrecipes.utils.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -26,6 +28,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //onBackPress
+        onBackPressedDispatcher.addCallback(this,callback)
         //Setup nav host
         navHost = supportFragmentManager.findFragmentById(R.id.navHost) as NavHostFragment
         binding.mainBottomNav.background=null
@@ -36,6 +40,30 @@ class MainActivity : BaseActivity() {
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
                 else -> visibilityBottomMenu(true)
+                R.id.recipeFragment ->{
+                    visibilityBottomMenu(true)
+                    if (!callback.isEnabled){
+                        callback.isEnabled = true
+                    }
+                }
+                R.id.searchFragment ->{
+                    visibilityBottomMenu(true)
+                    if (!callback.isEnabled){
+                        callback.isEnabled = true
+                    }
+                }
+                R.id.collectionFragment ->{
+                    visibilityBottomMenu(true)
+                    if (!callback.isEnabled){
+                        callback.isEnabled = true
+                    }
+                }
+                R.id.mealPlannerFragment->{
+                    visibilityBottomMenu(true)
+                    if (!callback.isEnabled){
+                        callback.isEnabled = true
+                    }
+                }
             }
         }
 
