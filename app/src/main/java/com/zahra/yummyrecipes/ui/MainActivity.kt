@@ -97,7 +97,6 @@ class MainActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding=null
-        exitProcess(0)
     }
 }
 

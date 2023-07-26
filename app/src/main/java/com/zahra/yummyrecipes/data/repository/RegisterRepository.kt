@@ -15,15 +15,18 @@ import com.zahra.yummyrecipes.utils.Constants.REGISTER_USERNAME
 import com.zahra.yummyrecipes.utils.Constants.REGISTER_USER_INFO
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 
 @ActivityRetainedScoped
 class RegisterRepository @Inject constructor(
-    @ApplicationContext private  val context: Context,
+    @ApplicationContext private val context: Context,
     private val remote: RemoteDataSource
 ) {
 
@@ -33,26 +36,30 @@ class RegisterRepository @Inject constructor(
         val hash = stringPreferencesKey(REGISTER_HASH)
     }
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(REGISTER_USER_INFO)
+    var dataStoreScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
+        REGISTER_USER_INFO,
+        scope = dataStoreScope
+    )
 
-    suspend fun saveRegisterData(username:String , hash:String){
+    suspend fun saveRegisterData(username: String, hash: String) {
         context.dataStore.edit {
-            it[StoreKeys.username]=username
-            it[StoreKeys.hash]=hash
+            it[StoreKeys.username] = username
+            it[StoreKeys.hash] = hash
         }
     }
 
-    val readRegisterData:Flow<RegisterStoredModel> = context.dataStore.data
-        .catch {  e->
-            if(e is IOException){
+    val readRegisterData: Flow<RegisterStoredModel> = context.dataStore.data
+        .catch { e ->
+            if (e is IOException) {
                 emit(emptyPreferences())
-            }else{
-                throw  e
+            } else {
+                throw e
             }
         }.map {
             val username = it[StoreKeys.username] ?: ""
             val hash = it[StoreKeys.hash] ?: ""
-            RegisterStoredModel(username , hash)
+            RegisterStoredModel(username, hash)
         }
 
     // API
