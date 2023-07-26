@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
+import com.zahra.yummyrecipes.utils.Constants.MY_QUOTES_API_KEY
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,7 +69,10 @@ class RecipeFragment : Fragment() {
     }
 
     private fun callQuotesApi(){
-        recipeViewModel.callQuoteApi()
+        recipeViewModel.callQuoteApi(MY_QUOTES_API_KEY,"food")
+        recipeViewModel.quoteData.observe(viewLifecycleOwner) {
+            binding.timeTxt.text =it.data.toString()
+        }
     }
 
     override fun onDestroy() {

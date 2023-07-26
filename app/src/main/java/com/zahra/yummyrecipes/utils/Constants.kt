@@ -6,7 +6,7 @@ object Constants {
     const val NETWORK_TIMEOUT = 60L
 
     const val MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
-    const val MY_QUOTES_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
+    const val MY_QUOTES_API_KEY = "Rn7/YFGHXQdC0q740e7/iQ==1w04EI54WVZBTlz8"
 
     //APIs key
     const val API_KEY = "apiKey"
