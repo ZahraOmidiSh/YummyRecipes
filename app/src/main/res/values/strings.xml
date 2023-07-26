@@ -13,8 +13,8 @@
     <string name="search">search</string>
     <string name="collection">collection</string>
     <string name="Planner">Planner</string>
-    <string name="goodmorning">GoodMorning</string>
-    <string name="goodafternoon">GoodAfternoon</string>
-    <string name="goodevening">GoodEvening</string>
-    <string name="goodnight">GoodNight</string>
+    <string name="goodMorning">GoodMorning</string>
+    <string name="goodAfternoon">GoodAfternoon</string>
+    <string name="goodEvening">GoodEvening</string>
+    <string name="goodNight">GoodNight</string>
 </resources>

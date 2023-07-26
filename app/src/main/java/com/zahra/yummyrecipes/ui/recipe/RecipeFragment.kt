@@ -11,7 +11,8 @@ import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import com.zahra.yummyrecipes.viewmodel.TimeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.system.exitProcess
+import java.time.LocalDateTime
+import java.util.Calendar
 
 
 @AndroidEntryPoint
@@ -42,29 +43,29 @@ class RecipeFragment : Fragment() {
 
 //            val current = LocalDateTime.now()
 
-//            val calendar = Calendar.getInstance()
-//
-//            val current = "${calendar.get(Calendar.HOUR_OF_DAY)} : ${calendar.get(Calendar.MINUTE)}"
+            val calendar = Calendar.getInstance()
+            val hour = calendar.get(Calendar.HOUR_OF_DAY)
 //            timeTxt.text=current
 
-            timeViewModel.currentTime.observe(viewLifecycleOwner) {
-            when (it.toInt()) {
-                    in 7..12 -> {
-                        timeTxt.text=getString(R.string.goodmorning)
-                    }
-                    in 12..17 -> {
-                        timeTxt.text=getString(R.string.goodafternoon)
-                    }
-                    in 17..20 -> {
-                        timeTxt.text=getString(R.string.goodevening)
-                    }
-                    else -> {
-                        timeTxt.text=getString(R.string.goodnight)
-                    }
+            when (hour) {
+                in 7..12 -> {
+                    timeTxt.text = getString(R.string.goodMorning)
+                }
+
+                in 12..17 -> {
+                    timeTxt.text = getString(R.string.goodAfternoon)
+                }
+
+                in 17..20 -> {
+                    timeTxt.text = getString(R.string.goodEvening)
+                }
+
+                else -> {
+                    timeTxt.text = getString(R.string.goodNight)
                 }
             }
-
         }
+
     }
 
     override fun onDestroy() {
