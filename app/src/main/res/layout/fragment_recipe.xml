@@ -26,12 +26,13 @@
             android:src="@drawable/circle_user"
             style="@style/AvatarStyle" />
         <TextView
-            android:id="@+id/timeTxt"
-            android:layout_width="wrap_content"
+            android:id="@+id/usernameTxt"
+            android:layout_width="0dp"
+            android:textSize="@dimen/_16mdp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            app:layout_constraintStart_toEndOf="@id/avatarImg"
             app:layout_constraintEnd_toEndOf="parent"/>
 
 
