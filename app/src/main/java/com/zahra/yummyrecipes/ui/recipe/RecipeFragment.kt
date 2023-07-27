@@ -43,7 +43,12 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         //Show username
-        lifecycleScope.launchWhenCreated { showUsername() }
+        lifecycleScope.launch { showUsername() }
+        recipeViewModel.getSlogan()
+        recipeViewModel.slogan.observe(viewLifecycleOwner){
+            binding.sloganTxt.text=it
+        }
+
 
     }
 
@@ -52,7 +57,7 @@ class RecipeFragment : Fragment() {
     suspend fun showUsername(){
         registerViewModel.readData.collect{
             binding.usernameTxt.text =
-                "${getGreeting()},${it.username} ${getEmojiByUnicode()}"
+                "${getGreeting()}, ${getEmojiByUnicode()}"
 
         }
     }

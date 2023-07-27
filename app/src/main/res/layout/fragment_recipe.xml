@@ -35,6 +35,16 @@
             app:layout_constraintStart_toEndOf="@id/avatarImg"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+        <TextView
+            android:id="@+id/sloganTxt"
+            android:layout_width="0dp"
+            android:textSize="@dimen/_10mdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/usernameTxt"
+            android:layout_marginHorizontal="@dimen/_8mdp"
+            app:layout_constraintStart_toEndOf="@id/avatarImg"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
