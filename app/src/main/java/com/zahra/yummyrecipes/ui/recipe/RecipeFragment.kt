@@ -40,20 +40,21 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         //Show username
-        lifecycleScope.launch {
-            showUsername()
-        }
+        lifecycleScope.launch { showUsername() }
         recipeViewModel.getSlogan()
-        recipeViewModel.slogan.observe(viewLifecycleOwner) {
-            binding.sloganTxt.text = it
+        recipeViewModel.slogan.observe(viewLifecycleOwner){
+            binding.sloganTxt.text=it
         }
+
+
     }
 
+
     @SuppressLint("SetTextI18n")
-    suspend fun showUsername() {
-        registerViewModel.readData.collect {
+    suspend fun showUsername(){
+        registerViewModel.readData.collect{
             binding.usernameTxt.text =
-                "${getGreeting()} ${it.username}, ${getEmojiByUnicode()}"
+                "${getGreeting()},${it.username} ${getEmojiByUnicode()}"
 
         }
     }
