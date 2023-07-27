@@ -56,7 +56,7 @@ class RecipeFragment : Fragment() {
     suspend fun showUsername(){
         registerViewModel.readData.collect{
             binding.usernameTxt.text =
-                "${getGreeting()}, ${getEmojiByUnicode()}"
+                "${getGreeting()},${it.username} ${getEmojiByUnicode()}"
 
         }
     }
