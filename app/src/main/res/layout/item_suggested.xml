@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--Card-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_160mdp"
+        android:id="@+id/cardLay"
+        android:layout_marginHorizontal="@dimen/_4mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:elevation="@dimen/_3mdp"
+        app:cardCornerRadius="@dimen/_8mdp"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Image-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/SuggestedImg"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars"/>
+        <!--Shadow-->
+
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
