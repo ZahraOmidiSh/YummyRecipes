@@ -44,10 +44,23 @@
             android:layout_marginHorizontal="@dimen/_8mdp"
             app:layout_constraintStart_toEndOf="@id/avatarImg"
             app:layout_constraintEnd_toEndOf="parent"/>
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Suggested Recipes-->
+    <com.todkars.shimmer.ShimmerRecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/suggestedList"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_11mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLay"
+        app:shimmer_recycler_auto_start="true"
+        app:shimmer_recycler_layout=""
+        app:shimmer_recycler_item_count="1"
+        app:shimmer_recycler_shape="linear"/>
 
 
 
