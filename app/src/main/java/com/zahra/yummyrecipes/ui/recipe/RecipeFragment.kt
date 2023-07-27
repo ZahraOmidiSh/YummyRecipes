@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withStarted
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
@@ -42,60 +40,42 @@ class RecipeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         //Show username
-        lifecycleScope.launch { showUsername() }
-        recipeViewModel.getSlogan()
-        recipeViewModel.slogan.observe(viewLifecycleOwner){
-            binding.sloganTxt.text=it
+        lifecycleScope.launch {
+            showUsername()
         }
-
-
+        recipeViewModel.getSlogan()
+        recipeViewModel.slogan.observe(viewLifecycleOwner) {
+            binding.sloganTxt.text = it
+        }
     }
-
 
     @SuppressLint("SetTextI18n")
-    suspend fun showUsername(){
-        registerViewModel.readData.collect{
+    suspend fun showUsername() {
+        registerViewModel.readData.collect {
             binding.usernameTxt.text =
-                "${getGreeting()}, ${getEmojiByUnicode()}"
+                "${getGreeting()} ${it.username}, ${getEmojiByUnicode()}"
 
         }
     }
 
-    private fun getGreeting():String{
+    private fun getGreeting(): String {
         val calendar = Calendar.getInstance()
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        var greeting=""
 
-        when (hour) {
-            in 7..12 -> {
-                greeting = getString(R.string.goodMorning)
-            }
-
-            in 12..17 -> {
-                greeting= getString(R.string.goodAfternoon)
-            }
-
-            in 17..20 -> {
-                greeting= getString(R.string.goodEvening)
-            }
-
-            else -> {
-                greeting= getString(R.string.goodNight)
-            }
+        return when (hour) {
+            in 7..12 -> getString(R.string.goodMorning)
+            in 12..17 -> getString(R.string.goodAfternoon)
+            in 17..20 -> getString(R.string.goodEvening)
+            else -> getString(R.string.goodNight)
         }
-        return greeting
     }
-    private fun getEmojiByUnicode():String {
+
+    private fun getEmojiByUnicode(): String {
         return String(Character.toChars(0x1f44b))
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        registerViewModel.cancelDatastoreStack()
     }
 }

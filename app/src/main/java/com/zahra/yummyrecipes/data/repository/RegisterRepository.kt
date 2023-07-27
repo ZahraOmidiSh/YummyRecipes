@@ -26,8 +26,9 @@ import javax.inject.Singleton
 
 @ActivityRetainedScoped
 class RegisterRepository @Inject constructor(
-    @ApplicationContext private val context: Context,
-    private val remote: RemoteDataSource
+//    @ApplicationContext private val context: Context,
+    private val remote: RemoteDataSource,
+    private val dataStore: DataStore<Preferences>
 ) {
 
     //Store user info
@@ -36,20 +37,16 @@ class RegisterRepository @Inject constructor(
         val hash = stringPreferencesKey(REGISTER_HASH)
     }
 
-    var dataStoreScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(
-        REGISTER_USER_INFO,
-        scope = dataStoreScope
-    )
+//    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(REGISTER_USER_INFO)
 
     suspend fun saveRegisterData(username: String, hash: String) {
-        context.dataStore.edit {
+        dataStore.edit {
             it[StoreKeys.username] = username
             it[StoreKeys.hash] = hash
         }
     }
 
-    val readRegisterData: Flow<RegisterStoredModel> = context.dataStore.data
+    val readRegisterData: Flow<RegisterStoredModel> = dataStore.data
         .catch { e ->
             if (e is IOException) {
                 emit(emptyPreferences())
