@@ -2,11 +2,9 @@ package com.zahra.yummyrecipes.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.zahra.yummyrecipes.data.network.QuotesApiServices
-import com.zahra.yummyrecipes.data.network.SpoonacularApiServices
+import com.zahra.yummyrecipes.data.network.ApiServices
+import com.zahra.yummyrecipes.utils.Constants.BASE_URL
 import com.zahra.yummyrecipes.utils.Constants.NETWORK_TIMEOUT
-import com.zahra.yummyrecipes.utils.Constants.QUOTES_BASE_URL
-import com.zahra.yummyrecipes.utils.Constants.SPOONACULAR_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +19,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkProvider {
+
+    @Provides
+    @Singleton
+    fun provideBaseUrl()= BASE_URL
 
     @Provides
     @Singleton
@@ -48,22 +50,13 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideSpoonacularRetrofit(client: OkHttpClient, gson: Gson): SpoonacularApiServices =
+    fun provideRetrofit(baseUrl:String,client:OkHttpClient , gson :Gson): ApiServices =
         Retrofit.Builder()
-            .baseUrl(SPOONACULAR_BASE_URL)
+            .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(SpoonacularApiServices::class.java)
+            .create(ApiServices::class.java)
 
-    @Provides
-    @Singleton
-    fun provideQuotesRetrofit(client: OkHttpClient, gson: Gson): QuotesApiServices =
-        Retrofit.Builder()
-            .baseUrl(QUOTES_BASE_URL)
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-            .create(QuotesApiServices::class.java)
 
 }

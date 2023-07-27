@@ -4,9 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
-import com.zahra.yummyrecipes.models.recipe.ResponseQuotes
-import com.zahra.yummyrecipes.utils.NetworkRequest
-import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

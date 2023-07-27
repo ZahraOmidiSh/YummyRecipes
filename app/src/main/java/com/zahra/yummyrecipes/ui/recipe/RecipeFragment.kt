@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
-import com.zahra.yummyrecipes.utils.Constants.MY_QUOTES_API_KEY
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint

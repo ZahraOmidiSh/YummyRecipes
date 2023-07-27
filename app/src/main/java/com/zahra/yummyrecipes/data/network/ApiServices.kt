@@ -8,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
 
-interface SpoonacularApiServices {
+interface ApiServices {
     @POST("users/connect")
     suspend fun postRegister(@Query(API_KEY) apikey: String, @Body body: BodyRegister
     ): Response<ResponseRegister>
