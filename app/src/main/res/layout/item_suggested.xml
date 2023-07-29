@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:elevation="@dimen/_3mdp"
+    android:background="@drawable/bg_rounded_yellow"
+    android:padding="@dimen/_5mdp"
     android:layout_height="wrap_content">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230mdp"
-        android:layout_marginHorizontal="@dimen/_4mdp"
-        android:layout_marginTop="@dimen/_5mdp"
         android:elevation="@dimen/_3mdp"
         app:cardCornerRadius="@dimen/_8mdp"
         app:layout_constraintStart_toStartOf="parent"
