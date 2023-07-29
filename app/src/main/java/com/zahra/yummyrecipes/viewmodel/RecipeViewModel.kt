@@ -25,7 +25,7 @@ class RecipeViewModel @Inject constructor(
         slogan.postValue(sloganList[randomNumber])
     }
 
-    val sloganList = listOf(
+    private val sloganList = listOf(
         "We are what we eat",
         "Walk right up to good food",
         "Dine and Dash",
