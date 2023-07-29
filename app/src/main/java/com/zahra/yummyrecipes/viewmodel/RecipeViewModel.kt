@@ -5,6 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
+import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
+import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
+import com.zahra.yummyrecipes.utils.Constants.API_KEY
+import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
+import com.zahra.yummyrecipes.utils.Constants.NUMBER
+import com.zahra.yummyrecipes.utils.Constants.TYPE
+import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -15,10 +23,9 @@ import kotlin.random.Random
 class RecipeViewModel @Inject constructor(
     private val repository: RecipeRepository,
 ) : ViewModel() {
+
     //Slogan
     val slogan = MutableLiveData<String>()
-
-
     @SuppressLint("SuspiciousIndentation")
     fun getSlogan() = viewModelScope.launch(Dispatchers.IO) {
         val randomNumber = Random.nextInt(0, 49)
@@ -77,4 +84,24 @@ class RecipeViewModel @Inject constructor(
         "Food always the right choice",
         "Taste is a never-ending story"
     )
+
+    //---Suggested---//
+    //Queries
+    fun suggestedQueries():HashMap<String,String>{
+        val queries:HashMap<String,String> = HashMap()
+        queries[API_KEY] = MY_API_KEY
+        queries[TYPE] = MY_API_KEY
+        queries[NUMBER] = MY_API_KEY
+        queries[ADD_RECIPE_INFORMATION] = MY_API_KEY
+        return queries
+    }
+
+    //Api
+    val suggestedData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+    fun callSuggestedApi(queries:Map<String,String>) = viewModelScope.launch {
+        suggestedData.value=NetworkRequest.Loading()
+        val response =repository.remote.getRecipe(queries)
+        suggestedData.value=NetworkResponse(response).generalNetworkResponse()
+
+    }
 }

@@ -8,9 +8,20 @@ object Constants {
 
     //APIs key
     const val API_KEY = "apiKey"
+    const val TYPE = "type"
+    const val NUMBER = "number"
+    const val ADD_RECIPE_INFORMATION = "addRecipeInformation"
+
+    //APIs value
+    const val MAIN_COURSE = "main course"
+    const val TRUE = "true"
+
 
     //Register datastore
-    const val REGISTER_USER_INFO ="register_user_info"
-    const val REGISTER_USERNAME ="register_username"
-    const val REGISTER_HASH ="register_hash"
+    const val REGISTER_USER_INFO = "register_user_info"
+    const val REGISTER_USERNAME = "register_username"
+    const val REGISTER_HASH = "register_hash"
+
+    //Other
+    const val LIMITED_COUNT = 10
 }
