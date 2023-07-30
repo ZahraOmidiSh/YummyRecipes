@@ -39,7 +39,7 @@ class SuggestedAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>(
             binding.apply {
                 //Text
                 suggestedTitleTxt.text = item.title
-                suggestedTitleTxt.text = "${item.readyInMinutes} min"
+                suggestedTimeTxt.text = "${item.readyInMinutes} min"
                 //Image
                 val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
                 suggestedImg.load(imageSize) {
