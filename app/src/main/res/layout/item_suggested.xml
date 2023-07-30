@@ -5,14 +5,12 @@
     android:layout_width="@dimen/_130mdp"
     android:elevation="@dimen/_3mdp"
     android:layout_margin="@dimen/_4mdp"
-    android:background="@drawable/bg_rounded_yellow"
-    android:padding="@dimen/_5mdp"
     android:layout_height="@dimen/_160mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_width="@dimen/_120mdp"
-        android:layout_height="@dimen/_120mdp"
+        android:layout_width="@dimen/_130mdp"
+        android:layout_height="@dimen/_130mdp"
         android:elevation="@dimen/_2mdp"
         app:cardCornerRadius="@dimen/_10mdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +18,8 @@
         <!--Image-->
         <ImageView
             android:id="@+id/suggestedImg"
-            android:layout_width="@dimen/_120mdp"
-            android:layout_height="@dimen/_120mdp"
+            android:layout_width="@dimen/_130mdp"
+            android:layout_height="@dimen/_130mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
