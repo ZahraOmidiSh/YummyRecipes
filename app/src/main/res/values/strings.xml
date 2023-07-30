@@ -17,4 +17,5 @@
     <string name="goodAfternoon">GoodAfternoon</string>
     <string name="goodEvening">GoodEvening</string>
     <string name="goodNight">GoodNight</string>
+    <string name="suggested_recipes">Suggested Recipes</string>
 </resources>

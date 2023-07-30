@@ -2,48 +2,42 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_150mdp"
+    android:layout_width="@dimen/_130mdp"
     android:elevation="@dimen/_3mdp"
-    android:layout_margin="@dimen/_8mdp"
+    android:layout_margin="@dimen/_4mdp"
     android:background="@drawable/bg_rounded_yellow"
     android:padding="@dimen/_5mdp"
-    android:layout_height="@dimen/_200mdp">
+    android:layout_height="@dimen/_160mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_width="@dimen/_140mdp"
-        android:layout_height="@dimen/_140mdp"
-        android:elevation="@dimen/_3mdp"
-        app:cardCornerRadius="@dimen/_20mdp"
+        android:layout_width="@dimen/_120mdp"
+        android:layout_height="@dimen/_120mdp"
+        android:elevation="@dimen/_2mdp"
+        app:cardCornerRadius="@dimen/_10mdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <ImageView
             android:id="@+id/suggestedImg"
-            android:layout_width="@dimen/_140mdp"
-            android:layout_height="@dimen/_140mdp"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_120mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
-        <!--Shadow-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_140mdp"
-            android:alpha="0.4"
-            android:background="@drawable/bg_shadow_image" />
 
     </com.google.android.material.card.MaterialCardView>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50mdp"
-        android:paddingTop="@dimen/_5mdp"
+        android:layout_height="@dimen/_35mdp"
+        android:layout_marginTop="@dimen/_5mdp"
         app:layout_constraintTop_toBottomOf="@id/cardLay">
         <!--Title-->
         <TextView
             android:id="@+id/suggestedTitleTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginHorizontal="@dimen/_8mdp"
             android:ellipsize="end"
             android:gravity="start|top"
             android:maxLines="2"
@@ -56,18 +50,18 @@
         <!--Time-->
         <TextView
             android:id="@+id/suggestedTimeTxt"
-            android:layout_width="@dimen/_40mdp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center|top"
             android:paddingVertical="@dimen/_1mdp"
             tools:text="12 min"
-            android:textSize="@dimen/_6font_mdp"
+            android:textSize="@dimen/_7font_mdp"
             app:drawableTint="@color/portland_orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:drawableLeftCompat="@drawable/timer2"
             android:drawablePadding="@dimen/_1mdp"
-            android:padding="@dimen/_3mdp"
+            android:padding="@dimen/_2mdp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
