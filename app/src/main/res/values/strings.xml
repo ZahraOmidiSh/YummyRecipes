@@ -13,9 +13,13 @@
     <string name="search">search</string>
     <string name="collection">collection</string>
     <string name="Planner">Planner</string>
-    <string name="goodMorning">GoodMorning</string>
-    <string name="goodAfternoon">GoodAfternoon</string>
-    <string name="goodEvening">GoodEvening</string>
-    <string name="goodNight">GoodNight</string>
+    <string name="goodMorning">Good Morning</string>
+    <string name="goodAfternoon">Good Afternoon</string>
+    <string name="goodEvening">Good Evening</string>
+    <string name="goodNight">Good Night</string>
     <string name="suggested_recipes">Suggested Recipes</string>
+    <string name="breakfast_time">Breakfast Time</string>
+    <string name="lunch_time">Lunch Time</string>
+    <string name="snack_time">Snack Time</string>
+    <string name="dinner_time">Dinner Time</string>
 </resources>

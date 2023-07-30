@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15mdp"
-        android:layout_marginTop="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_15mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,8 +19,8 @@
         <ImageView
             android:id="@+id/avatarImg"
             style="@style/AvatarStyle"
-            android:layout_width="@dimen/_40mdp"
-            android:layout_height="@dimen/_40mdp"
+            android:layout_width="@dimen/_20mdp"
+            android:layout_height="@dimen/_20mdp"
             android:src="@drawable/circle_user"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,52 +30,73 @@
             android:id="@+id/usernameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginStart="@dimen/_5mdp"
             android:textSize="@dimen/_16mdp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/avatarImg"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Good Morning" />
 
         <TextView
             android:id="@+id/sloganTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_8mdp"
             android:textSize="@dimen/_10mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/avatarImg"
-            app:layout_constraintTop_toBottomOf="@id/usernameTxt" />
+            app:layout_constraintStart_toStartOf="@id/usernameTxt"
+            app:layout_constraintTop_toBottomOf="@id/usernameTxt"
+            tools:text="Taste the difference" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Suggested Recipes-->
-    <TextView
-        android:id="@+id/SuggestedTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10mdp"
-        android:text="@string/suggested_recipes"
-        android:textSize="@dimen/_18font_mdp"
-        app:fontPath="fonts/roboto_bold.ttf"
-        app:layout_constraintStart_toStartOf="parent"
+    <!--Shadow-->
+    <View
+        android:id="@+id/suggestedShadowLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:alpha="0.18"
+        android:background="@drawable/bg_rounded_recycler_view"
         app:layout_constraintTop_toBottomOf="@id/userInfoLay" />
 
-    <com.todkars.shimmer.ShimmerRecyclerView
-        android:id="@+id/suggestedList"
+    <!--Suggested Recipes-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/suggestedLay"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10mdp"
-        android:background="@drawable/bg_rounded_recycler_view"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/_8mdp"
+        android:layout_height="@dimen/_200mdp"
+        android:layout_marginTop="@dimen/_7mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
-        app:shimmer_recycler_auto_start="true"
-        app:shimmer_recycler_item_count="1"
-        app:shimmer_recycler_layout="@layout/item_suggested_shimmer"
-        app:shimmer_recycler_shape="linear"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLay">
 
-        />
+        <TextView
+            android:id="@+id/SuggestedTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_5mdp"
+            android:paddingStart="@dimen/_13mdp"
+            android:text="@string/breakfast_time"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <com.todkars.shimmer.ShimmerRecyclerView
+            android:id="@+id/suggestedList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7mdp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_5mdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
+            app:shimmer_recycler_auto_start="true"
+            app:shimmer_recycler_item_count="1"
+            app:shimmer_recycler_layout="@layout/item_suggested_shimmer"
+            app:shimmer_recycler_shape="linear"
+            tools:listitem="@layout/item_suggested"
+
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,8 @@ class RecipeFragment : Fragment() {
 
         //Show Greeting
         lifecycleScope.launch { showGreeting() }
+        //Meal Type Suggestion
+        lifecycleScope.launch {showMealType() }
         //Call api
         recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
         //Load data
@@ -102,11 +104,27 @@ class RecipeFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
+    fun showMealType() {
+        binding.SuggestedTxt.text = getMealType()
+    }
+    @SuppressLint("SetTextI18n")
     fun showGreeting() {
         binding.usernameTxt.text = "${getGreeting()} ${getEmojiByUnicode()}"
         recipeViewModel.getSlogan()
         recipeViewModel.slogan.observe(viewLifecycleOwner) {
             binding.sloganTxt.text = it
+        }
+    }
+
+    private fun getMealType(): String {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        return when (hour) {
+            in 7..11 -> getString(R.string.breakfast_time)
+            in 11..15 -> getString(R.string.lunch_time)
+            in 15..19 -> getString(R.string.snack_time)
+            else -> getString(R.string.dinner_time)
         }
     }
 
