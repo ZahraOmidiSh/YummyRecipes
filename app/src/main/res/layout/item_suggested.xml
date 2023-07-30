@@ -30,21 +30,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10mdp"
         app:layout_constraintTop_toBottomOf="@id/cardLay">
-        <!--Title-->
+        <!--Heart-->
         <TextView
-            android:id="@+id/suggestedTitleTxt"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30mdp"
-            android:layout_marginHorizontal="@dimen/_8mdp"
-            android:ellipsize="end"
-            android:gravity="start|top"
-            android:maxLines="2"
+            android:id="@+id/suggestedHeartTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/_1mdp"
+            android:gravity="center|top"
+            android:padding="@dimen/_2mdp"
+            android:paddingVertical="@dimen/_1mdp"
             android:textSize="@dimen/_9font_mdp"
-            app:fontPath="fonts/roboto_bold.ttf"
-            app:layout_constraintEnd_toStartOf="@id/suggestedTimeTxt"
+            app:drawableLeftCompat="@drawable/ic_heart"
+            app:drawableTint="@color/red"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Show recipe name" />
+            tools:text="56" />
         <!--Time-->
         <TextView
             android:id="@+id/suggestedTimeTxt"
@@ -54,12 +54,28 @@
             android:gravity="center|top"
             android:padding="@dimen/_2mdp"
             android:paddingVertical="@dimen/_1mdp"
-            android:textSize="@dimen/_7font_mdp"
+            android:textSize="@dimen/_9font_mdp"
             app:drawableLeftCompat="@drawable/timer2"
             app:drawableTint="@color/portland_orange"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/suggestedTitleTxt"
+            app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt"
             tools:text="12 min" />
+        <!--Title-->
+        <TextView
+            android:id="@+id/suggestedTitleTxt"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_marginEnd="@dimen/_8mdp"
+            android:ellipsize="end"
+            android:gravity="start|top"
+            android:maxLines="2"
+            android:textSize="@dimen/_9font_mdp"
+            app:fontPath="fonts/roboto_bold.ttf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
+            tools:text="Show recipe name" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
