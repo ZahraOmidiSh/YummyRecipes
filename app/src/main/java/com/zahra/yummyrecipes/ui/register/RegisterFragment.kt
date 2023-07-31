@@ -37,7 +37,6 @@ class RegisterFragment : Fragment() {
 
     //Other
     private val viewModel: RegisterViewModel by viewModels()
-    private var email = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

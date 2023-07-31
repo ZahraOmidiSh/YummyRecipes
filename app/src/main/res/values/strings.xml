@@ -23,4 +23,6 @@
     <string name="snack_time">Snack Time</string>
     <string name="dinner_time">Dinner Time</string>
     <string name="recommended_recipes">Recommended Recipes</string>
+    <string name="hi">Hi</string>
+    <string name="good_morning">Good Morning</string>
 </resources>

@@ -48,7 +48,8 @@ class RecipeFragment : Fragment() {
         //InitViews
 
         //Show Greeting
-        lifecycleScope.launch { showGreeting() }
+        showGreeting()
+        showSlogan()
         //Call api
         recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
         //Load data
@@ -74,6 +75,7 @@ class RecipeFragment : Fragment() {
                             }
                         }
                     }
+
                     is NetworkRequest.Error -> {
                         setupLoading(false, suggestedList)
                         root.showSnackBar(response.message!!)
@@ -101,29 +103,18 @@ class RecipeFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    fun showGreeting() {
-        binding.usernameTxt.text = "${getGreeting()} ${getEmojiByUnicode()}"
+    private fun showGreeting() {
+        recipeViewModel.showGreeting()
+        recipeViewModel.Greeting.observe(viewLifecycleOwner) {
+            binding.usernameTxt.text = it
+        }
+    }
+
+    private fun showSlogan() {
         recipeViewModel.getSlogan()
         recipeViewModel.slogan.observe(viewLifecycleOwner) {
             binding.sloganTxt.text = it
         }
-    }
-
-    private fun getGreeting(): String {
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-
-        return when (hour) {
-            in 7..12 -> getString(R.string.goodMorning)
-            in 12..17 -> getString(R.string.goodAfternoon)
-            in 17..20 -> getString(R.string.goodEvening)
-            else -> getString(R.string.goodNight)
-        }
-    }
-
-    private fun getEmojiByUnicode(): String {
-        return String(Character.toChars(0x1f44b))
     }
 
     override fun onDestroy() {

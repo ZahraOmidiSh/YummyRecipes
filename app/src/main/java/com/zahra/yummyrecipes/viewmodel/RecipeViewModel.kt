@@ -1,9 +1,11 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.annotation.SuppressLint
+import android.provider.Settings.Global.getString
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.zahra.yummyrecipes.R.*
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
@@ -19,6 +21,7 @@ import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Calendar
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -26,6 +29,26 @@ import kotlin.random.Random
 class RecipeViewModel @Inject constructor(
     private val repository: RecipeRepository,
 ) : ViewModel() {
+    //Greeting
+    val Greeting = MutableLiveData<String>()
+    private fun getGreeting(): String {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        return when (hour) {
+            in 7..12 -> "Good Morning"
+            in 12..17 -> "Good Afternoon"
+            in 17..20 -> "Good Evening"
+            else -> "Good Night"
+        }
+    }
+    private fun getEmojiByUnicode(): String {
+        return String(Character.toChars(0x1f44b))
+    }
+    @SuppressLint("SetTextI18n")
+    fun showGreeting() {
+        Greeting.postValue("${getGreeting()} ${getEmojiByUnicode()}")
+    }
 
     //Slogan
     val slogan = MutableLiveData<String>()
