@@ -2,81 +2,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_130mdp"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_4mdp">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_width="@dimen/_130mdp"
-        android:layout_height="@dimen/_130mdp"
-        app:cardCornerRadius="@dimen/_6mdp"
+        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_width="@dimen/_140mdp"
+        android:layout_height="@dimen/_210mdp"
+        app:cardCornerRadius="@dimen/_12mdp"
+        android:elevation="@dimen/_5mdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardUseCompatPadding="true"
+        >
         <!--Image-->
         <ImageView
             android:id="@+id/suggestedImg"
-            android:layout_width="@dimen/_130mdp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/_130mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:padding="@dimen/_20mdp"
-            android:src="@drawable/salad"/>
+            tools:src="@drawable/salad"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_9mdp"
+            android:paddingHorizontal="@dimen/_3mdp"
+            android:layout_marginTop="@dimen/_10mdp">
+            <!--Heart-->
+            <TextView
+                android:id="@+id/suggestedHeartTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="160dp"
+                android:drawablePadding="@dimen/_2mdp"
+                android:gravity="center|top"
+                android:text="56"
+                android:textSize="@dimen/_10font_mdp"
+                app:drawableLeftCompat="@drawable/ic_heart"
+                app:drawableTint="@color/red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Time-->
+            <TextView
+                android:id="@+id/suggestedTimeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_2mdp"
+                android:gravity="center|top"
+                android:textSize="@dimen/_10font_mdp"
+                app:drawableLeftCompat="@drawable/timer2"
+                app:drawableTint="@color/portland_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt"
+                tools:text="12 min" />
+            <!--Title-->
+            <TextView
+                android:id="@+id/suggestedTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="start|top"
+                android:maxLines="2"
+                android:layout_marginTop="@dimen/_3mdp"
+                android:textSize="@dimen/_11font_mdp"
+                app:fontPath="fonts/roboto_bold.ttf"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
+                tools:text="Show recipe name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10mdp"
-        app:layout_constraintTop_toBottomOf="@id/cardLay">
-        <!--Heart-->
-        <TextView
-            android:id="@+id/suggestedHeartTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/_1mdp"
-            android:gravity="center|top"
-            android:padding="@dimen/_2mdp"
-            android:paddingVertical="@dimen/_1mdp"
-            android:textSize="@dimen/_9font_mdp"
-            app:drawableLeftCompat="@drawable/ic_heart"
-            app:drawableTint="@color/red"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="56" />
-        <!--Time-->
-        <TextView
-            android:id="@+id/suggestedTimeTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawablePadding="@dimen/_1mdp"
-            android:gravity="center|top"
-            android:padding="@dimen/_2mdp"
-            android:paddingVertical="@dimen/_1mdp"
-            android:textSize="@dimen/_9font_mdp"
-            app:drawableLeftCompat="@drawable/timer2"
-            app:drawableTint="@color/portland_orange"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt"
-            tools:text="12 min" />
-        <!--Title-->
-        <TextView
-            android:id="@+id/suggestedTitleTxt"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30mdp"
-            android:layout_marginEnd="@dimen/_8mdp"
-            android:ellipsize="end"
-            android:gravity="start|top"
-            android:maxLines="2"
-            android:textSize="@dimen/_9font_mdp"
-            app:fontPath="fonts/roboto_bold.ttf"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
-            tools:text="Show recipe name" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
