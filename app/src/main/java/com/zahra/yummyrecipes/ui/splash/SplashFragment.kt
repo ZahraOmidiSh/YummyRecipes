@@ -45,7 +45,8 @@ class SplashFragment : Fragment() {
         //InitViews
         binding.apply {
             //Application Version
-            versionTxt.text = "version : ${BuildConfig.VERSION_NAME}"
+//            versionTxt.text = "version : ${BuildConfig.VERSION_NAME}"
+            versionTxt.text = "${getString(R.string.version)} : ${BuildConfig.VERSION_NAME}"
             //Auto navigate
             lifecycleScope.launch {
                 withStarted {}

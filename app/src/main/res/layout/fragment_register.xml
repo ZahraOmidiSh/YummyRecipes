@@ -74,7 +74,9 @@
         android:textSize="@dimen/_15font_mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="@dimen/_25mdp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

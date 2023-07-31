@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5mdp"
-            android:textSize="@dimen/_16mdp"
+            android:textSize="@dimen/_16font_mdp"
             app:layout_constraintStart_toEndOf="@id/avatarImg"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Good Morning" />
@@ -40,7 +40,7 @@
             android:id="@+id/sloganTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/_10mdp"
+            android:textSize="@dimen/_10font_mdp"
             app:layout_constraintStart_toStartOf="@id/usernameTxt"
             app:layout_constraintTop_toBottomOf="@id/usernameTxt"
             tools:text="Taste the difference" />
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/_5mdp"
             android:paddingStart="@dimen/_15mdp"
-            android:text="@string/recomended_recipes"
+            android:text="@string/recommended_recipes"
             android:textSize="@dimen/_13font_mdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

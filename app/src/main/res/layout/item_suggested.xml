@@ -43,7 +43,7 @@
                 android:text="56"
                 android:textSize="@dimen/_10font_mdp"
                 app:drawableLeftCompat="@drawable/ic_heart"
-                app:drawableTint="@color/red"
+                app:drawableTint="@color/tart_orange"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <!--Time-->
@@ -69,7 +69,6 @@
                 android:maxLines="2"
                 android:layout_marginTop="@dimen/_3mdp"
                 android:textSize="@dimen/_11font_mdp"
-                app:fontPath="fonts/roboto_bold.ttf"
                 app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
                 tools:text="Show recipe name" />
 

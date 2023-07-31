@@ -6,7 +6,7 @@
     <string name="lastname">LastName</string>
     <string name="username">UserName</string>
     <string name="email">Email</string>
-    <string name="email_is_not_valid">Email is not valid</string>
+    <string name="email_is_not_valid">Email must contains "@" and "." </string>
     <string name="check_internet">Please Check Internet Connection</string>
     <string name="version">version</string>
     <string name="recipe">recipe</string>
@@ -22,5 +22,5 @@
     <string name="lunch_time">Lunch Time</string>
     <string name="snack_time">Snack Time</string>
     <string name="dinner_time">Dinner Time</string>
-    <string name="recomended_recipes">Recomended Recipes</string>
+    <string name="recommended_recipes">Recommended Recipes</string>
 </resources>

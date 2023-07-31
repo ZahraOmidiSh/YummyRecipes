@@ -66,7 +66,7 @@ class RegisterFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    if (!email.contains("@") || !email.contains(".com")) {
+                    if (!email.contains("@") || !email.contains(".")) {
                         eMailEdt.error = getString(R.string.email_is_not_valid)
                     } else {
                         //Body

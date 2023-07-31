@@ -20,7 +20,7 @@
         <item name="android:drawablePadding">@dimen/_6mdp</item>
         <item name="android:inputType">textPersonName</item>
         <item name="android:padding">@dimen/_2mdp</item>
-        <item name="colorError">@color/red</item>
+        <item name="colorError">@color/tart_orange</item>
     </style>
 
     <!--Bottom Nav Style-->
