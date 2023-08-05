@@ -8,18 +8,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
+import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
+import com.zahra.yummyrecipes.utils.Constants.DELAY_TIME
+import com.zahra.yummyrecipes.utils.Constants.REPEAT_TIME
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import javax.inject.Inject
@@ -36,6 +41,7 @@ class RecipeFragment : Fragment() {
 
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
+    private var autoScrollIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -73,6 +79,7 @@ class RecipeFragment : Fragment() {
                             if (data.results!!.isNotEmpty()) {
                                 suggestedAdapter.setData(data.results)
                                 initSuggestedRecycler()
+                                autoScrollSuggested(data.results)
                             }
                         }
                     }
@@ -97,6 +104,22 @@ class RecipeFragment : Fragment() {
         //Click
         suggestedAdapter.setonItemClickListener {
             //Go to detail page
+        }
+
+    }
+
+    private fun autoScrollSuggested(list:List<ResponseRecipes.Result>){
+        lifecycleScope.launch {
+            withStarted {  }
+            repeat(REPEAT_TIME){
+                delay(DELAY_TIME)
+                if(autoScrollIndex < list.size){
+                    autoScrollIndex++
+                }else{
+                    autoScrollIndex=0
+                }
+                binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
+            }
         }
 
     }
