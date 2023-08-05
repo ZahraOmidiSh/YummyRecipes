@@ -2,17 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_marginStart="@dimen/_4mdp"
-        android:layout_width="@dimen/_140mdp"
-        android:layout_height="@dimen/_210mdp"
-        app:cardCornerRadius="@dimen/_12mdp"
+        android:layout_marginStart="@dimen/_1mdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170mdp"
+        app:cardCornerRadius="@dimen/_8mdp"
         android:elevation="@dimen/_5mdp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardUseCompatPadding="true"
         >
@@ -20,53 +19,19 @@
         <View
             android:id="@+id/suggestedImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_130mdp"
+            android:layout_height="@dimen/_200mdp"
             android:contentDescription="@string/app_name"
             android:background="@drawable/bg_shimmer_gray"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!--Title-->
+        <View
+            android:id="@+id/suggestedTitleTxt"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_9mdp"
-            android:paddingHorizontal="@dimen/_3mdp"
-            android:layout_marginTop="@dimen/_10mdp">
-            <!--Heart-->
-            <View
-                android:id="@+id/suggestedHeartTxt"
-                android:layout_width="@dimen/_20mdp"
-                android:layout_height="@dimen/_16mdp"
-                android:background="@drawable/bg_shimmer_gray"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="160dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--Time-->
-            <View
-                android:id="@+id/suggestedTimeTxt"
-                android:background="@drawable/bg_shimmer_gray"
-                android:layout_width="@dimen/_29mdp"
-                android:layout_height="@dimen/_14mdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt" />
-            <!--Title-->
-            <View
-                android:id="@+id/suggestedTitleTxt"
-                android:background="@drawable/bg_shimmer_gray"
-                android:layout_width="@dimen/_110mdp"
-                android:layout_height="@dimen/_8mdp"
-                android:layout_marginTop="@dimen/_3mdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt" />
-            <View
-                android:id="@+id/suggestedTitleTxt2"
-                android:background="@drawable/bg_shimmer_gray"
-                android:layout_width="@dimen/_120mdp"
-                android:layout_height="@dimen/_8mdp"
-                android:layout_marginTop="@dimen/_6mdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/suggestedTitleTxt" />
+            android:layout_height="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_125mdp"
+            android:layout_marginHorizontal="@dimen/_15mdp"
+            android:background="@drawable/bg_shimmer_white"
+             />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

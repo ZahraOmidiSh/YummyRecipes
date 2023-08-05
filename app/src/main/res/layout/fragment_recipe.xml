@@ -51,7 +51,7 @@
         android:id="@+id/suggestedLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_13mdp"
         app:layout_constraintTop_toBottomOf="@id/userInfoLay">
 
         <TextView
@@ -72,6 +72,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:paddingHorizontal="@dimen/_10mdp"
+            android:paddingTop="@dimen/_3mdp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
