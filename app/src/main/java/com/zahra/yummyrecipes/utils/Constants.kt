@@ -13,10 +13,14 @@ object Constants {
     const val TYPE = "type"
     const val NUMBER = "number"
     const val ADD_RECIPE_INFORMATION = "addRecipeInformation"
+    const val SORT = "sort"
 
     //APIs value
     const val MAIN_COURSE = "main course"
     const val TRUE = "true"
+    const val RANDOM = "random"
+
+
 
 
     //Register datastore

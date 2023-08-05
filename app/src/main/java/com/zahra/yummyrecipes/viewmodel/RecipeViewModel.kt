@@ -14,6 +14,8 @@ import com.zahra.yummyrecipes.utils.Constants.LIMITED_COUNT
 import com.zahra.yummyrecipes.utils.Constants.MAIN_COURSE
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
+import com.zahra.yummyrecipes.utils.Constants.RANDOM
+import com.zahra.yummyrecipes.utils.Constants.SORT
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
 import com.zahra.yummyrecipes.utils.NetworkRequest
@@ -113,12 +115,26 @@ class RecipeViewModel @Inject constructor(
 
     //---Suggested---//
     //Queries
+    private fun getMealType(): String {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+
+        return when (hour) {
+            in 6..8 -> "breakfast"
+            in 8..10 -> "breakfast,bread,appetizer"
+            in 10..13 -> "main course,salad,appetizer,marinade"
+            in 13..17 -> "soup,sauce,fingerfood,snack,drink,dessert"
+            in 17..23 -> "main course,salad,side dish"
+            else -> ""
+        }
+    }
     fun suggestedQueries():HashMap<String,String>{
         val queries:HashMap<String,String> = HashMap()
         queries[API_KEY] = MY_API_KEY
-        queries[TYPE] = MAIN_COURSE
+        queries[TYPE] = getMealType()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
+        queries[SORT] = RANDOM
         return queries
     }
 
