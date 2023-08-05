@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
@@ -86,10 +87,13 @@ class RecipeFragment : Fragment() {
     }
 
     private fun initSuggestedRecycler() {
+        val snapHelper = LinearSnapHelper()
         binding.suggestedList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             suggestedAdapter
         )
+        //Snap
+        snapHelper.attachToRecyclerView(binding.suggestedList)
         //Click
         suggestedAdapter.setonItemClickListener {
             //Go to detail page

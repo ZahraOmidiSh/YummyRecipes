@@ -2,17 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_marginStart="@dimen/_4mdp"
-        android:layout_width="@dimen/_140mdp"
-        android:layout_height="@dimen/_210mdp"
-        app:cardCornerRadius="@dimen/_12mdp"
+        android:layout_marginHorizontal="@dimen/_1mdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170mdp"
+        app:cardCornerRadius="@dimen/_8mdp"
         android:elevation="@dimen/_5mdp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardUseCompatPadding="true"
         >
@@ -20,59 +19,29 @@
         <ImageView
             android:id="@+id/suggestedImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_130mdp"
+            android:layout_height="@dimen/_200mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             tools:src="@drawable/salad"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <!--Shadow-->
+        <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/_9mdp"
-            android:paddingHorizontal="@dimen/_3mdp"
-            android:layout_marginTop="@dimen/_10mdp">
-            <!--Heart-->
-            <TextView
-                android:id="@+id/suggestedHeartTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="160dp"
-                android:drawablePadding="@dimen/_2mdp"
-                android:gravity="center|top"
-                android:text="56"
-                android:textSize="@dimen/_10font_mdp"
-                app:drawableLeftCompat="@drawable/ic_heart"
-                app:drawableTint="@color/tart_orange"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--Time-->
-            <TextView
-                android:id="@+id/suggestedTimeTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/_2mdp"
-                android:gravity="center|top"
-                android:textSize="@dimen/_10font_mdp"
-                app:drawableLeftCompat="@drawable/timer2"
-                app:drawableTint="@color/portland_orange"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt"
-                tools:text="12 min" />
-            <!--Title-->
-            <TextView
-                android:id="@+id/suggestedTitleTxt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="start|top"
-                android:maxLines="2"
-                android:layout_marginTop="@dimen/_3mdp"
-                android:textSize="@dimen/_11font_mdp"
-                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
-                tools:text="Show recipe name" />
+            android:background="@drawable/bg_shadow_image"
+            android:alpha="0.9"/>
+        <!--Title-->
+        <TextView
+            android:id="@+id/suggestedTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_125mdp"
+            android:layout_marginStart="@dimen/_15mdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/baby_powder"
+            android:textSize="@dimen/_17font_mdp"
+            tools:text="Show recipe name" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

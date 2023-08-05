@@ -19,6 +19,7 @@ object Constants {
     const val MAIN_COURSE = "main course"
     const val TRUE = "true"
     const val RANDOM = "random"
+    const val POPULARITY = "popularity"
 
 
 

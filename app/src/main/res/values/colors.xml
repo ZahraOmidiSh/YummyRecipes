@@ -16,4 +16,6 @@
     <color name="gray">#908F9A</color>
     <color name="mediumGray">#D1D1D1</color>
     <color name="tart_orange">#FF4646</color>
+    <color name="dark_gunmetal">#1F1D36</color>
+    <color name="dark_gunmetal_alpha">#801F1D36</color>
 </resources>

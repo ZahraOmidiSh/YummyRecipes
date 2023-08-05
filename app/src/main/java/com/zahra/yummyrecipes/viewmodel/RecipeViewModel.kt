@@ -14,6 +14,7 @@ import com.zahra.yummyrecipes.utils.Constants.LIMITED_COUNT
 import com.zahra.yummyrecipes.utils.Constants.MAIN_COURSE
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
+import com.zahra.yummyrecipes.utils.Constants.POPULARITY
 import com.zahra.yummyrecipes.utils.Constants.RANDOM
 import com.zahra.yummyrecipes.utils.Constants.SORT
 import com.zahra.yummyrecipes.utils.Constants.TRUE
@@ -134,7 +135,7 @@ class RecipeViewModel @Inject constructor(
         queries[TYPE] = getMealType()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
-        queries[SORT] = RANDOM
+        queries[SORT] = POPULARITY
         return queries
     }
 
