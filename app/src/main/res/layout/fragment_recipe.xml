@@ -45,7 +45,6 @@
             app:layout_constraintTop_toBottomOf="@id/usernameTxt"
             tools:text="Taste the difference" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
     <!--Suggested Recipes-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/suggestedLay"
@@ -71,9 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
+            android:orientation="horizontal"
             android:paddingHorizontal="@dimen/_10mdp"
             android:paddingTop="@dimen/_3mdp"
-            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
             app:shimmer_recycler_auto_start="true"
@@ -84,6 +83,63 @@
 
             />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Heart Friendly-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/healthyLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13mdp"
+        app:layout_constraintTop_toBottomOf="@id/suggestedLay">
+        <!--Card-->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/healthyCardLay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130mdp"
+            android:layout_marginHorizontal="@dimen/_1mdp"
+            android:elevation="@dimen/_5mdp"
+            app:cardCornerRadius="@dimen/_8mdp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--Image-->
+            <ImageView
+                android:id="@+id/healthyImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/healthy"/>
+            <!--Shadow-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.7"
+                android:background="@drawable/bg_shadow_image" />
+            <!--Title-->
+            <TextView
+                android:id="@+id/healthyTitleTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10mdp"
+                android:layout_marginTop="@dimen/_60mdp"
+                android:textColor="@color/baby_powder"
+                android:textSize="@dimen/_22font_mdp"
+                android:text="HEALTHY FOOD" />
+
+            <!--Title-->
+            <TextView
+                android:id="@+id/premiumTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3mdp"
+                android:layout_marginTop="@dimen/_5mdp"
+                android:textColor="@color/portland_orange"
+                android:textSize="@dimen/_8font_mdp"
+                android:text="PREMIUM" />
+
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
