@@ -45,142 +45,155 @@
             app:layout_constraintTop_toBottomOf="@id/usernameTxt"
             tools:text="Taste the difference" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Suggested Recipes-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/suggestedLay"
+    <!--Scroll-->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_13mdp"
-        app:layout_constraintTop_toBottomOf="@id/userInfoLay">
-
-        <TextView
-            android:id="@+id/SuggestedTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_5mdp"
-            android:paddingStart="@dimen/_15mdp"
-            android:text="@string/recommended_recipes"
-            android:textSize="@dimen/_13font_mdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
-
-        <com.todkars.shimmer.ShimmerRecyclerView
-            android:id="@+id/suggestedList"
+        android:layout_marginTop="@dimen/_20mdp"
+        android:paddingBottom="@dimen/_140mdp"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLay"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/_10mdp"
-            android:paddingTop="@dimen/_3mdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
-            app:shimmer_recycler_auto_start="true"
-            app:shimmer_recycler_item_count="1"
-            app:shimmer_recycler_layout="@layout/item_suggested_shimmer"
-            app:shimmer_recycler_shape="linear"
-            tools:listitem="@layout/item_suggested"
-
-            />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Heart Friendly-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/healthyLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_13mdp"
-        app:layout_constraintTop_toBottomOf="@id/suggestedLay">
-        <!--Healthy Foods Card-->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/healthyCardLay"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_130mdp"
-            android:layout_marginHorizontal="@dimen/_1mdp"
-            android:elevation="@dimen/_5mdp"
-            app:cardCornerRadius="@dimen/_8mdp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintTop_toTopOf="parent">
-            <!--Image-->
-            <ImageView
-                android:id="@+id/healthyImg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:scaleType="centerCrop"
-                android:src="@drawable/healthy" />
-            <!--Shadow-->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.7"
-                android:background="@drawable/bg_shadow_image" />
-            <!--Title-->
-            <TextView
-                android:id="@+id/healthyTitleTxt"
+            android:layout_height="wrap_content">
+            <!--Suggested Recipes-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/suggestedLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10mdp"
-                android:layout_marginTop="@dimen/_60mdp"
-                android:text="HEALTHY FOODS"
-                android:textColor="@color/baby_powder"
-                android:textSize="@dimen/_22font_mdp" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!--Title-->
-            <TextView
-                android:id="@+id/premiumTxt"
+                <TextView
+                    android:id="@+id/SuggestedTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_5mdp"
+                    android:paddingStart="@dimen/_15mdp"
+                    android:text="@string/recommended_recipes"
+                    android:textSize="@dimen/_13font_mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/suggestedList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_10mdp"
+                    android:paddingTop="@dimen/_3mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/SuggestedTxt"
+                    app:shimmer_recycler_auto_start="true"
+                    app:shimmer_recycler_item_count="1"
+                    app:shimmer_recycler_layout="@layout/item_suggested_shimmer"
+                    app:shimmer_recycler_shape="linear"
+                    tools:listitem="@layout/item_suggested"
+
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Healthy Foods-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/healthyLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_3mdp"
-                android:layout_marginTop="@dimen/_5mdp"
-                android:text="PREMIUM"
-                android:textColor="@color/portland_orange"
-                android:textSize="@dimen/_8font_mdp" />
+                android:layout_marginTop="@dimen/_13mdp"
+                android:layout_marginHorizontal="-3dp"
+                app:layout_constraintTop_toBottomOf="@id/suggestedLay">
+                <!--Healthy Foods Card-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/healthyCardLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100mdp"
+                    android:elevation="@dimen/_2mdp"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <!--Image-->
+                    <ImageView
+                        android:id="@+id/healthyImg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/healthy" />
+                    <!--Shadow-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.7"
+                        android:background="@drawable/bg_shadow_image" />
+                    <!--Title-->
+                    <TextView
+                        android:id="@+id/healthyTitleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_50mdp"
+                        android:text="@string/healthy_foods"
+                        android:textColor="@color/baby_powder"
+                        android:textSize="@dimen/_22font_mdp" />
+
+                    <!--Title-->
+                    <TextView
+                        android:id="@+id/premiumTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:text="PREMIUM"
+                        android:textColor="@color/portland_orange"
+                        android:textSize="@dimen/_8font_mdp" />
 
 
-        </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Economical Recipes-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/economicalLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_13mdp"
-        app:layout_constraintTop_toBottomOf="@id/healthyLay">
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Economical Recipes-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/economicalLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13mdp"
+                app:layout_constraintTop_toBottomOf="@id/healthyLay">
 
-        <TextView
-            android:id="@+id/economicalTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_5mdp"
-            android:paddingStart="@dimen/_15mdp"
-            android:text="@string/economical_recipes"
-            android:textSize="@dimen/_13font_mdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/economicalTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_5mdp"
+                    android:paddingStart="@dimen/_15mdp"
+                    android:text="@string/economical_recipes"
+                    android:textSize="@dimen/_13font_mdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
 
-        <com.todkars.shimmer.ShimmerRecyclerView
-            android:id="@+id/economicalList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/_10mdp"
-            android:paddingTop="@dimen/_3mdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/economicalTxt"
-            app:shimmer_recycler_auto_start="true"
-            app:shimmer_recycler_item_count="1"
-            app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
-            app:shimmer_recycler_shape="linear"
-            tools:listitem="@layout/item_recycler_view"
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/economicalList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_5mdp"
+                    android:paddingTop="@dimen/_3mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/economicalTxt"
+                    app:shimmer_recycler_auto_start="true"
+                    app:shimmer_recycler_item_count="1"
+                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    app:shimmer_recycler_shape="linear"
+                    tools:listitem="@layout/item_recycler_view"
 
-            />
+                    />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,12 +14,17 @@ object Constants {
     const val NUMBER = "number"
     const val ADD_RECIPE_INFORMATION = "addRecipeInformation"
     const val SORT = "sort"
+    const val SORT_DIRECTION = "sortDirection"
 
     //APIs value
     const val MAIN_COURSE = "main course"
     const val TRUE = "true"
     const val RANDOM = "random"
     const val POPULARITY = "popularity"
+    const val PRICE = "price"
+    const val ASCENDING = "asc"
+    const val DESCENDING = "desc"
+
 
 
 

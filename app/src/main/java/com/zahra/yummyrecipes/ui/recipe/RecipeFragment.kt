@@ -36,6 +36,7 @@ class RecipeFragment : Fragment() {
 
     @Inject
     lateinit var suggestedAdapter: SuggestedAdapter
+    @Inject
     lateinit var economicalAdapter: EconomicalAdapter
 
     //other
@@ -61,6 +62,10 @@ class RecipeFragment : Fragment() {
         recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
         //Load Suggested Data
         loadSuggestedData()
+        //Call Economical Api
+        recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
+        //Load Economical Data
+        loadEconomicalData()
 
 
     }

@@ -7,7 +7,7 @@
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_marginStart="@dimen/_4mdp"
+        android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_140mdp"
         android:layout_height="@dimen/_210mdp"
         app:cardCornerRadius="@dimen/_12mdp"

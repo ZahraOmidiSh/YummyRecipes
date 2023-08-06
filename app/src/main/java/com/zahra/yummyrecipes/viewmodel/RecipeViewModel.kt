@@ -10,13 +10,16 @@ import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
+import com.zahra.yummyrecipes.utils.Constants.ASCENDING
 import com.zahra.yummyrecipes.utils.Constants.LIMITED_COUNT
 import com.zahra.yummyrecipes.utils.Constants.MAIN_COURSE
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.POPULARITY
+import com.zahra.yummyrecipes.utils.Constants.PRICE
 import com.zahra.yummyrecipes.utils.Constants.RANDOM
 import com.zahra.yummyrecipes.utils.Constants.SORT
+import com.zahra.yummyrecipes.utils.Constants.SORT_DIRECTION
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
 import com.zahra.yummyrecipes.utils.NetworkRequest
@@ -155,7 +158,9 @@ class RecipeViewModel @Inject constructor(
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
-        queries[SORT] = "time"
+        queries[TYPE] = MAIN_COURSE
+        queries[SORT] = PRICE
+        queries[SORT_DIRECTION] = ASCENDING
         return queries
     }
 
