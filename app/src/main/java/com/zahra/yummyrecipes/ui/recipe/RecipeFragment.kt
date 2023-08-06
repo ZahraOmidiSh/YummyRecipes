@@ -1,7 +1,7 @@
 package com.zahra.yummyrecipes.ui.recipe
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,6 @@ import androidx.lifecycle.withStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
-import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
@@ -22,11 +21,9 @@ import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
-import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Calendar
 import javax.inject.Inject
 
 
@@ -42,6 +39,7 @@ class RecipeFragment : Fragment() {
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
     private var autoScrollIndex = 0
+    private val TAG = "RecipeFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -113,12 +111,17 @@ class RecipeFragment : Fragment() {
             withStarted {  }
             repeat(REPEAT_TIME){
                 delay(DELAY_TIME)
+                val myLayoutManager: LinearLayoutManager = binding.suggestedList.layoutManager as LinearLayoutManager
+                val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
+                autoScrollIndex=scrollPosition+1
+                Log.e(TAG, "autoScrollIndex="+autoScrollIndex.toString() )
                 if(autoScrollIndex < list.size){
                     autoScrollIndex++
                 }else{
                     autoScrollIndex=0
                 }
                 binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
+
             }
         }
 

@@ -32,7 +32,6 @@ class SuggestedAdapter @Inject constructor() : RecyclerView.Adapter<ViewHolder>(
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
-
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: Result) {
