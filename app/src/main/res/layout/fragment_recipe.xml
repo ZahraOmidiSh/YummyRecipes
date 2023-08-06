@@ -142,5 +142,45 @@
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Economical Recipes-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/economicalLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13mdp"
+        app:layout_constraintTop_toBottomOf="@id/healthyLay">
+
+        <TextView
+            android:id="@+id/economicalTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_5mdp"
+            android:paddingStart="@dimen/_15mdp"
+            android:text="@string/economical_recipes"
+            android:textSize="@dimen/_13font_mdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+        <com.todkars.shimmer.ShimmerRecyclerView
+            android:id="@+id/economicalList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_10mdp"
+            android:paddingTop="@dimen/_3mdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/economicalTxt"
+            app:shimmer_recycler_auto_start="true"
+            app:shimmer_recycler_item_count="1"
+            app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+            app:shimmer_recycler_shape="linear"
+            tools:listitem="@layout/item_recycler_view"
+
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

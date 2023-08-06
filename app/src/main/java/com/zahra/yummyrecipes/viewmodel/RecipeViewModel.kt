@@ -147,4 +147,24 @@ class RecipeViewModel @Inject constructor(
         suggestedData.value=NetworkResponse(response).generalNetworkResponse()
 
     }
+
+    //---Economical---//
+    //Queries
+    fun economicalQueries():HashMap<String,String>{
+        val queries:HashMap<String,String> = HashMap()
+        queries[API_KEY] = MY_API_KEY
+        queries[NUMBER] = LIMITED_COUNT.toString()
+        queries[ADD_RECIPE_INFORMATION] = TRUE
+        queries[SORT] = "time"
+        return queries
+    }
+
+    //Api
+    val economicalData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+    fun callEconomicalApi(queries:Map<String,String>) = viewModelScope.launch {
+        economicalData.value=NetworkRequest.Loading()
+        val response =repository.remote.getRecipe(queries)
+        economicalData.value=NetworkResponse(response).generalNetworkResponse()
+
+    }
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.withStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
+import com.zahra.yummyrecipes.adapter.EconomicalAdapter
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
@@ -35,6 +36,7 @@ class RecipeFragment : Fragment() {
 
     @Inject
     lateinit var suggestedAdapter: SuggestedAdapter
+    lateinit var economicalAdapter: EconomicalAdapter
 
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
@@ -55,9 +57,9 @@ class RecipeFragment : Fragment() {
         //Show Greeting
         showGreeting()
         showSlogan()
-        //Call api
+        //Call Suggested Api
         recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
-        //Load data
+        //Load Suggested Data
         loadSuggestedData()
 
 
@@ -101,6 +103,46 @@ class RecipeFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.suggestedList)
         //Click
         suggestedAdapter.setonItemClickListener {
+            //Go to detail page
+        }
+
+    }
+
+    private fun loadEconomicalData() {
+        recipeViewModel.economicalData.observe(viewLifecycleOwner) { response ->
+            binding.apply {
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        setupLoading(true, economicalList)
+                    }
+
+                    is NetworkRequest.Success -> {
+                        setupLoading(false, economicalList)
+                        response.data?.let { data ->
+                            if (data.results!!.isNotEmpty()) {
+                                economicalAdapter.setData(data.results)
+                                initEconomicalRecycler()
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        setupLoading(false, economicalList)
+                        root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initEconomicalRecycler() {
+        binding.economicalList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            economicalAdapter
+        )
+
+        //Click
+        economicalAdapter.setonItemClickListener {
             //Go to detail page
         }
 
