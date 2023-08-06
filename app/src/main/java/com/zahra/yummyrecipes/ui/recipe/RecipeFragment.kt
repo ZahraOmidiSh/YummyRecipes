@@ -113,14 +113,19 @@ class RecipeFragment : Fragment() {
                 delay(DELAY_TIME)
                 val myLayoutManager: LinearLayoutManager = binding.suggestedList.layoutManager as LinearLayoutManager
                 val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
-                autoScrollIndex=scrollPosition+1
+
+                autoScrollIndex=scrollPosition
                 Log.e(TAG, "autoScrollIndex="+autoScrollIndex.toString() )
                 if(autoScrollIndex < list.size){
                     autoScrollIndex++
+                    Log.e(TAG, "autoScrollIndex2="+autoScrollIndex.toString() )
                 }else{
                     autoScrollIndex=0
                 }
                 binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
+                if(autoScrollIndex==10){
+                    binding.suggestedList.smoothScrollToPosition(0)
+                }
 
             }
         }
