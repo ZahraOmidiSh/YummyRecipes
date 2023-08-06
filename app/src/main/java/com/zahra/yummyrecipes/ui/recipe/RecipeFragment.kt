@@ -115,10 +115,8 @@ class RecipeFragment : Fragment() {
                 val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
 
                 autoScrollIndex=scrollPosition
-                Log.e(TAG, "autoScrollIndex="+autoScrollIndex.toString() )
                 if(autoScrollIndex < list.size){
                     autoScrollIndex++
-                    Log.e(TAG, "autoScrollIndex2="+autoScrollIndex.toString() )
                 }else{
                     autoScrollIndex=0
                 }
