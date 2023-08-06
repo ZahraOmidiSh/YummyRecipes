@@ -20,6 +20,7 @@ import com.zahra.yummyrecipes.utils.Constants.PRICE
 import com.zahra.yummyrecipes.utils.Constants.RANDOM
 import com.zahra.yummyrecipes.utils.Constants.SORT
 import com.zahra.yummyrecipes.utils.Constants.SORT_DIRECTION
+import com.zahra.yummyrecipes.utils.Constants.TIME
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
 import com.zahra.yummyrecipes.utils.NetworkRequest
@@ -170,6 +171,28 @@ class RecipeViewModel @Inject constructor(
         economicalData.value=NetworkRequest.Loading()
         val response =repository.remote.getRecipe(queries)
         economicalData.value=NetworkResponse(response).generalNetworkResponse()
+
+    }
+
+    //---Quick---//
+    //Queries
+    fun quickQueries():HashMap<String,String>{
+        val queries:HashMap<String,String> = HashMap()
+        queries[API_KEY] = MY_API_KEY
+        queries[NUMBER] = LIMITED_COUNT.toString()
+        queries[ADD_RECIPE_INFORMATION] = TRUE
+        queries[TYPE] = MAIN_COURSE
+        queries[SORT] =TIME
+        queries[SORT_DIRECTION] = ASCENDING
+        return queries
+    }
+
+    //Api
+    val quickData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+    fun callQuickApi(queries:Map<String,String>) = viewModelScope.launch {
+        quickData.value=NetworkRequest.Loading()
+        val response =repository.remote.getRecipe(queries)
+        quickData.value=NetworkResponse(response).generalNetworkResponse()
 
     }
 }

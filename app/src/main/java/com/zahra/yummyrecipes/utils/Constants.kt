@@ -22,6 +22,7 @@ object Constants {
     const val RANDOM = "random"
     const val POPULARITY = "popularity"
     const val PRICE = "price"
+    const val TIME = "time"
     const val ASCENDING = "asc"
     const val DESCENDING = "desc"
 

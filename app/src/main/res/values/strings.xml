@@ -27,4 +27,8 @@
     <string name="good_morning">Good Morning</string>
     <string name="economical_recipes">Economical Recipes</string>
     <string name="healthy_foods">HEALTHY FOODS</string>
+    <string name="vegan_foods">VEGAN FOODS</string>
+    <string name="premium">PREMIUM</string>
+    <string name="quick_recipes">Quick Recipes</string>
+    <string name="weight_loss_foods">WEIGHT LOSS FOODS</string>
 </resources>

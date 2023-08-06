@@ -66,6 +66,10 @@ class RecipeFragment : Fragment() {
         recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
         //Load Economical Data
         loadEconomicalData()
+        //Call Economical Api
+        recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
+        //Load Economical Data
+        loadQuickData()
 
 
     }
@@ -142,6 +146,46 @@ class RecipeFragment : Fragment() {
 
     private fun initEconomicalRecycler() {
         binding.economicalList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            economicalAdapter
+        )
+
+        //Click
+        economicalAdapter.setonItemClickListener {
+            //Go to detail page
+        }
+
+    }
+
+    private fun loadQuickData() {
+        recipeViewModel.quickData.observe(viewLifecycleOwner) { response ->
+            binding.apply {
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        setupLoading(true, quickList)
+                    }
+
+                    is NetworkRequest.Success -> {
+                        setupLoading(false, quickList)
+                        response.data?.let { data ->
+                            if (data.results!!.isNotEmpty()) {
+                                economicalAdapter.setData(data.results)
+                                initQuickRecycler()
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        setupLoading(false, quickList)
+                        root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initQuickRecycler() {
+        binding.quickList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             economicalAdapter
         )
