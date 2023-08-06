@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_13mdp"
         app:layout_constraintTop_toBottomOf="@id/suggestedLay">
-        <!--Card-->
+        <!--Healthy Foods Card-->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/healthyCardLay"
             android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerCrop"
-                android:src="@drawable/healthy"/>
+                android:src="@drawable/healthy" />
             <!--Shadow-->
             <View
                 android:layout_width="match_parent"
@@ -123,9 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10mdp"
                 android:layout_marginTop="@dimen/_60mdp"
+                android:text="HEALTHY FOODS"
                 android:textColor="@color/baby_powder"
-                android:textSize="@dimen/_22font_mdp"
-                android:text="HEALTHY FOOD" />
+                android:textSize="@dimen/_22font_mdp" />
 
             <!--Title-->
             <TextView
@@ -134,9 +134,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_3mdp"
                 android:layout_marginTop="@dimen/_5mdp"
+                android:text="PREMIUM"
                 android:textColor="@color/portland_orange"
-                android:textSize="@dimen/_8font_mdp"
-                android:text="PREMIUM" />
+                android:textSize="@dimen/_8font_mdp" />
 
 
         </com.google.android.material.card.MaterialCardView>
