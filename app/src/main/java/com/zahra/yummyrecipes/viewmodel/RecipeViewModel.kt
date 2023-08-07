@@ -188,7 +188,21 @@ class RecipeViewModel @Inject constructor(
         economicalData.value=NetworkRequest.Loading()
         val response =repository.remote.getRecipe(queries)
         economicalData.value=NetworkResponse(response).generalNetworkResponse()
+        //Cache
+        val cache = economicalData.value?.data
+        if(cache !=null){
+            offlineEconomical(cache)
+        }
 
+    }
+    //local
+    private fun saveEconomical(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.saveRecipes(entity)
+    }
+    val readEconomicalFromDb = repository.local.loadRecipes().asLiveData()
+    private fun offlineEconomical(response: ResponseRecipes){
+        val entity = RecipeEntity(1,response)
+        saveEconomical(entity)
     }
 
     //---Quick---//
@@ -211,5 +225,20 @@ class RecipeViewModel @Inject constructor(
         val response =repository.remote.getRecipe(queries)
         quickData.value=NetworkResponse(response).generalNetworkResponse()
 
+        //Cache
+        val cache = quickData.value?.data
+        if(cache !=null){
+            offlineQuick(cache)
+        }
+
+    }
+    //local
+    private fun saveQuick(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.saveRecipes(entity)
+    }
+    val readQuickFromDb = repository.local.loadRecipes().asLiveData()
+    private fun offlineQuick(response: ResponseRecipes){
+        val entity = RecipeEntity(2,response)
+        saveQuick(entity)
     }
 }

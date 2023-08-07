@@ -60,22 +60,16 @@ class RecipeFragment : Fragment() {
         showGreeting()
         showSlogan()
 
-        //Call Suggested Api
+        //Call data
         callSuggestedData()
-        //Load Suggested Data
+        callEconomicalData()
+        callQuickData()
+
+        //Load data
         loadSuggestedData()
-
-        /*
-        //Call Economical Api
-        recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
-        //Load Economical Data
         loadEconomicalData()
-
-        //Call Quick Api
-        recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
-        //Load Quick Data
         loadQuickData()
-*/
+
 
     }
 
@@ -86,12 +80,10 @@ class RecipeFragment : Fragment() {
             if(database.isNotEmpty()){
                 database[0].response.results?.let {results ->
                     fillSuggestedAdapter(results.toMutableList())
-
                 }
             }else{
                 recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
             }
-
         }
     }
     private fun loadSuggestedData() {
@@ -119,12 +111,10 @@ class RecipeFragment : Fragment() {
             }
         }
     }
-
     private fun fillSuggestedAdapter(results:MutableList<ResponseRecipes.Result>){
         suggestedAdapter.setData(results)
         autoScrollSuggested(results)
     }
-
     private fun initSuggestedRecycler() {
         val snapHelper = LinearSnapHelper()
         binding.suggestedList.setupRecyclerview(
@@ -139,7 +129,45 @@ class RecipeFragment : Fragment() {
         }
 
     }
+    private fun autoScrollSuggested(list:List<ResponseRecipes.Result>){
+        lifecycleScope.launch {
+            withStarted {  }
+            repeat(REPEAT_TIME){
+                delay(DELAY_TIME)
+                val myLayoutManager: LinearLayoutManager = binding.suggestedList.layoutManager as LinearLayoutManager
+                val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
 
+                autoScrollIndex=scrollPosition
+                if(autoScrollIndex < list.size){
+                    autoScrollIndex++
+                }else{
+                    autoScrollIndex=0
+                }
+                binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
+                if(autoScrollIndex==10){
+                    binding.suggestedList.smoothScrollToPosition(0)
+                }
+
+            }
+        }
+
+    }
+
+    //Economical
+    private fun callEconomicalData(){
+        initEconomicalRecycler()
+        recipeViewModel.readEconomicalFromDb.observe(viewLifecycleOwner){database ->
+            if(database.isNotEmpty() && database.size>1){
+                database[1].response.results?.let {results ->
+                    setupLoading(false, binding.economicalList)
+                    economicalAdapter.setData(results)
+                }
+            }else{
+                recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
+            }
+
+        }
+    }
     private fun loadEconomicalData() {
         recipeViewModel.economicalData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -153,7 +181,6 @@ class RecipeFragment : Fragment() {
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
                                 economicalAdapter.setData(data.results)
-                                initEconomicalRecycler()
                             }
                         }
                     }
@@ -166,6 +193,7 @@ class RecipeFragment : Fragment() {
             }
         }
     }
+
 
     private fun initEconomicalRecycler() {
         binding.economicalList.setupRecyclerview(
@@ -180,6 +208,21 @@ class RecipeFragment : Fragment() {
 
     }
 
+    //Quick
+    private fun callQuickData(){
+        initQuickRecycler()
+        recipeViewModel.readQuickFromDb.observe(viewLifecycleOwner){database ->
+            if(database.isNotEmpty() && database.size>2){
+                database[2].response.results?.let {results ->
+                    setupLoading(false, binding.quickList)
+                    quickAdapter.setData(results)
+                }
+            }else{
+                recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
+            }
+
+        }
+    }
     private fun loadQuickData() {
         recipeViewModel.quickData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -193,7 +236,6 @@ class RecipeFragment : Fragment() {
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
                                 quickAdapter.setData(data.results)
-                                initQuickRecycler()
                             }
                         }
                     }
@@ -220,29 +262,7 @@ class RecipeFragment : Fragment() {
 
     }
 
-    private fun autoScrollSuggested(list:List<ResponseRecipes.Result>){
-        lifecycleScope.launch {
-            withStarted {  }
-            repeat(REPEAT_TIME){
-                delay(DELAY_TIME)
-                val myLayoutManager: LinearLayoutManager = binding.suggestedList.layoutManager as LinearLayoutManager
-                val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
 
-                autoScrollIndex=scrollPosition
-                if(autoScrollIndex < list.size){
-                    autoScrollIndex++
-                }else{
-                    autoScrollIndex=0
-                }
-                binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
-                if(autoScrollIndex==10){
-                    binding.suggestedList.smoothScrollToPosition(0)
-                }
-
-            }
-        }
-
-    }
 
     private fun setupLoading(isShownLoading: Boolean, shimmer: ShimmerRecyclerView) {
         shimmer.apply {
