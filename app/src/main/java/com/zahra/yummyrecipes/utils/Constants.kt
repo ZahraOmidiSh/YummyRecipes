@@ -27,13 +27,14 @@ object Constants {
     const val DESCENDING = "desc"
 
 
-
-
-
     //Register datastore
     const val REGISTER_USER_INFO = "register_user_info"
     const val REGISTER_USERNAME = "register_username"
     const val REGISTER_HASH = "register_hash"
+
+    //Database
+    const val RECIPE_TABLE_NAME = "recipe_table_name"
+    const val DATABASE_NAME = "database_name"
 
     //Other
     const val LIMITED_COUNT = 10
