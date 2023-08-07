@@ -18,6 +18,7 @@ import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.utils.Constants.DELAY_TIME
 import com.zahra.yummyrecipes.utils.Constants.REPEAT_TIME
 import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.onceObserve
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
@@ -76,7 +77,7 @@ class RecipeFragment : Fragment() {
     //Suggested
     private fun callSuggestedData(){
         initSuggestedRecycler()
-        recipeViewModel.readSuggestedFromDb.observe(viewLifecycleOwner){ database ->
+        recipeViewModel.readSuggestedFromDb.onceObserve(viewLifecycleOwner){ database ->
             if(database.isNotEmpty()){
                 database[0].response.results?.let {results ->
                     fillSuggestedAdapter(results.toMutableList())
@@ -156,7 +157,7 @@ class RecipeFragment : Fragment() {
     //Economical
     private fun callEconomicalData(){
         initEconomicalRecycler()
-        recipeViewModel.readEconomicalFromDb.observe(viewLifecycleOwner){database ->
+        recipeViewModel.readEconomicalFromDb.onceObserve(viewLifecycleOwner){database ->
             if(database.isNotEmpty() && database.size>1){
                 database[1].response.results?.let {results ->
                     setupLoading(false, binding.economicalList)
@@ -211,7 +212,7 @@ class RecipeFragment : Fragment() {
     //Quick
     private fun callQuickData(){
         initQuickRecycler()
-        recipeViewModel.readQuickFromDb.observe(viewLifecycleOwner){database ->
+        recipeViewModel.readQuickFromDb.onceObserve(viewLifecycleOwner){database ->
             if(database.isNotEmpty() && database.size>2){
                 database[2].response.results?.let {results ->
                     setupLoading(false, binding.quickList)
