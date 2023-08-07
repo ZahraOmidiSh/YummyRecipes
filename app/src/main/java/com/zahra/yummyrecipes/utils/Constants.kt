@@ -4,8 +4,8 @@ object Constants {
     const val BASE_URL = "https://api.spoonacular.com/"
     const val NETWORK_TIMEOUT = 60L
 
-    const val MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
-//    const val MY_API_KEY = "a4b8ec5f10364b5ab29353dfd26175de"
+//    const val MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
+    const val MY_API_KEY = "a4b8ec5f10364b5ab29353dfd26175de"
 
 
     //APIs key

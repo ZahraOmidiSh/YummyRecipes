@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.ui.recipe
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,7 @@ import androidx.lifecycle.withStarted
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
-import com.zahra.yummyrecipes.adapter.EconomicalAdapter
-import com.zahra.yummyrecipes.adapter.QuickAdapter
+import com.zahra.yummyrecipes.adapter.GeneralRecipesAdapter
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
@@ -38,9 +36,9 @@ class RecipeFragment : Fragment() {
     @Inject
     lateinit var suggestedAdapter: SuggestedAdapter
     @Inject
-    lateinit var economicalAdapter: EconomicalAdapter
+    lateinit var economicalAdapter: GeneralRecipesAdapter
     @Inject
-    lateinit var quickAdapter: QuickAdapter
+    lateinit var quickAdapter: GeneralRecipesAdapter
 
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
