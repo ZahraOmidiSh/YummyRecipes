@@ -13,6 +13,7 @@ import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
+import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
 class EconomicalAdapter @Inject constructor() : RecyclerView.Adapter<EconomicalAdapter.ViewHolder>() {
@@ -37,7 +38,7 @@ class EconomicalAdapter @Inject constructor() : RecyclerView.Adapter<EconomicalA
             binding.apply {
                 //Text
                 suggestedTitleTxt.text = item.title
-                suggestedTimeTxt.text = "${item.readyInMinutes} min"
+                suggestedTimeTxt.text = item.readyInMinutes!!.minToHour()
                 suggestedHeartTxt.text = item.aggregateLikes.toString()
                 //Image
                 val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
