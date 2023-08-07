@@ -61,10 +61,11 @@ class RecipeFragment : Fragment() {
         showSlogan()
 
         //Call Suggested Api
-        recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
+        callSuggestedData()
         //Load Suggested Data
         loadSuggestedData()
 
+        /*
         //Call Economical Api
         recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
         //Load Economical Data
@@ -74,10 +75,25 @@ class RecipeFragment : Fragment() {
         recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
         //Load Quick Data
         loadQuickData()
-
+*/
 
     }
 
+    //Suggested
+    private fun callSuggestedData(){
+        initSuggestedRecycler()
+        recipeViewModel.readSuggestedFromDb.observe(viewLifecycleOwner){ database ->
+            if(database.isNotEmpty()){
+                database[0].response.results?.let {results ->
+                    fillSuggestedAdapter(results.toMutableList())
+
+                }
+            }else{
+                recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
+            }
+
+        }
+    }
     private fun loadSuggestedData() {
         recipeViewModel.suggestedData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -90,9 +106,7 @@ class RecipeFragment : Fragment() {
                         setupLoading(false, suggestedList)
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
-                                suggestedAdapter.setData(data.results)
-                                initSuggestedRecycler()
-                                autoScrollSuggested(data.results)
+                                fillSuggestedAdapter(data.results.toMutableList())
                             }
                         }
                     }
@@ -104,6 +118,11 @@ class RecipeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun fillSuggestedAdapter(results:MutableList<ResponseRecipes.Result>){
+        suggestedAdapter.setData(results)
+        autoScrollSuggested(results)
     }
 
     private fun initSuggestedRecycler() {
