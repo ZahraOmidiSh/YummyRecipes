@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.provider.Settings.Global.getString
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.R.*
+import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
@@ -150,9 +152,23 @@ class RecipeViewModel @Inject constructor(
         suggestedData.value=NetworkRequest.Loading()
         val response =repository.remote.getRecipe(queries)
         suggestedData.value=NetworkResponse(response).generalNetworkResponse()
-
+        //Cache
+        val cache = suggestedData.value?.data
+        if (cache !=null){
+            offlineSuggested(cache)
+        }
     }
 
+    //Local
+    private fun saveSuggested(entity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.saveRecipes(entity)
+    }
+
+    val readSuggestedFromDb = repository.local.loadRecipes().asLiveData()
+    private fun offlineSuggested(response: ResponseRecipes){
+        val entity = RecipeEntity(0,response)
+        saveSuggested(entity)
+    }
     //---Economical---//
     //Queries
     fun economicalQueries():HashMap<String,String>{
