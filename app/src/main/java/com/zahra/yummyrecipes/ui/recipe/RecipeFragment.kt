@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
 import com.zahra.yummyrecipes.adapter.EconomicalAdapter
+import com.zahra.yummyrecipes.adapter.QuickAdapter
 import com.zahra.yummyrecipes.adapter.SuggestedAdapter
 import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
@@ -38,6 +39,8 @@ class RecipeFragment : Fragment() {
     lateinit var suggestedAdapter: SuggestedAdapter
     @Inject
     lateinit var economicalAdapter: EconomicalAdapter
+    @Inject
+    lateinit var quickAdapter: QuickAdapter
 
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
@@ -58,17 +61,20 @@ class RecipeFragment : Fragment() {
         //Show Greeting
         showGreeting()
         showSlogan()
+
         //Call Suggested Api
         recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
         //Load Suggested Data
         loadSuggestedData()
+
         //Call Economical Api
         recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
         //Load Economical Data
         loadEconomicalData()
-        //Call Economical Api
+
+        //Call Quick Api
         recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
-        //Load Economical Data
+        //Load Quick Data
         loadQuickData()
 
 
@@ -169,7 +175,7 @@ class RecipeFragment : Fragment() {
                         setupLoading(false, quickList)
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
-                                economicalAdapter.setData(data.results)
+                                quickAdapter.setData(data.results)
                                 initQuickRecycler()
                             }
                         }
@@ -187,11 +193,11 @@ class RecipeFragment : Fragment() {
     private fun initQuickRecycler() {
         binding.quickList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-            economicalAdapter
+            quickAdapter
         )
 
         //Click
-        economicalAdapter.setonItemClickListener {
+        quickAdapter.setonItemClickListener {
             //Go to detail page
         }
 

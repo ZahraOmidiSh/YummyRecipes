@@ -16,7 +16,7 @@ import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
-class EconomicalAdapter @Inject constructor() : RecyclerView.Adapter<EconomicalAdapter.ViewHolder>() {
+class QuickAdapter @Inject constructor() : RecyclerView.Adapter<QuickAdapter.ViewHolder>() {
     private lateinit var binding: ItemRecyclerViewBinding
     private var items = emptyList<Result>()
 
