@@ -17,6 +17,7 @@ import com.zahra.yummyrecipes.databinding.FragmentRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.utils.Constants.DELAY_TIME
 import com.zahra.yummyrecipes.utils.Constants.REPEAT_TIME
+import com.zahra.yummyrecipes.utils.NetworkChecker
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.onceObserve
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -24,6 +25,7 @@ import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -40,6 +42,8 @@ class RecipeFragment : Fragment() {
     lateinit var economicalAdapter: GeneralRecipesAdapter
     @Inject
     lateinit var quickAdapter: GeneralRecipesAdapter
+    @Inject
+    lateinit var networkChecker: NetworkChecker
 
     //other
     private val recipeViewModel: RecipeViewModel by viewModels()
@@ -77,15 +81,24 @@ class RecipeFragment : Fragment() {
     //Suggested
     private fun callSuggestedData(){
         initSuggestedRecycler()
-        recipeViewModel.readSuggestedFromDb.onceObserve(viewLifecycleOwner){ database ->
-            if(database.isNotEmpty()){
-                database[0].response.results?.let {results ->
-                    fillSuggestedAdapter(results.toMutableList())
+        lifecycleScope.launch {
+            withStarted {  }
+            networkChecker.checkNetworkAvailability().collect{state ->
+                if(state){
+                    recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
+                }else{
+                    recipeViewModel.readSuggestedFromDb.onceObserve(viewLifecycleOwner) { database ->
+                        if(database.isNotEmpty()){
+                            database[0].response.results?.let {results ->
+                                fillSuggestedAdapter(results.toMutableList())
+                            }
+                        }
+                    }
                 }
-            }else{
-                recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
+
             }
         }
+
     }
     private fun loadSuggestedData() {
         recipeViewModel.suggestedData.observe(viewLifecycleOwner) { response ->
