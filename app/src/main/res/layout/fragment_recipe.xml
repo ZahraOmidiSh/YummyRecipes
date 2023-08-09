@@ -65,15 +65,10 @@
 
                 <TextView
                     android:id="@+id/SuggestedTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_5mdp"
-                    android:paddingStart="@dimen/_15mdp"
+                    style="@style/RV_Title"
                     android:text="@string/recommended_recipes"
-                    android:textSize="@dimen/_13font_mdp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/suggestedList"
@@ -98,53 +93,34 @@
             <!--Healthy Foods-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/healthyLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_13mdp"
-                android:layout_marginHorizontal="-3dp"
-                app:layout_constraintTop_toBottomOf="@id/suggestedLay">
+                style="@style/Banner_Lay"
+                app:layout_constraintTop_toBottomOf="@id/suggestedLay"
+                tools:ignore="MissingConstraints">
                 <!--Healthy Foods Card-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/healthyCardLay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100mdp"
-                    android:elevation="@dimen/_2mdp"
+                    style="@style/Banner_Card_View"
                     app:layout_constraintTop_toTopOf="parent">
                     <!--Image-->
                     <ImageView
                         android:id="@+id/healthyImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="centerCrop"
+                        style="@style/Banner_Image_View"
                         android:src="@drawable/healthy" />
                     <!--Shadow-->
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.7"
-                        android:background="@drawable/bg_shadow_image" />
+                        style="@style/Banner_Shadow" />
+
+                    <!--premium text view-->
+                    <TextView
+                        android:id="@+id/premiumTxt"
+                        style="@style/Banner_Premium_Txt"/>
                     <!--Title-->
                     <TextView
                         android:id="@+id/healthyTitleTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_50mdp"
-                        android:text="@string/healthy_foods"
-                        android:textColor="@color/baby_powder"
-                        android:textSize="@dimen/_22font_mdp" />
+                        style="@style/Banner_Title_Txt"
+                        android:text="@string/healthy_foods" />
 
-                    <!--Title-->
-                    <TextView
-                        android:id="@+id/premiumTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
-                        android:text="@string/premium"
-                        android:textColor="@color/portland_orange"
-                        android:textSize="@dimen/_8font_mdp" />
+
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -153,133 +129,85 @@
             <!--Economical Recipes-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/economicalLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_13mdp"
-                app:layout_constraintTop_toBottomOf="@id/healthyLay">
+                style="@style/RV_Lay"
+                app:layout_constraintTop_toBottomOf="@id/healthyLay"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/economicalTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_5mdp"
-                    android:paddingStart="@dimen/_15mdp"
+                    style="@style/RV_Title"
                     android:text="@string/economical_recipes"
-                    android:textSize="@dimen/_13font_mdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/economicalList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_5mdp"
-                    android:paddingTop="@dimen/_3mdp"
+                    style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/economicalTxt"
-                    app:shimmer_recycler_auto_start="true"
-                    app:shimmer_recycler_item_count="3"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
-                    app:shimmer_recycler_shape="linear"
                     tools:listitem="@layout/item_recycler_view"
-
-                    />
+                    tools:ignore="MissingConstraints" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Quick Recipes-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/quickLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_13mdp"
-                app:layout_constraintTop_toBottomOf="@id/economicalLay">
+                style="@style/RV_Lay"
+                app:layout_constraintTop_toBottomOf="@id/economicalLay"
+                tools:ignore="MissingConstraints">
 
                 <TextView
                     android:id="@+id/quickTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_5mdp"
-                    android:paddingStart="@dimen/_15mdp"
+                    style="@style/RV_Title"
                     android:text="@string/quick_recipes"
-                    android:textSize="@dimen/_13font_mdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="RtlSymmetry" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/quickList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_5mdp"
-                    android:paddingTop="@dimen/_3mdp"
+                    style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/quickTxt"
-                    app:shimmer_recycler_auto_start="true"
-                    app:shimmer_recycler_item_count="3"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
-                    app:shimmer_recycler_shape="linear"
                     tools:listitem="@layout/item_recycler_view"
 
-                    />
+                    tools:ignore="MissingConstraints" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Vegan Foods-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/veganLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_13mdp"
-                android:layout_marginHorizontal="-3dp"
-                app:layout_constraintTop_toBottomOf="@id/quickLay">
+                style="@style/Banner_Lay"
+                app:layout_constraintTop_toBottomOf="@id/quickLay"
+                tools:ignore="MissingConstraints">
                 <!--Healthy Foods Card-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/veganCardLay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100mdp"
-                    android:elevation="@dimen/_2mdp"
+                    style="@style/Banner_Card_View"
                     app:layout_constraintTop_toTopOf="parent">
                     <!--Image-->
                     <ImageView
+                        style="@style/Banner_Image_View"
                         android:id="@+id/veganImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="centerCrop"
                         android:src="@drawable/vegan" />
                     <!--Shadow-->
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.7"
-                        android:background="@drawable/bg_shadow_image" />
+                        style="@style/Banner_Shadow"
+                        />
+                    <!--premium text view-->
+                    <TextView
+                        style="@style/Banner_Premium_Txt"
+                        android:id="@+id/veganPremiumTxt" />
                     <!--Title-->
                     <TextView
+                        style="@style/Banner_Title_Txt"
                         android:id="@+id/veganTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_50mdp"
-                        android:text="@string/vegan_foods"
-                        android:textColor="@color/baby_powder"
-                        android:textSize="@dimen/_22font_mdp" />
+                        android:text="@string/vegan_foods" />
 
-                    <!--Title-->
-                    <TextView
-                        android:id="@+id/veganPremiumTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
-                        android:text="@string/premium"
-                        android:textColor="@color/portland_orange"
-                        android:textSize="@dimen/_8font_mdp" />
+
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -287,54 +215,34 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Weight Loss Foods-->
             <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/Banner_Lay"
                 android:id="@+id/weightLossLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_13mdp"
-                android:layout_marginHorizontal="-3dp"
-                app:layout_constraintTop_toBottomOf="@id/veganLay">
+                app:layout_constraintTop_toBottomOf="@id/veganLay"
+                tools:ignore="MissingConstraints">
                 <!--Healthy Foods Card-->
                 <com.google.android.material.card.MaterialCardView
+                    style="@style/Banner_Card_View"
                     android:id="@+id/weightLossCardLay"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_100mdp"
-                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintTop_toTopOf="parent">
                     <!--Image-->
                     <ImageView
+                        style="@style/Banner_Image_View"
                         android:id="@+id/weightLossImg"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:contentDescription="@string/app_name"
-                        android:scaleType="centerCrop"
                         android:src="@drawable/weight_loss" />
                     <!--Shadow-->
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.7"
-                        android:background="@drawable/bg_shadow_image" />
+                        style="@style/Banner_Shadow" />
+                    <!--premium text view-->
+                    <TextView
+                        style="@style/Banner_Premium_Txt"
+                        android:id="@+id/weightLossPremiumTxt" />
                     <!--Title-->
                     <TextView
+                        style="@style/Banner_Title_Txt"
                         android:id="@+id/weightLossTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_50mdp"
-                        android:text="@string/weight_loss_foods"
-                        android:textColor="@color/baby_powder"
-                        android:textSize="@dimen/_22font_mdp" />
+                        android:text="@string/weight_loss_foods" />
 
-                    <!--Title-->
-                    <TextView
-                        android:id="@+id/weightLossPremiumTxt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
-                        android:text="@string/premium"
-                        android:textColor="@color/portland_orange"
-                        android:textSize="@dimen/_8font_mdp" />
+
 
 
                 </com.google.android.material.card.MaterialCardView>
