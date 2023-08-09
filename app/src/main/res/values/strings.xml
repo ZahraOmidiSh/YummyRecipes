@@ -31,4 +31,11 @@
     <string name="premium">PREMIUM</string>
     <string name="quick_recipes">Quick Recipes</string>
     <string name="weight_loss_foods">WEIGHT LOSS FOODS</string>
+    <string name="suggested">Suggested</string>
+    <string name="meals_on_a_budget">Meals On A Budget</string>
+    <string name="quick_and_easy">Quick And Easy</string>
+    <string name="kid_friendly_foods">Kid Friendly Foods</string>
+    <string name="few_ingredients">Few Ingredients</string>
+    <string name="vegan">Vegan</string>
+    <string name="view_all">View All</string>
 </resources>

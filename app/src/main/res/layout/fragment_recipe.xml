@@ -56,7 +56,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--Suggested Recipes-->
+            <!--Suggested -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/suggestedLay"
                 android:layout_width="match_parent"
@@ -66,9 +66,17 @@
                 <TextView
                     android:id="@+id/SuggestedTxt"
                     style="@style/RV_Title"
-                    android:text="@string/recommended_recipes"
+                    android:text="@string/suggested"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <!--View All-->
+                <TextView
+                    style="@style/View_All_Txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/viewAllSuggested"/>
+
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/suggestedList"
@@ -120,79 +128,89 @@
                         style="@style/Banner_Title_Txt"
                         android:text="@string/healthy_foods" />
 
-
-
-
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--Economical Recipes-->
+            <!--meals On A Budget -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/economicalLay"
+                android:id="@+id/mealsOnABudgetLay"
                 style="@style/RV_Lay"
                 app:layout_constraintTop_toBottomOf="@id/healthyLay"
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/economicalTxt"
+                    android:id="@+id/mealsOnABudgetTxt"
                     style="@style/RV_Title"
-                    android:text="@string/economical_recipes"
+                    android:text="@string/meals_on_a_budget"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--View All-->
+                <TextView
+                    style="@style/View_All_Txt"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/viewAllMealsOnABudget"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
-                    android:id="@+id/economicalList"
+                    android:id="@+id/mealsOnABudgetList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/economicalTxt"
+                    app:layout_constraintTop_toBottomOf="@id/mealsOnABudgetTxt"
                     tools:listitem="@layout/item_recycler_view"
                     tools:ignore="MissingConstraints" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--Quick Recipes-->
+            <!--Quick and easy -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/quickLay"
+                android:id="@+id/quickAndEasyLay"
                 style="@style/RV_Lay"
-                app:layout_constraintTop_toBottomOf="@id/economicalLay"
+                app:layout_constraintTop_toBottomOf="@id/mealsOnABudgetLay"
                 tools:ignore="MissingConstraints">
 
                 <TextView
-                    android:id="@+id/quickTxt"
+                    android:id="@+id/quickAndEasyTxt"
                     style="@style/RV_Title"
-                    android:text="@string/quick_recipes"
+                    android:text="@string/quick_and_easy"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--View All-->
+                <TextView
+                    style="@style/View_All_Txt"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/viewAllQuickAndEasy"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
-                    android:id="@+id/quickList"
+                    android:id="@+id/quickAndEasyList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/quickTxt"
+                    app:layout_constraintTop_toBottomOf="@id/quickAndEasyTxt"
                     tools:listitem="@layout/item_recycler_view"
-
                     tools:ignore="MissingConstraints" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--Vegan Foods-->
+            <!--Kid-Friendly Foods-->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/veganLay"
+                android:id="@+id/kidFriendlyLay"
                 style="@style/Banner_Lay"
-                app:layout_constraintTop_toBottomOf="@id/quickLay"
+                app:layout_constraintTop_toBottomOf="@id/quickAndEasyLay"
                 tools:ignore="MissingConstraints">
                 <!--Healthy Foods Card-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/veganCardLay"
+                    android:id="@+id/kidFriendlyCardLay"
                     style="@style/Banner_Card_View"
                     app:layout_constraintTop_toTopOf="parent">
                     <!--Image-->
                     <ImageView
+                        android:id="@+id/kidFriendlyImg"
                         style="@style/Banner_Image_View"
-                        android:id="@+id/veganImg"
-                        android:src="@drawable/vegan" />
+                        android:src="@drawable/kidFood"
+                        tools:ignore="ImageContrastCheck"
+                        android:contentDescription="TODO" />
                     <!--Shadow-->
                     <View
                         style="@style/Banner_Shadow"
@@ -200,54 +218,78 @@
                     <!--premium text view-->
                     <TextView
                         style="@style/Banner_Premium_Txt"
-                        android:id="@+id/veganPremiumTxt" />
+                        android:id="@+id/kidFriendlyPremiumTxt" />
                     <!--Title-->
                     <TextView
                         style="@style/Banner_Title_Txt"
-                        android:id="@+id/veganTxt"
-                        android:text="@string/vegan_foods" />
-
-
-
+                        android:id="@+id/kidFriendlyTxt"
+                        android:text="@string/kid_friendly_foods" />
 
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!--Weight Loss Foods-->
+            <!--Few Ingredients -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/Banner_Lay"
-                android:id="@+id/weightLossLay"
-                app:layout_constraintTop_toBottomOf="@id/veganLay"
+                android:id="@+id/fewIngredientsLay"
+                style="@style/RV_Lay"
+                app:layout_constraintTop_toBottomOf="@id/kidFriendlyLay"
                 tools:ignore="MissingConstraints">
-                <!--Healthy Foods Card-->
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/Banner_Card_View"
-                    android:id="@+id/weightLossCardLay"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <!--Image-->
-                    <ImageView
-                        style="@style/Banner_Image_View"
-                        android:id="@+id/weightLossImg"
-                        android:src="@drawable/weight_loss" />
-                    <!--Shadow-->
-                    <View
-                        style="@style/Banner_Shadow" />
-                    <!--premium text view-->
-                    <TextView
-                        style="@style/Banner_Premium_Txt"
-                        android:id="@+id/weightLossPremiumTxt" />
-                    <!--Title-->
-                    <TextView
-                        style="@style/Banner_Title_Txt"
-                        android:id="@+id/weightLossTxt"
-                        android:text="@string/weight_loss_foods" />
 
+                <TextView
+                    android:id="@+id/fewIngredientsTxt"
+                    style="@style/RV_Title"
+                    android:text="@string/few_ingredients"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <!--View All-->
+                <TextView
+                    style="@style/View_All_Txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/viewAllFewIngredients"/>
 
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/fewIngredientsList"
+                    style="@style/Recipe_Recycler_View"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/fewIngredientsTxt"
+                    tools:listitem="@layout/item_recycler_view"
+                    tools:ignore="MissingConstraints" />
 
-                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Vegan-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/veganLay"
+                style="@style/RV_Lay"
+                app:layout_constraintTop_toBottomOf="@id/fewIngredientsLay"
+                tools:ignore="MissingConstraints">
+
+                <TextView
+                    android:id="@+id/veganTxt"
+                    style="@style/RV_Title"
+                    android:text="@string/vegan"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--View All-->
+                <TextView
+                    style="@style/View_All_Txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/viewAllVegan"/>
+
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/veganList"
+                    style="@style/Recipe_Recycler_View"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/veganTxt"
+                    tools:listitem="@layout/item_recycler_view"
+                    tools:ignore="MissingConstraints" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
