@@ -14,6 +14,8 @@ import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.ASCENDING
 import com.zahra.yummyrecipes.utils.Constants.DESCENDING
+import com.zahra.yummyrecipes.utils.Constants.DIET
+import com.zahra.yummyrecipes.utils.Constants.HEALTHINESS
 import com.zahra.yummyrecipes.utils.Constants.LIMITED_COUNT
 import com.zahra.yummyrecipes.utils.Constants.MAIN_COURSE
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
@@ -26,6 +28,7 @@ import com.zahra.yummyrecipes.utils.Constants.SORT_DIRECTION
 import com.zahra.yummyrecipes.utils.Constants.TIME
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
+import com.zahra.yummyrecipes.utils.Constants.VEGAN
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -143,6 +146,7 @@ class RecipeViewModel @Inject constructor(
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[SORT] = POPULARITY
+        queries[SORT_DIRECTION] = DESCENDING
         return queries
     }
 
@@ -169,6 +173,8 @@ class RecipeViewModel @Inject constructor(
         val entity = RecipeEntity(0,response)
         saveSuggested(entity)
     }
+
+
     //---Economical---//
     //Queries
     fun economicalQueries():HashMap<String,String>{
@@ -240,5 +246,79 @@ class RecipeViewModel @Inject constructor(
     private fun offlineQuick(response: ResponseRecipes){
         val entity = RecipeEntity(2,response)
         saveQuick(entity)
+    }
+
+
+    //---Vegan---//
+    //Queries
+    fun veganQueries():HashMap<String,String>{
+        val queries:HashMap<String,String> = HashMap()
+        queries[API_KEY] = MY_API_KEY
+        queries[NUMBER] = LIMITED_COUNT.toString()
+        queries[ADD_RECIPE_INFORMATION] = TRUE
+        queries[DIET] = VEGAN
+        queries[SORT] = POPULARITY
+        queries[SORT_DIRECTION] = DESCENDING
+        return queries
+    }
+
+    //Api
+    val veganData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+    fun callVeganApi(queries:Map<String,String>) = viewModelScope.launch {
+        veganData.value=NetworkRequest.Loading()
+        val response =repository.remote.getRecipe(queries)
+        veganData.value=NetworkResponse(response).generalNetworkResponse()
+
+        //Cache
+        val cache = veganData.value?.data
+        if(cache !=null){
+            offlineVegan(cache)
+        }
+
+    }
+    //local
+    private fun saveVegan(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.saveRecipes(entity)
+    }
+    val readVeganFromDb = repository.local.loadRecipes().asLiveData()
+    private fun offlineVegan(response: ResponseRecipes){
+        val entity = RecipeEntity(3,response)
+        saveVegan(entity)
+    }
+
+
+    //---Healthy---//
+    //Queries
+    fun healthyQueries():HashMap<String,String>{
+        val queries:HashMap<String,String> = HashMap()
+        queries[API_KEY] = MY_API_KEY
+        queries[NUMBER] = LIMITED_COUNT.toString()
+        queries[ADD_RECIPE_INFORMATION] = TRUE
+        queries[SORT] =HEALTHINESS
+        return queries
+    }
+
+    //Api
+    val healthyData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+    fun callHealthyApi(queries:Map<String,String>) = viewModelScope.launch {
+        healthyData.value=NetworkRequest.Loading()
+        val response =repository.remote.getRecipe(queries)
+        healthyData.value=NetworkResponse(response).generalNetworkResponse()
+
+        //Cache
+        val cache = healthyData.value?.data
+        if(cache !=null){
+            offlineHealthy(cache)
+        }
+
+    }
+    //local
+    private fun saveHealthy(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+        repository.local.saveRecipes(entity)
+    }
+    val readHealthyFromDb = repository.local.loadRecipes().asLiveData()
+    private fun offlineHealthy(response: ResponseRecipes){
+        val entity = RecipeEntity(4,response)
+        saveHealthy(entity)
     }
 }
