@@ -15,6 +15,7 @@ object Constants {
     const val ADD_RECIPE_INFORMATION = "addRecipeInformation"
     const val SORT = "sort"
     const val SORT_DIRECTION = "sortDirection"
+    const val DIET = "diet"
 
     //APIs value
     const val MAIN_COURSE = "main course"
@@ -25,6 +26,8 @@ object Constants {
     const val TIME = "time"
     const val ASCENDING = "asc"
     const val DESCENDING = "desc"
+    const val VEGAN = "Vegan"
+    const val HEALTHINESS = "healthiness"
 
 
     //Register datastore

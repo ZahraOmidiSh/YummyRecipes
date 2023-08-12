@@ -44,6 +44,10 @@ class RecipeFragment : Fragment() {
     @Inject
     lateinit var quickAdapter: GeneralRecipesAdapter
     @Inject
+    lateinit var veganAdapter: GeneralRecipesAdapter
+    @Inject
+    lateinit var healthyAdapter: GeneralRecipesAdapter
+    @Inject
     lateinit var networkChecker: NetworkChecker
 
     //other
@@ -70,11 +74,15 @@ class RecipeFragment : Fragment() {
         callSuggestedData()
         callEconomicalData()
         callQuickData()
+        callVeganData()
+        callHealthyData()
 
         //Load data
         loadSuggestedData()
         loadEconomicalData()
         loadQuickData()
+        loadVeganData()
+        loadHealthyData()
 
 
     }
@@ -174,7 +182,7 @@ class RecipeFragment : Fragment() {
         recipeViewModel.readEconomicalFromDb.onceObserve(viewLifecycleOwner){database ->
             if(database.isNotEmpty() && database.size>1){
                 database[1].response.results?.let {results ->
-                    setupLoading(false, binding.economicalList)
+                    setupLoading(false, binding.mealsOnABudgetList)
                     economicalAdapter.setData(results)
                 }
             }else{
@@ -188,11 +196,11 @@ class RecipeFragment : Fragment() {
             binding.apply {
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        setupLoading(true, economicalList)
+                        setupLoading(true, mealsOnABudgetList)
                     }
 
                     is NetworkRequest.Success -> {
-                        setupLoading(false, economicalList)
+                        setupLoading(false, mealsOnABudgetList)
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
                                 economicalAdapter.setData(data.results)
@@ -201,7 +209,7 @@ class RecipeFragment : Fragment() {
                     }
 
                     is NetworkRequest.Error -> {
-                        setupLoading(false, economicalList)
+                        setupLoading(false, mealsOnABudgetList)
                         root.showSnackBar(response.message!!)
                     }
                 }
@@ -211,7 +219,7 @@ class RecipeFragment : Fragment() {
 
 
     private fun initEconomicalRecycler() {
-        binding.economicalList.setupRecyclerview(
+        binding.mealsOnABudgetList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             economicalAdapter
         )
@@ -229,7 +237,7 @@ class RecipeFragment : Fragment() {
         recipeViewModel.readQuickFromDb.onceObserve(viewLifecycleOwner){database ->
             if(database.isNotEmpty() && database.size>2){
                 database[2].response.results?.let {results ->
-                    setupLoading(false, binding.quickList)
+                    setupLoading(false, binding.quickAndEasyList)
                     quickAdapter.setData(results)
                 }
             }else{
@@ -243,11 +251,11 @@ class RecipeFragment : Fragment() {
             binding.apply {
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        setupLoading(true, quickList)
+                        setupLoading(true, quickAndEasyList)
                     }
 
                     is NetworkRequest.Success -> {
-                        setupLoading(false, quickList)
+                        setupLoading(false, quickAndEasyList)
                         response.data?.let { data ->
                             if (data.results!!.isNotEmpty()) {
                                 quickAdapter.setData(data.results)
@@ -256,16 +264,15 @@ class RecipeFragment : Fragment() {
                     }
 
                     is NetworkRequest.Error -> {
-                        setupLoading(false, quickList)
+                        setupLoading(false, quickAndEasyList)
                         root.showSnackBar(response.message!!)
                     }
                 }
             }
         }
     }
-
     private fun initQuickRecycler() {
-        binding.quickList.setupRecyclerview(
+        binding.quickAndEasyList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             quickAdapter
         )
@@ -278,12 +285,119 @@ class RecipeFragment : Fragment() {
     }
 
 
+    //Vegan
+    private fun callVeganData(){
+        initVeganRecycler()
+        recipeViewModel.readVeganFromDb.onceObserve(viewLifecycleOwner){database ->
+            if(database.isNotEmpty() && database.size>3){
+                database[3].response.results?.let {results ->
+                    setupLoading(false, binding.veganList)
+                    veganAdapter.setData(results)
+                }
+            }else{
+                recipeViewModel.callVeganApi(recipeViewModel.veganQueries())
+            }
+
+        }
+    }
+    private fun loadVeganData() {
+        recipeViewModel.veganData.observe(viewLifecycleOwner) { response ->
+            binding.apply {
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        setupLoading(true, veganList)
+                    }
+
+                    is NetworkRequest.Success -> {
+                        setupLoading(false, veganList)
+                        response.data?.let { data ->
+                            if (data.results!!.isNotEmpty()) {
+                                veganAdapter.setData(data.results)
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        setupLoading(false, veganList)
+                        root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+    private fun initVeganRecycler() {
+        binding.veganList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            veganAdapter
+        )
+
+        //Click
+        veganAdapter.setonItemClickListener {
+            //Go to detail page
+        }
+
+    }
+
+
+    //Healthy
+    private fun callHealthyData(){
+        initHealthyRecycler()
+        recipeViewModel.readHealthyFromDb.onceObserve(viewLifecycleOwner){database ->
+            if(database.isNotEmpty() && database.size>4){
+                database[4].response.results?.let {results ->
+                    setupLoading(false, binding.healthyList)
+                    healthyAdapter.setData(results)
+                }
+            }else{
+                recipeViewModel.callHealthyApi(recipeViewModel.healthyQueries())
+            }
+
+        }
+    }
+    private fun loadHealthyData() {
+        recipeViewModel.healthyData.observe(viewLifecycleOwner) { response ->
+            binding.apply {
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        setupLoading(true, healthyList)
+                    }
+
+                    is NetworkRequest.Success -> {
+                        setupLoading(false, healthyList)
+                        response.data?.let { data ->
+                            if (data.results!!.isNotEmpty()) {
+                                healthyAdapter.setData(data.results)
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        setupLoading(false, healthyList)
+                        root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+    private fun initHealthyRecycler() {
+        binding.healthyList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            healthyAdapter
+        )
+
+        //Click
+        healthyAdapter.setonItemClickListener {
+            //Go to detail page
+        }
+
+    }
 
     private fun setupLoading(isShownLoading: Boolean, shimmer: ShimmerRecyclerView) {
         shimmer.apply {
             if (isShownLoading) showShimmer() else hideShimmer()
         }
     }
+
 
     private fun showGreeting() {
         recipeViewModel.showGreeting()
