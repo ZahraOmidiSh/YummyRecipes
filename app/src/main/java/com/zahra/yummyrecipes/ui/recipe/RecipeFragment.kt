@@ -85,6 +85,13 @@ class RecipeFragment : Fragment() {
         loadHealthyData()
 
 
+        //
+//        binding.viewAllMealsOnABudget.setOnClickListener{
+//
+//        }
+        //
+
+
     }
 
     //Suggested
@@ -186,7 +193,7 @@ class RecipeFragment : Fragment() {
                     economicalAdapter.setData(results)
                 }
             }else{
-                recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries())
+                recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries(10))
             }
 
         }

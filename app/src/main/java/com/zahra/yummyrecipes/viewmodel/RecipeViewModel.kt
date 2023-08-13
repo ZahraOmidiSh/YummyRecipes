@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.annotation.SuppressLint
-import android.provider.Settings.Global.getString
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -22,7 +21,6 @@ import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.POPULARITY
 import com.zahra.yummyrecipes.utils.Constants.PRICE
-import com.zahra.yummyrecipes.utils.Constants.RANDOM
 import com.zahra.yummyrecipes.utils.Constants.SORT
 import com.zahra.yummyrecipes.utils.Constants.SORT_DIRECTION
 import com.zahra.yummyrecipes.utils.Constants.TIME
@@ -55,9 +53,11 @@ class RecipeViewModel @Inject constructor(
             else -> "Good Night"
         }
     }
+
     private fun getEmojiByUnicode(): String {
         return String(Character.toChars(0x1f44b))
     }
+
     @SuppressLint("SetTextI18n")
     fun showGreeting() {
         Greeting.postValue("${getGreeting()} ${getEmojiByUnicode()}")
@@ -65,6 +65,7 @@ class RecipeViewModel @Inject constructor(
 
     //Slogan
     val slogan = MutableLiveData<String>()
+
     @SuppressLint("SuspiciousIndentation")
     fun getSlogan() = viewModelScope.launch(Dispatchers.IO) {
         val randomNumber = Random.nextInt(0, 49)
@@ -139,8 +140,9 @@ class RecipeViewModel @Inject constructor(
             else -> ""
         }
     }
-    fun suggestedQueries():HashMap<String,String>{
-        val queries:HashMap<String,String> = HashMap()
+
+    fun suggestedQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
         queries[TYPE] = getMealType()
         queries[NUMBER] = LIMITED_COUNT.toString()
@@ -152,13 +154,13 @@ class RecipeViewModel @Inject constructor(
 
     //Api
     val suggestedData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-    fun callSuggestedApi(queries:Map<String,String>) = viewModelScope.launch {
-        suggestedData.value=NetworkRequest.Loading()
-        val response =repository.remote.getRecipe(queries)
-        suggestedData.value=NetworkResponse(response).generalNetworkResponse()
+    fun callSuggestedApi(queries: Map<String, String>) = viewModelScope.launch {
+        suggestedData.value = NetworkRequest.Loading()
+        val response = repository.remote.getRecipe(queries)
+        suggestedData.value = NetworkResponse(response).generalNetworkResponse()
         //Cache
         val cache = suggestedData.value?.data
-        if (cache !=null){
+        if (cache != null) {
             offlineSuggested(cache)
         }
     }
@@ -169,18 +171,18 @@ class RecipeViewModel @Inject constructor(
     }
 
     val readSuggestedFromDb = repository.local.loadRecipes().asLiveData()
-    private fun offlineSuggested(response: ResponseRecipes){
-        val entity = RecipeEntity(0,response)
+    private fun offlineSuggested(response: ResponseRecipes) {
+        val entity = RecipeEntity(0, response)
         saveSuggested(entity)
     }
 
 
     //---Economical---//
     //Queries
-    fun economicalQueries():HashMap<String,String>{
-        val queries:HashMap<String,String> = HashMap()
+    fun economicalQueries(number: Int): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
-        queries[NUMBER] = LIMITED_COUNT.toString()
+        queries[NUMBER] = number.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[TYPE] = MAIN_COURSE
         queries[SORT] = PRICE
@@ -190,69 +192,73 @@ class RecipeViewModel @Inject constructor(
 
     //Api
     val economicalData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-    fun callEconomicalApi(queries:Map<String,String>) = viewModelScope.launch {
-        economicalData.value=NetworkRequest.Loading()
-        val response =repository.remote.getRecipe(queries)
-        economicalData.value=NetworkResponse(response).generalNetworkResponse()
+    fun callEconomicalApi(queries: Map<String, String>) = viewModelScope.launch {
+        economicalData.value = NetworkRequest.Loading()
+        val response = repository.remote.getRecipe(queries)
+        economicalData.value = NetworkResponse(response).generalNetworkResponse()
         //Cache
         val cache = economicalData.value?.data
-        if(cache !=null){
+        if (cache != null) {
             offlineEconomical(cache)
         }
 
     }
+
     //local
-    private fun saveEconomical(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+    private fun saveEconomical(entity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.saveRecipes(entity)
     }
+
     val readEconomicalFromDb = repository.local.loadRecipes().asLiveData()
-    private fun offlineEconomical(response: ResponseRecipes){
-        val entity = RecipeEntity(1,response)
+    private fun offlineEconomical(response: ResponseRecipes) {
+        val entity = RecipeEntity(1, response)
         saveEconomical(entity)
     }
 
     //---Quick---//
     //Queries
-    fun quickQueries():HashMap<String,String>{
-        val queries:HashMap<String,String> = HashMap()
+    fun quickQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[TYPE] = MAIN_COURSE
-        queries[SORT] =TIME
+        queries[SORT] = TIME
         queries[SORT_DIRECTION] = ASCENDING
         return queries
     }
 
     //Api
     val quickData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-    fun callQuickApi(queries:Map<String,String>) = viewModelScope.launch {
-        quickData.value=NetworkRequest.Loading()
-        val response =repository.remote.getRecipe(queries)
-        quickData.value=NetworkResponse(response).generalNetworkResponse()
+    fun callQuickApi(queries: Map<String, String>) = viewModelScope.launch {
+        quickData.value = NetworkRequest.Loading()
+        val response = repository.remote.getRecipe(queries)
+        quickData.value = NetworkResponse(response).generalNetworkResponse()
 
         //Cache
         val cache = quickData.value?.data
-        if(cache !=null){
+        if (cache != null) {
             offlineQuick(cache)
         }
 
     }
+
     //local
-    private fun saveQuick(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+    private fun saveQuick(entity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.saveRecipes(entity)
     }
+
     val readQuickFromDb = repository.local.loadRecipes().asLiveData()
-    private fun offlineQuick(response: ResponseRecipes){
-        val entity = RecipeEntity(2,response)
+    private fun offlineQuick(response: ResponseRecipes) {
+        val entity = RecipeEntity(2, response)
         saveQuick(entity)
     }
 
 
     //---Vegan---//
     //Queries
-    fun veganQueries():HashMap<String,String>{
-        val queries:HashMap<String,String> = HashMap()
+    fun veganQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
@@ -264,61 +270,65 @@ class RecipeViewModel @Inject constructor(
 
     //Api
     val veganData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-    fun callVeganApi(queries:Map<String,String>) = viewModelScope.launch {
-        veganData.value=NetworkRequest.Loading()
-        val response =repository.remote.getRecipe(queries)
-        veganData.value=NetworkResponse(response).generalNetworkResponse()
+    fun callVeganApi(queries: Map<String, String>) = viewModelScope.launch {
+        veganData.value = NetworkRequest.Loading()
+        val response = repository.remote.getRecipe(queries)
+        veganData.value = NetworkResponse(response).generalNetworkResponse()
 
         //Cache
         val cache = veganData.value?.data
-        if(cache !=null){
+        if (cache != null) {
             offlineVegan(cache)
         }
 
     }
+
     //local
-    private fun saveVegan(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+    private fun saveVegan(entity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.saveRecipes(entity)
     }
+
     val readVeganFromDb = repository.local.loadRecipes().asLiveData()
-    private fun offlineVegan(response: ResponseRecipes){
-        val entity = RecipeEntity(3,response)
+    private fun offlineVegan(response: ResponseRecipes) {
+        val entity = RecipeEntity(3, response)
         saveVegan(entity)
     }
 
 
     //---Healthy---//
     //Queries
-    fun healthyQueries():HashMap<String,String>{
-        val queries:HashMap<String,String> = HashMap()
+    fun healthyQueries(): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
-        queries[SORT] =HEALTHINESS
+        queries[SORT] = HEALTHINESS
         return queries
     }
 
     //Api
     val healthyData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-    fun callHealthyApi(queries:Map<String,String>) = viewModelScope.launch {
-        healthyData.value=NetworkRequest.Loading()
-        val response =repository.remote.getRecipe(queries)
-        healthyData.value=NetworkResponse(response).generalNetworkResponse()
+    fun callHealthyApi(queries: Map<String, String>) = viewModelScope.launch {
+        healthyData.value = NetworkRequest.Loading()
+        val response = repository.remote.getRecipe(queries)
+        healthyData.value = NetworkResponse(response).generalNetworkResponse()
 
         //Cache
         val cache = healthyData.value?.data
-        if(cache !=null){
+        if (cache != null) {
             offlineHealthy(cache)
         }
 
     }
+
     //local
-    private fun saveHealthy(entity:RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
+    private fun saveHealthy(entity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.saveRecipes(entity)
     }
+
     val readHealthyFromDb = repository.local.loadRecipes().asLiveData()
-    private fun offlineHealthy(response: ResponseRecipes){
-        val entity = RecipeEntity(4,response)
+    private fun offlineHealthy(response: ResponseRecipes) {
+        val entity = RecipeEntity(4, response)
         saveHealthy(entity)
     }
 }
