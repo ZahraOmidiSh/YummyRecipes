@@ -22,7 +22,7 @@
         <item name="android:drawablePadding">@dimen/_6mdp</item>
         <item name="android:inputType">textPersonName</item>
         <item name="android:padding">@dimen/_2mdp</item>
-        <item name="colorError">@color/red</item>
+        <item name="colorError">@color/tart_orange</item>
     </style>
 
     <!--Bottom Nav Style-->
@@ -35,6 +35,106 @@
     <style name="FabStyle">
         <item name="backgroundTint">@color/portland_orange</item>
         <item name="tint">@color/white</item>
+    </style>
+
+    <!--Avatar Style-->
+    <style name="AvatarStyle">
+        <item name="tint">@color/portland_orange</item>
+    </style>
+
+    <!--View All Txt-->
+    <style name="View_All_Txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/_15mdp</item>
+        <item name="android:text">@string/view_all</item>
+        <item name="android:textColor">@color/portland_orange</item>
+        <item name="android:textSize">@dimen/_10font_mdp</item>
+    </style>
+
+    <!--RV Lay-->
+    <style name="RV_Lay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/_13mdp</item>
+    </style>
+
+    <!--RV Title-->
+    <style name="RV_Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/_20mdp</item>
+        <item name="android:paddingEnd">@dimen/_5mdp</item>
+        <item name="android:textSize">@dimen/_13font_mdp</item>
+    </style>
+
+    <!--Recipe Recycler View-->
+    <style name="Recipe_Recycler_View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/_5mdp</item>
+        <item name="android:paddingEnd">@dimen/_5mdp</item>
+        <item name="android:paddingTop">@dimen/_3mdp</item>
+        <item name="android:textSize">@dimen/_13font_mdp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="shimmer_auto_start">true</item>
+        <item name="shimmer_recycler_item_count">3</item>
+        <item name="shimmer_recycler_layout">@layout/item_recycler_view_shimmer</item>
+        <item name="shimmer_recycler_shape">linear</item>
+    </style>
+
+    <!--Banner Lay-->
+    <style name="Banner_Lay">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">-3dp</item>
+        <item name="android:layout_marginEnd">-3dp</item>
+        <item name="android:layout_marginTop">@dimen/_13mdp</item>
+    </style>
+
+    <!--Banner Card View-->
+    <style name="Banner_Card_View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_100mdp</item>
+        <item name="android:elevation">@dimen/_2mdp</item>
+    </style>
+
+    <!--Banner Image View-->
+    <style name="Banner_Image_View">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:contentDescription">@string/app_name</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <!--Banner Shadow-->
+    <style name="Banner_Shadow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:background">@drawable/bg_shadow_image</item>
+    </style>
+
+    <!--Banner Premium Text-->
+    <style name="Banner_Premium_Txt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_10mdp</item>
+        <item name="android:layout_marginTop">@dimen/_10mdp</item>
+        <item name="android:text">@string/premium</item>
+        <item name="android:textColor">@color/portland_orange</item>
+        <item name="android:textSize">@dimen/_8font_mdp</item>
+    </style>
+
+    <!--Banner Title Text-->
+    <style name="Banner_Title_Txt">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_10mdp</item>
+        <item name="android:layout_marginTop">@dimen/_50mdp</item>
+        <item name="android:textColor">@color/baby_powder</item>
+        <item name="android:textSize">@dimen/_22font_mdp</item>
     </style>
 
 </resources>

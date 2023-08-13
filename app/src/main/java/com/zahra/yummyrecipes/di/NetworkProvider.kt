@@ -26,25 +26,25 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideNetworkTime()= NETWORK_TIMEOUT
+    fun provideNetworkTime() = NETWORK_TIMEOUT
 
     @Provides
     @Singleton
-    fun provideGson():Gson = GsonBuilder().setLenient().create()
+    fun provideGson(): Gson = GsonBuilder().setLenient().create()
 
     @Provides
     @Singleton
-    fun provideBodyInterceptor()=HttpLoggingInterceptor().apply {
-        level=HttpLoggingInterceptor.Level.BODY
+    fun provideBodyInterceptor() = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
     }
 
     @Provides
     @Singleton
-    fun provideClient(time:Long , body:HttpLoggingInterceptor)=OkHttpClient.Builder()
+    fun provideClient(time: Long, body: HttpLoggingInterceptor) = OkHttpClient.Builder()
         .addInterceptor(body)
-        .connectTimeout(time,TimeUnit.SECONDS)
-        .readTimeout(time,TimeUnit.SECONDS)
-        .writeTimeout(time,TimeUnit.SECONDS)
+        .connectTimeout(time, TimeUnit.SECONDS)
+        .readTimeout(time, TimeUnit.SECONDS)
+        .writeTimeout(time, TimeUnit.SECONDS)
         .retryOnConnectionFailure(true)
         .build()
 
@@ -57,5 +57,6 @@ object NetworkProvider {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ApiServices::class.java)
+
 
 }

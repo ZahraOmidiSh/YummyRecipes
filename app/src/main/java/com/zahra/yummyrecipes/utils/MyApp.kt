@@ -16,7 +16,7 @@ class MyApp : Application() {
                 .addInterceptor(
                     CalligraphyInterceptor(
                         CalligraphyConfig.Builder()
-                            .setDefaultFontPath("fonts/roboto_regular.ttf")
+                            .setDefaultFontPath("fonts/AlteHaasGroteskRegular.ttf")
                             .build()
                     )
                 )

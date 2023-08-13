@@ -11,6 +11,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
+import com.zahra.yummyrecipes.BuildConfig
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentSplashBinding
 import com.zahra.yummyrecipes.viewmodel.RegisterViewModel
@@ -44,14 +45,8 @@ class SplashFragment : Fragment() {
         //InitViews
         binding.apply {
             //Application Version
-            val manager = context?.packageManager
-            val info = context?.packageName?.let {
-                manager?.getPackageInfo(
-                    it, 0
-                )
-            }
-            val versionName = info?.versionName
-            versionTxt.text = "version : $versionName"
+//            versionTxt.text = "version : ${BuildConfig.VERSION_NAME}"
+            versionTxt.text = "${getString(R.string.version)} : ${BuildConfig.VERSION_NAME}"
             //Auto navigate
             lifecycleScope.launch {
                 withStarted {}

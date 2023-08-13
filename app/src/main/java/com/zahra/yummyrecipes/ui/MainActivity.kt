@@ -47,6 +47,7 @@ class MainActivity : BaseActivity() {
             when(destination.id){
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
+
                 R.id.recipeFragment ->{
                     visibilityBottomMenu(true)
                     if (!callback.isEnabled){
@@ -71,6 +72,7 @@ class MainActivity : BaseActivity() {
                         callback.isEnabled = true
                     }
                 }
+                else -> visibilityBottomMenu(true)
             }
         }
 
