@@ -45,10 +45,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginEnd">@dimen/_15mdp</item>
-        <item name="android:layout_marginTop">@dimen/_4mdp</item>
         <item name="android:text">@string/view_all</item>
         <item name="android:textColor">@color/congo_pink</item>
-        <item name="android:textSize">@dimen/_8font_mdp</item>
+        <item name="android:textSize">@dimen/_10font_mdp</item>
     </style>
 
     <!--RV Lay-->

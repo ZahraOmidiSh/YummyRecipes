@@ -48,10 +48,12 @@
     <!--Scroll-->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20mdp"
-        android:paddingBottom="@dimen/_150mdp"
+        android:paddingBottom="@dimen/_80mdp"
         app:layout_constraintTop_toBottomOf="@id/userInfoLay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:clipToPadding="false"
         android:orientation="vertical">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,13 +71,6 @@
                     android:text="@string/suggested"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <!--View All-->
-                <TextView
-                    style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/viewAllSuggested"/>
 
 
                 <com.todkars.shimmer.ShimmerRecyclerView
@@ -148,7 +143,8 @@
                 <!--View All-->
                 <TextView
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/mealsOnABudgetTxt"
+                    app:layout_constraintBottom_toBottomOf="@id/mealsOnABudgetTxt"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/viewAllMealsOnABudget"/>
 
@@ -179,8 +175,8 @@
                 <!--View All-->
                 <TextView
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/quickAndEasyTxt"
+                    app:layout_constraintBottom_toBottomOf="@id/quickAndEasyTxt"                    app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/viewAllQuickAndEasy"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
@@ -244,8 +240,8 @@
                 <!--View All-->
                 <TextView
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/veganTxt"
+                    app:layout_constraintBottom_toBottomOf="@id/veganTxt"                    app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/viewAllVegan"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
@@ -275,8 +271,8 @@
                 <!--View All-->
                 <TextView
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/healthyTxt"
+                    app:layout_constraintBottom_toBottomOf="@id/healthyTxt"                    app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/viewAllHealthy"/>
 
                 <com.todkars.shimmer.ShimmerRecyclerView
