@@ -425,8 +425,4 @@ class RecipeFragment : Fragment() {
         _binding = null
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        registerViewModel.cancelDatastoreStack()
-    }
 }

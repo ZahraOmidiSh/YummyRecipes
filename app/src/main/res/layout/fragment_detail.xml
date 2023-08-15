@@ -18,6 +18,7 @@
             android:layout_height="@dimen/_200mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
+            tools:src="@drawable/salad"
             app:layout_constraintTop_toTopOf="parent" />
         <!--Shadow-->
         <View
@@ -30,8 +31,8 @@
             app:layout_constraintTop_toTopOf="parent" />
         <!--Back-->
         <ImageView
-            android:layout_width="@dimen/_35mdp"
-            android:layout_height="@dimen/_35mdp"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
             android:id="@+id/backImg"
             android:layout_margin="@dimen/_15mdp"
             android:background="@drawable/bg_rounded_white"
@@ -41,6 +42,94 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/congo_pink"
             />
+        <!--Collection-->
+        <ImageView
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:id="@+id/collectionImg"
+            android:layout_margin="@dimen/_15mdp"
+            android:background="@drawable/bg_rounded_white"
+            android:padding="@dimen/_9mdp"
+            android:src="@drawable/bookmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/congo_pink"
+            />
+        <!--Line 1-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_3mdp"
+            android:alpha="0.5"
+            app:layout_constraintTop_toBottomOf="@id/coverImg"
+            app:layout_constraintBottom_toBottomOf="@id/coverImg"
+            android:background="@color/portland_orange"/>
+        <!--Info-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20mdp"
+            android:layout_marginBottom="@dimen/_10mdp"
+            android:background="@drawable/bg_rounded_white"
+            android:elevation="@dimen/_4mdp"
+            app:layout_constraintBottom_toBottomOf="@id/coverImg"
+            app:layout_constraintEnd_toEndOf="@id/coverImg"
+            app:layout_constraintStart_toStartOf="@id/coverImg"
+            app:layout_constraintTop_toBottomOf="@id/coverImg">
+
+            <!--Name-->
+            <TextView
+                android:id="@+id/foodNameTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10mdp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:textColor="@color/portland_orange"
+                android:textSize="@dimen/_10font_mdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Show recipe name" />
+
+            <!--Line 2-->
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2mdp"
+                android:layout_marginHorizontal="@dimen/_10mdp"
+                android:alpha="0.5"
+                android:layout_marginTop="@dimen/_3mdp"
+                app:layout_constraintTop_toBottomOf="@id/foodNameTxt"
+                android:background="@color/mediumGray"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:paddingHorizontal="@dimen/_8mdp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/line1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.5  |"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:drawablePadding="@dimen/_3mdp"
+                    app:drawableLeftCompat="@drawable/star_sharp"
+                    app:drawableTint="@color/portland_orange" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 
