@@ -10,7 +10,7 @@
         android:id="@+id/contentLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <!--Cover-->
         <ImageView
@@ -337,8 +337,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_15mdp"
-                    android:padding="@dimen/_10mdp"
                     android:background="@drawable/bg_shimmer_gray"
+                    android:padding="@dimen/_10mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/nutritionTitle">
@@ -378,8 +378,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="23 g"
-                        app:layout_constraintStart_toStartOf="@id/carbChart"
                         app:layout_constraintEnd_toEndOf="@id/carbChart"
+                        app:layout_constraintStart_toStartOf="@id/carbChart"
                         app:layout_constraintTop_toBottomOf="@id/carbChart" />
                     <!--Protein Amount-->
                     <TextView
@@ -387,8 +387,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12 g"
-                        app:layout_constraintStart_toStartOf="@id/proteinChart"
                         app:layout_constraintEnd_toEndOf="@id/proteinChart"
+                        app:layout_constraintStart_toStartOf="@id/proteinChart"
                         app:layout_constraintTop_toBottomOf="@id/proteinChart" />
                     <!--Fat Amount-->
                     <TextView
@@ -396,8 +396,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7 g"
-                        app:layout_constraintStart_toStartOf="@id/fatChart"
                         app:layout_constraintEnd_toEndOf="@id/fatChart"
+                        app:layout_constraintStart_toStartOf="@id/fatChart"
                         app:layout_constraintTop_toBottomOf="@id/fatChart" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -417,15 +417,15 @@
                     android:layout_marginTop="@dimen/_8mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/similarTitle"
-                    tools:listitem="@layout/item_recycler_view"
-                    tools:ignore="MissingConstraints" />
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_recycler_view" />
 
                 <!--Watch tutorial Videos Card-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/watchTutorialCardLay"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     style="@style/Banner_Card_View"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/similarList">
                     <!--Image-->
                     <ImageView
@@ -433,13 +433,12 @@
                         style="@style/Banner_Image_View"
                         android:src="@color/portland_orange_alpha" />
                     <!--Shadow-->
-                    <View
-                        style="@style/Banner_Shadow" />
+                    <View style="@style/Banner_Shadow" />
 
                     <!--premium text view-->
                     <TextView
                         android:id="@+id/premiumTxt"
-                        style="@style/Banner_Premium_Txt"/>
+                        style="@style/Banner_Premium_Txt" />
                     <!--Title-->
                     <TextView
                         android:id="@+id/watchTutorialTitleTxt"
@@ -453,6 +452,27 @@
 
         </androidx.core.widget.NestedScrollView>
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Loading-->
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="@dimen/_30mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:visibility="visible"
+        android:indeterminateTint="@color/portland_orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Internet-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/internetLay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <include layout="@layout/internet_error" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

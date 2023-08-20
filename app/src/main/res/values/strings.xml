@@ -44,4 +44,5 @@
     <string name="diets">Diets:</string>
     <string name="nutrition_per_serving">Nutrition Per Serving:</string>
     <string name="similar">You Might Also Like:</string>
+    <string name="check_your_connection">Check your connection</string>
 </resources>
