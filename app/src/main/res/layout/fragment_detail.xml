@@ -221,23 +221,232 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/ingredientsTitle"
                     tools:text="7 items" />
-
                 <!--Ingredients List-->
                 <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/ingredientsList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_5mdp"
-                    android:paddingEnd="@dimen/_5mdp"
-                    android:paddingTop="@dimen/_3mdp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:paddingStart="@dimen/_5mdp"
+                    android:paddingTop="@dimen/_3mdp"
+                    android:paddingEnd="@dimen/_5mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/ingredientsCount"
                     app:shimmer_recycler_auto_start="true"
                     app:shimmer_recycler_item_count="5"
                     app:shimmer_recycler_layout="@layout/item_ingredients_shimmer"
-                    app:shimmer_recycler_shape="linear"
-                    tools:listitem="@layout/item_ingredients"
+                    app:shimmer_recycler_shape="linear" />
+
+                <!--Equipment Title-->
+                <TextView
+                    android:id="@+id/equipmentTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12mdp"
+                    android:text="@string/equipments"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ingredientsList" />
+                <!--Equipment Count-->
+                <TextView
+                    android:id="@+id/equipmentCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/equipmentTitle"
+                    tools:text="4 items" />
+                <!--Equipment List-->
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/equipmentsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_5mdp"
+                    android:paddingTop="@dimen/_3mdp"
+                    android:paddingEnd="@dimen/_5mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/ingredientsCount" />
+                    app:layout_constraintTop_toBottomOf="@id/equipmentTitle"
+                    app:shimmer_recycler_auto_start="true"
+                    app:shimmer_recycler_item_count="5"
+                    app:shimmer_recycler_layout="@layout/item_equipment_shimmer"
+                    app:shimmer_recycler_shape="linear" />
+                <!--Cooking Instruction-->
+                <TextView
+                    android:id="@+id/cookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12mdp"
+                    android:text="@string/cooking_instructions"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/equipmentsList" />
+                <!--Instruction List-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cookingInstructionsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8mdp"
+                    android:background="@drawable/bg_shimmer_gray"
+                    android:clipToPadding="false"
+                    android:padding="@dimen/_5mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cookingTitle" />
+                <!--Diets-->
+                <TextView
+                    android:id="@+id/dietTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12mdp"
+                    android:text="@string/diets"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cookingInstructionsList" />
+                <!-- Diet chips -->
+                <HorizontalScrollView
+                    android:id="@+id/dietsChipsScroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:clipToPadding="false"
+                    android:fadingEdge="horizontal"
+                    android:requiresFadingEdge="horizontal"
+                    android:scrollbars="none"
+                    app:layout_constraintTop_toBottomOf="@id/dietTitle">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/dietsChipGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="@dimen/_10mdp"
+                        app:chipSpacing="0dp"
+                        app:singleLine="true" />
+                </HorizontalScrollView>
+                <!--Nutrition-->
+                <TextView
+                    android:id="@+id/nutritionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12mdp"
+                    android:text="@string/nutrition_per_serving"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dietsChipsScroll" />
+                <!--Nutrition charts-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/nutritionLay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_15mdp"
+                    android:padding="@dimen/_10mdp"
+                    android:background="@drawable/bg_shimmer_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nutritionTitle">
+                    <!--Carb chart-->
+                    <ProgressBar
+                        android:id="@+id/carbChart"
+                        android:layout_width="@dimen/_60mdp"
+                        android:layout_height="@dimen/_60mdp"
+                        android:progressTint="@color/congo_pink"
+                        app:layout_constraintEnd_toStartOf="@+id/proteinChart"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Protein chart-->
+                    <ProgressBar
+                        android:id="@+id/proteinChart"
+                        android:layout_width="@dimen/_60mdp"
+                        android:layout_height="@dimen/_60mdp"
+                        android:progressTint="@color/congo_pink"
+                        app:layout_constraintEnd_toStartOf="@+id/fatChart"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/carbChart"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Fat chart-->
+                    <ProgressBar
+                        android:id="@+id/fatChart"
+                        android:layout_width="@dimen/_60mdp"
+                        android:layout_height="@dimen/_60mdp"
+                        android:progressTint="@color/congo_pink"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/proteinChart"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--Carb Amount-->
+                    <TextView
+                        android:id="@+id/carbAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="23 g"
+                        app:layout_constraintStart_toStartOf="@id/carbChart"
+                        app:layout_constraintEnd_toEndOf="@id/carbChart"
+                        app:layout_constraintTop_toBottomOf="@id/carbChart" />
+                    <!--Protein Amount-->
+                    <TextView
+                        android:id="@+id/proteinAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 g"
+                        app:layout_constraintStart_toStartOf="@id/proteinChart"
+                        app:layout_constraintEnd_toEndOf="@id/proteinChart"
+                        app:layout_constraintTop_toBottomOf="@id/proteinChart" />
+                    <!--Fat Amount-->
+                    <TextView
+                        android:id="@+id/fatAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7 g"
+                        app:layout_constraintStart_toStartOf="@id/fatChart"
+                        app:layout_constraintEnd_toEndOf="@id/fatChart"
+                        app:layout_constraintTop_toBottomOf="@id/fatChart" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--Similar-->
+                <TextView
+                    android:id="@+id/similarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_12mdp"
+                    android:text="@string/similar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nutritionLay" />
+                <!--Similar List-->
+                <com.todkars.shimmer.ShimmerRecyclerView
+                    android:id="@+id/similarList"
+                    style="@style/Recipe_Recycler_View"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/similarTitle"
+                    tools:listitem="@layout/item_recycler_view"
+                    tools:ignore="MissingConstraints" />
+
+                <!--Watch tutorial Videos Card-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/watchTutorialCardLay"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/Banner_Card_View"
+                    app:layout_constraintTop_toBottomOf="@id/similarList">
+                    <!--Image-->
+                    <ImageView
+                        android:id="@+id/watchTutorialImg"
+                        style="@style/Banner_Image_View"
+                        android:src="@color/portland_orange_alpha" />
+                    <!--Shadow-->
+                    <View
+                        style="@style/Banner_Shadow" />
+
+                    <!--premium text view-->
+                    <TextView
+                        android:id="@+id/premiumTxt"
+                        style="@style/Banner_Premium_Txt"/>
+                    <!--Title-->
+                    <TextView
+                        android:id="@+id/watchTutorialTitleTxt"
+                        style="@style/Banner_Title_Txt"
+                        android:text="Watch tutorial Videos" />
+
+                </com.google.android.material.card.MaterialCardView>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

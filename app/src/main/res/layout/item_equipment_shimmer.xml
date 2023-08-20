@@ -17,42 +17,24 @@
         app:layout_constraintTop_toTopOf="parent"
         >
         <!--Image-->
-        <ImageView
-            android:id="@+id/ingredientImg"
-android:layout_margin="@dimen/_12mdp"
+        <View
+            android:id="@+id/equipmentImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:background="@drawable/tomato"/>
-
+            android:background="@color/mediumGray"/>
 
     </com.google.android.material.card.MaterialCardView>
 
     <!--Name-->
-    <TextView
-        android:id="@+id/ingredientNameTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        tools:text="potato"
-        android:gravity="center"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textSize="@dimen/_13font_mdp"
+    <View
+        android:id="@+id/equipmentNameTxt"
+        android:layout_width="@dimen/_70mdp"
+        android:layout_height="@dimen/_9mdp"
+        android:layout_marginTop="145dp"
+        android:background="@drawable/bg_shimmer_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--Amount-->
-    <TextView
-        android:id="@+id/ingredientAmountTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:textSize="@dimen/_10font_mdp"
-        app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
-        app:layout_constraintEnd_toEndOf="@id/ingredientNameTxt"
-        app:layout_constraintTop_toBottomOf="@id/ingredientNameTxt"
-        tools:text="2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
