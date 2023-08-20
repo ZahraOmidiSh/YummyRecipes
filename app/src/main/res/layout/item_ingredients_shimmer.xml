@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8mdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!--Card-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardLay"
+        android:layout_marginStart="@dimen/_2mdp"
+        android:layout_width="@dimen/_100mdp"
+        android:layout_height="@dimen/_100mdp"
+        app:cardCornerRadius="@dimen/_50mdp"
+        android:elevation="@dimen/_5mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <!--Image-->
+        <View
+            android:id="@+id/ingredientImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/mediumGray"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!--Name-->
+    <View
+        android:id="@+id/ingredientNameTxt"
+        android:layout_width="@dimen/_70mdp"
+        android:layout_height="@dimen/_9mdp"
+        android:layout_marginTop="145dp"
+        android:background="@drawable/bg_shimmer_gray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Amount-->
+    <View
+        android:id="@+id/ingredientAmountTxt"
+        android:layout_width="@dimen/_30mdp"
+        android:background="@drawable/bg_shimmer_gray"
+        android:layout_height="9dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
+        app:layout_constraintEnd_toEndOf="@id/ingredientNameTxt"
+        app:layout_constraintTop_toBottomOf="@id/ingredientNameTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
