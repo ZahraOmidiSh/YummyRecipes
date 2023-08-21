@@ -1,19 +1,33 @@
 package com.zahra.yummyrecipes.ui.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.provider.SyncStateContract.Constants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
+import coil.request.CachePolicy
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipDrawable
+import com.google.android.material.chip.ChipGroup
+import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.R.color.congo_pink
 import com.zahra.yummyrecipes.databinding.FragmentDetailBinding
+import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
+import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
+import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.isVisible
+import com.zahra.yummyrecipes.utils.minToHour
+import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,8 +65,9 @@ class DetailFragment : Fragment() {
         binding.apply {
             //Back
             backImg.setOnClickListener{findNavController().popBackStack()}
-
         }
+        //Load data
+        loadDetailDataFromApi()
     }
 
     private fun loadDetailDataFromApi(){
@@ -78,6 +93,47 @@ class DetailFragment : Fragment() {
                 }
 
             }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initViewsWithData(data:ResponseDetail){
+        binding.apply {
+            //Image
+            val imageSplit = data.image!!.split("-")
+            val imageSize = imageSplit[1].replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
+            coverImg.load("${imageSplit[0]}-$imageSize") {
+                crossfade(true)
+                crossfade(800)
+                memoryCachePolicy(CachePolicy.ENABLED)
+                error(R.drawable.salad)
+            }
+            //Text
+            foodNameTxt.text= data.title
+
+
+            heartTxt.text= data.aggregateLikes.toString()
+            timeTxt.text= data.preparationMinutes!!.minToHour()
+            foodNameTxt.text= data.title
+            servingTxt.text= "Servings: ${data.servings.toString()}"
+            pricePerServingTxt.text= "Price Per Serving: ${data.pricePerServing.toString()} $"
+            ingredientsCount.text= "${data.extendedIngredients!!.size} items"
+            instructionCount.text= "${data.analyzedInstructions!!.size} steps"
+            //Diets
+            setupChip(data.diets!!.toMutableList(),dietsChipGroup)
+
+        }
+
+    }
+
+    private fun setupChip(list: MutableList<String> , view:ChipGroup){
+        list.forEach {
+            val chip = Chip(requireContext())
+            val drawable = ChipDrawable.createFromAttributes(requireContext(),null,0,R.style.DietChip)
+            chip.setChipDrawable(drawable)
+            chip.setTextColor(ContextCompat.getColor(requireContext(),R.color.congo_pink))
+            chip.text=it
+            view.addView(chip)
         }
     }
 

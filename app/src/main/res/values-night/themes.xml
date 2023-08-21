@@ -138,4 +138,11 @@
     <style name="OrangeProgressbar">
         <item name="colorAccent">@color/congo_pink</item>
     </style>
+
+    <!--Diet Chip-->
+    <style name="DietChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="cardBackgroundColor">@color/baby_powder</item>
+        <item name="android:clickable">false</item>
+        <item name="android:checkable">false</item>
+    </style>
 </resources>

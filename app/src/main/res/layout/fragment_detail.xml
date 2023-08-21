@@ -10,7 +10,7 @@
         android:id="@+id/contentLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <!--Cover-->
         <ImageView
@@ -108,18 +108,18 @@
                     app:drawableTint="@color/portland_orange"
                     app:layout_constraintEnd_toStartOf="@+id/timeTxt"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/starTxt"
+                    app:layout_constraintStart_toEndOf="@+id/heartTxt"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="78" />
 
                 <!--Star-->
                 <TextView
-                    android:id="@+id/starTxt"
+                    android:id="@+id/heartTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_3mdp"
                     android:textSize="@dimen/_9font_mdp"
-                    app:drawableLeftCompat="@drawable/star_sharp"
+                    app:drawableLeftCompat="@drawable/ic_heart"
                     app:drawableTint="@color/portland_orange"
                     app:layout_constraintEnd_toStartOf="@+id/calorieTxt"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -160,7 +160,6 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:textColor="@color/portland_orange"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -188,10 +187,10 @@
                     app:drawableTint="@color/portland_orange"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line1"
-                    tools:text="serving: 4  |" />
+                    tools:text="Serving: 4  |" />
                 <!--Cost-->
                 <TextView
-                    android:id="@+id/costPerServingTxt"
+                    android:id="@+id/pricePerServingTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_3mdp"
@@ -201,7 +200,7 @@
                     app:drawableTint="@color/portland_orange"
                     app:layout_constraintStart_toEndOf="@id/servingTxt"
                     app:layout_constraintTop_toTopOf="@id/servingTxt"
-                    tools:text="Cost Per Serving:12 $" />
+                    tools:text="Price Per Serving:12 $" />
 
                 <!--Ingredients Title-->
                 <TextView
@@ -211,7 +210,7 @@
                     android:layout_margin="@dimen/_12mdp"
                     android:text="@string/ingredients"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/costPerServingTxt" />
+                    app:layout_constraintTop_toBottomOf="@id/pricePerServingTxt" />
                 <!--Ingredients Count-->
                 <TextView
                     android:id="@+id/ingredientsCount"
@@ -281,6 +280,15 @@
                     android:text="@string/cooking_instructions"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/equipmentsList" />
+                <!--Instruction Count-->
+                <TextView
+                    android:id="@+id/instructionCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_15mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cookingTitle"
+                    tools:text="6 steps" />
                 <!--Instruction List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cookingInstructionsList"
@@ -459,7 +467,7 @@
         android:id="@+id/loading"
         android:layout_width="@dimen/_30mdp"
         android:layout_height="@dimen/_30mdp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:indeterminateTint="@color/portland_orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
