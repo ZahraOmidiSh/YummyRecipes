@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.data.network
 
+import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.register.BodyRegister
 import com.zahra.yummyrecipes.models.register.ResponseRegister
@@ -8,6 +9,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
@@ -18,4 +20,7 @@ interface ApiServices {
 
     @GET("recipes/complexSearch")
     suspend fun getRecipe(@QueryMap queries : Map<String,String>):Response<ResponseRecipes>
+
+    @GET ("recipes/{id}/information")
+    suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String):Response<ResponseDetail>
 }

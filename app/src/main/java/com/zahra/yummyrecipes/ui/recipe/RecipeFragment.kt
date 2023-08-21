@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.todkars.shimmer.ShimmerRecyclerView
@@ -155,7 +156,8 @@ class RecipeFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.suggestedList)
         //Click
         suggestedAdapter.setonItemClickListener {
-            //Go to detail page
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
         }
 
     }
@@ -233,7 +235,8 @@ class RecipeFragment : Fragment() {
 
         //Click
         economicalAdapter.setonItemClickListener {
-            //Go to detail page
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
         }
 
     }
@@ -286,7 +289,8 @@ class RecipeFragment : Fragment() {
 
         //Click
         quickAdapter.setonItemClickListener {
-            //Go to detail page
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
         }
 
     }
@@ -340,7 +344,8 @@ class RecipeFragment : Fragment() {
 
         //Click
         veganAdapter.setonItemClickListener {
-            //Go to detail page
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
         }
 
     }
@@ -394,7 +399,8 @@ class RecipeFragment : Fragment() {
 
         //Click
         healthyAdapter.setonItemClickListener {
-            //Go to detail page
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
         }
 
     }
