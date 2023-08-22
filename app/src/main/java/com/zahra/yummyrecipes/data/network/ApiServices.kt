@@ -23,4 +23,7 @@ interface ApiServices {
 
     @GET ("recipes/{id}/information")
     suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String):Response<ResponseDetail>
+
+    @GET("recipes/{id}/nutritionWidget.json")
+    suspend fun getNutrient(@)
 }

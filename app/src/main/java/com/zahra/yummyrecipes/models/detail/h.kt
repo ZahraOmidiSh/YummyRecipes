@@ -1,14 +1,13 @@
 package com.zahra.yummyrecipes.models.detail
 
-import android.os.Parcelable
+
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
-import kotlinx.parcelize.RawValue
-data class ResponseDetail(
+
+data class h(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int?, // 32767
     @SerializedName("analyzedInstructions")
-    val analyzedInstructions: List<AnalyzedInstruction>?,
+    val analyzedInstructions: List<AnalyzedInstruction?>?,
     @SerializedName("cheap")
     val cheap: Boolean?, // false
     @SerializedName("cookingMinutes")
@@ -20,11 +19,11 @@ data class ResponseDetail(
     @SerializedName("dairyFree")
     val dairyFree: Boolean?, // false
     @SerializedName("diets")
-    val diets: List<String>?,
+    val diets: List<Any?>?,
     @SerializedName("dishTypes")
     val dishTypes: List<Any?>?,
     @SerializedName("extendedIngredients")
-    val extendedIngredients: List<ExtendedIngredient>?,
+    val extendedIngredients: List<ExtendedIngredient?>?,
     @SerializedName("gaps")
     val gaps: String?, // no
     @SerializedName("glutenFree")
@@ -78,16 +77,15 @@ data class ResponseDetail(
     @SerializedName("winePairing")
     val winePairing: WinePairing?
 ) {
-    @Parcelize
     data class AnalyzedInstruction(
         @SerializedName("name")
         val name: String?,
         @SerializedName("steps")
-        val steps: @RawValue List<Step>?
-    ) : Parcelable {
+        val steps: List<Step?>?
+    ) {
         data class Step(
             @SerializedName("equipment")
-            val equipment: List<Equipment>?,
+            val equipment: List<Equipment?>?,
             @SerializedName("ingredients")
             val ingredients: List<Ingredient?>?,
             @SerializedName("length")
@@ -184,29 +182,29 @@ data class ResponseDetail(
         @SerializedName("pairedWines")
         val pairedWines: List<String?>?,
         @SerializedName("pairingText")
-        val pairingText: String?, // Oreo Cookies can be paired with Wine, Alcoholic Drink, and Ingredient. A common wine pairing rule is to make sure your wine is sweeter than your food. Delicate desserts go well with Moscato d'Asti, nutty desserts with cream sherry, and caramel or chocolate desserts pair well with port. The Honig Reserve Sauvignon Blanc Rutherford with a 4.7 out of 5 star rating seems like a good match. It costs about 33 dollars per bottle.
+        val pairingText: String?, // Oreo Cookies works really well with Wine, Alcoholic Drink, and Ingredient. A common wine pairing rule is to make sure your wine is sweeter than your food. Delicate desserts go well with Moscato d'Asti, nutty desserts with cream sherry, and caramel or chocolate desserts pair well with port. The Engel Wines Riesling - Kosher with a 5 out of 5 star rating seems like a good match. It costs about 20 dollars per bottle.
         @SerializedName("productMatches")
         val productMatches: List<ProductMatche?>?
     ) {
         data class ProductMatche(
             @SerializedName("averageRating")
-            val averageRating: Double?, // 0.9400000000000001
+            val averageRating: Double?, // 1.0
             @SerializedName("description")
-            val description: String?,
+            val description: String?, // A lively off-dry Riesling, with accents of green apple, citrus and tropical fruits, complemented by delicate floral aromas, and a crisp acidity. Enjoy this wine chilled.
             @SerializedName("id")
-            val id: Int?, // 3490730
+            val id: Int?, // 431252
             @SerializedName("imageUrl")
-            val imageUrl: String?, // https://spoonacular.com/productImages/3490730-312x231.jpg
+            val imageUrl: String?, // https://spoonacular.com/productImages/431252-312x231.jpg
             @SerializedName("link")
-            val link: String?, // https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fhonig-reserve-sauvignon-blanc-rutherford-2021%2F1098373
+            val link: String?, // https://www.amazon.com/Engel-Wines-Finger-Lakes-Riesling/dp/B06WRRCM11?tag=spoonacular-20
             @SerializedName("price")
-            val price: String?, // $32.99
+            val price: String?, // $19.989999771118164
             @SerializedName("ratingCount")
-            val ratingCount: Double?, // 5.0
+            val ratingCount: Double?, // 1.0
             @SerializedName("score")
-            val score: Double?, // 0.8775000000000001
+            val score: Double?, // 0.75
             @SerializedName("title")
-            val title: String? // Honig Reserve Sauvignon Blanc Rutherford
+            val title: String? // Engel Wines Riesling - Kosher
         )
     }
 }
