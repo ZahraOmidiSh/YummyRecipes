@@ -9,19 +9,14 @@ import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemEquipmentBinding
-import com.zahra.yummyrecipes.databinding.ItemIngredientsBinding
-import com.zahra.yummyrecipes.databinding.ItemRecyclerViewBinding
-import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
-import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
-import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
-import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.minToHour
+import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_EQUIPMENT
+import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
 import javax.inject.Inject
 
-class EquipmentsAdapter @Inject constructor() : RecyclerView.Adapter<EquipmentsAdapter.ViewHolder>() {
+class EquipmentsAdapter @Inject constructor() :
+    RecyclerView.Adapter<EquipmentsAdapter.ViewHolder>() {
     private lateinit var binding: ItemEquipmentBinding
     private var items = emptyList<Equipment>()
 
@@ -44,8 +39,8 @@ class EquipmentsAdapter @Inject constructor() : RecyclerView.Adapter<EquipmentsA
                 //Text
                 equipmentNameTxt.text = item.name
                 //Image
-                val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
-                equipmentImg.load(imageSize) {
+                val image = "$BASE_URL_IMAGE_EQUIPMENT${item.image}"
+                equipmentImg.load(image) {
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)

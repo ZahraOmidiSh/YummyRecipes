@@ -89,7 +89,7 @@ data class ResponseDetail(
     ) : Parcelable {
         data class Step(
             @SerializedName("equipment")
-            val equipment: List<Equipment?>?,
+            val equipment: List<Equipment>?,
             @SerializedName("ingredients")
             val ingredients: List<Ingredient?>?,
             @SerializedName("length")
