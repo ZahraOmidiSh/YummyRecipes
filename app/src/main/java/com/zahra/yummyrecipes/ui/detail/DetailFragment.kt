@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.request.CachePolicy
 import com.google.android.material.chip.Chip
@@ -20,23 +21,42 @@ import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.R.color.congo_pink
+import com.zahra.yummyrecipes.adapter.EquipmentsAdapter
+import com.zahra.yummyrecipes.adapter.IngredientsAdapter
+import com.zahra.yummyrecipes.adapter.InstructionsStepsAdapter
 import com.zahra.yummyrecipes.databinding.FragmentDetailBinding
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
+import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
+import com.zahra.yummyrecipes.utils.NetworkChecker
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.isVisible
 import com.zahra.yummyrecipes.utils.minToHour
+import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
     //Binding
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var instructionsStepsAdapter: InstructionsStepsAdapter
+
+    @Inject
+    lateinit var ingredientsAdapter: IngredientsAdapter
+
+    @Inject
+    lateinit var equipmentsAdapter: EquipmentsAdapter
+
+    @Inject
+    lateinit var networkChecker: NetworkChecker
 
     //Other
     private val viewModel:DetailViewModel by viewModels()
@@ -110,21 +130,30 @@ class DetailFragment : Fragment() {
                 error(R.drawable.salad)
             }
             //Text
-            foodNameTxt.text= data.title
-
-
             heartTxt.text= data.aggregateLikes.toString()
             timeTxt.text= data.readyInMinutes!!.minToHour()
             foodNameTxt.text= data.title
             servingTxt.text= "Servings: ${data.servings.toString()}"
             pricePerServingTxt.text= "Price Per Serving: ${data.pricePerServing.toString()} $"
+            //Ingredient
             ingredientsCount.text= "${data.extendedIngredients!!.size} items"
+            initIngredientsList(data.extendedIngredients.toMutableList())
             instructionCount.text= "${data.analyzedInstructions!!.size} steps"
             //Diets
             setupChip(data.diets!!.toMutableList(),dietsChipGroup)
 
         }
 
+    }
+
+    private fun initIngredientsList(list:MutableList<ExtendedIngredient>){
+        if(list.isNotEmpty()){
+            ingredientsAdapter.setData(list)
+            binding.ingredientsList.setupRecyclerview(
+                LinearLayoutManager(requireContext() , LinearLayoutManager.HORIZONTAL,false),
+                ingredientsAdapter
+            )
+        }
     }
 
     private fun setupChip(list: MutableList<String> , view:ChipGroup){

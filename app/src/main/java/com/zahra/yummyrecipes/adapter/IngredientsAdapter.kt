@@ -14,6 +14,7 @@ import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
+import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.minToHour
@@ -41,10 +42,10 @@ class IngredientsAdapter @Inject constructor() : RecyclerView.Adapter<Ingredient
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.name
-                ingredientAmountTxt.text = "${item.amount} + ${item.unit}"
+                ingredientAmountTxt.text = "${item.amount} ${item.unit}"
                 //Image
-                val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
-                ingredientImg.load(imageSize) {
+                val image = "${BASE_URL_IMAGE_INGREDIENTS}${item.image}"
+                ingredientImg.load(image) {
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
