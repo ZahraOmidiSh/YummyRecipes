@@ -36,7 +36,7 @@ fun Int.minToHour(): String {
     val hours: Int = this / 60
     val minutes: Int = this % 60
     time = if (hours > 0) {
-        "${hours}h:${minutes}min"
+        "${hours}h : ${minutes}min"
     } else {
         "${minutes}min"
     }

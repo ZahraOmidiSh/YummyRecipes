@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.databinding.ItemIngredientsBinding
 import com.zahra.yummyrecipes.databinding.ItemRecyclerViewBinding
+import com.zahra.yummyrecipes.models.detail.ResponseDetail
+import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
@@ -16,12 +19,12 @@ import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
-class GeneralRecipesAdapter @Inject constructor() : RecyclerView.Adapter<GeneralRecipesAdapter.ViewHolder>() {
-    private lateinit var binding: ItemRecyclerViewBinding
-    private var items = emptyList<Result>()
+class IngredientsAdapter @Inject constructor() : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
+    private lateinit var binding: ItemIngredientsBinding
+    private var items = emptyList<ExtendedIngredient>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemIngredientsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder()
     }
 
@@ -34,37 +37,25 @@ class GeneralRecipesAdapter @Inject constructor() : RecyclerView.Adapter<General
     override fun getItemId(position: Int) = position.toLong()
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: Result) {
+        fun bind(item: ExtendedIngredient) {
             binding.apply {
                 //Text
-                suggestedTitleTxt.text = item.title
-                suggestedTimeTxt.text = item.readyInMinutes!!.minToHour()
-                suggestedHeartTxt.text = item.aggregateLikes.toString()
+                ingredientNameTxt.text = item.name
+                ingredientAmountTxt.text = "${item.amount} + ${item.unit}"
                 //Image
                 val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
-                suggestedImg.load(imageSize) {
+                ingredientImg.load(imageSize) {
                     crossfade(true)
-                    crossfade(800)
+                    crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.salad)
-                }
-                //Click
-                root.setOnClickListener {
-                    onItemClickListener?.let { it(item.id!!) }
-
+                    error(R.drawable.tomato)
                 }
             }
         }
-
     }
 
-    var onItemClickListener: ((Int) -> Unit)? = null
 
-    fun setonItemClickListener(listener: (Int) -> Unit) {
-        onItemClickListener = listener
-    }
-
-    fun setData(data: List<Result>) {
+    fun setData(data: List<ExtendedIngredient>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items = data

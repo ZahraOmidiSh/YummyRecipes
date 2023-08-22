@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -113,7 +114,7 @@ class DetailFragment : Fragment() {
 
 
             heartTxt.text= data.aggregateLikes.toString()
-            timeTxt.text= data.preparationMinutes!!.minToHour()
+            timeTxt.text= data.readyInMinutes!!.minToHour()
             foodNameTxt.text= data.title
             servingTxt.text= "Servings: ${data.servings.toString()}"
             pricePerServingTxt.text= "Price Per Serving: ${data.pricePerServing.toString()} $"
