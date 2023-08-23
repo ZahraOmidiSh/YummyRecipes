@@ -1,9 +1,11 @@
 package com.zahra.yummyrecipes.models.detail
 
+
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
+
 data class ResponseDetail(
     @SerializedName("aggregateLikes")
     val aggregateLikes: Int?, // 32767
@@ -41,6 +43,8 @@ data class ResponseDetail(
     val instructions: String?, // InstructionsTake a package of OREO cookies and crush them up finely.Take softened cream cheese and mix well with cookie crumbs.Roll into one inch cookie balls, and then freeze for 10 minutes.Dip cookie balls into melted chocolate and place on a prepared cookie sheet covered with wax paper.Place into the refrigerator for 15 minutes to an hour before decorating.Add 5 candy corn to the back of the ball as tail feathers.Use icing as glue to attach the candy eyes.Cut one candy corn into pieces, using the white tip as the nose, and the orange part (cut in half) as feet.
     @SerializedName("lowFodmap")
     val lowFodmap: Boolean?, // false
+    @SerializedName("nutrition")
+    val nutrition: Nutrition?,
     @SerializedName("occasions")
     val occasions: List<String?>?,
     @SerializedName("originalId")
@@ -89,7 +93,7 @@ data class ResponseDetail(
             @SerializedName("equipment")
             val equipment: List<Equipment>?,
             @SerializedName("ingredients")
-            val ingredients: List<Ingredient?>?,
+            val ingredients: List<Ingredient>?,
             @SerializedName("length")
             val length: Length?,
             @SerializedName("number")
@@ -180,33 +184,117 @@ data class ResponseDetail(
         }
     }
 
+    data class Nutrition(
+        @SerializedName("caloricBreakdown")
+        val caloricBreakdown: CaloricBreakdown?,
+        @SerializedName("flavonoids")
+        val flavonoids: List<Flavonoid?>?,
+        @SerializedName("ingredients")
+        val ingredients: List<Ingredient?>?,
+        @SerializedName("nutrients")
+        val nutrients: List<Nutrient>,
+        @SerializedName("properties")
+        val properties: List<Property?>?,
+        @SerializedName("weightPerServing")
+        val weightPerServing: WeightPerServing?
+    ) {
+        data class CaloricBreakdown(
+            @SerializedName("percentCarbs")
+            val percentCarbs: Double?, // 30.05
+            @SerializedName("percentFat")
+            val percentFat: Double?, // 47.55
+            @SerializedName("percentProtein")
+            val percentProtein: Double? // 22.4
+        )
+
+        data class Flavonoid(
+            @SerializedName("amount")
+            val amount: Double?, // 0.0
+            @SerializedName("name")
+            val name: String?, // Cyanidin
+            @SerializedName("unit")
+            val unit: String?
+        )
+
+        data class Ingredient(
+            @SerializedName("amount")
+            val amount: Double?, // 0.75
+            @SerializedName("id")
+            val id: Int?, // 10018166
+            @SerializedName("name")
+            val name: String?, // oreo cookies 3 cups
+            @SerializedName("nutrients")
+            val nutrients: List<Nutrient?>?,
+            @SerializedName("unit")
+            val unit: String?
+        ) {
+            data class Nutrient(
+                @SerializedName("amount")
+                val amount: Double?, // 6.13
+                @SerializedName("name")
+                val name: String?, // Net Carbohydrates
+                @SerializedName("percentOfDailyNeeds")
+                val percentOfDailyNeeds: Double?, // 22.48
+                @SerializedName("unit")
+                val unit: String? // g
+            )
+        }
+
+        data class Nutrient(
+            @SerializedName("amount")
+            val amount: Double?, // 835.44
+            @SerializedName("name")
+            val name: String?, // Calories
+            @SerializedName("percentOfDailyNeeds")
+            val percentOfDailyNeeds: Double?, // 41.77
+            @SerializedName("unit")
+            val unit: String? // kcal
+        )
+
+        data class Property(
+            @SerializedName("amount")
+            val amount: Double?, // 1.46
+            @SerializedName("name")
+            val name: String?, // Glycemic Index
+            @SerializedName("unit")
+            val unit: String?
+        )
+
+        data class WeightPerServing(
+            @SerializedName("amount")
+            val amount: Int?, // 316
+            @SerializedName("unit")
+            val unit: String? // g
+        )
+    }
+
     data class WinePairing(
         @SerializedName("pairedWines")
         val pairedWines: List<String?>?,
         @SerializedName("pairingText")
-        val pairingText: String?, // Oreo Cookies can be paired with Wine, Alcoholic Drink, and Ingredient. A common wine pairing rule is to make sure your wine is sweeter than your food. Delicate desserts go well with Moscato d'Asti, nutty desserts with cream sherry, and caramel or chocolate desserts pair well with port. The Honig Reserve Sauvignon Blanc Rutherford with a 4.7 out of 5 star rating seems like a good match. It costs about 33 dollars per bottle.
+        val pairingText: String?, // Oreo Cookies on the menu? Try pairing with Wine, Alcoholic Drink, and Ingredient. A common wine pairing rule is to make sure your wine is sweeter than your food. Delicate desserts go well with Moscato d'Asti, nutty desserts with cream sherry, and caramel or chocolate desserts pair well with port. You could try S.A. Prum Essence Riesling. Reviewers quite like it with a 4.3 out of 5 star rating and a price of about 14 dollars per bottle.
         @SerializedName("productMatches")
         val productMatches: List<ProductMatche?>?
     ) {
         data class ProductMatche(
             @SerializedName("averageRating")
-            val averageRating: Double?, // 0.9400000000000001
+            val averageRating: Double?, // 0.8600000143051147
             @SerializedName("description")
-            val description: String?,
+            val description: String?, // Pale gold in color. Aromatic, with scents of apricot and peach. Dry with fresh fruit flavors perfectly balanced by a racy acidity and mineral character.Enjoy on its own or with a range of lightappetizers and seafood dishes.
             @SerializedName("id")
-            val id: Int?, // 3490730
+            val id: Int?, // 433735
             @SerializedName("imageUrl")
-            val imageUrl: String?, // https://spoonacular.com/productImages/3490730-312x231.jpg
+            val imageUrl: String?, // https://spoonacular.com/productImages/433735-312x231.jpg
             @SerializedName("link")
-            val link: String?, // https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fhonig-reserve-sauvignon-blanc-rutherford-2021%2F1098373
+            val link: String?, // https://click.linksynergy.com/deeplink?id=*QCiIS6t4gA&mid=2025&murl=https%3A%2F%2Fwww.wine.com%2Fproduct%2Fsa-prum-essence-riesling-2008%2F99474
             @SerializedName("price")
-            val price: String?, // $32.99
+            val price: String?, // $13.789999961853027
             @SerializedName("ratingCount")
-            val ratingCount: Double?, // 5.0
+            val ratingCount: Double?, // 6.0
             @SerializedName("score")
-            val score: Double?, // 0.8775000000000001
+            val score: Double?, // 0.8073684353577464
             @SerializedName("title")
-            val title: String? // Honig Reserve Sauvignon Blanc Rutherford
+            val title: String? // S.A. Prum Essence Riesling
         )
     }
 }

@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.ui.detail
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -60,6 +61,7 @@ class DetailFragment : Fragment() {
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId = 0
+    private val TAG = "Detail"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -131,7 +133,7 @@ class DetailFragment : Fragment() {
             }
             //Text
             heartTxt.text = data.aggregateLikes.toString()
-//            calorieTxt.text=data.analyzedInstructions
+            calorieTxt.text  = data.nutrition?.nutrients?.get(0)?.amount.toString()
             timeTxt.text = data.readyInMinutes!!.minToHour()
             foodNameTxt.text = data.title
             servingTxt.text = "Servings: ${data.servings.toString()}"

@@ -22,8 +22,7 @@ interface ApiServices {
     suspend fun getRecipe(@QueryMap queries : Map<String,String>):Response<ResponseRecipes>
 
     @GET ("recipes/{id}/information")
-    suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String):Response<ResponseDetail>
+    suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String,@Query ("includeNutrition") includeNutrition : Boolean):Response<ResponseDetail>
 
-    @GET("recipes/{id}/nutritionWidget.json")
-    suspend fun getNutrient(@)
+
 }

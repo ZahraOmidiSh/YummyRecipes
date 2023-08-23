@@ -14,6 +14,6 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun getRecipe( queries : Map<String,String>)=api.getRecipe(queries)
 
-    suspend fun getDetail(id:Int , apiKey :String) = api.getDetail(id , apiKey)
+    suspend fun getDetail(id:Int , apiKey :String , includeNutrition:Boolean) = api.getDetail(id , apiKey, includeNutrition)
 
 }

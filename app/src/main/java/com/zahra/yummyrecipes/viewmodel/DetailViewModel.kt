@@ -17,7 +17,7 @@ class DetailViewModel @Inject constructor(private val repository:RecipeRepositor
     val detailData = MutableLiveData<NetworkRequest<ResponseDetail>>()
     fun callDetailApi(id:Int , apikey:String) = viewModelScope.launch {
         detailData.value = NetworkRequest.Loading()
-        val response = repository.remote.getDetail(id,apikey)
+        val response = repository.remote.getDetail(id,apikey,true)
         detailData.value = NetworkResponse(response).generalNetworkResponse()
 
     }
