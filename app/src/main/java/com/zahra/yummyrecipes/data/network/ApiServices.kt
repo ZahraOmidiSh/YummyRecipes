@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.data.network
 
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
+import com.zahra.yummyrecipes.models.detail.ResponseSimilar
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.register.BodyRegister
 import com.zahra.yummyrecipes.models.register.ResponseRegister
@@ -23,6 +24,9 @@ interface ApiServices {
 
     @GET ("recipes/{id}/information")
     suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String,@Query ("includeNutrition") includeNutrition : Boolean):Response<ResponseDetail>
+
+    @GET ("recipes/{id}/similar")
+    suspend fun getSimilarRecipes(@Path ("id") id:Int , @Query (API_KEY) apikey: String):Response<ResponseSimilar>
 
 
 }

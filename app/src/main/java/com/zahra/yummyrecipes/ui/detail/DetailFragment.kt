@@ -21,11 +21,13 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.EquipmentsAdapter
 import com.zahra.yummyrecipes.adapter.IngredientsAdapter
 import com.zahra.yummyrecipes.adapter.InstructionsStepsAdapter
+import com.zahra.yummyrecipes.adapter.SimilarAdapter
 import com.zahra.yummyrecipes.databinding.FragmentDetailBinding
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
+import com.zahra.yummyrecipes.models.detail.ResponseSimilar
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
@@ -55,6 +57,9 @@ class DetailFragment : Fragment() {
     lateinit var equipmentsAdapter: EquipmentsAdapter
 
     @Inject
+    lateinit var similarAdapter: SimilarAdapter
+
+    @Inject
     lateinit var networkChecker: NetworkChecker
 
     //Other
@@ -80,6 +85,7 @@ class DetailFragment : Fragment() {
             //Call api
             if (recipeId > 0) {
                 viewModel.callDetailApi(recipeId, MY_API_KEY)
+                viewModel.callSimilarApi(recipeId, MY_API_KEY)
             }
         }
         //InitViews
@@ -89,10 +95,10 @@ class DetailFragment : Fragment() {
         }
         //Load data
         loadDetailDataFromApi()
+        loadSimilarData()
     }
 
     private fun loadDetailDataFromApi() {
-        viewModel.callDetailApi(recipeId, MY_API_KEY)
         binding.apply {
             viewModel.detailData.observe(viewLifecycleOwner) { response ->
                 when (response) {
@@ -117,6 +123,36 @@ class DetailFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun loadSimilarData() {
+        binding.apply {
+            viewModel.similarData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        similarList.showShimmer()
+                    }
+                    is NetworkRequest.Success -> {
+                        similarList.hideShimmer()
+                        response.data?.let { data ->
+                            initSimilarData(data)
+                        }
+                    }
+                    is NetworkRequest.Error -> {
+                        similarList.hideShimmer()
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initSimilarData(list:MutableList<ResponseSimilar.ResponseSimilarItem>){
+        similarAdapter.setData(list)
+        binding.similarList.setupRecyclerview(
+            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL , false),
+            similarAdapter
+        )
     }
 
     @SuppressLint("SetTextI18n")

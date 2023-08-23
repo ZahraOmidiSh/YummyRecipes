@@ -1,0 +1,36 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_5mdp"
+    android:background="@drawable/bg_rounded_light_stroke"
+    android:padding="@dimen/_5mdp">
+    <!-- Image -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/coverImg"
+        android:layout_width="@dimen/_80mdp"
+        android:layout_height="@dimen/_90mdp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cornerFamily="rounded"
+        app:cornerSize="@dimen/_8mdp"
+        />
+    <!-- name -->
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:layout_marginBottom="@dimen/_5mdp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:textColor="@color/portland_orange"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/coverImg" />
+</androidx.constraintlayout.widget.ConstraintLayout>

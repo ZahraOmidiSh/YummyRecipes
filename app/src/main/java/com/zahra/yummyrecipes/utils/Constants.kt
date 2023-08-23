@@ -4,6 +4,7 @@ object Constants {
     const val BASE_URL = "https://api.spoonacular.com/"
     const val BASE_URL_IMAGE_INGREDIENTS = "https://spoonacular.com/cdn/ingredients_100x100/"
     const val BASE_URL_IMAGE_EQUIPMENT = "https://spoonacular.com/cdn/equipment_100x100/"
+    const val BASE_URL_IMAGE_RECIPES = "https://spoonacular.com/recipeImages/"
     const val NETWORK_TIMEOUT = 60L
 
     const val MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"

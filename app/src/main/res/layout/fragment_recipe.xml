@@ -50,11 +50,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20mdp"
-        android:paddingBottom="@dimen/_80mdp"
-        app:layout_constraintTop_toBottomOf="@id/userInfoLay"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:clipToPadding="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_80mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInfoLay">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -110,13 +111,12 @@
                         style="@style/Banner_Image_View"
                         android:src="@drawable/few" />
                     <!--Shadow-->
-                    <View
-                        style="@style/Banner_Shadow" />
+                    <View style="@style/Banner_Shadow" />
 
                     <!--premium text view-->
                     <TextView
                         android:id="@+id/premiumTxt"
-                        style="@style/Banner_Premium_Txt"/>
+                        style="@style/Banner_Premium_Txt" />
                     <!--Title-->
                     <TextView
                         android:id="@+id/fewIngredientTitleTxt"
@@ -142,19 +142,20 @@
 
                 <!--View All-->
                 <TextView
+                    android:id="@+id/viewAllMealsOnABudget"
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="@id/mealsOnABudgetTxt"
                     app:layout_constraintBottom_toBottomOf="@id/mealsOnABudgetTxt"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/viewAllMealsOnABudget"/>
+                    app:layout_constraintTop_toTopOf="@id/mealsOnABudgetTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/mealsOnABudgetList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/mealsOnABudgetTxt"
-                    tools:listitem="@layout/item_recycler_view"
-                    tools:ignore="MissingConstraints" />
+                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_recycler_view" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -174,18 +175,20 @@
 
                 <!--View All-->
                 <TextView
+                    android:id="@+id/viewAllQuickAndEasy"
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="@id/quickAndEasyTxt"
-                    app:layout_constraintBottom_toBottomOf="@id/quickAndEasyTxt"                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/viewAllQuickAndEasy"/>
+                    app:layout_constraintBottom_toBottomOf="@id/quickAndEasyTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/quickAndEasyTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/quickAndEasyList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/quickAndEasyTxt"
-                    tools:listitem="@layout/item_recycler_view"
-                    tools:ignore="MissingConstraints" />
+                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_recycler_view" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -204,21 +207,19 @@
                     <ImageView
                         android:id="@+id/kidFriendlyImg"
                         style="@style/Banner_Image_View"
+                        android:contentDescription="TODO"
                         android:src="@drawable/kidsfingerfood"
-                        tools:ignore="ImageContrastCheck"
-                        android:contentDescription="TODO" />
+                        tools:ignore="ImageContrastCheck" />
                     <!--Shadow-->
-                    <View
-                        style="@style/Banner_Shadow"
-                        />
+                    <View style="@style/Banner_Shadow" />
                     <!--premium text view-->
                     <TextView
-                        style="@style/Banner_Premium_Txt"
-                        android:id="@+id/kidFriendlyPremiumTxt" />
+                        android:id="@+id/kidFriendlyPremiumTxt"
+                        style="@style/Banner_Premium_Txt" />
                     <!--Title-->
                     <TextView
-                        style="@style/Banner_Title_Txt"
                         android:id="@+id/kidFriendlyTxt"
+                        style="@style/Banner_Title_Txt"
                         android:text="@string/kid_friendly_foods" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -239,18 +240,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--View All-->
                 <TextView
+                    android:id="@+id/viewAllVegan"
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="@id/veganTxt"
-                    app:layout_constraintBottom_toBottomOf="@id/veganTxt"                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/viewAllVegan"/>
+                    app:layout_constraintBottom_toBottomOf="@id/veganTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/veganTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/veganList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/veganTxt"
-                    tools:listitem="@layout/item_recycler_view"
-                    tools:ignore="MissingConstraints" />
+                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_recycler_view" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -270,18 +273,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--View All-->
                 <TextView
+                    android:id="@+id/viewAllHealthy"
                     style="@style/View_All_Txt"
-                    app:layout_constraintTop_toTopOf="@id/healthyTxt"
-                    app:layout_constraintBottom_toBottomOf="@id/healthyTxt"                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/viewAllHealthy"/>
+                    app:layout_constraintBottom_toBottomOf="@id/healthyTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/healthyTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/healthyList"
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/healthyTxt"
-                    tools:listitem="@layout/item_recycler_view"
-                    tools:ignore="MissingConstraints" />
+                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_recycler_view" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -290,7 +295,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
