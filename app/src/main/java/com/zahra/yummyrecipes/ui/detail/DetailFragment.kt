@@ -98,6 +98,7 @@ class DetailFragment : Fragment() {
         loadSimilarData()
     }
 
+
     private fun loadDetailDataFromApi() {
         binding.apply {
             viewModel.detailData.observe(viewLifecycleOwner) { response ->
@@ -174,6 +175,10 @@ class DetailFragment : Fragment() {
             foodNameTxt.text = data.title
             servingTxt.text = "Servings: ${data.servings.toString()}"
             pricePerServingTxt.text = "Price Per Serving: ${data.pricePerServing.toString()} $"
+            //Nutrient
+            fatAmount.text="Fat: ${data.nutrition?.nutrients?.get(1)?.amount.toString()} g"
+            carbAmount.text="Carbohydrate: ${data.nutrition?.nutrients?.get(3)?.amount.toString()} g"
+            proteinAmount.text="Protein: ${data.nutrition?.nutrients?.get(8)?.amount.toString()} g"
             //Ingredient
             ingredientsCount.text = "${data.extendedIngredients!!.size} items"
             initIngredientsList(data.extendedIngredients.toMutableList())
