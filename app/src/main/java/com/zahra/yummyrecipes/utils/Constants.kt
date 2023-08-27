@@ -41,6 +41,7 @@ object Constants {
     //Database
     const val RECIPE_TABLE_NAME = "recipe_table_name"
     const val DATABASE_NAME = "database_name"
+    const val DETAIL_TABLE_NAME = "detail_table_name"
 
     //Other
     const val LIMITED_COUNT = 10

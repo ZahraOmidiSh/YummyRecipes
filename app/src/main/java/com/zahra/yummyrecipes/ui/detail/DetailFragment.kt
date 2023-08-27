@@ -12,6 +12,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +51,9 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -77,6 +82,8 @@ class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId = 0
     private val TAG = "Detail"
+    private var isExistsCache = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,8 +101,9 @@ class DetailFragment : Fragment() {
             recipeId = args.recipeID
             //Call api
             if (recipeId > 0) {
-                viewModel.callDetailApi(recipeId, MY_API_KEY)
-                viewModel.callSimilarApi(recipeId, MY_API_KEY)
+                checkExistsDetailInCache(recipeId)
+//
+//                viewModel.callSimilarApi(recipeId, MY_API_KEY)
             }
         }
         //InitViews
@@ -187,6 +195,18 @@ class DetailFragment : Fragment() {
 
 
         }
+        //Check Internet
+        lifecycleScope.launch {
+            withStarted {  }
+            networkChecker.checkNetworkAvailability().collect(){ state ->
+                delay(200)
+                if(isExistsCache.not()){
+
+
+                }
+            }
+
+        }
         //Load data
         loadDetailDataFromApi()
         loadSimilarData()
@@ -196,6 +216,7 @@ class DetailFragment : Fragment() {
 
 
     private fun loadDetailDataFromApi() {
+        viewModel.callDetailApi(recipeId, MY_API_KEY)
         binding.apply {
             viewModel.detailData.observe(viewLifecycleOwner) { response ->
                 when (response) {
@@ -219,6 +240,24 @@ class DetailFragment : Fragment() {
                 }
 
             }
+        }
+    }
+
+    private fun checkExistsDetailInCache(id:Int){
+        viewModel.existsDetail(id)
+        //Load
+        viewModel.existsDetailData.observe(viewLifecycleOwner){
+            isExistsCache=it
+            if(it){
+                loadDetailDataFromDb()
+                binding.contentLay.isVisible=true
+            }
+        }
+    }
+
+    private fun loadDetailDataFromDb(){
+        viewModel.readDetailFromDb(recipeId).observe(viewLifecycleOwner){
+            initViewsWithData(it.result)
         }
     }
 
