@@ -60,10 +60,26 @@
         android:id="@+id/detailFragment"
         android:name="com.zahra.yummyrecipes.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="recipeID"
             app:argType="integer" />
+    </fragment>
+    <action
+        android:id="@+id/actionToWebView"
+        app:destination="@id/webViewFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.zahra.yummyrecipes.ui.webview.WebViewFragment"
+        android:label="fragment_web_view"
+        tools:layout="@layout/fragment_web_view">
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 
 

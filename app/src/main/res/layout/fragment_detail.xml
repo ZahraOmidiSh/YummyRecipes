@@ -54,6 +54,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/congo_pink" />
+        <!--Source-->
+        <ImageView
+            android:id="@+id/sourceImg"
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_margin="@dimen/_15mdp"
+            android:background="@drawable/bg_rounded_white"
+            android:padding="@dimen/_9mdp"
+            android:src="@drawable/ic_book_sparkles"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/collectionImg"
+            app:tint="@color/congo_pink" />
         <!--Line 1-->
         <View
             android:layout_width="match_parent"
@@ -340,9 +353,9 @@
                     android:text="@string/nutrition_per_serving"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/dietsChipsScroll" />
-                <!--Nutrition charts-->
+                <!--Nutrient charts-->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/nutritionLay"
+                    android:id="@+id/nutrientLay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_15mdp"
@@ -351,46 +364,26 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/nutritionTitle">
-                    <!--Carb chart-->
-                    <ProgressBar
-                        android:id="@+id/carbChart"
-                        android:layout_width="@dimen/_60mdp"
-                        android:layout_height="@dimen/_60mdp"
-                        android:progressTint="@color/congo_pink"
-                        app:layout_constraintEnd_toStartOf="@+id/proteinChart"
-                        app:layout_constraintHorizontal_bias="0.5"
+
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <!--Protein chart-->
-                    <ProgressBar
-                        android:id="@+id/proteinChart"
-                        android:layout_width="@dimen/_60mdp"
-                        android:layout_height="@dimen/_60mdp"
-                        android:progressTint="@color/congo_pink"
-                        app:layout_constraintEnd_toStartOf="@+id/fatChart"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/carbChart"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <!--Fat chart-->
-                    <ProgressBar
-                        android:id="@+id/fatChart"
-                        android:layout_width="@dimen/_60mdp"
-                        android:layout_height="@dimen/_60mdp"
-                        android:progressTint="@color/congo_pink"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/proteinChart"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <!--Carb Amount-->
+
+
                     <TextView
                         android:id="@+id/carbAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="23 g"
                         android:textSize="@dimen/_8font_mdp"
-                        app:layout_constraintEnd_toEndOf="@id/carbChart"
-                        app:layout_constraintStart_toStartOf="@id/carbChart"
-                        app:layout_constraintTop_toBottomOf="@id/carbChart" />
+                        app:layout_constraintEnd_toStartOf="@+id/proteinAmount"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                     <!--Protein Amount-->
                     <TextView
                         android:id="@+id/proteinAmount"
@@ -398,9 +391,10 @@
                         android:layout_height="wrap_content"
                         android:text="12 g"
                         android:textSize="@dimen/_8font_mdp"
-                        app:layout_constraintEnd_toEndOf="@id/proteinChart"
-                        app:layout_constraintStart_toStartOf="@id/proteinChart"
-                        app:layout_constraintTop_toBottomOf="@id/proteinChart" />
+                        app:layout_constraintEnd_toStartOf="@+id/fatAmount"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/carbAmount"
+                        app:layout_constraintTop_toTopOf="parent" />
                     <!--Fat Amount-->
                     <TextView
                         android:id="@+id/fatAmount"
@@ -408,9 +402,9 @@
                         android:layout_height="wrap_content"
                         android:text="7 g"
                         android:textSize="@dimen/_8font_mdp"
-                        app:layout_constraintEnd_toEndOf="@id/fatChart"
-                        app:layout_constraintStart_toStartOf="@id/fatChart"
-                        app:layout_constraintTop_toBottomOf="@id/fatChart" />
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/proteinAmount"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!--Similar-->
@@ -421,7 +415,7 @@
                     android:layout_margin="@dimen/_12mdp"
                     android:text="@string/similar"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nutritionLay" />
+                    app:layout_constraintTop_toBottomOf="@id/nutrientLay" />
                 <!--Similar List-->
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/similarList"

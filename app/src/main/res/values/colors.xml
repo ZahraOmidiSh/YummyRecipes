@@ -18,4 +18,6 @@
     <color name="tart_orange">#FF4646</color>
     <color name="dark_gunmetal">#1F1D36</color>
     <color name="dark_gunmetal_alpha">#801F1D36</color>
+    <color name="lightGray">#F9F9F9</color>
+    <color name="whiteSmoke">#f4f4f4</color>
 </resources>

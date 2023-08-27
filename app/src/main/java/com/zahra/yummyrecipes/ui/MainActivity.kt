@@ -48,6 +48,7 @@ class MainActivity : BaseActivity() {
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
                 R.id.detailFragment -> visibilityBottomMenu(false)
+                R.id.webViewFragment -> visibilityBottomMenu(false)
 
                 R.id.recipeFragment ->{
                     visibilityBottomMenu(true)

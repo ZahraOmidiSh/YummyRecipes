@@ -17,7 +17,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -87,6 +86,9 @@ dependencies {
     implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.github.MrNouri:DynamicSizes:1.0'
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
+    //Pie Chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 }
 kapt{
     correctErrorTypes true
