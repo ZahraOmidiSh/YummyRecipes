@@ -20,7 +20,7 @@ Gson<br>
 Calligraphy<br>
 Lottie<br>
 Shimmer<br>
-DynamicSize<br><br><br><br>
+DynamicSize<br><br>
 
 
 This application is single activity and has different pages including:<br>
