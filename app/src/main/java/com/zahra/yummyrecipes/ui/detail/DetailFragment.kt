@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.request.CachePolicy
 import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -52,7 +50,6 @@ import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -86,9 +83,7 @@ class DetailFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(layoutInflater)
         return binding.root
@@ -102,14 +97,170 @@ class DetailFragment : Fragment() {
             //Call api
             if (recipeId > 0) {
                 checkExistsDetailInCache(recipeId)
-//
-//                viewModel.callSimilarApi(recipeId, MY_API_KEY)
             }
         }
         //InitViews
         binding.apply {
             //Back
             backImg.setOnClickListener { findNavController().popBackStack() }
+
+        }
+        //Check Internet
+        lifecycleScope.launch {
+            withStarted { }
+            networkChecker.checkNetworkAvailability().collect() { state ->
+                delay(200)
+                if (isExistsCache.not()) {
+                    initInternetLayout(state)
+                    if (state) {
+                        loadDetailDataFromApi()
+                    }
+                }
+                //Similar
+                if(state){
+                    viewModel.callSimilarApi(recipeId, MY_API_KEY)
+                }
+            }
+        }
+        //Load data
+        loadSimilarData()
+
+
+    }
+
+
+    private fun loadDetailDataFromApi() {
+        viewModel.callDetailApi(recipeId, MY_API_KEY)
+        binding.apply {
+            viewModel.detailData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        loading.isVisible(true, contentLay)
+
+                    }
+
+                    is NetworkRequest.Success -> {
+                        loading.isVisible(false, contentLay)
+                        response.data?.let { data ->
+                            initViewsWithData(data)
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        loading.isVisible(false, contentLay)
+                        binding.root.showSnackBar(response.message!!)
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    private fun checkExistsDetailInCache(id: Int) {
+        viewModel.existsDetail(id)
+        //Load
+        viewModel.existsDetailData.observe(viewLifecycleOwner) {
+            isExistsCache = it
+            if (it) {
+                loadDetailDataFromDb()
+                binding.contentLay.isVisible = true
+            }
+        }
+    }
+
+    private fun loadDetailDataFromDb() {
+        viewModel.readDetailFromDb(recipeId).observe(viewLifecycleOwner) {
+            initViewsWithData(it.result)
+        }
+    }
+
+    private fun loadSimilarData() {
+        binding.apply {
+            viewModel.similarData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        similarList.showShimmer()
+                    }
+
+                    is NetworkRequest.Success -> {
+                        similarList.hideShimmer()
+                        response.data?.let { data ->
+                            initSimilarData(data)
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        similarList.hideShimmer()
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initSimilarData(list: MutableList<ResponseSimilar.ResponseSimilarItem>) {
+        similarAdapter.setData(list)
+        binding.similarList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            similarAdapter
+        )
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initViewsWithData(data: ResponseDetail) {
+        binding.apply {
+            //Image
+            val imageSplit = data.image!!.split("-")
+            val imageSize = imageSplit[1].replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
+            coverImg.load("${imageSplit[0]}-$imageSize") {
+                crossfade(true)
+                crossfade(800)
+                memoryCachePolicy(CachePolicy.ENABLED)
+                error(R.drawable.salad)
+            }
+            //Source
+            data.sourceUrl?.let { source ->
+                sourceImg.isVisible = true
+                sourceImg.setOnClickListener {
+                    val direction = DetailFragmentDirections.actionToWebView(source)
+                    findNavController().navigate(direction)
+                }
+
+            }
+            //Text
+            heartTxt.text = data.aggregateLikes.toString()
+            calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString()
+            timeTxt.text = data.readyInMinutes!!.minToHour()
+            foodNameTxt.text = data.title
+            servingTxt.text = "Servings: ${data.servings.toString()}"
+            pricePerServingTxt.text = "Price Per Serving: ${data.pricePerServing.toString()} $"
+            //Nutrient
+            fatAmount.text = "Fat: ${data.nutrition?.nutrients?.get(1)?.amount.toString()} g"
+            carbAmount.text =
+                "Carbohydrate: ${data.nutrition?.nutrients?.get(3)?.amount.toString()} g"
+            proteinAmount.text =
+                "Protein: ${data.nutrition?.nutrients?.get(8)?.amount.toString()} g"
+            //Ingredient
+            ingredientsCount.text = "${data.extendedIngredients!!.size} items"
+            initIngredientsList(data.extendedIngredients.toMutableList())
+            //Equipment
+            equipmentCount.text =
+                "${data.analyzedInstructions!![0].steps!![0].equipment!!.size} items"
+            initEquipmentsList(data.analyzedInstructions[0].steps!![0].equipment!!.toMutableList())
+            //Steps
+            instructionCount.text = "${data.analyzedInstructions[0].steps!!.size} steps"
+            initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
+            //Diets
+            setupChip(data.diets!!.toMutableList(), dietsChipGroup)
+            //Nutrient
+            initNutrientChart(data)
+
+        }
+
+    }
+    private fun initNutrientChart(data:ResponseDetail){
+        binding.apply {
 
             // on below line we are setting user percent value,
             // setting description as enabled and offset for pie chart
@@ -195,154 +346,15 @@ class DetailFragment : Fragment() {
 
 
         }
-        //Check Internet
-        lifecycleScope.launch {
-            withStarted {  }
-            networkChecker.checkNetworkAvailability().collect(){ state ->
-                delay(200)
-                if(isExistsCache.not()){
-
-
-                }
-            }
-
-        }
-        //Load data
-        loadDetailDataFromApi()
-        loadSimilarData()
-
-
-    }
-
-
-    private fun loadDetailDataFromApi() {
-        viewModel.callDetailApi(recipeId, MY_API_KEY)
-        binding.apply {
-            viewModel.detailData.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is NetworkRequest.Loading -> {
-                        loading.isVisible(true, contentLay)
-
-                    }
-
-                    is NetworkRequest.Success -> {
-                        loading.isVisible(false, contentLay)
-                        response.data?.let { data ->
-                            initViewsWithData(data)
-                        }
-                    }
-
-                    is NetworkRequest.Error -> {
-                        loading.isVisible(false, contentLay)
-                        binding.root.showSnackBar(response.message!!)
-                    }
-
-                }
-
-            }
-        }
-    }
-
-    private fun checkExistsDetailInCache(id:Int){
-        viewModel.existsDetail(id)
-        //Load
-        viewModel.existsDetailData.observe(viewLifecycleOwner){
-            isExistsCache=it
-            if(it){
-                loadDetailDataFromDb()
-                binding.contentLay.isVisible=true
-            }
-        }
-    }
-
-    private fun loadDetailDataFromDb(){
-        viewModel.readDetailFromDb(recipeId).observe(viewLifecycleOwner){
-            initViewsWithData(it.result)
-        }
-    }
-
-    private fun loadSimilarData() {
-        binding.apply {
-            viewModel.similarData.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is NetworkRequest.Loading -> {
-                        similarList.showShimmer()
-                    }
-                    is NetworkRequest.Success -> {
-                        similarList.hideShimmer()
-                        response.data?.let { data ->
-                            initSimilarData(data)
-                        }
-                    }
-                    is NetworkRequest.Error -> {
-                        similarList.hideShimmer()
-                        binding.root.showSnackBar(response.message!!)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun initSimilarData(list:MutableList<ResponseSimilar.ResponseSimilarItem>){
-        similarAdapter.setData(list)
-        binding.similarList.setupRecyclerview(
-            LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL , false),
-            similarAdapter
-        )
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun initViewsWithData(data: ResponseDetail) {
-        binding.apply {
-            //Image
-            val imageSplit = data.image!!.split("-")
-            val imageSize = imageSplit[1].replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
-            coverImg.load("${imageSplit[0]}-$imageSize") {
-                crossfade(true)
-                crossfade(800)
-                memoryCachePolicy(CachePolicy.ENABLED)
-                error(R.drawable.salad)
-            }
-            //Source
-            data.sourceUrl?.let { source ->
-                sourceImg.isVisible=true
-                sourceImg.setOnClickListener {
-                    val direction = DetailFragmentDirections.actionToWebView(source)
-                    findNavController().navigate(direction)
-                }
-
-            }
-            //Text
-            heartTxt.text = data.aggregateLikes.toString()
-            calorieTxt.text  = data.nutrition?.nutrients?.get(0)?.amount.toString()
-            timeTxt.text = data.readyInMinutes!!.minToHour()
-            foodNameTxt.text = data.title
-            servingTxt.text = "Servings: ${data.servings.toString()}"
-            pricePerServingTxt.text = "Price Per Serving: ${data.pricePerServing.toString()} $"
-            //Nutrient
-            fatAmount.text="Fat: ${data.nutrition?.nutrients?.get(1)?.amount.toString()} g"
-            carbAmount.text="Carbohydrate: ${data.nutrition?.nutrients?.get(3)?.amount.toString()} g"
-            proteinAmount.text="Protein: ${data.nutrition?.nutrients?.get(8)?.amount.toString()} g"
-            //Ingredient
-            ingredientsCount.text = "${data.extendedIngredients!!.size} items"
-            initIngredientsList(data.extendedIngredients.toMutableList())
-            //Equipment
-            equipmentCount.text = "${data.analyzedInstructions!![0].steps!![0].equipment!!.size} items"
-            initEquipmentsList(data.analyzedInstructions[0].steps!![0].equipment!!.toMutableList())
-            //Steps
-            instructionCount.text="${data.analyzedInstructions[0].steps!!.size} steps"
-            initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
-            //Diets
-            setupChip(data.diets!!.toMutableList(), dietsChipGroup)
-
-        }
 
     }
 
     private fun initInstructionStepList(list: MutableList<Step>) {
-        if(list.isNotEmpty()){
+        if (list.isNotEmpty()) {
             instructionsStepsAdapter.setData(list)
-           binding.cookingInstructionsList.setupRecyclerview(LinearLayoutManager(requireContext()),instructionsStepsAdapter)
+            binding.cookingInstructionsList.setupRecyclerview(
+                LinearLayoutManager(requireContext()), instructionsStepsAdapter
+            )
         }
 
 
@@ -378,6 +390,10 @@ class DetailFragment : Fragment() {
             chip.text = it
             view.addView(chip)
         }
+    }
+
+    private fun initInternetLayout(isConnected: Boolean) {
+        binding.internetLay.isVisible = isConnected.not()
     }
 
     override fun onDestroy() {
