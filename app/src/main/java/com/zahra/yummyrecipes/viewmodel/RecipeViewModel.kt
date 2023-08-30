@@ -186,6 +186,7 @@ class RecipeViewModel @Inject constructor(
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[TYPE] = MAIN_COURSE
         queries[SORT] = PRICE
+        queries["offset"] = "3"
         queries[SORT_DIRECTION] = ASCENDING
         return queries
     }

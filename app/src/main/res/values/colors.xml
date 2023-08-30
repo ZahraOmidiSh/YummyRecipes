@@ -25,8 +25,15 @@
     <color name="lightGray">#F9F9F9</color>
     <color name="whiteSmoke">#f4f4f4</color>
     <color name="root_beer">#270D08</color>   //متن لایت
+    <color name="philippine_gray">#9A918A</color>    //متن لایت درجه 2
     <color name="pale_pink">#FFEEEB</color>   //متن دارک
     <color name="sea_shell">#F3FDFF</color>   //بک گراند دکمه های دیتیل
+    <color name="linen">#E1EEFB</color>   //بک گراند دکمه های دیتیل
+    <color name="floral_white">#FFFAF9</color>   //بک گراند دکمه های دیتیل
+    <color name="big_foot_feet">#f68e56</color>   //بک گراند لاین ها
     <color name="light_red">#C2F5FF</color>   //بک گراند استپ لایت
+    <color name="chinese_yellow">#FFB109</color>   //رنگ کالری
+    <color name="time">#0083F7</color>   //رنگ ساعت
+    <color name="serving">#7DC28A</color>   //رنگ ساعت
 
 </resources>
