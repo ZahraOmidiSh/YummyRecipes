@@ -337,9 +337,11 @@
                     android:id="@+id/dietTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12mdp"
+                    android:layout_marginVertical="@dimen/_14mdp"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     android:text="@string/diets"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/cookingInstructionsList" />
                 <!-- Diet chips -->
                 <HorizontalScrollView
@@ -361,14 +363,16 @@
                         app:chipSpacing="0dp"
                         app:singleLine="true" />
                 </HorizontalScrollView>
-                <!--Nutrition-->
+                <!--Nutrient-->
                 <TextView
-                    android:id="@+id/nutritionTitle"
+                    android:id="@+id/nutrientTitle"
                     android:layout_width="wrap_content"
+                    android:layout_marginVertical="@dimen/_14mdp"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12mdp"
-                    android:text="@string/nutrition_per_serving"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/nutrient_per_serving"
+                    app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/dietsChipsScroll" />
                 <!--Nutrient charts-->
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -380,7 +384,7 @@
                     android:padding="@dimen/_10mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nutritionTitle">
+                    app:layout_constraintTop_toBottomOf="@id/nutrientTitle">
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/pieChart"
