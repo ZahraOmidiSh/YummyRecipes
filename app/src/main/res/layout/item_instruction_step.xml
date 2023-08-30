@@ -2,15 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_5mdp"
-    android:background="@drawable/bg_rounded_light_stroke"
-    android:padding="@dimen/_5mdp">
+    android:layout_height="wrap_content">
     <!--Step-->
     <TextView
         android:id="@+id/stepTxt"
-        android:layout_width="@dimen/_25mdp"
-        android:layout_height="@dimen/_25mdp"
+        android:layout_width="@dimen/_20mdp"
+        android:layout_height="@dimen/_20mdp"
         android:layout_margin="@dimen/_5mdp"
         android:background="@drawable/bg_rounded_orange"
         android:textColor="@color/white"
@@ -26,8 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5mdp"
         android:gravity="center"
-        android:textSize="@dimen/_9font_mdp"
+        android:textColor="@color/philippine_gray"
+        android:textSize="@dimen/_8font_mdp"
         app:layout_constraintStart_toStartOf="@id/stepTxt"
+        app:layout_constraintEnd_toEndOf="@id/stepTxt"
         app:layout_constraintTop_toBottomOf="@id/stepTxt" />
     <!--Info-->
     <TextView
@@ -40,7 +39,7 @@
         android:textSize="@dimen/_9font_mdp"
         app:fontPath="fonts/atlas_bold.ttf"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/stepTxt"
+        app:layout_constraintStart_toEndOf="@id/timeTxt"
         app:layout_constraintTop_toTopOf="@id/stepTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
