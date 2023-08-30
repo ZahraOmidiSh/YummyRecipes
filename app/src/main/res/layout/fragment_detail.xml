@@ -10,12 +10,14 @@
         android:id="@+id/contentLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <!--Cover-->
         <ImageView
             android:id="@+id/coverImg"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/_312mdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="@dimen/_200mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
