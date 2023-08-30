@@ -11,20 +11,18 @@
         android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
-        app:cardCornerRadius="@dimen/_50mdp"
+        app:cardCornerRadius="@dimen/_3mdp"
         android:elevation="@dimen/_5mdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <ImageView
             android:id="@+id/equipmentImg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded_light_stroke"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:layout_margin="@dimen/_15mdp"
-            android:background="@drawable/kitchen_set"/>
+            android:scaleType="centerCrop" />
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -38,6 +36,7 @@
         tools:text="pan"
         android:gravity="center"
         android:maxLines="2"
+        android:textColor="@color/brown_coffee"
         android:ellipsize="end"
         android:textSize="@dimen/_13font_mdp"
         app:layout_constraintStart_toStartOf="parent"

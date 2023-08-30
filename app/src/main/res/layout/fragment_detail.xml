@@ -36,38 +36,37 @@
             android:layout_width="@dimen/_28mdp"
             android:layout_height="@dimen/_28mdp"
             android:layout_margin="@dimen/_10mdp"
+            android:background="@drawable/bg_rounded_linen_stroke"
             android:padding="@dimen/_7mdp"
             android:src="@drawable/ic_arrow_left"
-            android:background="@drawable/bg_rounded_linen_stroke"
-            app:tint="@color/big_foot_feet"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/big_foot_feet" />
         <!--Collection-->
         <ImageView
             android:id="@+id/collectionImg"
             android:layout_width="@dimen/_28mdp"
             android:layout_height="@dimen/_28mdp"
             android:layout_margin="@dimen/_10mdp"
-            android:padding="@dimen/_7mdp"
             android:background="@drawable/bg_rounded_linen_stroke"
-            app:tint="@color/big_foot_feet"
+            android:padding="@dimen/_7mdp"
             android:src="@drawable/bookmark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-             />
+            app:tint="@color/big_foot_feet" />
         <!--Source-->
         <ImageView
             android:id="@+id/sourceImg"
             android:layout_width="@dimen/_28mdp"
             android:layout_height="@dimen/_28mdp"
             android:layout_margin="@dimen/_10mdp"
-            android:padding="@dimen/_7mdp"
             android:background="@drawable/bg_rounded_linen_stroke"
-            app:tint="@color/big_foot_feet"
+            android:padding="@dimen/_7mdp"
             android:src="@drawable/ic_book_sparkles"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/collectionImg" />
+            app:layout_constraintTop_toBottomOf="@id/collectionImg"
+            app:tint="@color/big_foot_feet" />
         <!--Line 1-->
         <View
             android:layout_width="match_parent"
@@ -102,8 +101,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_3mdp"
-                    android:textSize="@dimen/_11font_mdp"
                     android:textColor="@color/philippine_gray"
+                    android:textSize="@dimen/_11font_mdp"
                     app:drawableLeftCompat="@drawable/timer2"
                     app:drawableTint="@color/time"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -117,8 +116,8 @@
                     android:id="@+id/calorieTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/philippine_gray"
                     android:drawablePadding="@dimen/_3mdp"
+                    android:textColor="@color/philippine_gray"
                     android:textSize="@dimen/_11font_mdp"
                     app:drawableLeftCompat="@drawable/fire_flame"
                     app:drawableTint="@color/chinese_yellow"
@@ -134,10 +133,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_3mdp"
+                    android:textColor="@color/philippine_gray"
                     android:textSize="@dimen/_11font_mdp"
                     app:drawableLeftCompat="@drawable/ic_heart"
                     app:drawableTint="@color/portland_orange"
-                    android:textColor="@color/philippine_gray"
                     app:layout_constraintEnd_toStartOf="@+id/calorieTxt"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -165,8 +164,8 @@
                 android:id="@+id/descriptionLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
                 android:background="@color/floral_white"
+                android:clipToPadding="false"
                 android:paddingTop="@dimen/_25mdp">
 
                 <!--Name-->
@@ -177,21 +176,21 @@
                     android:layout_marginHorizontal="@dimen/_15mdp"
                     android:layout_marginVertical="@dimen/_5mdp"
                     android:ellipsize="end"
-                    android:maxLines="2"
                     android:lineSpacingExtra="@dimen/_6mdp"
+                    android:maxLines="2"
                     android:textColor="@color/root_beer"
                     android:textSize="@dimen/_17font_mdp"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Show recipe name" />
                 <!--Line 2-->
                 <View
                     android:id="@+id/line1"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/_3mdp"
                     android:layout_marginHorizontal="@dimen/_10mdp"
                     android:layout_marginTop="@dimen/_8mdp"
-                    android:layout_height="@dimen/_3mdp"
                     android:alpha="0.3"
                     android:background="@drawable/bg_rounded_big_foot_feet"
                     app:layout_constraintTop_toBottomOf="@id/foodNameTxt" />
@@ -203,8 +202,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10mdp"
                     android:drawablePadding="@dimen/_3mdp"
-                    android:textSize="@dimen/_9font_mdp"
                     android:textColor="@color/philippine_gray"
+                    android:textSize="@dimen/_9font_mdp"
                     app:drawableLeftCompat="@drawable/user_group"
                     app:drawableTint="@color/serving"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
@@ -214,10 +213,10 @@
                 <TextView
                     android:id="@+id/pricePerServingTxt"
                     android:layout_width="wrap_content"
-                    android:textColor="@color/philippine_gray"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_4mdp"
                     android:paddingStart="@dimen/_8mdp"
+                    android:textColor="@color/philippine_gray"
                     android:textSize="@dimen/_9font_mdp"
                     app:drawableLeftCompat="@drawable/ic_coins"
                     app:drawableTint="@color/chinese_yellow"
@@ -230,9 +229,11 @@
                     android:id="@+id/ingredientsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12mdp"
+                    android:layout_marginVertical="@dimen/_14mdp"
                     android:text="@string/ingredients"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/pricePerServingTxt" />
                 <!--Ingredients Count-->
                 <TextView
@@ -240,6 +241,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
+                    android:textColor="@color/rose_ebony"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/ingredientsTitle"
                     tools:text="7 items" />
@@ -265,15 +267,18 @@
                     android:id="@+id/equipmentTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_12mdp"
+                    android:layout_marginVertical="@dimen/_14mdp"
                     android:text="@string/equipments"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
+                    app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/ingredientsList" />
                 <!--Equipment Count-->
                 <TextView
                     android:id="@+id/equipmentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/rose_ebony"
                     android:layout_marginEnd="@dimen/_15mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/equipmentTitle"

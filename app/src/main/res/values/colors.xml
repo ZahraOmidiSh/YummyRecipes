@@ -25,6 +25,8 @@
     <color name="lightGray">#F9F9F9</color>
     <color name="whiteSmoke">#f4f4f4</color>
     <color name="root_beer">#270D08</color>   //متن لایت
+    <color name="brown_coffee">#4D2D26</color>   //متن اینگردینت
+    <color name="rose_ebony">#5C4641 </color>   //متن تعداد اینگردینت
     <color name="philippine_gray">#9A918A</color>    //متن لایت درجه 2
     <color name="pale_pink">#FFEEEB</color>   //متن دارک
     <color name="sea_shell">#F3FDFF</color>   //بک گراند دکمه های دیتیل

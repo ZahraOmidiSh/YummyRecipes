@@ -11,20 +11,18 @@
         android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
-        app:cardCornerRadius="@dimen/_50mdp"
+        app:cardCornerRadius="@dimen/_3mdp"
         android:elevation="@dimen/_5mdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <ImageView
             android:id="@+id/ingredientImg"
-android:layout_margin="@dimen/_12mdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/bg_rounded_light_stroke"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:background="@drawable/tomato"/>
+            android:scaleType="centerCrop" />
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -38,6 +36,7 @@ android:layout_margin="@dimen/_12mdp"
         tools:text="potato"
         android:gravity="center"
         android:maxLines="2"
+        android:textColor="@color/brown_coffee"
         android:ellipsize="end"
         android:textSize="@dimen/_13font_mdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +48,23 @@ android:layout_margin="@dimen/_12mdp"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
+        android:textColor="@color/philippine_gray"
         android:textSize="@dimen/_10font_mdp"
         app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
         app:layout_constraintEnd_toEndOf="@id/ingredientNameTxt"
         app:layout_constraintTop_toBottomOf="@id/ingredientNameTxt"
         tools:text="2" />
+    <!--Add Button-->
+    <ImageView
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_5mdp"
+        android:src="@drawable/plus"
+        android:padding="@dimen/_4mdp"
+        app:layout_constraintTop_toBottomOf="@id/ingredientAmountTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/bg_rounded_orange"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
