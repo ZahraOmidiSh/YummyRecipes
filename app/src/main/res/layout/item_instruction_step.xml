@@ -6,8 +6,8 @@
     <!--Step-->
     <TextView
         android:id="@+id/stepTxt"
-        android:layout_width="@dimen/_20mdp"
-        android:layout_height="@dimen/_20mdp"
+        android:layout_width="@dimen/_30mdp"
+        android:layout_height="@dimen/_30mdp"
         android:layout_margin="@dimen/_5mdp"
         android:background="@drawable/bg_rounded_orange"
         android:textColor="@color/white"
