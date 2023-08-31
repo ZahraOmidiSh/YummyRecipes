@@ -345,19 +345,21 @@
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
                 <!--Instruction List-->
+                <!--Diets-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cookingInstructionsList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_8mdp"
-                    android:layout_marginTop="@dimen/_12mdp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/bg_rounded_steps"
                     android:clipToPadding="false"
                     android:padding="@dimen/_5mdp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.476"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cookingTitle" />
-                <!--Diets-->
+
                 <TextView
                     android:id="@+id/dietTitle"
                     android:layout_width="wrap_content"
@@ -415,7 +417,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_15mdp"
-                    android:background="@drawable/bg_rounded_white"
+                    android:background="@drawable/bg_rounded_steps"
                     android:padding="@dimen/_10mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.detail
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -388,6 +389,8 @@ class DetailFragment : Fragment() {
             chip.setChipDrawable(drawable)
             chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_coffee))
             chip.text = it
+            chip.chipBackgroundColor = ColorStateList.valueOf(
+                ContextCompat.getColor(requireContext(), R.color.back_step))
             view.addView(chip)
         }
     }
