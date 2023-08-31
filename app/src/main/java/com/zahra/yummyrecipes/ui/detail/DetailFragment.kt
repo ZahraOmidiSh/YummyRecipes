@@ -386,7 +386,7 @@ class DetailFragment : Fragment() {
             val drawable =
                 ChipDrawable.createFromAttributes(requireContext(), null, 0, R.style.DietChip)
             chip.setChipDrawable(drawable)
-            chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.congo_pink))
+            chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.brown_coffee))
             chip.text = it
             view.addView(chip)
         }

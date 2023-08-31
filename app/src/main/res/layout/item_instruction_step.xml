@@ -10,7 +10,7 @@
         android:layout_width="@dimen/_30mdp"
         android:layout_height="@dimen/_30mdp"
         android:layout_marginTop="@dimen/_5mdp"
-        android:background="@drawable/bg_rounded_orange"
+        android:background="@drawable/bg_rounded_number"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/_14font_mdp"
@@ -27,7 +27,7 @@
         android:layout_margin="@dimen/_5mdp"
         android:gravity="center"
         android:textColor="@color/philippine_gray"
-        android:textSize="@dimen/_7font_mdp"
+        android:textSize="@dimen/_8font_mdp"
         app:layout_constraintStart_toStartOf="parent"
 
         app:layout_constraintTop_toBottomOf="@id/stepTxt" />
@@ -39,7 +39,7 @@
         android:layout_marginStart="@dimen/_10mdp"
         android:layout_marginEnd="@dimen/_5mdp"
         android:lineSpacingExtra="@dimen/_5mdp"
-        android:textSize="@dimen/_9font_mdp"
+        android:textSize="@dimen/_12font_mdp"
         app:fontPath="fonts/atlas_bold.ttf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/timeTxt"
