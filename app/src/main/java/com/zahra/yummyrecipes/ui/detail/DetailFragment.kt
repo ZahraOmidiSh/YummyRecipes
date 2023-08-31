@@ -230,7 +230,7 @@ class DetailFragment : Fragment() {
             }
             //Text
             heartTxt.text = data.aggregateLikes.toString()
-            calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString()
+            calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString()+" Kcal"
             timeTxt.text = data.readyInMinutes!!.minToHour()
             foodNameTxt.text = data.title
             servingTxt.text = "Servings: ${data.servings.toString()}"

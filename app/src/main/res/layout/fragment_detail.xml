@@ -69,6 +69,7 @@
             app:tint="@color/big_foot_feet" />
         <!--Line 1-->
         <View
+            android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_3mdp"
             android:alpha="0.7"
@@ -186,12 +187,12 @@
                     tools:text="Show recipe name" />
                 <!--Line 2-->
                 <View
-                    android:id="@+id/line1"
+                    android:id="@+id/line2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginHorizontal="@dimen/_10mdp"
                     android:layout_marginTop="@dimen/_8mdp"
-                    android:alpha="0.3"
+                    android:alpha="0.2"
                     android:background="@drawable/bg_rounded_big_foot_feet"
                     app:layout_constraintTop_toBottomOf="@id/foodNameTxt" />
 
@@ -207,7 +208,7 @@
                     app:drawableLeftCompat="@drawable/user_group"
                     app:drawableTint="@color/serving"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
-                    app:layout_constraintTop_toBottomOf="@id/line1"
+                    app:layout_constraintTop_toBottomOf="@id/line2"
                     tools:text="Serving: 4  |" />
                 <!--Cost-->
                 <TextView
@@ -229,8 +230,8 @@
                     android:id="@+id/ingredientsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/ingredients"
                     android:layout_marginTop="@dimen/_18mdp"
+                    android:text="@string/ingredients"
                     android:textColor="@color/root_beer"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
@@ -250,12 +251,12 @@
                     android:id="@+id/ingredientsList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/_5mdp"
                     android:paddingTop="@dimen/_3mdp"
                     android:paddingEnd="@dimen/_5mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/ingredientsCount"
                     app:shimmer_recycler_auto_start="true"
@@ -263,23 +264,34 @@
                     app:shimmer_recycler_layout="@layout/item_ingredients_shimmer"
                     app:shimmer_recycler_shape="linear" />
 
+                <!--Line 3-->
+                <View
+                    android:id="@+id/line3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1mdp"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:alpha="0.2"
+                    android:background="@drawable/bg_rounded_big_foot_feet"
+                    app:layout_constraintTop_toBottomOf="@id/ingredientsList" />
                 <!--Equipment Title-->
                 <TextView
                     android:id="@+id/equipmentTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18mdp"                    android:text="@string/equipments"
+                    android:layout_marginTop="@dimen/_18mdp"
+                    android:text="@string/equipments"
                     android:textColor="@color/root_beer"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
-                    app:layout_constraintTop_toBottomOf="@id/ingredientsList" />
+                    app:layout_constraintTop_toBottomOf="@id/line3" />
                 <!--Equipment Count-->
                 <TextView
                     android:id="@+id/equipmentCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/rose_ebony"
                     android:layout_marginEnd="@dimen/_15mdp"
+                    android:textColor="@color/rose_ebony"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/equipmentTitle"
                     tools:text="4 items" />
@@ -288,35 +300,47 @@
                     android:id="@+id/equipmentsList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
                     android:clipToPadding="false"
                     android:orientation="horizontal"
                     android:paddingStart="@dimen/_5mdp"
                     android:paddingTop="@dimen/_3mdp"
                     android:paddingEnd="@dimen/_5mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/equipmentTitle"
                     app:shimmer_recycler_auto_start="true"
                     app:shimmer_recycler_item_count="5"
                     app:shimmer_recycler_layout="@layout/item_equipment_shimmer"
                     app:shimmer_recycler_shape="linear" />
+
+                <!--Line 4-->
+                <View
+                    android:id="@+id/line4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1mdp"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:alpha="0.2"
+                    android:background="@drawable/bg_rounded_big_foot_feet"
+                    app:layout_constraintTop_toBottomOf="@id/equipmentsList" />
                 <!--Cooking Instruction-->
                 <TextView
                     android:id="@+id/cookingTitle"
-                    android:layout_marginTop="@dimen/_18mdp"                    android:textColor="@color/root_beer"
-                    android:textSize="@dimen/_14font_mdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/cooking_instructions"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
-                    app:layout_constraintTop_toBottomOf="@id/equipmentsList" />
+                    app:layout_constraintTop_toBottomOf="@id/line4" />
                 <!--Instruction Count-->
                 <TextView
                     android:id="@+id/instructionCount"
                     android:layout_width="wrap_content"
-                    android:textColor="@color/rose_ebony"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
+                    android:textColor="@color/rose_ebony"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
@@ -338,9 +362,10 @@
                     android:id="@+id/dietTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18mdp"                    android:textColor="@color/root_beer"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/diets"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/cookingInstructionsList" />
                 <!-- Diet chips -->
@@ -363,16 +388,27 @@
                         app:chipSpacing="0dp"
                         app:singleLine="true" />
                 </HorizontalScrollView>
+                <!--Line 5-->
+                <View
+                    android:id="@+id/line5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1mdp"
+                    android:layout_marginHorizontal="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:alpha="0.2"
+                    android:background="@drawable/bg_rounded_big_foot_feet"
+                    app:layout_constraintTop_toBottomOf="@id/dietsChipsScroll" />
                 <!--Nutrient-->
                 <TextView
                     android:id="@+id/nutrientTitle"
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="@dimen/_18mdp"                    android:textColor="@color/root_beer"
-                    android:textSize="@dimen/_14font_mdp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/nutrient_per_serving"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
-                    app:layout_constraintTop_toBottomOf="@id/dietsChipsScroll" />
+                    app:layout_constraintTop_toBottomOf="@id/line5" />
                 <!--Nutrient charts-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/nutrientLay"
@@ -432,9 +468,10 @@
                     android:id="@+id/similarTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_18mdp"                    android:textColor="@color/root_beer"
-                    android:textSize="@dimen/_14font_mdp"
+                    android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/similar"
+                    android:textColor="@color/root_beer"
+                    android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/nutrientLay" />
                 <!--Similar List-->

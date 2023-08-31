@@ -57,7 +57,7 @@
     <ImageView
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_5mdp"
+        android:layout_marginTop="@dimen/_10mdp"
         android:src="@drawable/plus"
         android:padding="@dimen/_4mdp"
         app:layout_constraintTop_toBottomOf="@id/ingredientAmountTxt"
