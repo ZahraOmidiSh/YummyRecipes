@@ -480,6 +480,7 @@
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/similarList"
                     style="@style/Recipe_Recycler_View"
+
                     android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/similarTitle"
