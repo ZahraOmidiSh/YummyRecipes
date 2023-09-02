@@ -389,7 +389,7 @@ class DetailFragment : Fragment() {
             chip.setChipDrawable(drawable)
             chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_person_24)
             chip.text = it
-            chip.setChipIconTintResource( R.color.congo_pink)
+//            chip.setChipIconTintResource( R.color.white)
             view.addView(chip)
         }
     }

@@ -144,6 +144,7 @@
         <item name="chipBackgroundColor">@color/big_foot_feet2</item>
         <item name="android:textColor">@color/brown_coffee</item>
         <item name="chipIconEnabled">true</item>
+        <item name="chipIconTint">@color/black</item>
         <item name="android:clickable">false</item>
         <item name="android:checkable">false</item>
     </style>
