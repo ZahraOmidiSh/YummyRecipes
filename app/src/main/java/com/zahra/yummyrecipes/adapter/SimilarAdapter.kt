@@ -38,10 +38,10 @@ class SimilarAdapter @Inject constructor() :
         fun bind(item: ResponseSimilarItem) {
             binding.apply {
                 //Text
-                nameTxt.text = item.title
+                similarTitleTxt.text = item.title
                 //Image
                 val image = "${BASE_URL_IMAGE_RECIPES}${item.id}-${NEW_IMAGE_SIZE}"
-                coverImg.load(image) {
+                similarImg.load(image) {
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
