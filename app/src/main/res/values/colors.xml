@@ -42,7 +42,7 @@
     <color name="chinese_yellow">#FFB109</color>   //رنگ کالری
     <color name="time">#0083F7</color>   //رنگ ساعت
     <color name="serving">#7DC28A</color>   //رنگ ساعت
-    <color name="carbText">#4D8066</color>   //رنگ ساعت
-    <color name="protein">#AA00FF</color>   //رنگ پروئین
+    <color name="carbText">#345745</color>   //رنگ ساعت
+    <color name="protein">#7602B1</color>   //رنگ پروئین
 
 </resources>
