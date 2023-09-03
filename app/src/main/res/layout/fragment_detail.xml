@@ -441,8 +441,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="CARBS"
+
                             android:textColor="@color/carbText"
-                            android:textSize="@dimen/_12font_mdp"
+                            android:textSize="@dimen/_9font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -452,11 +453,13 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="19 g"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
+                            android:textSize="@dimen/_16font_mdp"
                             android:textColor="@color/carbText"
-                            android:textSize="@dimen/_12font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/carbTitle" />
+                            app:layout_constraintTop_toBottomOf="@id/carbTitle"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -480,7 +483,7 @@
                             android:gravity="center"
                             android:text="PROTEIN"
                             android:textColor="@color/protein"
-                            android:textSize="@dimen/_12font_mdp"
+                            android:textSize="@dimen/_9font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -492,7 +495,8 @@
                             android:gravity="center"
                             android:text="11 g"
                             android:textColor="@color/protein"
-                            android:textSize="@dimen/_12font_mdp"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
+                            android:textSize="@dimen/_16font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/proteinTitle" />
@@ -519,7 +523,7 @@
                             android:gravity="center"
                             android:text="FAT"
                             android:textColor="@color/portland_orange"
-                            android:textSize="@dimen/_12font_mdp"
+                            android:textSize="@dimen/_9font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -531,7 +535,8 @@
                             android:gravity="center"
                             android:text="6 g"
                             android:textColor="@color/portland_orange"
-                            android:textSize="@dimen/_12font_mdp"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
+                            android:textSize="@dimen/_16font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/fatTitle" />
