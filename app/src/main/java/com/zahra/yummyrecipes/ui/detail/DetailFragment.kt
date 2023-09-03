@@ -1,9 +1,6 @@
 package com.zahra.yummyrecipes.ui.detail
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,12 +16,6 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.request.CachePolicy
-import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.utils.MPPointF
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
@@ -118,7 +109,7 @@ class DetailFragment : Fragment() {
                     }
                 }
                 //Similar
-                if(state){
+                if (state) {
                     viewModel.callSimilarApi(recipeId, MY_API_KEY)
                 }
             }
@@ -231,7 +222,7 @@ class DetailFragment : Fragment() {
             }
             //Text
             heartTxt.text = data.aggregateLikes.toString()
-            calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString()+" Kcal"
+            calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString() + " Kcal"
             timeTxt.text = data.readyInMinutes!!.minToHour()
             foodNameTxt.text = data.title
             servingTxt.text = "Servings: ${data.servings.toString()}"
@@ -293,12 +284,14 @@ class DetailFragment : Fragment() {
             val drawable =
                 ChipDrawable.createFromAttributes(requireContext(), null, 0, R.style.DietChip)
             chip.setChipDrawable(drawable)
-            chip.chipIcon = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_person_24)
+            chip.chipIcon =
+                ContextCompat.getDrawable(requireContext(), R.drawable.baseline_person_24)
             chip.text = it
 //            chip.setChipIconTintResource( R.color.white)
             view.addView(chip)
         }
     }
+
 
     private fun initInternetLayout(isConnected: Boolean) {
         binding.internetLay.isVisible = isConnected.not()
