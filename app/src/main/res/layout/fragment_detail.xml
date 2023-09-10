@@ -362,6 +362,7 @@
 
                 <TextView
                     android:id="@+id/dietTitle"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
@@ -441,7 +442,6 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="CARBS"
-
                             android:textColor="@color/carbText"
                             android:textSize="@dimen/_9font_mdp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -449,6 +449,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/carbAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"

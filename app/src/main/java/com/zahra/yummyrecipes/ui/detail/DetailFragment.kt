@@ -227,8 +227,6 @@ class DetailFragment : Fragment() {
             foodNameTxt.text = data.title
             servingTxt.text = "Servings: ${data.servings.toString()}"
             pricePerServingTxt.text = "Price Per Serving: ${data.pricePerServing.toString()} $"
-            //Nutrient
-
             ingredientsCount.text = "${data.extendedIngredients!!.size} items"
             initIngredientsList(data.extendedIngredients.toMutableList())
             //Equipment
@@ -241,7 +239,9 @@ class DetailFragment : Fragment() {
             //Diets
             setupChip(data.diets!!.toMutableList(), dietsChipGroup)
             //Nutrient
-//            initNutrientChart(data)
+            carbAmount.text=data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
+            proteinAmount.text=data.nutrition?.nutrients?.get(3)?.amount.toString() + " g"
+            fatAmount.text=data.nutrition?.nutrients?.get(4)?.amount.toString() + " g"
 
         }
 
@@ -269,6 +269,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun initEquipmentsList(list: MutableList<Equipment>) {
+        binding.equipmentTitle.isVisible = list.isNotEmpty()
         if (list.isNotEmpty()) {
             equipmentsAdapter.setData(list)
             binding.equipmentsList.setupRecyclerview(
@@ -279,6 +280,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupChip(list: MutableList<String>, view: ChipGroup) {
+        binding.dietTitle.isVisible = list.isNotEmpty()
         list.forEach {
             val chip = Chip(requireContext())
             val drawable =

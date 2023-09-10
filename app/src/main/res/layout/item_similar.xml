@@ -7,8 +7,8 @@
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_width="@dimen/_70mdp"
-        android:layout_height="@dimen/_105mdp"
+        android:layout_width="@dimen/_90mdp"
+        android:layout_height="@dimen/_120mdp"
         android:layout_marginStart="@dimen/_2mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_8mdp"
@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/similarImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_65mdp"
+            android:layout_height="@dimen/_75mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             tools:src="@drawable/salad" />
@@ -28,7 +28,7 @@
             android:id="@+id/similarTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_70mdp"
+            android:layout_marginTop="@dimen/_80mdp"
             android:ellipsize="end"
             android:maxLines="2"
             android:gravity="center"
