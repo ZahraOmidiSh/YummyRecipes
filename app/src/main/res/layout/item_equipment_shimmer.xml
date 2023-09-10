@@ -11,27 +11,26 @@
         android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
-        app:cardCornerRadius="@dimen/_50mdp"
+        app:cardCornerRadius="@dimen/_3mdp"
         android:elevation="@dimen/_5mdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <View
-            android:id="@+id/equipmentImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/mediumGray"/>
+            android:layout_width="@dimen/_95mdp"
+            android:layout_height="@dimen/_95mdp"
+            android:background="@drawable/bg_shimmer_gray" />
+
 
     </com.google.android.material.card.MaterialCardView>
 
     <!--Name-->
     <View
         android:id="@+id/equipmentNameTxt"
-        android:layout_width="@dimen/_70mdp"
-        android:layout_height="@dimen/_9mdp"
-        android:layout_marginTop="145dp"
+        android:layout_width="@dimen/_50mdp"
+        android:layout_height="@dimen/_7mdp"
         android:background="@drawable/bg_shimmer_gray"
+        android:layout_marginTop="140dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
