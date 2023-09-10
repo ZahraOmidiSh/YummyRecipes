@@ -1,29 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_5mdp"
-    android:background="@drawable/bg_rounded_light_stroke"
-    android:padding="@dimen/_5mdp">
-    <!-- Image -->
-    <View
-        android:id="@+id/coverImg"
-        android:layout_width="@dimen/_80mdp"
-        android:layout_height="@dimen/_90mdp"
-        app:layout_constraintEnd_toEndOf="parent"
+    android:layout_height="wrap_content">
+    <!--Card-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardLay"
+        android:layout_width="@dimen/_90mdp"
+        android:layout_height="@dimen/_120mdp"
+        android:elevation="@dimen/_5mdp"
+        app:cardCornerRadius="@dimen/_8mdp"
+        android:layout_margin="@dimen/_3mdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/mediumGray"/>
-    <!-- name -->
-    <View
-        android:id="@+id/nameTxt"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_10mdp"
-        android:layout_marginBottom="@dimen/_5mdp"
-        android:background="@color/mediumGray"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/coverImg" />
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Image-->
+        <View
+            android:layout_width="@dimen/_85mdp"
+            android:layout_height="@dimen/_75mdp"
+            android:background="@drawable/bg_shimmer_gray" />
+        <!--Title-->
+        <View
+            android:layout_width="@dimen/_60mdp"
+            android:layout_marginStart="@dimen/_5mdp"
+            android:layout_height="@dimen/_4mdp"
+            android:layout_marginTop="@dimen/_85mdp"
+            android:background="@drawable/bg_shimmer_gray"
+            />
+        <View
+            android:layout_width="@dimen/_70mdp"
+            android:layout_marginStart="@dimen/_5mdp"
+            android:layout_height="@dimen/_4mdp"
+            android:layout_marginTop="@dimen/_97mdp"
+            android:background="@drawable/bg_shimmer_gray"
+            />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
