@@ -109,7 +109,7 @@
                     <ImageView
                         android:id="@+id/fewIngredientImg"
                         style="@style/Banner_Image_View"
-                        android:src="@drawable/few" />
+                        android:src="@drawable/vegan" />
                     <!--Shadow-->
                     <View style="@style/Banner_Shadow" />
 

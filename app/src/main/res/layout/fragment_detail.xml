@@ -579,7 +579,7 @@
                     <ImageView
                         android:id="@+id/watchTutorialImg"
                         style="@style/Banner_Image_View"
-                        android:src="@color/portland_orange_alpha" />
+                        android:src="@drawable/weight_loss" />
                     <!--Shadow-->
                     <View style="@style/Banner_Shadow" />
 

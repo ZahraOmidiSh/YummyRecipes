@@ -111,19 +111,19 @@
     <style name="Banner_Shadow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:alpha">0.7</item>
-        <item name="android:background">@drawable/bg_shadow_image</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:background">@drawable/bg_shadow_white</item>
     </style>
 
     <!--Banner Premium Text-->
     <style name="Banner_Premium_Txt">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/_10mdp</item>
-        <item name="android:layout_marginTop">@dimen/_10mdp</item>
+        <item name="android:layout_marginStart">@dimen/_13mdp</item>
+        <item name="android:layout_marginTop">@dimen/_15mdp</item>
         <item name="android:text">@string/premium</item>
         <item name="android:textColor">@color/portland_orange</item>
-        <item name="android:textSize">@dimen/_8font_mdp</item>
+        <item name="android:textSize">@dimen/_12font_mdp</item>
     </style>
 
     <!--Banner Title Text-->
@@ -132,8 +132,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/_10mdp</item>
         <item name="android:layout_marginTop">@dimen/_50mdp</item>
-        <item name="android:textColor">@color/baby_powder</item>
-        <item name="android:textSize">@dimen/_22font_mdp</item>
+        <item name="android:textColor">@color/rose_ebony</item>
+        <item name="android:textSize">@dimen/_25font_mdp</item>
     </style>
     <!--Progressbar-->
     <style name="OrangeProgressbar">
