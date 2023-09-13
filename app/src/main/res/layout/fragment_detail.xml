@@ -362,13 +362,13 @@
 
                 <TextView
                     android:id="@+id/dietTitle"
-                    android:visibility="visible"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/diets"
                     android:textColor="@color/root_beer"
                     android:textSize="@dimen/_14font_mdp"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/cookingInstructionsList" />
                 <!-- Diet chips -->
@@ -428,7 +428,7 @@
                         android:layout_height="@dimen/_60mdp"
                         android:layout_margin="@dimen/_8mdp"
                         android:background="@drawable/bg_rounded_nutrient"
-                        android:elevation="@dimen/_2mdp"
+                        android:elevation="@dimen/_4mdp"
                         android:padding="@dimen/_10mdp"
                         app:layout_constraintEnd_toStartOf="@+id/proteinLay"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -452,14 +452,15 @@
                             android:id="@+id/carbAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2mdp"
                             android:gravity="center"
-                            android:text="19 g"
-                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
-                            android:textSize="@dimen/_16font_mdp"
                             android:textColor="@color/carbText"
+                            android:textSize="@dimen/_16font_mdp"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/carbTitle"/>
+                            app:layout_constraintTop_toBottomOf="@id/carbTitle"
+                            tools:text="19 g" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -492,14 +493,15 @@
                             android:id="@+id/proteinAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4mdp"
                             android:gravity="center"
-                            android:text="11 g"
                             android:textColor="@color/protein"
-                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
                             android:textSize="@dimen/_16font_mdp"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/proteinTitle" />
+                            app:layout_constraintTop_toBottomOf="@id/proteinTitle"
+                            tools:text="11 g" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -532,14 +534,15 @@
                             android:id="@+id/fatAmount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_4mdp"
                             android:gravity="center"
-                            android:text="6 g"
                             android:textColor="@color/portland_orange"
-                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
                             android:textSize="@dimen/_16font_mdp"
+                            app:fontPath="fonts/AlteHaasGroteskBold.ttf"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/fatTitle" />
+                            app:layout_constraintTop_toBottomOf="@id/fatTitle"
+                            tools:text="6 g" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

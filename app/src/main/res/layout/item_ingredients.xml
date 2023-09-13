@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="@dimen/_120mdp"
+    android:layout_height="@dimen/_190mdp"
     android:padding="@dimen/_8mdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
         app:cardCornerRadius="@dimen/_3mdp"
@@ -29,12 +28,12 @@
     <!--Name-->
     <TextView
         android:id="@+id/ingredientNameTxt"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
         tools:text="potato"
-        android:gravity="center"
-        android:maxLines="2"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
         android:textColor="@color/brown_coffee"
         android:ellipsize="end"
         android:textSize="@dimen/_13font_mdp"
