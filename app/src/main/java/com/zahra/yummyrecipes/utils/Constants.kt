@@ -29,7 +29,17 @@ object Constants {
     const val TIME = "time"
     const val ASCENDING = "asc"
     const val DESCENDING = "desc"
+    const val GLUTEN_FREE = "Gluten Free"
+    const val KETOGENIC = "Ketogenic"
+    const val VEGETARIAN = "Vegetarian"
+    const val LACTO_VEGETARIAN = "Lacto-Vegetarian"
+    const val OVO_VEGETARIAN = "VegOvo-Vegetarianan"
     const val VEGAN = "Vegan"
+    const val PESCETARIAN = "Pescetarian"
+    const val PALEO = "Paleo"
+    const val PRIMAL = "Primal"
+    const val LOW_FODMAP = "Low FODMAP"
+    const val WHOLE30 = "Whole30"
     const val HEALTHINESS = "healthiness"
 
 

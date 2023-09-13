@@ -30,6 +30,7 @@ import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.S
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
+import com.zahra.yummyrecipes.utils.Constants
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
@@ -286,15 +287,54 @@ class DetailFragment : Fragment() {
             val drawable =
                 ChipDrawable.createFromAttributes(requireContext(), null, 0, R.style.DietChip)
             chip.setChipDrawable(drawable)
-            if(it=="dairy free"){
-                chip.chipIcon =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.dairy)
-            }else if(it=="gluten free"){
-                chip.chipIcon =
-                    ContextCompat.getDrawable(requireContext(), R.drawable.glutenfree)
-            }else
-            chip.chipIcon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.veganlogo)
+            when (it) {
+                Constants.GLUTEN_FREE-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_gluten_free)
+                }
+                Constants.KETOGENIC-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_ketogenic)
+                }
+                Constants.VEGETARIAN-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_vegeterian)
+                }
+                Constants.LACTO_VEGETARIAN-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_lacto_vegeterian)
+                }
+                Constants.OVO_VEGETARIAN-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_ovo_vegeterian)
+                }
+                Constants.VEGAN-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_vegan)
+                }
+                Constants.PESCETARIAN-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_pescetarian)
+                }
+                Constants.PALEO-> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
+                }
+                Constants.PRIMAL -> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
+                }
+                Constants.LOW_FODMAP -> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
+                }
+                Constants.WHOLE30 -> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_30)
+                }
+                else -> chip.chipIcon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.logo_30)
+            }
             chip.text = it
             view.addView(chip)
         }
