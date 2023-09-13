@@ -2,8 +2,8 @@ package com.zahra.yummyrecipes.utils
 
 object Constants {
     const val BASE_URL = "https://api.spoonacular.com/"
-    const val BASE_URL_IMAGE_INGREDIENTS = "https://spoonacular.com/cdn/ingredients_100x100/"
-    const val BASE_URL_IMAGE_EQUIPMENT = "https://spoonacular.com/cdn/equipment_100x100/"
+    const val BASE_URL_IMAGE_INGREDIENTS = "https://spoonacular.com/cdn/ingredients_250x250/"
+    const val BASE_URL_IMAGE_EQUIPMENT = "https://spoonacular.com/cdn/equipment_250x250/"
     const val BASE_URL_IMAGE_RECIPES = "https://spoonacular.com/recipeImages/"
     const val NETWORK_TIMEOUT = 60L
 
