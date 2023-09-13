@@ -286,10 +286,16 @@ class DetailFragment : Fragment() {
             val drawable =
                 ChipDrawable.createFromAttributes(requireContext(), null, 0, R.style.DietChip)
             chip.setChipDrawable(drawable)
+            if(it=="dairy free"){
+                chip.chipIcon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.dairy)
+            }else if(it=="gluten free"){
+                chip.chipIcon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.glutenfree)
+            }else
             chip.chipIcon =
-                ContextCompat.getDrawable(requireContext(), R.drawable.baseline_person_24)
+                ContextCompat.getDrawable(requireContext(), R.drawable.veganlogo)
             chip.text = it
-//            chip.setChipIconTintResource( R.color.white)
             view.addView(chip)
         }
     }
