@@ -5,150 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.DetailFragment">
+
     <!--Content-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contentLay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible">
-
-        <!--Cover-->
-        <ImageView
-            android:id="@+id/coverImg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_231mdp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/salad" />
-        <!--Shadow-->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:alpha="0.5"
-            android:background="@drawable/bg_shadow_image"
-            android:scaleY="-1"
-            app:layout_constraintBottom_toBottomOf="@id/coverImg"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Back-->
-        <ImageView
-            android:id="@+id/backImg"
-            android:layout_width="@dimen/_28mdp"
-            android:layout_height="@dimen/_28mdp"
-            android:layout_margin="@dimen/_10mdp"
-            android:background="@drawable/bg_rounded_linen_stroke"
-            android:padding="@dimen/_7mdp"
-            android:src="@drawable/ic_arrow_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/big_foot_feet" />
-        <!--Collection-->
-        <ImageView
-            android:id="@+id/collectionImg"
-            android:layout_width="@dimen/_28mdp"
-            android:layout_height="@dimen/_28mdp"
-            android:layout_margin="@dimen/_10mdp"
-            android:background="@drawable/bg_rounded_linen_stroke"
-            android:padding="@dimen/_7mdp"
-            android:src="@drawable/bookmark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/big_foot_feet" />
-        <!--Source-->
-        <ImageView
-            android:id="@+id/sourceImg"
-            android:layout_width="@dimen/_28mdp"
-            android:layout_height="@dimen/_28mdp"
-            android:layout_margin="@dimen/_10mdp"
-            android:background="@drawable/bg_rounded_linen_stroke"
-            android:padding="@dimen/_7mdp"
-            android:src="@drawable/ic_book_sparkles"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/collectionImg"
-            app:tint="@color/big_foot_feet" />
-        <!--Line 1-->
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_3mdp"
-            android:alpha="0.7"
-            android:background="@color/big_foot_feet"
-            app:layout_constraintBottom_toBottomOf="@id/coverImg"
-            app:layout_constraintTop_toBottomOf="@id/coverImg" />
-        <!--Info-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_20mdp"
-            android:layout_marginBottom="@dimen/_10mdp"
-            android:background="@drawable/bg_rounded_linen_stroke"
-            android:elevation="@dimen/_4mdp"
-            app:layout_constraintBottom_toBottomOf="@id/coverImg"
-            app:layout_constraintEnd_toEndOf="@id/coverImg"
-            app:layout_constraintStart_toStartOf="@id/coverImg"
-            app:layout_constraintTop_toBottomOf="@id/coverImg">
-
-
-            <!--Time & Calorie & Star-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/_8mdp">
-
-                <!--Time-->
-                <TextView
-                    android:id="@+id/timeTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/_3mdp"
-                    android:textColor="@color/philippine_gray"
-                    android:textSize="@dimen/_11font_mdp"
-                    app:drawableLeftCompat="@drawable/timer2"
-                    app:drawableTint="@color/time"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/calorieTxt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="35 min" />
-
-                <!--Calorie-->
-                <TextView
-                    android:id="@+id/calorieTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/_3mdp"
-                    android:textColor="@color/philippine_gray"
-                    android:textSize="@dimen/_11font_mdp"
-                    app:drawableLeftCompat="@drawable/fire_flame"
-                    app:drawableTint="@color/chinese_yellow"
-                    app:layout_constraintEnd_toStartOf="@+id/timeTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/heartTxt"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="78" />
-
-                <!--Heart-->
-                <TextView
-                    android:id="@+id/heartTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawablePadding="@dimen/_3mdp"
-                    android:textColor="@color/philippine_gray"
-                    android:textSize="@dimen/_11font_mdp"
-                    app:drawableLeftCompat="@drawable/ic_heart"
-                    app:drawableTint="@color/portland_orange"
-                    app:layout_constraintEnd_toStartOf="@+id/calorieTxt"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="4.5" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--Description Scroll View-->
+        <!--Scroll View-->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/descriptionScroll"
             android:layout_width="match_parent"
@@ -159,15 +23,152 @@
             android:fillViewport="true"
             android:requiresFadingEdge="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/coverImg">
+            app:layout_constraintTop_toTopOf="parent">
+
             <!--Description-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/descriptionLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/floral_white"
-                android:clipToPadding="false"
-                android:paddingTop="@dimen/_25mdp">
+                android:clipToPadding="false">
+                <!--Cover-->
+                <ImageView
+                    android:id="@+id/coverImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_231mdp"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/salad" />
+                <!--Shadow-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:alpha="0.5"
+                    android:background="@drawable/bg_shadow_image"
+                    android:scaleY="-1"
+                    app:layout_constraintBottom_toBottomOf="@id/coverImg"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Back-->
+                <ImageView
+                    android:id="@+id/backImg"
+                    android:layout_width="@dimen/_28mdp"
+                    android:layout_height="@dimen/_28mdp"
+                    android:layout_margin="@dimen/_10mdp"
+                    android:background="@drawable/bg_rounded_linen_stroke"
+                    android:padding="@dimen/_7mdp"
+                    android:src="@drawable/ic_arrow_left"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/big_foot_feet" />
+                <!--Collection-->
+                <ImageView
+                    android:id="@+id/collectionImg"
+                    android:layout_width="@dimen/_28mdp"
+                    android:layout_height="@dimen/_28mdp"
+                    android:layout_margin="@dimen/_10mdp"
+                    android:background="@drawable/bg_rounded_linen_stroke"
+                    android:padding="@dimen/_7mdp"
+                    android:src="@drawable/bookmark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/big_foot_feet" />
+                <!--Source-->
+                <ImageView
+                    android:id="@+id/sourceImg"
+                    android:layout_width="@dimen/_28mdp"
+                    android:layout_height="@dimen/_28mdp"
+                    android:layout_margin="@dimen/_10mdp"
+                    android:background="@drawable/bg_rounded_linen_stroke"
+                    android:padding="@dimen/_7mdp"
+                    android:src="@drawable/ic_book_sparkles"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/collectionImg"
+                    app:tint="@color/big_foot_feet" />
+                <!--Line 1-->
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_3mdp"
+                    android:alpha="0.7"
+                    android:background="@color/big_foot_feet"
+                    app:layout_constraintBottom_toBottomOf="@id/coverImg"
+                    app:layout_constraintTop_toBottomOf="@id/coverImg" />
+                <!--Info-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:id="@+id/infoLay"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20mdp"
+                    android:layout_marginBottom="@dimen/_10mdp"
+                    android:background="@drawable/bg_rounded_linen_stroke"
+                    android:elevation="@dimen/_4mdp"
+                    app:layout_constraintBottom_toBottomOf="@id/coverImg"
+                    app:layout_constraintEnd_toEndOf="@id/coverImg"
+                    app:layout_constraintStart_toStartOf="@id/coverImg"
+                    app:layout_constraintTop_toBottomOf="@id/coverImg">
+
+
+                    <!--Time & Calorie & Star-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/_8mdp">
+
+                        <!--Time-->
+                        <TextView
+                            android:id="@+id/timeTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_3mdp"
+                            android:textColor="@color/philippine_gray"
+                            android:textSize="@dimen/_11font_mdp"
+                            app:drawableLeftCompat="@drawable/timer2"
+                            app:drawableTint="@color/time"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/calorieTxt"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="35 min" />
+
+                        <!--Calorie-->
+                        <TextView
+                            android:id="@+id/calorieTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_3mdp"
+                            android:textColor="@color/philippine_gray"
+                            android:textSize="@dimen/_11font_mdp"
+                            app:drawableLeftCompat="@drawable/fire_flame"
+                            app:drawableTint="@color/chinese_yellow"
+                            app:layout_constraintEnd_toStartOf="@+id/timeTxt"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/heartTxt"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="78" />
+
+                        <!--Heart-->
+                        <TextView
+                            android:id="@+id/heartTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/_3mdp"
+                            android:textColor="@color/philippine_gray"
+                            android:textSize="@dimen/_11font_mdp"
+                            app:drawableLeftCompat="@drawable/ic_heart"
+                            app:drawableTint="@color/portland_orange"
+                            app:layout_constraintEnd_toStartOf="@+id/calorieTxt"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="4.5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <!--Name-->
                 <TextView
@@ -183,7 +184,7 @@
                     android:textSize="@dimen/_17font_mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/infoLay"
                     tools:text="Show recipe name" />
                 <!--Line 2-->
                 <View
@@ -601,9 +602,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--Loading-->
     <ProgressBar
         android:id="@+id/loading"
