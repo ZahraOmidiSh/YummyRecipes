@@ -141,10 +141,9 @@
     </style>
     <!--Diet Chip-->
     <style name="DietChip" parent="Widget.MaterialComponents.Chip.Action">
-        <item name="chipBackgroundColor">@color/big_foot_feet2</item>
+        <item name="chipBackgroundColor">#F8EEE8</item>
         <item name="android:textColor">@color/brown_coffee</item>
         <item name="chipIconEnabled">true</item>
-<!--        <item name="chipIconTint">@color/white</item>-->
         <item name="android:clickable">false</item>
         <item name="android:checkable">false</item>
     </style>
