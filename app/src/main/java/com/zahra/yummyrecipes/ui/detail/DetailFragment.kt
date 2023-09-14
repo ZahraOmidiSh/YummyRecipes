@@ -240,9 +240,9 @@ class DetailFragment : Fragment() {
             //Diets
             setupChip(data.diets!!.toMutableList(), dietsChipGroup)
             //Nutrient
-            carbAmount.text=data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
-            proteinAmount.text=data.nutrition?.nutrients?.get(3)?.amount.toString() + " g"
-            fatAmount.text=data.nutrition?.nutrients?.get(4)?.amount.toString() + " g"
+            carbAmount.text = data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
+            proteinAmount.text = data.nutrition?.nutrients?.get(3)?.amount.toString() + " g"
+            fatAmount.text = data.nutrition?.nutrients?.get(4)?.amount.toString() + " g"
 
         }
 
@@ -282,56 +282,81 @@ class DetailFragment : Fragment() {
 
     private fun setupChip(list: MutableList<String>, view: ChipGroup) {
         binding.dietTitle.isVisible = list.isNotEmpty()
-        list.forEach {
+        val list2=list.distinct()
+        list2.forEach {
             val chip = Chip(requireContext())
             val drawable =
                 ChipDrawable.createFromAttributes(requireContext(), null, 0, R.style.DietChip)
             chip.setChipDrawable(drawable)
             when (it) {
-                Constants.GLUTEN_FREE-> {
+                Constants.GLUTEN_FREE -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_gluten_free)
                 }
-                Constants.KETOGENIC-> {
+
+                Constants.KETOGENIC -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_ketogenic)
                 }
-                Constants.VEGETARIAN-> {
+
+                Constants.VEGETARIAN -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_vegeterian)
                 }
-                Constants.LACTO_VEGETARIAN-> {
+
+                Constants.LACTO_VEGETARIAN -> {
                     chip.chipIcon =
-                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_lacto_vegeterian)
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.logo_lacto_vegeterian
+                        )
                 }
-                Constants.OVO_VEGETARIAN-> {
+
+                Constants.OVO_VEGETARIAN -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_ovo_vegeterian)
                 }
-                Constants.VEGAN-> {
+
+                Constants.VEGAN -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_vegan)
                 }
-                Constants.PESCETARIAN-> {
+
+                Constants.PESCETARIAN -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_pescetarian)
                 }
-                Constants.PALEO-> {
+
+                Constants.PALEO -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
                 }
+
                 Constants.PRIMAL -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
                 }
+
                 Constants.LOW_FODMAP -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_paleo)
                 }
+
                 Constants.WHOLE30 -> {
                     chip.chipIcon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.logo_30)
                 }
+
+                Constants.DAIRY_FREE -> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.logo_dairy_free)
+                }
+
+                Constants.LACTO_OVO_VEGETARIAN -> {
+                    chip.chipIcon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.vegetarian)
+                }
+
                 else -> chip.chipIcon =
                     ContextCompat.getDrawable(requireContext(), R.drawable.logo_30)
             }
