@@ -31,7 +31,7 @@
                 android:id="@+id/descriptionLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/floral_white"
+                style="@style/DetailBackground"
                 android:clipToPadding="false">
                 <!--Cover-->
                 <ImageView

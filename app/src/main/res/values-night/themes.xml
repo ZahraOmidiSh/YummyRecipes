@@ -162,4 +162,8 @@
         <item name="android:background">@drawable/bg_rounded_linen_stroke_dark</item>
         <item name="elevation">@dimen/_4mdp</item>
     </style>
+    <!--Detail Background-->
+    <style name="DetailBackground">
+        <item name="background">@color/chinese_black</item>
+    </style>
 </resources>

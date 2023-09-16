@@ -168,7 +168,7 @@
 
     <!--Detail Background-->
     <style name="DetailBackground">
-
+        <item name="background">@color/floral_white</item>
     </style>
 
 
