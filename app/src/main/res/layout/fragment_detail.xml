@@ -396,7 +396,7 @@
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line5" />
-                <!--Nutrient charts-->
+                <!--Nutrient Lay-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/nutrientLay"
                     android:layout_width="match_parent"
