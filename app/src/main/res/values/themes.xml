@@ -184,7 +184,11 @@
     </style>
     <!--RV Background-->
     <style name="RVBackground">
+    </style>
 
+    <!--STEP Background-->
+    <style name="stepBackground">
+        <item name="android:background">@drawable/bg_rounded_steps_light</item>
     </style>
 
 

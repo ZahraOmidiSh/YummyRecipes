@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/_10mdp">
@@ -30,6 +29,7 @@
         style="@style/TextView3"
         android:textSize="@dimen/_8font_mdp"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@id/stepTxt" />
     <!--Info-->
     <TextView
@@ -38,13 +38,12 @@
         android:justificationMode="inter_word"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10mdp"
-        android:layout_marginEnd="@dimen/_10mdp"
+        android:layout_marginEnd="@dimen/_5mdp"
         android:lineSpacingExtra="@dimen/_5mdp"
         android:textSize="@dimen/_12font_mdp"
         app:fontPath="fonts/atlas_bold.ttf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/timeTxt"
-        app:layout_constraintTop_toTopOf="@id/stepTxt"
-        tools:ignore="UnusedAttribute" />
+        app:layout_constraintTop_toTopOf="@id/stepTxt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

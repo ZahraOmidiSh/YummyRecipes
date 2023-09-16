@@ -32,7 +32,8 @@
     <color name="philippine_gray">#9A918A</color>    //متن لایت درجه 2
     <color name="pale_pink">#FFEEEB</color>   //متن دارک
     <color name="sea_shell">#F3FDFF</color>   //بک گراند دکمه های دیتیل
-    <color name="linen">#E1EEFB</color>   //بک گراند دکمه های دیتیل
+    <color name="lavender_web">#E1EEFB</color>   //بک گراند دکمه های دیتیل
+    <color name="linen">#F8EEE8</color>
     <color name="floral_white">#FFFAF9</color>   //بک گراند دکمه های دیتیل
     <color name="big_foot_feet">#f68e56</color>   //بک گراند لاین ها
     <color name="big_foot_feet2">#F69F70</color>   //بک گراند شماره
