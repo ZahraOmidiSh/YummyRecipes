@@ -140,8 +140,10 @@
     </style>
 
     <!--Diet Chip-->
-    <style name="DietChip" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="cardBackgroundColor">@color/baby_powder</item>
+    <style name="DietChip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/onyx</item>
+        <item name="android:textColor">@color/baby_powder</item>
+        <item name="chipIconEnabled">true</item>
         <item name="android:clickable">false</item>
         <item name="android:checkable">false</item>
     </style>
