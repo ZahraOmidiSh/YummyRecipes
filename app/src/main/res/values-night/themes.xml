@@ -132,7 +132,7 @@
         <item name="android:layout_marginStart">@dimen/_10mdp</item>
         <item name="android:layout_marginTop">@dimen/_50mdp</item>
         <item name="android:textColor">@color/baby_powder</item>
-        <item name="android:textSize">@dimen/_22font_mdp</item>
+        <item name="android:textSize">@dimen/_25font_mdp</item>
     </style>
     <!--Progressbar-->
     <style name="OrangeProgressbar">
