@@ -54,40 +54,25 @@
                 <!--Back-->
                 <ImageView
                     android:id="@+id/backImg"
-                    android:layout_width="@dimen/_28mdp"
-                    android:layout_height="@dimen/_28mdp"
-                    android:layout_margin="@dimen/_10mdp"
-                    android:background="@drawable/bg_rounded_linen_stroke"
-                    android:padding="@dimen/_7mdp"
+                    style="@style/DetailImageButtons"
                     android:src="@drawable/ic_arrow_left"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/big_foot_feet" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--Collection-->
                 <ImageView
                     android:id="@+id/collectionImg"
-                    android:layout_width="@dimen/_28mdp"
-                    android:layout_height="@dimen/_28mdp"
-                    android:layout_margin="@dimen/_10mdp"
-                    android:background="@drawable/bg_rounded_linen_stroke"
-                    android:padding="@dimen/_7mdp"
+                    style="@style/DetailImageButtons"
                     android:src="@drawable/bookmark"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/big_foot_feet" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--Source-->
                 <ImageView
                     android:id="@+id/sourceImg"
-                    android:layout_width="@dimen/_28mdp"
-                    android:layout_height="@dimen/_28mdp"
-                    android:layout_margin="@dimen/_10mdp"
-                    android:background="@drawable/bg_rounded_linen_stroke"
-                    android:padding="@dimen/_7mdp"
+                    style="@style/DetailImageButtons"
                     android:src="@drawable/ic_book_sparkles"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/collectionImg"
-                    app:tint="@color/big_foot_feet" />
+                    app:layout_constraintTop_toBottomOf="@id/collectionImg" />
                 <!--Line 1-->
                 <View
                     android:id="@+id/line1"
@@ -104,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20mdp"
                     android:layout_marginBottom="@dimen/_10mdp"
-                    android:background="@drawable/bg_rounded_linen_stroke"
+                    android:background="@drawable/bg_rounded_linen_stroke_light"
                     android:elevation="@dimen/_4mdp"
                     app:layout_constraintBottom_toBottomOf="@id/coverImg"
                     app:layout_constraintEnd_toEndOf="@id/coverImg"
