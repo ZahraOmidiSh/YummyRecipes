@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_120mdp"
-    android:layout_height="@dimen/_200mdp"
-    android:padding="@dimen/_8mdp"
+    android:layout_height="@dimen/_190mdp"
+    android:layout_margin="@dimen/_3mdp"
+    style="@style/RVBackground"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <!--Card-->
@@ -10,10 +11,14 @@
         android:id="@+id/cardLay"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
-        app:cardCornerRadius="@dimen/_3mdp"
+        app:cardCornerRadius="@dimen/_5mdp"
+        app:cardUseCompatPadding="true"
         android:elevation="@dimen/_5mdp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_8mdp"
         app:layout_constraintTop_toTopOf="parent">
+
         <!--Image-->
         <ImageView
             android:id="@+id/ingredientImg"
@@ -34,7 +39,7 @@
         tools:text="potato"
         android:gravity="center_horizontal"
         android:maxLines="1"
-        android:textColor="@color/brown_coffee"
+        style="@style/TextView2"
         android:ellipsize="end"
         android:textSize="@dimen/_13font_mdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
-        android:textColor="@color/philippine_gray"
+        style="@style/TextView3"
         android:textSize="@dimen/_10font_mdp"
         app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
         app:layout_constraintEnd_toEndOf="@id/ingredientNameTxt"

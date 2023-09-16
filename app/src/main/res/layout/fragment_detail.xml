@@ -163,7 +163,7 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_6mdp"
                     android:maxLines="2"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_17font_mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/ingredients"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/pricePerServingTxt" />
@@ -226,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    android:textColor="@color/rose_ebony"
+                    style="@style/TextView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/ingredientsTitle"
                     tools:text="7 items" />
@@ -265,7 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/equipments"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line3" />
@@ -275,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    android:textColor="@color/rose_ebony"
+                    style="@style/TextView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/equipmentTitle"
                     tools:text="4 items" />
@@ -314,7 +314,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/cooking_instructions"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line4" />
@@ -324,7 +324,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    android:textColor="@color/rose_ebony"
+                    style="@style/TextView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
@@ -350,7 +350,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/diets"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     android:visibility="visible"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
@@ -392,7 +392,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/nutrient_per_serving"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line5" />
@@ -538,7 +538,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/similar"
-                    android:textColor="@color/root_beer"
+                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/nutrientLay" />

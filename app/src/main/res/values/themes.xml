@@ -170,6 +170,22 @@
     <style name="DetailBackground">
         <item name="background">@color/floral_white</item>
     </style>
+    <!--TextView3-->
+    <style name="TextView3">
+        <item name="android:textColor">@color/philippine_gray</item>
+    </style>
+    <!--TextView1-->
+    <style name="TextView1">
+        <item name="android:textColor">@color/root_beer</item>
+    </style>
+    <!--TextView2-->
+    <style name="TextView2">
+        <item name="android:textColor">@color/rose_ebony</item>
+    </style>
+    <!--RV Background-->
+    <style name="RVBackground">
+
+    </style>
 
 
 </resources>

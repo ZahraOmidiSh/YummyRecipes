@@ -166,4 +166,20 @@
     <style name="DetailBackground">
         <item name="background">@color/chinese_black</item>
     </style>
+    <!--TextView3-->
+    <style name="TextView3">
+        <item name="android:textColor">@color/pale_pink</item>
+    </style>
+    <!--TextView1-->
+    <style name="TextView1">
+        <item name="android:textColor">@color/baby_powder</item>
+    </style>
+    <!--TextView2-->
+    <style name="TextView2">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    <!--RV Background-->
+    <style name="RVBackground">
+        <item name="android:background">@drawable/bg_rounded_rv_background_dark</item>
+    </style>
 </resources>
