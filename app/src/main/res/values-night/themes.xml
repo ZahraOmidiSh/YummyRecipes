@@ -111,7 +111,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:alpha">0.7</item>
-        <item name="android:background">@drawable/bg_shadow_image</item>
+        <item name="android:background">@drawable/bg_shadow_white</item>
     </style>
 
     <!--Banner Premium Text-->
