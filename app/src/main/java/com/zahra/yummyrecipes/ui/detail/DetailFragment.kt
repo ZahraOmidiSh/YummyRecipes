@@ -239,7 +239,6 @@ class DetailFragment : Fragment() {
             initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
             //Diets
             setupChip(data.diets!!.toMutableList(), dietsChipGroup)
-//            dietsChipGroup.removeViewAt(0)
             //Nutrient
             carbAmount.text = data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
             proteinAmount.text = data.nutrition?.nutrients?.get(3)?.amount.toString() + " g"
@@ -283,9 +282,8 @@ class DetailFragment : Fragment() {
 
     private fun setupChip(list: MutableList<String>, view: ChipGroup) {
         binding.dietTitle.isVisible = list.isNotEmpty()
-        val list2=list.distinct()
-
-//        list.clear()
+        binding.dietsChipGroup.removeAllViews()
+        val list2  = list.distinct()
         list2.forEach {
             val chip = Chip(requireContext())
             val drawable =
