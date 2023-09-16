@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RVBackground"
     android:layout_width="@dimen/_120mdp"
     android:layout_height="@dimen/_190mdp"
-    android:layout_margin="@dimen/_3mdp"
-    style="@style/RVBackground"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="@dimen/_3mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_100mdp"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_5mdp"
         app:cardUseCompatPadding="true"
-        android:elevation="@dimen/_5mdp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_8mdp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <!--Image-->
@@ -33,28 +33,28 @@
     <!--Name-->
     <TextView
         android:id="@+id/ingredientNameTxt"
+        style="@style/TextView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
-        tools:text="potato"
+        android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
-        style="@style/TextView2"
-        android:ellipsize="end"
         android:textSize="@dimen/_13font_mdp"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="potato" />
     <!--Amount-->
     <TextView
         android:id="@+id/ingredientAmountTxt"
+        style="@style/TextView3"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="1dp"
-        style="@style/TextView3"
         android:textSize="@dimen/_10font_mdp"
-        app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
         app:layout_constraintEnd_toEndOf="@id/ingredientNameTxt"
+        app:layout_constraintStart_toStartOf="@id/ingredientNameTxt"
         app:layout_constraintTop_toBottomOf="@id/ingredientNameTxt"
         tools:text="2" />
     <!--Add Button-->
@@ -62,12 +62,12 @@
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_10mdp"
-        android:src="@drawable/plus"
-        android:padding="@dimen/_4mdp"
-        app:layout_constraintTop_toBottomOf="@id/ingredientAmountTxt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/bg_rounded_orange"
+        android:padding="@dimen/_4mdp"
+        android:src="@drawable/plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ingredientAmountTxt"
         app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
