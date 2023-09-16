@@ -84,13 +84,10 @@
                     app:layout_constraintTop_toBottomOf="@id/coverImg" />
                 <!--Info-->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
                     android:id="@+id/infoLay"
-                    android:layout_height="wrap_content"
+                    style="@style/InfoBar"
                     android:layout_marginHorizontal="@dimen/_20mdp"
                     android:layout_marginBottom="@dimen/_10mdp"
-                    android:background="@drawable/bg_rounded_linen_stroke_light"
-                    android:elevation="@dimen/_4mdp"
                     app:layout_constraintBottom_toBottomOf="@id/coverImg"
                     app:layout_constraintEnd_toEndOf="@id/coverImg"
                     app:layout_constraintStart_toStartOf="@id/coverImg"
