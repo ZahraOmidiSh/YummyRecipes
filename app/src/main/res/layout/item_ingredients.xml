@@ -62,7 +62,7 @@
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_10mdp"
-        android:background="@drawable/bg_rounded_orange"
+        style="@style/BgRoundedOrangeBackground"
         android:padding="@dimen/_4mdp"
         android:src="@drawable/plus"
         app:layout_constraintEnd_toEndOf="parent"

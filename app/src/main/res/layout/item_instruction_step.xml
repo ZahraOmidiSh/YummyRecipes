@@ -11,7 +11,7 @@
         android:layout_width="@dimen/_30mdp"
         android:layout_height="@dimen/_30mdp"
         android:layout_marginTop="@dimen/_5mdp"
-        android:background="@drawable/bg_rounded_number"
+        style="@style/BgRoundedOrangeBackground"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/_14font_mdp"

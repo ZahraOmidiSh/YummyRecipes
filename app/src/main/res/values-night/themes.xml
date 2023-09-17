@@ -188,4 +188,8 @@
     <style name="stepBackground">
         <item name="android:background">@drawable/bg_rounded_steps_dark</item>
     </style>
+    <!--Bg Rounded Orange Background-->
+    <style name="BgRoundedOrangeBackground">
+        <item name="android:background">@drawable/bg_rounded_congo_pink</item>
+    </style>
 </resources>

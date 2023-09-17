@@ -33,7 +33,7 @@
 
     <!--Fab Style-->
     <style name="FabStyle">
-        <item name="backgroundTint">@color/portland_orange</item>
+        <item name="backgroundTint">@color/big_foot_feet</item>
         <item name="tint">@color/white</item>
     </style>
 
@@ -189,6 +189,10 @@
     <!--STEP Background-->
     <style name="stepBackground">
         <item name="android:background">@drawable/bg_rounded_steps_light</item>
+    </style>
+    <!--Bg Rounded Orange Background-->
+    <style name="BgRoundedOrangeBackground">
+        <item name="android:background">@drawable/bg_rounded_orange</item>
     </style>
 
 
