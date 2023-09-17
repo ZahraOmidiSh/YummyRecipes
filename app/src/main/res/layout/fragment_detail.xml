@@ -329,7 +329,6 @@
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
                 <!--Instruction List-->
-                <!--Diets-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cookingInstructionsList"
                     android:layout_width="match_parent"
@@ -343,7 +342,7 @@
                     app:layout_constraintHorizontal_bias="0.476"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/cookingTitle" />
-
+                <!--Diets-->
                 <TextView
                     android:id="@+id/dietTitle"
                     android:layout_width="wrap_content"
