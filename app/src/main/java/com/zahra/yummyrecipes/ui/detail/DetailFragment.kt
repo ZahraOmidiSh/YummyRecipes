@@ -30,6 +30,7 @@ import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.S
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.Constants
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
@@ -198,6 +199,11 @@ class DetailFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             similarAdapter
         )
+        //click
+        similarAdapter.setonItemClickListener{
+            val action = RecipeFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
+        }
     }
 
     @SuppressLint("SetTextI18n")
