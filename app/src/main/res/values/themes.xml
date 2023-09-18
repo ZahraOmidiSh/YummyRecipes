@@ -195,5 +195,16 @@
         <item name="android:background">@drawable/bg_rounded_orange</item>
     </style>
 
+    <!--Favorite Title Style-->
+    <style name="FavoriteTitleStyle">
+        <item name="android:background">@drawable/bg_below_rounded_big_foot_feet</item>
+        <item name="tint">@color/white</item>
+    </style>
+    <!--Favorite Empty Style-->
+    <style name="FavoriteEmptyStyle">
+        <item name="android:drawableTint">@color/big_foot_feet</item>
+        <item name="android:textColor">@color/rose_ebony</item>
+    </style>
+
 
 </resources>

@@ -192,4 +192,15 @@
     <style name="BgRoundedOrangeBackground">
         <item name="android:background">@drawable/bg_rounded_congo_pink</item>
     </style>
+
+    <!--Favorite Title Style-->
+    <style name="FavoriteTitleStyle">
+        <item name="android:background">@drawable/bg_below_rounded_dark</item>
+        <item name="tint">@color/white</item>
+    </style>
+
+    <!--Favorite Empty Style-->
+    <style name="FavoriteEmptyStyle">
+        <item name="android:drawableTint">@color/congo_pink</item>
+    </style>
 </resources>

@@ -45,4 +45,6 @@
     <string name="nutrient_per_serving">Nutrient Per Serving:</string>
     <string name="similar">You Might Also Like:</string>
     <string name="check_your_connection">Check your connection</string>
+    <string name="favorites">Favorite</string>
+    <string name="add_new_recipe_to_favorites">Add new recipe to favorite</string>
 </resources>

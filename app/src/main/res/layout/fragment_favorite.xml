@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.favorite.FavoriteFragment">
 
+    <!--Title-->
+    <TextView
+        android:id="@+id/favoriteTitleTxt"
+        style="@style/FavoriteTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/_3mdp"
+        android:gravity="center"
+        android:text="@string/favorites"
+        android:textSize="@dimen/_14mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--List-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favoriteTitleTxt" />
+
+    <!--Empty-->
+    <TextView
+        android:id="@+id/emptyTxt"
+        style="@style/FavoriteEmptyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_new_recipe_to_favorites"
+        android:textSize="@dimen/_16mdp"
+        app:drawableTopCompat="@drawable/ic_box_heart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/favoriteTitleTxt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
