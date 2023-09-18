@@ -1,12 +1,15 @@
 package com.zahra.yummyrecipes.data.database
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
 import com.zahra.yummyrecipes.data.database.entity.DetailEntity
+import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
 import com.zahra.yummyrecipes.utils.Constants.DETAIL_TABLE_NAME
+import com.zahra.yummyrecipes.utils.Constants.FAVORITE_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.RECIPE_TABLE_NAME
 import kotlinx.coroutines.flow.Flow
 
@@ -28,4 +31,17 @@ interface RecipeAppDao {
 
     @Query("SELECT EXISTS (SELECT 1 FROM $DETAIL_TABLE_NAME WHERE ID = :id)")
     fun existsDetail(id:Int):Flow<Boolean>
+
+    //Favorite
+    @Insert(onConflict = REPLACE)
+    suspend fun saveFavorite(entity:FavoriteEntity)
+
+    @Delete
+    suspend fun deleteFavorite(entity:FavoriteEntity)
+
+    @Query("SELECT * FROM $FAVORITE_TABLE_NAME ORDER BY ID ASC")
+    fun loadFavorite():Flow<List<FavoriteEntity>>
+
+    @Query("SELECT EXISTS (SELECT 1 FROM $FAVORITE_TABLE_NAME WHERE ID = :id)")
+    fun existsFavorite(id:Int):Flow<Boolean>
 }
