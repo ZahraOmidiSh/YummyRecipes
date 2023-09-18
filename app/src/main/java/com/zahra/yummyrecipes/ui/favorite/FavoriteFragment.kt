@@ -1,17 +1,17 @@
-package com.zahra.yummyrecipes.ui.collection
+package com.zahra.yummyrecipes.ui.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.zahra.yummyrecipes.databinding.FragmentCollectionBinding
+import com.zahra.yummyrecipes.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CollectionFragment : Fragment() {
+class FavoriteFragment : Fragment() {
     //Binding
-    private var _binding: FragmentCollectionBinding? = null
+    private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class CollectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCollectionBinding.inflate(layoutInflater)
+        _binding = FragmentFavoriteBinding.inflate(layoutInflater)
         return binding.root
     }
 

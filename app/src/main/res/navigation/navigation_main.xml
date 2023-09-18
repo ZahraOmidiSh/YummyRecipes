@@ -41,9 +41,9 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/collectionFragment"
-        android:name="com.zahra.yummyrecipes.ui.collection.CollectionFragment"
+        android:name="com.zahra.yummyrecipes.ui.favorite.FavoriteFragment"
         android:label="fragment_collection"
-        tools:layout="@layout/fragment_collection" />
+        tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/mealPlannerFragment"
         android:name="com.zahra.yummyrecipes.ui.mealplanner.MealPlannerFragment"
