@@ -215,6 +215,15 @@ class DetailFragment : Fragment() {
         binding.apply {
             //Favorite
             viewModel.existsFavorite(data.id!!)
+            checkExistFavorite()
+            //Click favorite
+            collectionImg.setOnClickListener {
+                if(isExistsFavorite){
+                    deleteFavorite(data)
+                }else{
+                    saveFavorite(data)
+                }
+            }
             //Image
             val imageSplit = data.image!!.split("-")
             val imageSize = imageSplit[1].replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
@@ -388,22 +397,22 @@ class DetailFragment : Fragment() {
     private fun saveFavorite(data: ResponseDetail){
         val entity = FavoriteEntity(data.id!!,data)
         viewModel.saveFavorite(entity)
-        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.big_foot_feet))
+        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.big_foot_feet))
     }
 
     private fun deleteFavorite(data: ResponseDetail){
         val entity = FavoriteEntity(data.id!!,data)
         viewModel.deleteFavorite(entity)
-        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.onyx))
+        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.onyx))
     }
 
     private fun checkExistFavorite(){
         viewModel.existsFavoriteData.observe(viewLifecycleOwner){
             isExistsFavorite=it
             if(it){
-                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.big_foot_feet))
+                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.big_foot_feet))
             }else{
-                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.onyx))
+                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.onyx))
 
             }
         }
