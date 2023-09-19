@@ -412,7 +412,7 @@ class DetailFragment : Fragment() {
             if(it){
                 binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.big_foot_feet))
             }else{
-                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.onyx))
+                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.eerie_black))
 
             }
         }
