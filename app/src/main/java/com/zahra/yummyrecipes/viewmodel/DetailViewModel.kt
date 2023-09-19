@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.database.entity.DetailEntity
+import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
@@ -55,4 +56,24 @@ class DetailViewModel @Inject constructor(private val repository:RecipeRepositor
         val response = repository.remote.getSimilarRecipes(id,apikey)
         similarData.value = NetworkResponse(response).generalNetworkResponse()
     }
+
+    //Favorite
+    fun saveFavorite(entity: FavoriteEntity)=viewModelScope.launch {
+        repository.local.saveFavorite(entity)
+    }
+
+    fun deleteFavorite(entity: FavoriteEntity)=viewModelScope.launch {
+        repository.local.deleteFavorite(entity)
+    }
+
+    val existsFavoriteData=MutableLiveData<Boolean>()
+    fun existsFavorite(id:Int) = viewModelScope.launch {
+        repository.local.existsFavorite(id).collect{
+            existsFavoriteData.postValue(it)
+        }
+    }
+
+
+
+
 }
