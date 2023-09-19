@@ -1,9 +1,12 @@
 package com.zahra.yummyrecipes.utils
 
+import android.content.res.ColorStateList
 import android.graphics.text.LineBreaker
 import android.os.Build
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -59,5 +62,9 @@ fun View.isVisible(isShownLoading:Boolean , container :View){
     }else{
         this.isVisible=false
         container.isVisible=true
+    }
+
+    fun ImageView.setTint(color:Int){
+        imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,color))
     }
 }
