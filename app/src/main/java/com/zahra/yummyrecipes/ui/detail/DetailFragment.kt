@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.detail
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,10 +21,12 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.utils.*
 import com.zahra.yummyrecipes.adapter.EquipmentsAdapter
 import com.zahra.yummyrecipes.adapter.IngredientsAdapter
 import com.zahra.yummyrecipes.adapter.InstructionsStepsAdapter
 import com.zahra.yummyrecipes.adapter.SimilarAdapter
+import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.databinding.FragmentDetailBinding
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step
@@ -74,6 +77,7 @@ class DetailFragment : Fragment() {
     private var recipeId = 0
     private val TAG = "Detail"
     private var isExistsCache = false
+    private var isExistsFavorite = false
 
 
     override fun onCreateView(
@@ -209,6 +213,8 @@ class DetailFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initViewsWithData(data: ResponseDetail) {
         binding.apply {
+            //Favorite
+            viewModel.existsFavorite(data.id!!)
             //Image
             val imageSplit = data.image!!.split("-")
             val imageSize = imageSplit[1].replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
@@ -376,6 +382,31 @@ class DetailFragment : Fragment() {
 
     private fun initInternetLayout(isConnected: Boolean) {
         binding.internetLay.isVisible = isConnected.not()
+    }
+
+    //Favorite
+    private fun saveFavorite(data: ResponseDetail){
+        val entity = FavoriteEntity(data.id!!,data)
+        viewModel.saveFavorite(entity)
+        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.big_foot_feet))
+    }
+
+    private fun deleteFavorite(data: ResponseDetail){
+        val entity = FavoriteEntity(data.id!!,data)
+        viewModel.deleteFavorite(entity)
+        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.onyx))
+    }
+
+    private fun checkExistFavorite(){
+        viewModel.existsFavoriteData.observe(viewLifecycleOwner){
+            isExistsFavorite=it
+            if(it){
+                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.big_foot_feet))
+            }else{
+                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,R.color.onyx))
+
+            }
+        }
     }
 
     override fun onDestroy() {
