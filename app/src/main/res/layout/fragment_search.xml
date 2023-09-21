@@ -23,6 +23,8 @@
     <EditText
         android:id="@+id/searchEdt"
         style="@style/SearchEditTextStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTxt"
         android:drawableStart="@drawable/magnifying_glass"
         android:layout_marginHorizontal="@dimen/_7mdp"
