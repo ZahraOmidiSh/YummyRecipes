@@ -205,6 +205,10 @@
         <item name="android:drawableTint">@color/big_foot_feet</item>
         <item name="android:textColor">@color/rose_ebony</item>
     </style>
+    <!--SearchTextView-->
+    <style name="SearchTextView">
+        <item name="android:textColor">@color/big_foot_feet</item>
+    </style>
 
 
 </resources>
