@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.search.SearchFragment">
 
     <!--Title-->
     <TextView
         android:id="@+id/titleTxt"
+        style="@style/SearchTextView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:gravity="center"
-        style="@style/SearchTextView"
         android:text="@string/search"
         android:textSize="@dimen/_18mdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,14 +23,26 @@
     <EditText
         android:id="@+id/searchEdt"
         style="@style/SearchEditTextStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTxt"
-        android:drawableStart="@drawable/magnifying_glass"
         android:layout_marginHorizontal="@dimen/_7mdp"
-        android:hint="@string/search"/>
+        android:drawableStart="@drawable/magnifying_glass"
+        android:hint="@string/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleTxt" />
 
-
+    <!--Ingredients List-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ingredientsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_5mdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
