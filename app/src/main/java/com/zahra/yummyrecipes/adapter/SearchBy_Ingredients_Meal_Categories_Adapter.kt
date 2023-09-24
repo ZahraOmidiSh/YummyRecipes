@@ -49,7 +49,7 @@ class SearchBy_Ingredients_Meal_Categories_Adapter @Inject constructor() : Recyc
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.tomato)
+                    error(R.drawable.bg_shimmer_gray)
                 }
             }
         }

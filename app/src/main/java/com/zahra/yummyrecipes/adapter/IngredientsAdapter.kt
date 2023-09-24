@@ -9,18 +9,13 @@ import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsBinding
-import com.zahra.yummyrecipes.databinding.ItemRecyclerViewBinding
-import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
-import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
-import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
-class IngredientsAdapter @Inject constructor() : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
+class IngredientsAdapter @Inject constructor() :
+    RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
     private lateinit var binding: ItemIngredientsBinding
     private var items = emptyList<ExtendedIngredient>()
 
@@ -49,7 +44,7 @@ class IngredientsAdapter @Inject constructor() : RecyclerView.Adapter<Ingredient
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.salad)
+                    error(R.drawable.bg_shimmer_gray)
                 }
             }
         }
