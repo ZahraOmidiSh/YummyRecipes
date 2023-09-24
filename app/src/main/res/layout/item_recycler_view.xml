@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:paddingBottom="@dimen/_8mdp"
     android:layout_height="wrap_content">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
@@ -12,6 +13,7 @@
         android:layout_height="@dimen/_210mdp"
         app:cardCornerRadius="@dimen/_12mdp"
         android:elevation="@dimen/_5mdp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardUseCompatPadding="true"
