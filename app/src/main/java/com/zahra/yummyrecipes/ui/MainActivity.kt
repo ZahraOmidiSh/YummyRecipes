@@ -47,9 +47,12 @@ class MainActivity : BaseActivity() {
             when(destination.id){
                 R.id.splashFragment -> visibilityBottomMenu(false)
                 R.id.registerFragment -> visibilityBottomMenu(false)
-                R.id.detailFragment -> visibilityBottomMenu(false)
                 R.id.webViewFragment -> visibilityBottomMenu(false)
 
+                R.id.detailFragment -> {
+                    visibilityBottomMenu(false)
+                        callback.isEnabled = false
+                }
                 R.id.recipeFragment ->{
                     visibilityBottomMenu(true)
                     if (!callback.isEnabled){
