@@ -49,7 +49,7 @@ class IngredientsAdapter @Inject constructor() : RecyclerView.Adapter<Ingredient
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.tomato)
+                    error(R.drawable.salad)
                 }
             }
         }
