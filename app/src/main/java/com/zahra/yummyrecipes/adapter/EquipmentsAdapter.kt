@@ -44,7 +44,7 @@ class EquipmentsAdapter @Inject constructor() :
                     crossfade(true)
                     crossfade(500)
                     memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.bg_shimmer_gray)
+                    error(R.drawable.bg_rounded_white)
                 }
             }
         }

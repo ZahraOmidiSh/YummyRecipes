@@ -267,7 +267,7 @@
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/equipments"
                     android:textSize="@dimen/_14font_mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line3" />
                 <!--Equipment Count-->
@@ -277,7 +277,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/equipmentTitle"
                     tools:text="4 items" />
@@ -292,7 +292,7 @@
                     android:paddingStart="@dimen/_5mdp"
                     android:paddingTop="@dimen/_3mdp"
                     android:paddingEnd="@dimen/_5mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/equipmentTitle"
                     app:shimmer_recycler_auto_start="true"
@@ -303,6 +303,7 @@
                 <!--Line 4-->
                 <View
                     android:id="@+id/line4"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginHorizontal="@dimen/_10mdp"
@@ -319,7 +320,7 @@
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/cooking_instructions"
                     android:textSize="@dimen/_14font_mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line4" />
                 <!--Instruction Count-->
@@ -329,7 +330,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
@@ -343,7 +344,7 @@
                     android:layout_marginTop="12dp"
                     android:clipToPadding="false"
                     android:padding="@dimen/_5mdp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.476"
                     app:layout_constraintStart_toStartOf="parent"

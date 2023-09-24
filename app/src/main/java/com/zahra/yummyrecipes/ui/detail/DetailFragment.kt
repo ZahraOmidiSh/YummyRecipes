@@ -267,6 +267,7 @@ class DetailFragment : Fragment() {
                             equipmentTitle.isVisible=true
                             equipmentCount.isVisible=true
                             equipmentsList.isVisible=true
+                            line4.isVisible=true
                             equipmentCount.text =
                                 "${step.steps[0].equipment!!.size} items"
                             initEquipmentsList(step.steps[0].equipment!!.toMutableList())
