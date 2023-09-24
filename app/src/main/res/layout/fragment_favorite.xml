@@ -9,13 +9,12 @@
     <!--Title-->
     <TextView
         android:id="@+id/favoriteTitleTxt"
-        style="@style/FavoriteTitleStyle"
+        style="@style/SearchTextView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="@dimen/_3mdp"
         android:gravity="center"
         android:text="@string/favorites"
-        android:textSize="@dimen/_14mdp"
+        android:textSize="@dimen/_18mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +23,8 @@
         android:id="@+id/favoriteList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/_80mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/favoriteTitleTxt" />
 
