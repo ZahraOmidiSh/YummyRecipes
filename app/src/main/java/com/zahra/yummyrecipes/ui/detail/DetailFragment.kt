@@ -204,7 +204,7 @@ class DetailFragment : Fragment() {
             similarAdapter
         )
         //click
-        similarAdapter.setonItemClickListener{
+        similarAdapter.setonItemClickListener {
             val action = RecipeFragmentDirections.actionToDetail(it)
             findNavController().navigate(action)
         }
@@ -218,9 +218,9 @@ class DetailFragment : Fragment() {
             checkExistFavorite()
             //Click favorite
             collectionImg.setOnClickListener {
-                if(isExistsFavorite){
+                if (isExistsFavorite) {
                     deleteFavorite(data)
-                }else{
+                } else {
                     saveFavorite(data)
                 }
             }
@@ -252,12 +252,40 @@ class DetailFragment : Fragment() {
             ingredientsCount.text = "${data.extendedIngredients!!.size} items"
             initIngredientsList(data.extendedIngredients.toMutableList())
             //Equipment
-            equipmentCount.text =
-                "${data.analyzedInstructions!![0].steps!![0].equipment!!.size} items"
-            initEquipmentsList(data.analyzedInstructions[0].steps!![0].equipment!!.toMutableList())
+//            equipmentCount.text =
+//                "${data.analyzedInstructions!![0].steps!![0].equipment!!.size} items"
+//            initEquipmentsList(data.analyzedInstructions[0].steps!![0].equipment!!.toMutableList())
             //Steps
-            instructionCount.text = "${data.analyzedInstructions[0].steps!!.size} steps"
-            initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
+//            instructionCount.text = "${data.analyzedInstructions[0].steps!!.size} steps"
+//            initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
+
+            data.analyzedInstructions?.let {
+                if (it.isNotEmpty()) {
+                    it[0]?.let { step ->
+                        if (step.steps!!.isNotEmpty()) {
+                            //Equipment
+                            equipmentTitle.isVisible=true
+                            equipmentCount.isVisible=true
+                            equipmentsList.isVisible=true
+                            equipmentCount.text =
+                                "${step.steps[0].equipment!!.size} items"
+                            initEquipmentsList(step.steps[0].equipment!!.toMutableList())
+                            equipmentTitle.isVisible=true
+
+
+                            //Steps
+                            cookingTitle.isVisible=true
+                            instructionCount.isVisible=true
+                            cookingInstructionsList.isVisible=true
+                            instructionCount.text = "${step.steps.size} steps"
+                            initInstructionStepList(step.steps.toMutableList())
+
+
+                        }
+                    }
+                }
+            }
+
             //Diets
             setupChip(data.diets!!.toMutableList(), dietsChipGroup)
             //Nutrient
@@ -304,7 +332,7 @@ class DetailFragment : Fragment() {
     private fun setupChip(list: MutableList<String>, view: ChipGroup) {
         binding.dietTitle.isVisible = list.isNotEmpty()
         binding.dietsChipGroup.removeAllViews()
-        val list2  = list.distinct()
+        val list2 = list.distinct()
         list2.forEach {
             val chip = Chip(requireContext())
             val drawable =
@@ -394,25 +422,37 @@ class DetailFragment : Fragment() {
     }
 
     //Favorite
-    private fun saveFavorite(data: ResponseDetail){
-        val entity = FavoriteEntity(data.id!!,data)
+    private fun saveFavorite(data: ResponseDetail) {
+        val entity = FavoriteEntity(data.id!!, data)
         viewModel.saveFavorite(entity)
-        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.big_foot_feet))
+        binding.collectionImg.imageTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.big_foot_feet))
     }
 
-    private fun deleteFavorite(data: ResponseDetail){
-        val entity = FavoriteEntity(data.id!!,data)
+    private fun deleteFavorite(data: ResponseDetail) {
+        val entity = FavoriteEntity(data.id!!, data)
         viewModel.deleteFavorite(entity)
-        binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.onyx))
+        binding.collectionImg.imageTintList =
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.onyx))
     }
 
-    private fun checkExistFavorite(){
-        viewModel.existsFavoriteData.observe(viewLifecycleOwner){
-            isExistsFavorite=it
-            if(it){
-                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.big_foot_feet))
-            }else{
-                binding.collectionImg.imageTintList= ColorStateList.valueOf(ContextCompat.getColor(requireContext(),R.color.eerie_black))
+    private fun checkExistFavorite() {
+        viewModel.existsFavoriteData.observe(viewLifecycleOwner) {
+            isExistsFavorite = it
+            if (it) {
+                binding.collectionImg.imageTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.big_foot_feet
+                    )
+                )
+            } else {
+                binding.collectionImg.imageTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.eerie_black
+                    )
+                )
 
             }
         }

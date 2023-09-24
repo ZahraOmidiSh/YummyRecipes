@@ -29,9 +29,9 @@
             <!--Description-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/descriptionLay"
+                style="@style/DetailBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/DetailBackground"
                 android:clipToPadding="false">
                 <!--Cover-->
                 <ImageView
@@ -103,10 +103,10 @@
                         <!--Time-->
                         <TextView
                             android:id="@+id/timeTxt"
+                            style="@style/TextView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="@dimen/_3mdp"
-                            style="@style/TextView3"
                             android:textSize="@dimen/_11font_mdp"
                             app:drawableLeftCompat="@drawable/timer2"
                             app:drawableTint="@color/time"
@@ -119,10 +119,10 @@
                         <!--Calorie-->
                         <TextView
                             android:id="@+id/calorieTxt"
+                            style="@style/TextView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="@dimen/_3mdp"
-                            style="@style/TextView3"
                             android:textSize="@dimen/_11font_mdp"
                             app:drawableLeftCompat="@drawable/fire_flame"
                             app:drawableTint="@color/chinese_yellow"
@@ -135,10 +135,10 @@
                         <!--Heart-->
                         <TextView
                             android:id="@+id/heartTxt"
+                            style="@style/TextView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="@dimen/_3mdp"
-                            style="@style/TextView3"
                             android:textSize="@dimen/_11font_mdp"
                             app:drawableLeftCompat="@drawable/ic_heart"
                             app:drawableTint="@color/portland_orange"
@@ -156,6 +156,7 @@
                 <!--Name-->
                 <TextView
                     android:id="@+id/foodNameTxt"
+                    style="@style/TextView1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_15mdp"
@@ -163,7 +164,6 @@
                     android:ellipsize="end"
                     android:lineSpacingExtra="@dimen/_6mdp"
                     android:maxLines="2"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_17font_mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -183,11 +183,11 @@
                 <!--Serving-->
                 <TextView
                     android:id="@+id/servingTxt"
+                    style="@style/TextView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10mdp"
                     android:drawablePadding="@dimen/_3mdp"
-                    style="@style/TextView3"
                     android:textSize="@dimen/_9font_mdp"
                     app:drawableLeftCompat="@drawable/user_group"
                     app:drawableTint="@color/serving"
@@ -197,11 +197,11 @@
                 <!--Cost-->
                 <TextView
                     android:id="@+id/pricePerServingTxt"
+                    style="@style/TextView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="@dimen/_4mdp"
                     android:paddingStart="@dimen/_8mdp"
-                    style="@style/TextView3"
                     android:textSize="@dimen/_9font_mdp"
                     app:drawableLeftCompat="@drawable/ic_coins"
                     app:drawableTint="@color/chinese_yellow"
@@ -212,21 +212,21 @@
                 <!--Ingredients Title-->
                 <TextView
                     android:id="@+id/ingredientsTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/ingredients"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/pricePerServingTxt" />
                 <!--Ingredients Count-->
                 <TextView
                     android:id="@+id/ingredientsCount"
+                    style="@style/TextView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    style="@style/TextView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/ingredientsTitle"
                     tools:text="7 items" />
@@ -261,21 +261,23 @@
                 <!--Equipment Title-->
                 <TextView
                     android:id="@+id/equipmentTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/equipments"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line3" />
                 <!--Equipment Count-->
                 <TextView
                     android:id="@+id/equipmentCount"
+                    style="@style/TextView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    style="@style/TextView2"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/equipmentTitle"
                     tools:text="4 items" />
@@ -290,6 +292,7 @@
                     android:paddingStart="@dimen/_5mdp"
                     android:paddingTop="@dimen/_3mdp"
                     android:paddingEnd="@dimen/_5mdp"
+                    android:visibility="invisible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/equipmentTitle"
                     app:shimmer_recycler_auto_start="true"
@@ -310,34 +313,37 @@
                 <!--Cooking Instruction-->
                 <TextView
                     android:id="@+id/cookingTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/cooking_instructions"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line4" />
                 <!--Instruction Count-->
                 <TextView
                     android:id="@+id/instructionCount"
+                    style="@style/TextView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_15mdp"
-                    style="@style/TextView2"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/cookingTitle"
                     tools:text="6 steps" />
                 <!--Instruction List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cookingInstructionsList"
+                    style="@style/stepBackground"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_8mdp"
                     android:layout_marginTop="12dp"
-                    style="@style/stepBackground"
                     android:clipToPadding="false"
                     android:padding="@dimen/_5mdp"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.476"
                     app:layout_constraintStart_toStartOf="parent"
@@ -345,11 +351,11 @@
                 <!--Diets-->
                 <TextView
                     android:id="@+id/dietTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/diets"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     android:visibility="visible"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
@@ -387,11 +393,11 @@
                 <!--Nutrient-->
                 <TextView
                     android:id="@+id/nutrientTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/nutrient_per_serving"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/line5" />
@@ -533,11 +539,11 @@
                 <!--Similar-->
                 <TextView
                     android:id="@+id/similarTitle"
+                    style="@style/TextView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/similar"
-                    style="@style/TextView1"
                     android:textSize="@dimen/_14font_mdp"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/nutrientLay" />
