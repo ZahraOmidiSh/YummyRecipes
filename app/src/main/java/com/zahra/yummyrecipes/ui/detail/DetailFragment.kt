@@ -117,6 +117,7 @@ class DetailFragment : Fragment() {
                 //Similar
                 if (state) {
                     viewModel.callSimilarApi(recipeId, MY_API_KEY)
+                    binding.similarTitle.isVisible=true
                 }
             }
         }
@@ -251,14 +252,6 @@ class DetailFragment : Fragment() {
             pricePerServingTxt.text = "Price Per Serving: ${data.pricePerServing.toString()} $"
             ingredientsCount.text = "${data.extendedIngredients!!.size} items"
             initIngredientsList(data.extendedIngredients.toMutableList())
-            //Equipment
-//            equipmentCount.text =
-//                "${data.analyzedInstructions!![0].steps!![0].equipment!!.size} items"
-//            initEquipmentsList(data.analyzedInstructions[0].steps!![0].equipment!!.toMutableList())
-            //Steps
-//            instructionCount.text = "${data.analyzedInstructions[0].steps!!.size} steps"
-//            initInstructionStepList(data.analyzedInstructions[0].steps!!.toMutableList())
-
             data.analyzedInstructions?.let {
                 if (it.isNotEmpty()) {
                     it[0]?.let { step ->

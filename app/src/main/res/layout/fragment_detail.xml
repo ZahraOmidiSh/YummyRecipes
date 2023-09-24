@@ -546,6 +546,7 @@
                     android:layout_marginTop="@dimen/_18mdp"
                     android:text="@string/similar"
                     android:textSize="@dimen/_14font_mdp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/foodNameTxt"
                     app:layout_constraintTop_toBottomOf="@id/nutrientLay" />
                 <!--Similar List-->
