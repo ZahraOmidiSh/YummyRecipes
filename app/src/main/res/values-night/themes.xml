@@ -215,7 +215,6 @@
         <item name="android:layout_height">@dimen/_45mdp</item>
         <item name="android:drawablePadding">@dimen/_6mdp</item>
         <item name="android:inputType">textPersonName</item>
-        <item name="android:padding">@dimen/_2mdp</item>
         <item name="android:textColor">@color/pale_pink</item>
         <item name="colorError">@color/tart_orange</item>
     </style>

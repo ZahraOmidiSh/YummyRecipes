@@ -23,9 +23,11 @@
     <EditText
         android:id="@+id/searchEdt"
         style="@style/SearchEditTextStyle"
-        android:layout_marginHorizontal="@dimen/_7mdp"
+        android:layout_marginHorizontal="@dimen/_16mdp"
         android:drawableStart="@drawable/magnifying_glass"
         android:hint="@string/search"
+        android:paddingHorizontal="@dimen/_3mdp"
+        android:textColorHint="@color/philippine_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
