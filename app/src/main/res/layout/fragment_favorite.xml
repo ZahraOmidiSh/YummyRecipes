@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/add_new_recipe_to_favorites"
         android:textSize="@dimen/_16mdp"
+        android:visibility="invisible"
         app:drawableTopCompat="@drawable/ic_box_heart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
