@@ -31,6 +31,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+    <!--Search By Ingredients-->
+    <TextView
+        android:id="@+id/searchByIngredientsTxt"
+        style="@style/Search_Titles"
+        android:layout_marginTop="@dimen/_20mdp"
+        android:text="@string/search_by_ingredients"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
 
     <!--Ingredients List-->
     <androidx.recyclerview.widget.RecyclerView
@@ -44,7 +53,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
+        app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

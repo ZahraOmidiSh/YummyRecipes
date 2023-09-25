@@ -47,4 +47,5 @@
     <string name="check_your_connection">Check your connection</string>
     <string name="favorites">Favorite</string>
     <string name="add_new_recipe_to_favorites">Add new recipe to favorite</string>
+    <string name="search_by_ingredients">Search By Ingredients</string>
 </resources>

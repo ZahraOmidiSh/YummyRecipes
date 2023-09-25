@@ -221,5 +221,15 @@
         <item name="colorError">@color/tart_orange</item>
     </style>
 
+    <!--Search Titles-->
+    <style name="Search_Titles">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/_16mdp</item>
+        <item name="android:textColor">@color/darkLava</item>
+        <item name="android:paddingEnd">@dimen/_5mdp</item>
+        <item name="android:textSize">@dimen/_15font_mdp</item>
+    </style>
+
 
 </resources>
