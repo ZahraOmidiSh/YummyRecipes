@@ -15,11 +15,11 @@ class SearchViewModel(): ViewModel() {
     val IngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
     fun loadIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-        val apple = IngredientsModel(0,"apple", R.drawable.apple)
+        val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
         val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
         val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
 
-        val data = mutableListOf(apple, cupcake, doughnut)
+        val data = mutableListOf(hotDog, cupcake, doughnut)
         IngredientsList.postValue(data)
     }
 }
