@@ -49,15 +49,14 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            viewModel.loadIngredientsList()
-            viewModel.ingredientsList.observe(viewLifecycleOwner){
+            viewModel.loadTenIngredientsList()
+            viewModel.tenIngredientsList.observe(viewLifecycleOwner){
                 searchIngredientsList.addAll(it)
                 searchIngredientsAdapter.setData(searchIngredientsList)
                 ingredientsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false),
                     searchIngredientsAdapter)
             }
-
 
         }
     }
