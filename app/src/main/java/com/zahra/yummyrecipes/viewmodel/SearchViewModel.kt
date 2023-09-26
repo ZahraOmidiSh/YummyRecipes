@@ -8,18 +8,19 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel(): ViewModel() {
+class SearchViewModel@Inject constructor(): ViewModel() {
     //Ingredients
-    val IngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+//    val ingredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun loadIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-        val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
-        val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
-        val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
-
-        val data = mutableListOf(hotDog, cupcake, doughnut)
-        IngredientsList.postValue(data)
-    }
+//    fun loadIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
+//        val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
+//        val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
+//        val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
+//
+//        val data = mutableListOf(hotDog, cupcake, doughnut)
+//        ingredientsList.postValue(data)
+//    }
 }

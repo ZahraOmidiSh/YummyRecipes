@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.SearchIngredientsAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
@@ -23,11 +24,15 @@ class SearchFragment : Fragment() {
 
 
     @Inject
-    private lateinit var searchIngredientsAdapter: SearchIngredientsAdapter
+    lateinit var searchIngredientsAdapter: SearchIngredientsAdapter
 
     //Others
     private val viewModel:SearchViewModel by viewModels()
     private val searchIngredientsList:MutableList<IngredientsModel> = mutableListOf()
+    val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
+    val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
+    val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
+    val data = mutableListOf(hotDog, cupcake, doughnut)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,13 +47,14 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            viewModel.loadIngredientsList()
-            viewModel.IngredientsList.observe(viewLifecycleOwner){
-                searchIngredientsList.addAll(it)
+//            viewModel.loadIngredientsList()
+//            viewModel.ingredientsList.observe(viewLifecycleOwner){
+//                searchIngredientsList.addAll(it)
+                searchIngredientsAdapter.setData(data)
                 ingredientsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false),
                     searchIngredientsAdapter)
-            }
+//            }
 
 
         }
