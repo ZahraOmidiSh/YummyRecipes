@@ -25,7 +25,7 @@
         style="@style/SearchEditTextStyle"
         android:layout_marginHorizontal="@dimen/_16mdp"
         android:drawableStart="@drawable/magnifying_glass"
-        android:hint="@string/search"
+        android:hint="Hungry?"
         android:paddingHorizontal="@dimen/_3mdp"
         android:textColorHint="@color/philippine_gray"
         app:layout_constraintEnd_toEndOf="parent"
