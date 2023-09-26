@@ -29,10 +29,12 @@ class SearchFragment : Fragment() {
     //Others
     private val viewModel:SearchViewModel by viewModels()
     private val searchIngredientsList:MutableList<IngredientsModel> = mutableListOf()
+
     val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
     val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
     val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
     val data = mutableListOf(hotDog, cupcake, doughnut)
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,8 +51,8 @@ class SearchFragment : Fragment() {
         binding.apply {
 //            viewModel.loadIngredientsList()
 //            viewModel.ingredientsList.observe(viewLifecycleOwner){
-//                searchIngredientsList.addAll(it)
-                searchIngredientsAdapter.setData(data)
+                searchIngredientsList.addAll(data)
+                searchIngredientsAdapter.setData(searchIngredientsList)
                 ingredientsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false),
                     searchIngredientsAdapter)
