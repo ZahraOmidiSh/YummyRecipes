@@ -40,6 +40,13 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt" />
+    <!--View All-->
+    <TextView
+        android:id="@+id/viewAllSearchByIngredients"
+        style="@style/View_All_Txt"
+        app:layout_constraintBottom_toBottomOf="@id/searchByIngredientsTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchByIngredientsTxt" />
 
     <!--Ingredients List-->
     <androidx.recyclerview.widget.RecyclerView
