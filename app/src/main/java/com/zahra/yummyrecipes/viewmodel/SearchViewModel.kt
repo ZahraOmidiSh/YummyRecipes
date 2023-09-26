@@ -1,0 +1,25 @@
+package com.zahra.yummyrecipes.viewmodel
+
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.models.search.IngredientsModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+@HiltViewModel
+class SearchViewModel(): ViewModel() {
+    //Ingredients
+    val IngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+
+    fun loadIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
+        val apple = IngredientsModel(0,"apple", R.drawable.apple)
+        val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
+        val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
+
+        val data = mutableListOf(apple, cupcake, doughnut)
+        IngredientsList.postValue(data)
+    }
+}
