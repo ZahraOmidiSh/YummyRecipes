@@ -11,16 +11,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
+
 class SearchViewModel@Inject constructor(): ViewModel() {
     //Ingredients
-    val ingredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+    val tenIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun loadIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-        val hotDog = IngredientsModel(0,"hot_dog", R.drawable.hot_dog)
-        val cupcake = IngredientsModel(0,"cupcake", R.drawable.cupcake)
-        val doughnut = IngredientsModel(0,"doughnut", R.drawable.doughnut)
+    fun loadTenIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
+        val carrot = IngredientsModel(0,"Carrot", R.drawable.carrot)
+        val chicken = IngredientsModel(0,"Chicken", R.drawable.chicken)
+        val egg = IngredientsModel(0,"Egg", R.drawable.egg)
+        val pasta = IngredientsModel(0,"pasta", R.drawable.pasta)
+        val apple = IngredientsModel(0,"apple", R.drawable.apple)
+        val banana = IngredientsModel(0,"banana", R.drawable.banana)
+        val cheese = IngredientsModel(0,"cheese", R.drawable.cheese)
+        val rice = IngredientsModel(0,"rice", R.drawable.rice)
+        val milk = IngredientsModel(0,"milk", R.drawable.milk)
+        val fish = IngredientsModel(0,"fish", R.drawable.fish)
 
-        val data = mutableListOf(hotDog, cupcake, doughnut)
-        ingredientsList.postValue(data)
+        val data = mutableListOf(carrot, chicken, egg,pasta,apple,banana,cheese,rice,milk,fish)
+        tenIngredientsList.postValue(data)
     }
 }
