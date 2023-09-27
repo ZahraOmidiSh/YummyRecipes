@@ -31,7 +31,6 @@ class SearchAllIngredientsFragment : Fragment() {
     private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,15 +52,10 @@ class SearchAllIngredientsFragment : Fragment() {
 
                 ingredientsList.apply {
                     layoutManager =
-                        GridLayoutManager(requireContext(),3)
+                        GridLayoutManager(requireContext(), 3)
                     adapter = advancedSearchAdapter
                 }
 
-
-                ingredientsList.setupRecyclerview(
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    advancedSearchAdapter
-                )
             }
 
         }
