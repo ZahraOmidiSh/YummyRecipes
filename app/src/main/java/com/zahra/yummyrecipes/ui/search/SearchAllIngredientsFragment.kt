@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.adapter.SearchVariousAdapter
+import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
-import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
-import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import javax.inject.Inject
 
@@ -23,7 +20,7 @@ class SearchAllIngredientsFragment : Fragment() {
 
 
     @Inject
-    lateinit var searchVariousAdapter: SearchVariousAdapter
+    lateinit var advancedSearchAdapter: AdvancedSearchAdapter
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
@@ -52,7 +49,7 @@ class SearchAllIngredientsFragment : Fragment() {
             viewModel.loadTenIngredientsList()
             viewModel.tenIngredientsList.observe(viewLifecycleOwner) {
                 searchIngredientsList.addAll(it)
-                searchVariousAdapter.setData(searchIngredientsList)
+                advancedSearchAdapter.setData(searchIngredientsList)
 //                ingredientsList.setupRecyclerview(
 //                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
 //                    searchVariousAdapter

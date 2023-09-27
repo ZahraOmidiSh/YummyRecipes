@@ -13,8 +13,8 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import javax.inject.Inject
 
-class SearchVariousAdapter @Inject constructor() :
-    RecyclerView.Adapter<SearchVariousAdapter.ViewHolder>() {
+class AdvancedSearchAdapter @Inject constructor() :
+    RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
      lateinit var binding: ItemIngredientsSearchBinding
      var items = emptyList<IngredientsModel>()
 
