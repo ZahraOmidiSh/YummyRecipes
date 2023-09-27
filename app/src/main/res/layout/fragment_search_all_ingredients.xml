@@ -39,6 +39,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+    <!--Suggested for you-->
+    <TextView
+        android:id="@+id/suggestedForYouTxt"
+        style="@style/Search_Titles"
+        android:layout_marginTop="@dimen/_20mdp"
+        android:text="@string/suggested_for_you"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
