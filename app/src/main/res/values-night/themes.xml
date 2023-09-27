@@ -228,4 +228,14 @@
         <item name="android:paddingEnd">@dimen/_5mdp</item>
         <item name="android:textSize">@dimen/_15font_mdp</item>
     </style>
+
+    <!--Buttons in search -->
+    <style name="AdvancedSearchButtons">
+        <item name="android:layout_width">@dimen/_28mdp</item>
+        <item name="android:layout_height">@dimen/_28mdp</item>
+        <item name="android:layout_margin">@dimen/_10mdp</item>
+        <item name="android:background">@drawable/bg_rounded_linen_stroke_dark</item>
+        <item name="android:padding">@dimen/_6mdp</item>
+        <item name="tint">@color/linen</item>
+    </style>
 </resources>

@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchAllIngredientsFragment">
+    <!--Back-->
+    <ImageView
+        android:id="@+id/backImg"
+        style="@style/AdvancedSearchButtons"
+        android:rotation="45"
+        android:src="@drawable/plus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Title-->
+    <TextView
+        android:id="@+id/titleTxt"
+        style="@style/SearchTextView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:gravity="center"
+        android:text="SearchByIngredients"
+        android:textSize="@dimen/_18mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--
+            android:background="@drawable/bg_rounded_linen_stroke_light"
+
+     android:layout_width="@dimen/_25mdp"
+        android:layout_height="@dimen/_25mdp"
+        android:layout_margin="@dimen/_10mdp"
+        android:padding="@dimen/_4mdp"
+        app:tint="@color/philippine_gray"
+        style="@style/DetailImageButtons"
+
+    -->
 
 
 </FrameLayout>
