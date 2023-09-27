@@ -14,9 +14,9 @@ import javax.inject.Inject
 
 class SearchViewModel@Inject constructor(): ViewModel() {
     //Ingredients
-    val tenIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+    val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun loadTenIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
+    fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val carrot = IngredientsModel(0,"Carrot", R.drawable.s_carrot)
         val chicken = IngredientsModel(0,"Chicken", R.drawable.s_chicken)
         val egg = IngredientsModel(0,"Egg", R.drawable.s_egg)
@@ -29,6 +29,6 @@ class SearchViewModel@Inject constructor(): ViewModel() {
         val fish = IngredientsModel(0,"Fish", R.drawable.s_fish)
 
         val data = mutableListOf(carrot, chicken, egg,pasta,apple,banana,cheese,rice,milk,fish)
-        tenIngredientsList.postValue(data)
+        limitIngredientsList.postValue(data)
     }
 }

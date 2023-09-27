@@ -46,8 +46,8 @@ class SearchAllIngredientsFragment : Fragment() {
         //InitViews
         binding.apply {
             //Search by Ingredients
-            viewModel.loadTenIngredientsList()
-            viewModel.tenIngredientsList.observe(viewLifecycleOwner) {
+            viewModel.loadLimitIngredientsList()
+            viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
                 searchIngredientsList.addAll(it)
                 advancedSearchAdapter.setData(searchIngredientsList)
 //                ingredientsList.setupRecyclerview(
