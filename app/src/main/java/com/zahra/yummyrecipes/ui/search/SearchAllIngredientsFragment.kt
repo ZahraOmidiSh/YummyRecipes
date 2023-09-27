@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import javax.inject.Inject
 
@@ -26,10 +30,6 @@ class SearchAllIngredientsFragment : Fragment() {
     private val viewModel: SearchViewModel by viewModels()
     private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
-    val hotDog = IngredientsModel(0, "hot_dog", R.drawable.hot_dog)
-    val cupcake = IngredientsModel(0, "cupcake", R.drawable.cupcake)
-    val doughnut = IngredientsModel(0, "doughnut", R.drawable.doughnut)
-    val data = mutableListOf(hotDog, cupcake, doughnut)
 
 
     override fun onCreateView(
@@ -45,18 +45,23 @@ class SearchAllIngredientsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            //Search by Ingredients
-            viewModel.loadLimitIngredientsList()
-            viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
+            //Load All Ingredients
+            viewModel.loadExpandedIngredientsList()
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
                 searchIngredientsList.addAll(it)
                 advancedSearchAdapter.setData(searchIngredientsList)
-//                ingredientsList.setupRecyclerview(
-//                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-//                    searchVariousAdapter
-//                )
-//            }
-//            viewAllSearchByIngredients.setOnClickListener {
-                //go to searchAllIngredients
+
+                ingredientsList.apply {
+                    layoutManager =
+                        GridLayoutManager(requireContext(),3)
+                    adapter = advancedSearchAdapter
+                }
+
+
+                ingredientsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    advancedSearchAdapter
+                )
             }
 
         }

@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,12 +31,6 @@ class SearchFragment : Fragment() {
     //Others
     private val viewModel: SearchViewModel by viewModels()
     private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
-
-    val hotDog = IngredientsModel(0, "hot_dog", R.drawable.hot_dog)
-    val cupcake = IngredientsModel(0, "cupcake", R.drawable.cupcake)
-    val doughnut = IngredientsModel(0, "doughnut", R.drawable.doughnut)
-    val data = mutableListOf(hotDog, cupcake, doughnut)
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,8 +55,9 @@ class SearchFragment : Fragment() {
                     advancedSearchAdapter
                 )
             }
-            viewAllSearchByIngredients.setOnClickListener {
-                //go to searchAllIngredients
+            viewAllSearchByIngredients.setOnClickListener { id ->
+//                val action = SearchFragmentDirections.
+//                findNavController().navigate(action)
             }
 
         }
