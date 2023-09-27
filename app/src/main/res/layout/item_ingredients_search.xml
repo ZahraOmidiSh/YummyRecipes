@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/_120mdp"
-    android:layout_height="@dimen/_140mdp"
-    android:layout_margin="@dimen/_3mdp">
+    android:layout_height="@dimen/_140mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
@@ -20,10 +19,11 @@
         <!--Image-->
         <ImageView
             android:id="@+id/ingredientImg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/_70mdp"
+            android:layout_height="@dimen/_70mdp"
+            android:layout_gravity="center"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
 
 
     </com.google.android.material.card.MaterialCardView>
@@ -34,11 +34,11 @@
         style="@style/TextView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="160dp"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
-        android:textSize="@dimen/_13font_mdp"
+        android:textSize="@dimen/_12font_mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
