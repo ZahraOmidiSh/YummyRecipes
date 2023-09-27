@@ -233,11 +233,11 @@
 
     <!--Buttons in search -->
     <style name="AdvancedSearchButtons">
-        <item name="android:layout_width">@dimen/_28mdp</item>
-        <item name="android:layout_height">@dimen/_28mdp</item>
-        <item name="android:layout_margin">@dimen/_10mdp</item>
+        <item name="android:layout_width">@dimen/_25mdp</item>
+        <item name="android:layout_height">@dimen/_25mdp</item>
+        <item name="android:layout_margin">@dimen/_7mdp</item>
         <item name="android:background">@drawable/bg_rounded_linen_stroke_light</item>
-        <item name="android:padding">@dimen/_6mdp</item>
+        <item name="android:padding">@dimen/_5mdp</item>
         <item name="tint">@color/philippine_gray</item>
     </style>
 

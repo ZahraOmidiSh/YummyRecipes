@@ -48,4 +48,7 @@
     <string name="favorites">Favorite</string>
     <string name="add_new_recipe_to_favorites">Add new recipe to favorite</string>
     <string name="search_by_ingredients">Search By Ingredients</string>
+    <string name="searchbyingredients">SearchByIngredients</string>
+    <string name="search_common_ingredients">Search Common Ingredients</string>
+    <string name="hungry">Hungry?</string>
 </resources>

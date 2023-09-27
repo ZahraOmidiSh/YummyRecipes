@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--Back-->
                 <ImageView
-                    android:id="@+id/backImg"
+                    android:id="@+id/closeImg"
                     style="@style/DetailImageButtons"
                     android:src="@drawable/ic_arrow_left"
                     app:layout_constraintStart_toStartOf="parent"
