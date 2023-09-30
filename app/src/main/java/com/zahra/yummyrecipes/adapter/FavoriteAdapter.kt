@@ -11,7 +11,7 @@ import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
-import com.zahra.yummyrecipes.databinding.ItemRecyclerViewBinding
+import com.zahra.yummyrecipes.databinding.ItemFavoriteBinding
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
@@ -19,13 +19,13 @@ import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
 class FavoriteAdapter @Inject constructor() : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
-    private lateinit var binding: ItemRecyclerViewBinding
+    private lateinit var binding: ItemFavoriteBinding
     private var items = emptyList<FavoriteEntity>()
     private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding =
-            ItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemFavoriteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         context = parent.context
         return ViewHolder()
     }
