@@ -153,9 +153,9 @@
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/mealsOnABudgetTxt"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    app:shimmer_recycler_layout="@layout/item_recipe_shimmer"
                     tools:ignore="MissingConstraints"
-                    tools:listitem="@layout/item_recycler_view" />
+                    tools:listitem="@layout/item_recipe" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,9 +186,9 @@
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/quickAndEasyTxt"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    app:shimmer_recycler_layout="@layout/item_recipe_shimmer"
                     tools:ignore="MissingConstraints"
-                    tools:listitem="@layout/item_recycler_view" />
+                    tools:listitem="@layout/item_recipe" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -251,9 +251,9 @@
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/veganTxt"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    app:shimmer_recycler_layout="@layout/item_recipe_shimmer"
                     tools:ignore="MissingConstraints"
-                    tools:listitem="@layout/item_recycler_view" />
+                    tools:listitem="@layout/item_recipe" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -284,9 +284,9 @@
                     style="@style/Recipe_Recycler_View"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/healthyTxt"
-                    app:shimmer_recycler_layout="@layout/item_recycler_view_shimmer"
+                    app:shimmer_recycler_layout="@layout/item_recipe_shimmer"
                     tools:ignore="MissingConstraints"
-                    tools:listitem="@layout/item_recycler_view" />
+                    tools:listitem="@layout/item_recipe" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

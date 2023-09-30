@@ -558,7 +558,7 @@
                     app:layout_constraintTop_toBottomOf="@id/similarTitle"
                     app:shimmer_recycler_layout="@layout/item_similar_shimmer"
                     tools:ignore="MissingConstraints"
-                    tools:listitem="@layout/item_recycler_view" />
+                    tools:listitem="@layout/item_recipe" />
 
                 <!--Watch tutorial Videos Card-->
                 <com.google.android.material.card.MaterialCardView
