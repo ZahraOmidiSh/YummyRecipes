@@ -24,7 +24,7 @@
             android:layout_height="@dimen/_40mdp"
             android:layout_gravity="center"
             android:contentDescription="@string/app_name"
-            android:scaleType="fitXY" />
+            android:scaleType="centerInside" />
 
 
     </com.google.android.material.card.MaterialCardView>
