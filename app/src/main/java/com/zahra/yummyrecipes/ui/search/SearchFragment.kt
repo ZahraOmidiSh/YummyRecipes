@@ -54,8 +54,8 @@ class SearchFragment : Fragment() {
                 )
             }
             viewAllSearchByIngredients.setOnClickListener {
-                val action = SearchFragmentDirections.actionToSearchAllIngredients()
-                findNavController().navigate(action)
+                val direction = SearchFragmentDirections.actionToSearchAllIngredients()
+                findNavController().navigate(direction)
             }
 
         }

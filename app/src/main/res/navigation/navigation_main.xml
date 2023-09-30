@@ -83,16 +83,14 @@
     </fragment>
     <action
         android:id="@+id/actionToSearchAllIngredients"
-        app:destination="@id/searchAllIngredientsFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        app:destination="@id/searchAllIngredientsFragment" />
     <fragment
         android:id="@+id/searchAllIngredientsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.SearchAllIngredientsFragment"
         android:label="fragment_search_all_ingredients"
-        tools:layout="@layout/fragment_search_all_ingredients" />
+        tools:layout="@layout/fragment_search_all_ingredients" >
+
+    </fragment>
 
 
 </navigation>

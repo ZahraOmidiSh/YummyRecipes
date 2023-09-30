@@ -63,8 +63,10 @@ class SearchViewModel @Inject constructor() : ViewModel() {
 
 
         val data =
-            mutableListOf(carrot, chicken, egg, pasta, apple, banana, cheese, rice, milk, fish,
-            shrimp,avocado,meat,potato,honey,tomato,flour,broccoli,strawberries,butter,darkChocolate,pineapple,beans,peanutButter)
+            mutableListOf(carrot, chicken, egg
+                , pasta, apple, banana, cheese, rice, milk, fish,
+            shrimp,avocado,meat,potato,honey,tomato,flour,broccoli,strawberries,butter,darkChocolate,pineapple,beans,peanutButter
+            )
         expandedIngredientsList.postValue(data)
     }
 }
