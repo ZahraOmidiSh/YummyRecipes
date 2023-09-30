@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
@@ -45,6 +47,8 @@ class SearchAllIngredientsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
             binding.apply {
+                //close button
+                closeImg.setOnClickListener { findNavController().navigateUp() }
                 //Search by Ingredients
                 viewModel.loadExpandedIngredientsList()
                 viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
