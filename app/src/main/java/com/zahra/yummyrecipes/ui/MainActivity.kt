@@ -57,7 +57,7 @@ class MainActivity : BaseActivity() {
 
                 }
                 R.id.searchAllIngredientsFragment -> {
-                    visibilityBottomMenu(true)
+                    visibilityBottomMenu(false)
                     if (callback.isEnabled) {
                         callback.isEnabled = false
                     }
