@@ -10,7 +10,7 @@
         android:backgroundTint="@color/pale_pink"
         android:layout_width="@dimen/_60mdp"
         android:layout_height="@dimen/_60mdp"
-        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_25mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_30mdp"
         app:layout_constraintEnd_toEndOf="parent"
