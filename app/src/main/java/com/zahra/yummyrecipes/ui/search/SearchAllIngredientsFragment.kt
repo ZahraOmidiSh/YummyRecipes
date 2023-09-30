@@ -52,7 +52,7 @@ class SearchAllIngredientsFragment : Fragment() {
                     searchAdapter.setData(it)
                     expandedList.apply {
                     layoutManager =
-                        GridLayoutManager(requireContext(), 3)
+                        GridLayoutManager(requireContext(), 4)
                     adapter = searchAdapter
                 }
                 }
