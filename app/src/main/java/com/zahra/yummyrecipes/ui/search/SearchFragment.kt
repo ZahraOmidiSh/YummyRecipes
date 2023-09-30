@@ -46,12 +46,19 @@ class SearchFragment : Fragment() {
             //Search by Ingredients
             viewModel.loadLimitIngredientsList()
             viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
-                searchIngredientsList.addAll(it)
-                advancedSearchAdapter.setData(searchIngredientsList)
+                if(searchIngredientsList.size==0) {
+                    searchIngredientsList.addAll(it)
+                    advancedSearchAdapter.setData(searchIngredientsList)
+                    ingredientsList.setupRecyclerview(
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                        advancedSearchAdapter
+                    )
+                }
                 ingredientsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     advancedSearchAdapter
                 )
+
             }
             viewAllSearchByIngredients.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
