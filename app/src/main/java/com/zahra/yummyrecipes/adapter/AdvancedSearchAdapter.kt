@@ -41,7 +41,7 @@ class AdvancedSearchAdapter @Inject constructor() :
                 ingredientImg.load(image) {
                     crossfade(true)
                     crossfade(500)
-                    memoryCachePolicy(CachePolicy.ENABLED)
+//                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
             }

@@ -54,21 +54,7 @@ class SearchViewModel @Inject constructor() : ViewModel() {
             egg,
             pasta,
             apple,
-            banana,
-            cheese,
-            rice,
-            milk,
-            fish,
-            carrot,
-            chicken,
-            egg,
-            pasta,
-            apple,
-            banana,
-            cheese,
-            rice,
-            milk,
-            fish
+            banana
         )
         expandedIngredientsList.postValue(data)
     }

@@ -6,17 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SearchAllIngredientsFragment : Fragment() {
     //Binding
     private var _binding: FragmentSearchAllIngredientsBinding? = null
@@ -24,11 +23,11 @@ class SearchAllIngredientsFragment : Fragment() {
 
 
     @Inject
-    lateinit var advancedSearchAdapter: AdvancedSearchAdapter
+    lateinit var searchAdapter: AdvancedSearchAdapter
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
-    private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+    private val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
 
     override fun onCreateView(
@@ -44,19 +43,16 @@ class SearchAllIngredientsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            //Load All Ingredients
-            viewModel.loadExpandedIngredientsList()
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                searchIngredientsList.addAll(it)
-                advancedSearchAdapter.setData(searchIngredientsList)
-
-                ingredientsList.apply {
-                    layoutManager =
-                        GridLayoutManager(requireContext(), 3)
-                    adapter = advancedSearchAdapter
+                //Search by Ingredients
+                viewModel.loadExpandedIngredientsList()
+                viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+                    expandedIngredientsList.addAll(it)
+                    searchAdapter.setData(it)
+                    expandedList.setupRecyclerview(
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                        searchAdapter
+                    )
                 }
-
-            }
 
         }
     }
