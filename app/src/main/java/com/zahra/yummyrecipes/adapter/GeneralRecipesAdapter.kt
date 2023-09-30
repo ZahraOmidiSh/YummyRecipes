@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.databinding.ItemRecyclerViewBinding
+import com.zahra.yummyrecipes.databinding.ItemRecipeBinding
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
@@ -16,12 +16,13 @@ import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
-class GeneralRecipesAdapter @Inject constructor() : RecyclerView.Adapter<GeneralRecipesAdapter.ViewHolder>() {
-    private lateinit var binding: ItemRecyclerViewBinding
+class GeneralRecipesAdapter @Inject constructor() :
+    RecyclerView.Adapter<GeneralRecipesAdapter.ViewHolder>() {
+    private lateinit var binding: ItemRecipeBinding
     private var items = emptyList<Result>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder()
     }
 

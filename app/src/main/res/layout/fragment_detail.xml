@@ -257,7 +257,7 @@
                     android:layout_marginTop="@dimen/_8mdp"
                     android:alpha="0.2"
                     android:background="@drawable/bg_rounded_big_foot_feet"
-                    app:layout_constraintTop_toBottomOf="@id/expandedList" />
+                    app:layout_constraintTop_toBottomOf="@id/ingredientsList" />
                 <!--Equipment Title-->
                 <TextView
                     android:id="@+id/equipmentTitle"
