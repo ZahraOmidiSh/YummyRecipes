@@ -10,7 +10,6 @@
         android:id="@+id/cardLay"
         android:layout_width="@dimen/_140mdp"
         android:layout_height="@dimen/_210mdp"
-        android:layout_marginStart="@dimen/_2mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_12mdp"
         app:cardUseCompatPadding="true"
