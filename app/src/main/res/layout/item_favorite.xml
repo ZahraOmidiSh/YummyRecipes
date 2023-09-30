@@ -3,21 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="@dimen/_8mdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_8mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_marginStart="@dimen/_2mdp"
         android:layout_width="@dimen/_140mdp"
         android:layout_height="@dimen/_210mdp"
-        app:cardCornerRadius="@dimen/_12mdp"
+        android:layout_marginStart="@dimen/_2mdp"
         android:elevation="@dimen/_5mdp"
-app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/_12mdp"
         app:cardUseCompatPadding="true"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <ImageView
             android:id="@+id/suggestedImg"
@@ -25,14 +24,14 @@ app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="@dimen/_130mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            tools:src="@drawable/salad"/>
+            tools:src="@drawable/salad" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10mdp"
             android:layout_marginBottom="@dimen/_9mdp"
-            android:paddingHorizontal="@dimen/_3mdp"
-            android:layout_marginTop="@dimen/_10mdp">
+            android:paddingHorizontal="@dimen/_3mdp">
             <!--Heart-->
             <TextView
                 android:id="@+id/suggestedHeartTxt"
@@ -66,10 +65,10 @@ app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/suggestedTitleTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3mdp"
                 android:ellipsize="end"
                 android:gravity="start|top"
                 android:maxLines="2"
-                android:layout_marginTop="@dimen/_3mdp"
                 android:textSize="@dimen/_11font_mdp"
                 app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt"
                 tools:text="Show recipe name" />
@@ -77,8 +76,6 @@ app:layout_constraintEnd_toEndOf="parent"
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
