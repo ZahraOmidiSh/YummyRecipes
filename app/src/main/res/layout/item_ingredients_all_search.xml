@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_100mdp">
+    android:layout_height="@dimen/_120mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
         android:backgroundTint="@color/pale_pink"
         android:layout_width="@dimen/_60mdp"
         android:layout_height="@dimen/_60mdp"
-        android:layout_marginTop="@dimen/_25mdp"
+        android:layout_marginTop="@dimen/_30mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_30mdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         style="@style/TextView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="120dp"
         android:ellipsize="end"
         android:gravity="center_horizontal"
         android:maxLines="1"
