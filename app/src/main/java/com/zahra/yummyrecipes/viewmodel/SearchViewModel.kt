@@ -46,16 +46,25 @@ class SearchViewModel @Inject constructor() : ViewModel() {
         val rice = IngredientsModel(0, "Rice", R.drawable.s_rice)
         val milk = IngredientsModel(0, "Milk", R.drawable.s_milk)
         val fish = IngredientsModel(0, "Fish", R.drawable.s_fish)
+        val shrimp = IngredientsModel(0, "Shrimp", R.drawable.s_shrimp)
+        val avocado = IngredientsModel(0, "Avocado", R.drawable.s_avocado)
+        val meat = IngredientsModel(0, "Meat", R.drawable.s_meat)
+        val potato = IngredientsModel(0, "Potato", R.drawable.s_potato)
+        val honey = IngredientsModel(0, "Honey", R.drawable.s_honey)
+        val tomato = IngredientsModel(0, "Tomato", R.drawable.s_tomato)
+        val flour = IngredientsModel(0, "Flour", R.drawable.s_flour)
+        val broccoli = IngredientsModel(0, "Broccoli", R.drawable.s_broccoli)
+        val strawberries = IngredientsModel(0, "Strawberry", R.drawable.s_strawberries)
+        val butter = IngredientsModel(0, "Butter", R.drawable.s_butter)
+        val darkChocolate = IngredientsModel(0, "Dark Chocolate", R.drawable.s_dark_chocolate)
+        val pineapple = IngredientsModel(0, "Pineapple", R.drawable.s_pineapple)
+        val beans = IngredientsModel(0, "Beans", R.drawable.s_beans)
+        val peanutButter = IngredientsModel(0, "Peanut Butter", R.drawable.s_peanut_butter)
 
 
-        val data = mutableListOf(
-            carrot,
-            chicken,
-            egg,
-            pasta,
-            apple,
-            banana
-        )
+        val data =
+            mutableListOf(carrot, chicken, egg, pasta, apple, banana, cheese, rice, milk, fish,
+            shrimp,avocado,meat,potato,honey,tomato,flour,broccoli,strawberries,butter,darkChocolate,pineapple,beans,peanutButter)
         expandedIngredientsList.postValue(data)
     }
 }
