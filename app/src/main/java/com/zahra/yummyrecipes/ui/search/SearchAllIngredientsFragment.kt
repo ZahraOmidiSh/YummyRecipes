@@ -54,6 +54,7 @@ class SearchAllIngredientsFragment : Fragment() {
                     layoutManager =
                         GridLayoutManager(requireContext(), 4)
                     adapter = searchAdapter
+                        setHasFixedSize(true)
                 }
                 }
 
