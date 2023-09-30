@@ -52,4 +52,5 @@
     <string name="search_common_ingredients">Search Common Ingredients</string>
     <string name="hungry">Hungry?</string>
     <string name="suggested_for_you">Suggested For You</string>
+    <string name="search_with_0_ingredients">SEARCH WITH 0 INGREDIENTS</string>
 </resources>

@@ -57,11 +57,27 @@
         android:layout_marginTop="@dimen/_10mdp"
         android:clipToPadding="false"
         android:paddingHorizontal="@dimen/_5mdp"
-        android:paddingBottom="@dimen/_50mdp"
+        android:paddingBottom="@dimen/_80mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/suggestedForYouTxt" />
+    <!--SearchWithIngredientsButton-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/SearchWithIngredientsButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40mdp"
+        android:layout_marginHorizontal="@dimen/_20mdp"
+        android:layout_marginBottom="@dimen/_30mdp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/search_with_0_ingredients"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="@dimen/_25mdp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
