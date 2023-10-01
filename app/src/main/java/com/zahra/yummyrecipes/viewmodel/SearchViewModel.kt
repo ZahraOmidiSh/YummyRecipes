@@ -60,10 +60,10 @@ class SearchViewModel @Inject constructor() : ViewModel() {
                 "broccoli"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_broccoli))
                 "strawberries"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_strawberries))
                 "butter"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_butter))
-                "dark Chocolate"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_dark_chocolate))
-                "pineapple"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_pineapple))
+                "darkChocolate"-> ingredients.add(IngredientsModel("dark chocolate", R.drawable.s_dark_chocolate))
+                "pineapple"-> ingredients.add(IngredientsModel("pine apple", R.drawable.s_pineapple))
                 "beans"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_beans))
-                "peanut Butter"-> ingredients.add(IngredientsModel(ingredient, R.drawable.s_peanut_butter))
+                "peanutButter"-> ingredients.add(IngredientsModel("peanut butter", R.drawable.s_peanut_butter))
             }
         }
         return ingredients
