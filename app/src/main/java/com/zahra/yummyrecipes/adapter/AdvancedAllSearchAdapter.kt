@@ -16,17 +16,16 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemIngredientsAllSearchBinding.inflate(
+        val binding = ItemIngredientsAllSearchBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return ViewHolder()
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
@@ -37,7 +36,8 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
-    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemIngredientsAllSearchBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: IngredientsModel,position: Int) {
             binding.apply {
