@@ -79,6 +79,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         }else{
             selectedItems.add(position)
         }
-        notifyItemChanged(position)
+        notifyDataSetChanged()
     }
 }
