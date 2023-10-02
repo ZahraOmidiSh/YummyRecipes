@@ -17,7 +17,8 @@ import javax.inject.Inject
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     lateinit var binding: ItemIngredientsAllSearchBinding
-    var items = emptyList<IngredientsModel>()
+    private var items = mutableListOf<IngredientsModel>()
+    private val selectedItems = mutableListOf<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemIngredientsAllSearchBinding.inflate(
@@ -28,7 +29,8 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         return ViewHolder()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(items[position],position)
 
     override fun getItemCount() = items.size
 
@@ -37,7 +39,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     override fun getItemId(position: Int) = position.toLong()
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel) {
+        fun bind(item: IngredientsModel,position: Int) {
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
@@ -49,6 +51,16 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
+                //Item selection
+                if(selectedItems.contains(position)){
+                    cardLay.setBackgroundResource(R.color.big_foot_feet)
+                }else{
+                    cardLay.setBackgroundResource(R.color.pale_pink)
+                }
+                //Item click listener
+                itemView.setOnClickListener {
+                    toggleSelection(position)
+                }
             }
         }
     }
@@ -57,7 +69,16 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
-        items = data
+        items.clear()
+        items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
+    }
+    private fun toggleSelection(position: Int){
+        if(selectedItems.contains(position)){
+            selectedItems.remove(position)
+        }else{
+            selectedItems.add(position)
+        }
+        notifyItemChanged(position)
     }
 }
