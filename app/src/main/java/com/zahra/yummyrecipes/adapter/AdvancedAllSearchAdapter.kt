@@ -16,11 +16,15 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-     lateinit var binding: ItemIngredientsAllSearchBinding
-     var items = emptyList<IngredientsModel>()
+    lateinit var binding: ItemIngredientsAllSearchBinding
+    var items = emptyList<IngredientsModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemIngredientsAllSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemIngredientsAllSearchBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder()
     }
 
