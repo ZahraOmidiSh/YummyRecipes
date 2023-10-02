@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.databinding.ItemIngredientsSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
@@ -16,7 +14,7 @@ import javax.inject.Inject
 
 class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
-     private var items = mutableListOf<IngredientsModel>()
+    private var items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,7 +27,7 @@ class AdvancedSearchAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(items[position],position)
+        holder.bind(items[position], position)
 
     override fun getItemCount() = items.size
 
@@ -39,7 +37,7 @@ class AdvancedSearchAdapter @Inject constructor() :
     inner class ViewHolder(private val binding: ItemIngredientsSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel,position: Int) {
+        fun bind(item: IngredientsModel, position: Int) {
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
@@ -52,9 +50,9 @@ class AdvancedSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
                 //Item selection
-                if(selectedItems.contains(position)){
+                if (selectedItems.contains(position)) {
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                }else{
+                } else {
                     cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
                 }
                 //Item click listener
@@ -73,10 +71,11 @@ class AdvancedSearchAdapter @Inject constructor() :
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
     }
-    private fun toggleSelection(position: Int){
-        if(selectedItems.contains(position)){
+
+    private fun toggleSelection(position: Int) {
+        if (selectedItems.contains(position)) {
             selectedItems.remove(position)
-        }else{
+        } else {
             selectedItems.add(position)
         }
         notifyDataSetChanged()

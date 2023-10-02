@@ -46,30 +46,30 @@ class SearchFragment : Fragment() {
             //load data
             viewModel.loadLimitIngredientsList()
             viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
-                if(searchIngredientsList.size==0) {
+                    searchIngredientsList.clear()
                     searchIngredientsList.addAll(it)
-                    advancedSearchAdapter.setData(searchIngredientsList)
+                    advancedSearchAdapter.setData(it)
+                    //RecyclerView setup
                     ingredientsList.setupRecyclerview(
-                        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                        LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        ),
                         advancedSearchAdapter
                     )
+
+                viewAllSearchByIngredients.setOnClickListener {
+                    val direction = SearchFragmentDirections.actionToSearchAllIngredients()
+                    findNavController().navigate(direction)
                 }
-                ingredientsList.setupRecyclerview(
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    advancedSearchAdapter
-                )
 
             }
-            viewAllSearchByIngredients.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToSearchAllIngredients()
-                findNavController().navigate(direction)
-            }
-
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }
