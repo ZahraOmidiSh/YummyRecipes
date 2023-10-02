@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            //Search by Ingredients
+            //load data
             viewModel.loadLimitIngredientsList()
             viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
                 if(searchIngredientsList.size==0) {

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.databinding.ItemIngredientsSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
@@ -15,24 +16,30 @@ import javax.inject.Inject
 
 class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
-     lateinit var binding: ItemIngredientsSearchBinding
-     var items = emptyList<IngredientsModel>()
+     private var items = mutableListOf<IngredientsModel>()
+    private val selectedItems = HashSet<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemIngredientsSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder()
+        val binding = ItemIngredientsSearchBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(items[position],position)
 
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
-    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemIngredientsSearchBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel) {
+        fun bind(item: IngredientsModel,position: Int) {
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
@@ -44,6 +51,16 @@ class AdvancedSearchAdapter @Inject constructor() :
 //                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
+                //Item selection
+                if(selectedItems.contains(position)){
+                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                }else{
+                    cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+                }
+                //Item click listener
+                itemView.setOnClickListener {
+                    toggleSelection(position)
+                }
             }
         }
     }
@@ -52,7 +69,16 @@ class AdvancedSearchAdapter @Inject constructor() :
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
-        items = data
+        items.clear()
+        items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
+    }
+    private fun toggleSelection(position: Int){
+        if(selectedItems.contains(position)){
+            selectedItems.remove(position)
+        }else{
+            selectedItems.add(position)
+        }
+        notifyDataSetChanged()
     }
 }
