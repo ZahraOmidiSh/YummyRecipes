@@ -48,7 +48,7 @@ class SearchAllIngredientsFragment : Fragment() {
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
                 expandedIngredientsList.clear()
                 expandedIngredientsList.addAll(it)
-                searchAdapter.setData(it)
+                searchAdapter.setData(expandedIngredientsList)
                 //RecyclerView setup
                 expandedList.apply {
                     layoutManager =

@@ -28,7 +28,7 @@ class SearchFragment : Fragment() {
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
-    private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+    private val limitIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,21 +43,22 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            //RecyclerView setup
+            ingredientsList.setupRecyclerview(
+                LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                ),
+                advancedSearchAdapter
+            )
             //load data
             viewModel.loadLimitIngredientsList()
             viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
-                    searchIngredientsList.clear()
-                    searchIngredientsList.addAll(it)
-                    advancedSearchAdapter.setData(it)
-                    //RecyclerView setup
-                    ingredientsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        advancedSearchAdapter
-                    )
+                    limitIngredientsList.clear()
+                    limitIngredientsList.addAll(it)
+                    advancedSearchAdapter.setData(limitIngredientsList)
+
 
                 viewAllSearchByIngredients.setOnClickListener {
                     val direction = SearchFragmentDirections.actionToSearchAllIngredients()
