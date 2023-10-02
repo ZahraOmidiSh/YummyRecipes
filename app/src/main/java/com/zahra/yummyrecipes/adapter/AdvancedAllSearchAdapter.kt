@@ -53,9 +53,9 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 //Item selection
                 if(selectedItems.contains(position)){
-                    cardLay.setBackgroundResource(R.color.big_foot_feet)
+                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                 }else{
-                    cardLay.setBackgroundResource(R.color.pale_pink)
+                    cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
                 }
                 //Item click listener
                 itemView.setOnClickListener {
