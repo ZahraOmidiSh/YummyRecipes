@@ -43,11 +43,13 @@ class SearchAllIngredientsFragment : Fragment() {
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
-            //Search by Ingredients
+            //load data
             viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+                expandedIngredientsList.clear()
                 expandedIngredientsList.addAll(it)
                 searchAdapter.setData(it)
+                //RecyclerView setup
                 expandedList.apply {
                     layoutManager =
                         GridLayoutManager(requireContext(), 4)
@@ -59,8 +61,8 @@ class SearchAllIngredientsFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }
