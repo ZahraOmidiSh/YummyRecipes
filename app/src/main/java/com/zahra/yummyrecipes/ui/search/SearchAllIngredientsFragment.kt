@@ -61,6 +61,17 @@ class SearchAllIngredientsFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val selectedItems = searchAdapter.getSelectedItems()
+        viewModel.setSelectedItems(selectedItems)
+    }
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        // Restore the selected items from the ViewModel
+        viewModel.setSelectedItems(searchAdapter.getSelectedItems())
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
