@@ -18,6 +18,12 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     private var items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<Int>()
 
+    fun setSelectedItems(items:HashSet<Int>){
+        selectedItems.clear()
+        selectedItems.addAll(items)
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsAllSearchBinding.inflate(
@@ -81,5 +87,8 @@ class AdvancedAllSearchAdapter @Inject constructor() :
             selectedItems.add(position)
         }
         notifyDataSetChanged()
+    }
+    fun getSelectedItems():HashSet<Int>{
+        return selectedItems
     }
 }

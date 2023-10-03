@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.R
@@ -14,11 +15,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 
-class SearchViewModel @Inject constructor() : ViewModel() {
+class SearchViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
     //Ingredients
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-     val selectedItems = HashSet<Int>()
+    private val selectedItemsKey = "selectedItems"
+    private val defaultSelectedItems = HashSet<Int>()
+
+    init {
+        // Initialize the selected items from SavedStateHandle
+        savedStateHandle.get<HashSet<Int>>(selectedItemsKey)?.let { selectedItems ->
+            defaultSelectedItems.addAll(selectedItems)
+        }
+    }
 
     fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish")
@@ -28,11 +39,8 @@ class SearchViewModel @Inject constructor() : ViewModel() {
     //Expanded
     val expandedIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
     fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-
-
         val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish",
             "shrimp","avocado","meat","potato","honey","tomato","flour","broccoli","strawberries","butter","darkChocolate","pineapple","beans","peanutButter")
-
         expandedIngredientsList.postValue(data)
     }
 
@@ -68,6 +76,16 @@ class SearchViewModel @Inject constructor() : ViewModel() {
             }
         }
         return ingredients
+    }
+
+    fun setSelectedItems(items: HashSet<Int>) {
+        // Update the selected items in SavedStateHandle
+        savedStateHandle.set(selectedItemsKey, items)
+    }
+
+    fun getSelectedItems(): HashSet<Int> {
+        // Retrieve the selected items from SavedStateHandle
+        return HashSet(defaultSelectedItems)
     }
 
 }
