@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -11,12 +12,14 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
+import com.zahra.yummyrecipes.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private val selectedItems = HashSet<Int>()
+    private val viewModel: SearchViewModel by viewModels()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsAllSearchBinding.inflate(
@@ -51,7 +54,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
                 //Item selection
-                if (selectedItems.contains(position)) {
+                if (viewModel.selectedItems.contains(position)) {
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                 } else {
                     cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
@@ -74,10 +77,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     private fun toggleSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
+        if (viewModel.selectedItems.contains(position)) {
+            viewModel.selectedItems.remove(position)
         } else {
-            selectedItems.add(position)
+            viewModel.selectedItems.add(position)
         }
         notifyDataSetChanged()
     }

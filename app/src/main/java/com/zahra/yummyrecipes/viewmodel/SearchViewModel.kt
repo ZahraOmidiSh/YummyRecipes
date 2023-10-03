@@ -18,6 +18,7 @@ class SearchViewModel @Inject constructor() : ViewModel() {
     //Ingredients
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+     val selectedItems = HashSet<Int>()
 
     fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish")
