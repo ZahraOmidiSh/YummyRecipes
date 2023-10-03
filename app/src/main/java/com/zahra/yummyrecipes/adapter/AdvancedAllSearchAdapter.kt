@@ -61,7 +61,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 //Item click listener
                 itemView.setOnClickListener {
-                    toggleSelection(position)
                 }
             }
         }
@@ -76,12 +75,5 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         diffUtils.dispatchUpdatesTo(this)
     }
 
-    private fun toggleSelection(position: Int) {
-        if (viewModel.selectedItems.contains(position)) {
-            viewModel.selectedItems.remove(position)
-        } else {
-            viewModel.selectedItems.add(position)
-        }
-        notifyDataSetChanged()
-    }
+
 }
