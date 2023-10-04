@@ -17,34 +17,44 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor() : ViewModel() {
 
-     val selectedItems = mutableSetOf<IngredientsModel>()
-    val selectedItemsLiveData = MutableLiveData<Set<IngredientsModel>>()
+     val _ingredientItems  = mutableListOf<IngredientsModel>()
+    val ingredientItems : List<IngredientsModel> get() = _ingredientItems
 
-    fun toggleSelection(item: IngredientsModel) {
-        if (selectedItems.contains(item)) {
-            selectedItems.remove(item)
-        } else {
-            selectedItems.add(item)
-        }
-        selectedItemsLiveData.value = selectedItems
+    fun loadIngredients() {
+        _ingredientItems.clear()
+        _ingredientItems.addAll(
+            listOf(
+                IngredientsModel("carrot", R.drawable.s_carrot),
+                IngredientsModel("chicken", R.drawable.s_chicken),
+                IngredientsModel("egg", R.drawable.s_egg),
+                IngredientsModel("pasta", R.drawable.s_pasta),
+                IngredientsModel("apple", R.drawable.s_apple),
+                IngredientsModel("banana", R.drawable.s_banana)
+            )
+        )
     }
-
+    fun getSelectedItems(): List<IngredientsModel> {
+        return _ingredientItems.filter { it.isSelected }
+    }
+    fun toggleItemSelected(position: Int) {
+        _ingredientItems[position].isSelected = !_ingredientItems[position].isSelected
+    }
+    fun clearSelection() {
+        _ingredientItems.forEach { it.isSelected = false }
+    }
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-
     fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish")
         limitIngredientsList.postValue(data)
     }
-
     //Expanded
-    val expandedIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-    fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-        val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish",
-            "shrimp","avocado","meat","potato","honey","tomato","flour","broccoli","strawberries","butter","darkChocolate","pineapple","beans","peanutButter")
-        expandedIngredientsList.postValue(data)
-    }
-
+//    val expandedIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+//    fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
+//        val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish",
+//            "shrimp","avocado","meat","potato","honey","tomato","flour","broccoli","strawberries","butter","darkChocolate","pineapple","beans","peanutButter")
+//        expandedIngredientsList.postValue(data)
+//    }
     private fun loadIngredientsList(vararg strings: String):MutableList<IngredientsModel> {
         val ingredients = mutableListOf<IngredientsModel>()
 
