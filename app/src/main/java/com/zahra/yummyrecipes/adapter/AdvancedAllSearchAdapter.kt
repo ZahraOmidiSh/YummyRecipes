@@ -19,7 +19,9 @@ import javax.inject.Inject
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private val viewModel: SearchViewModel by viewModels()
+    private val selectedItems = HashSet<Int>()
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsAllSearchBinding.inflate(
@@ -54,7 +56,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
                 //Item selection
-                if (viewModel.selectedItems.contains(position)) {
+                if (selectedItems.contains(position)) {
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                 } else {
                     cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
