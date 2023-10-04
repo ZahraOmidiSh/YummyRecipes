@@ -11,11 +11,13 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
+import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import javax.inject.Inject
 
-class AdvancedAllSearchAdapter @Inject constructor() :
+class AdvancedAllSearchAdapter @Inject constructor(private val viewModel: SearchViewModel) :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    private var items = mutableListOf<IngredientsModel>()
+//    private var items = mutableListOf<IngredientsModel>()
+private val items = mutableListOf<String>()
     private val selectedItems = HashSet<Int>()
 
 
@@ -28,19 +30,30 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position], position)
+
+        holder.itemView.setOnClickListener {
+            viewModel.toggleSelection(position)
+        }
+    }
 
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
+
     inner class ViewHolder(private val binding: ItemIngredientsAllSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel, position: Int) {
+        fun bind(item: String) {
             binding.apply {
+
+                binding.checkbox.isChecked = viewModel.selectedItems.contains(adapterPosition)
+                binding.itemName.text = item
+
+
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
                 //Image
@@ -65,7 +78,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
 
-    fun setData(data: List<IngredientsModel>) {
+    fun setData(data: List<String>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items.clear()

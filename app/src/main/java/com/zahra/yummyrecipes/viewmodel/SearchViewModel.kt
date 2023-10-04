@@ -16,6 +16,19 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor() : ViewModel() {
+
+     val selectedItems = mutableSetOf<Int>()
+    val selectedItemsLiveData = MutableLiveData<Set<Int>>()
+
+    fun toggleSelection(itemId: Int) {
+        if (selectedItems.contains(itemId)) {
+            selectedItems.remove(itemId)
+        } else {
+            selectedItems.add(itemId)
+        }
+        selectedItemsLiveData.value = selectedItems
+    }
+
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
