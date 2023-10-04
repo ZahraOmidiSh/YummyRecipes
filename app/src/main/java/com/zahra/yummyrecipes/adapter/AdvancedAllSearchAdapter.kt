@@ -3,7 +3,6 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -12,15 +11,12 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
-import com.zahra.yummyrecipes.viewmodel.SearchViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<Int>()
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
