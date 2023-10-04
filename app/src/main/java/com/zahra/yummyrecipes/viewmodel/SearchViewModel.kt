@@ -18,18 +18,8 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-    //Ingredients
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-    private val selectedItemsKey = "selectedItems"
-    private val defaultSelectedItems = HashSet<Int>()
-
-    init {
-        // Initialize the selected items from SavedStateHandle
-        savedStateHandle.get<HashSet<Int>>(selectedItemsKey)?.let { selectedItems ->
-            defaultSelectedItems.addAll(selectedItems)
-        }
-    }
 
     fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data =loadIngredientsList("carrot", "chicken", "egg", "pasta", "apple", "banana", "cheese", "rice", "milk", "fish")
@@ -78,14 +68,6 @@ class SearchViewModel @Inject constructor(
         return ingredients
     }
 
-    fun setSelectedItems(items: HashSet<Int>) {
-        // Update the selected items in SavedStateHandle
-        savedStateHandle.set(selectedItemsKey, items)
-    }
 
-    fun getSelectedItems(): HashSet<Int> {
-        // Retrieve the selected items from SavedStateHandle
-        return HashSet(defaultSelectedItems)
-    }
 
 }
