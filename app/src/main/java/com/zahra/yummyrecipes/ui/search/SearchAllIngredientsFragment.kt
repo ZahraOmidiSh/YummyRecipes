@@ -53,7 +53,7 @@ class SearchAllIngredientsFragment : Fragment() {
                 
                 viewModel.selectedItemsLiveData.observe(viewLifecycleOwner){
                     Toast.makeText(requireContext(), "Selected Items: $it", Toast.LENGTH_SHORT).show()
-                    searchAdapter.notifyDataSetChanged()
+//                    searchAdapter.notifyDataSetChanged()
                 }
                 
                 //RecyclerView setup

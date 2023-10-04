@@ -17,14 +17,14 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor() : ViewModel() {
 
-     val selectedItems = mutableSetOf<Int>()
-    val selectedItemsLiveData = MutableLiveData<Set<Int>>()
+     val selectedItems = mutableSetOf<IngredientsModel>()
+    val selectedItemsLiveData = MutableLiveData<Set<IngredientsModel>>()
 
-    fun toggleSelection(itemId: Int) {
-        if (selectedItems.contains(itemId)) {
-            selectedItems.remove(itemId)
+    fun toggleSelection(item: IngredientsModel) {
+        if (selectedItems.contains(item)) {
+            selectedItems.remove(item)
         } else {
-            selectedItems.add(itemId)
+            selectedItems.add(item)
         }
         selectedItemsLiveData.value = selectedItems
     }

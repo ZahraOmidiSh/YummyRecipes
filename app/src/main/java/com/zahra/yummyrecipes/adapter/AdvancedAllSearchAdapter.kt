@@ -14,11 +14,12 @@ import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import javax.inject.Inject
 
-class AdvancedAllSearchAdapter @Inject constructor(private val viewModel: SearchViewModel) :
+class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-//    private var items = mutableListOf<IngredientsModel>()
-private val items = mutableListOf<String>()
-    private val selectedItems = HashSet<Int>()
+    //    private var items = mutableListOf<IngredientsModel>()
+    private val items = mutableListOf<IngredientsModel>()
+    private val selectedItems = HashSet<IngredientsModel>()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,11 +32,8 @@ private val items = mutableListOf<String>()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], position)
+        holder.bind(items[position])
 
-        holder.itemView.setOnClickListener {
-            viewModel.toggleSelection(position)
-        }
     }
 
     override fun getItemCount() = items.size
@@ -47,13 +45,8 @@ private val items = mutableListOf<String>()
     inner class ViewHolder(private val binding: ItemIngredientsAllSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: String) {
+        fun bind(item: IngredientsModel) {
             binding.apply {
-
-                binding.checkbox.isChecked = viewModel.selectedItems.contains(adapterPosition)
-                binding.itemName.text = item
-
-
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
                 //Image
@@ -64,21 +57,29 @@ private val items = mutableListOf<String>()
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                //Item selection
-                if (selectedItems.contains(position)) {
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                } else {
-                    cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
-                }
+
                 //Item click listener
                 itemView.setOnClickListener {
+                    if(item.isSelected){
+                        item.isSelected=false
+                        selectedItems.remove(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+
+                    }else{
+                        item.isSelected=true
+                        selectedItems.add(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+
+                    }
                 }
             }
         }
     }
 
 
-    fun setData(data: List<String>) {
+    fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items.clear()
