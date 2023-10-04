@@ -11,9 +11,10 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
+import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import javax.inject.Inject
 
-class AdvancedAllSearchAdapter @Inject constructor() :
+class AdvancedAllSearchAdapter @Inject constructor(private val searchViewModel: SearchViewModel) :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<Int>()
