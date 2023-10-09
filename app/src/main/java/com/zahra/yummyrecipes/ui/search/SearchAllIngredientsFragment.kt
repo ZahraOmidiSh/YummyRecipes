@@ -90,6 +90,7 @@ class SearchAllIngredientsFragment : Fragment() {
                 override fun onSelectionChanged() {
                     super.onSelectionChanged()
                     // Handle selection change here if needed
+                    //
                 }
             })
 
