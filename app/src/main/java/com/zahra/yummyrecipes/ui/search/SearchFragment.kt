@@ -43,22 +43,21 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            //RecyclerView setup
-            ingredientsList.setupRecyclerview(
-                LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                ),
-                advancedSearchAdapter
-            )
             //load data
             viewModel.loadLimitIngredientsList()
             viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
-                    limitIngredientsList.clear()
-                    limitIngredientsList.addAll(it)
-                    advancedSearchAdapter.setData(limitIngredientsList)
-
+                    searchIngredientsList.clear()
+                    searchIngredientsList.addAll(it)
+                    advancedSearchAdapter.setData(it)
+                    //RecyclerView setup
+                    ingredientsList.setupRecyclerview(
+                        LinearLayoutManager(
+                            requireContext(),
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        ),
+                        advancedSearchAdapter
+                    )
 
                 viewAllSearchByIngredients.setOnClickListener {
                     val direction = SearchFragmentDirections.actionToSearchAllIngredients()
