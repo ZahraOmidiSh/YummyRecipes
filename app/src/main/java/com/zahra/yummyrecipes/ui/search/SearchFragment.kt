@@ -28,7 +28,7 @@ class SearchFragment : Fragment() {
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
-    private val limitIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+    private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
