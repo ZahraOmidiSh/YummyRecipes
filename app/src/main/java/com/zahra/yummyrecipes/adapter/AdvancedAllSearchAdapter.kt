@@ -3,7 +3,6 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.selection.SelectionTracker
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -17,8 +16,9 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    private var ingredientItems: List<IngredientsModel> = emptyList()
-    var tracker: SelectionTracker<Long>? = null
+    //    private var items = mutableListOf<IngredientsModel>()
+    private val items = mutableListOf<IngredientsModel>()
+    private val selectedItems = HashSet<IngredientsModel>()
 
 
 
@@ -32,20 +32,15 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(ingredientItems[position])
+        holder.bind(items[position])
 
     }
 
-    override fun getItemCount() = ingredientItems.size
+    override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
-
-    fun setItems(items: List<IngredientsModel>) {
-        ingredientItems = items
-        notifyDataSetChanged()
-    }
 
     inner class ViewHolder(private val binding: ItemIngredientsAllSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -63,19 +58,20 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
 
-                // Set the item's selected state based on the tracker
-                tracker?.let {
-                    root.isActivated = it.isSelected(adapterPosition.toLong())
-                }
+                //Item click listener
+                itemView.setOnClickListener {
+                    if(item.isSelected){
+                        item.isSelected=false
+                        selectedItems.remove(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
 
-                // Handle item click to toggle selection
-                binding.root.setOnClickListener {
-                    tracker?.let { tracker ->
-                        if (tracker.isSelected(adapterPosition.toLong())) {
-                            tracker.deselect(adapterPosition.toLong())
-                        } else {
-                            tracker.select(adapterPosition.toLong())
-                        }
+                    }else{
+                        item.isSelected=true
+                        selectedItems.add(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+
                     }
                 }
             }
@@ -84,11 +80,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
 
 
     fun setData(data: List<IngredientsModel>) {
-        val adapterDiffUtils = BaseDiffUtils(ingredientItems, data)
+        val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
-//        ingredientItems.clear()
-//        ingredientItems.addAll(data)
-        ingredientItems = data
+        items.clear()
+        items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
     }
 
