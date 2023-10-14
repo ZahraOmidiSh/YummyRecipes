@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    //    private var items = mutableListOf<IngredientsModel>()
     private val items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<IngredientsModel>()
 
@@ -33,7 +32,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
-
     }
 
     override fun getItemCount() = items.size
@@ -63,13 +61,11 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     if(item.isSelected){
                         item.isSelected=false
                         selectedItems.remove(item)
-//                        viewModel.toggleSelection(item)
                         cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
 
                     }else{
                         item.isSelected=true
                         selectedItems.add(item)
-//                        viewModel.toggleSelection(item)
                         cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
 
                     }
@@ -78,7 +74,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         }
     }
 
-
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
@@ -86,6 +81,4 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
     }
-
-
 }
