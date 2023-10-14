@@ -15,7 +15,7 @@ import javax.inject.Inject
 class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private val selectedItems = HashSet<Int>()
+    private val selectedItems = HashSet<IngredientsModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsSearchBinding.inflate(
@@ -27,7 +27,7 @@ class AdvancedSearchAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(items[position], position)
+        holder.bind(items[position])
 
     override fun getItemCount() = items.size
 
@@ -37,7 +37,7 @@ class AdvancedSearchAdapter @Inject constructor() :
     inner class ViewHolder(private val binding: ItemIngredientsSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel, position: Int) {
+        fun bind(item: IngredientsModel) {
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
@@ -54,13 +54,11 @@ class AdvancedSearchAdapter @Inject constructor() :
                     if(item.isSelected){
                         item.isSelected=false
                         selectedItems.remove(item)
-//                        viewModel.toggleSelection(item)
                         cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
 
                     }else{
                         item.isSelected=true
                         selectedItems.add(item)
-//                        viewModel.toggleSelection(item)
                         cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
 
                     }
@@ -78,12 +76,4 @@ class AdvancedSearchAdapter @Inject constructor() :
         diffUtils.dispatchUpdatesTo(this)
     }
 
-    private fun toggleSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-        } else {
-            selectedItems.add(position)
-        }
-        notifyDataSetChanged()
-    }
 }
