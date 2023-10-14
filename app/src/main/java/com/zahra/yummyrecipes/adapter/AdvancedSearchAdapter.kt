@@ -49,15 +49,21 @@ class AdvancedSearchAdapter @Inject constructor() :
 //                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                //Item selection
-                if (selectedItems.contains(position)) {
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                } else {
-                    cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
-                }
                 //Item click listener
                 itemView.setOnClickListener {
-                    toggleSelection(position)
+                    if(item.isSelected){
+                        item.isSelected=false
+                        selectedItems.remove(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+
+                    }else{
+                        item.isSelected=true
+                        selectedItems.add(item)
+//                        viewModel.toggleSelection(item)
+                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+
+                    }
                 }
             }
         }
