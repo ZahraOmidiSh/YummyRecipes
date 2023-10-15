@@ -122,4 +122,8 @@ class SearchViewModel @Inject constructor() : ViewModel() {
     }
 
 
+    //SelectedItems
+    val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
+
+
 }
