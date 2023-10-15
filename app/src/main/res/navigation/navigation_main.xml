@@ -90,6 +90,10 @@
         android:label="fragment_search_all_ingredients"
         tools:layout="@layout/fragment_search_all_ingredients" >
 
+        <argument
+            android:name="IngredientName"
+            app:argType="string"
+            android:defaultValue="_" />
     </fragment>
 
 
