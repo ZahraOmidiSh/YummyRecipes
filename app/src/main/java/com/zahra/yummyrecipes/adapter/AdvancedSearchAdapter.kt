@@ -63,8 +63,22 @@ class AdvancedSearchAdapter @Inject constructor() :
 
                     }
                 }
+
+
+                //Click
+                root.setOnClickListener {
+                    item.isSelected=true
+                    onItemClickListener?.let { it(item.ingredientsName) }
+
+                }
             }
         }
+    }
+
+    var onItemClickListener: ((String) -> Unit)? = null
+
+    fun setonItemClickListener(listener: (String) -> Unit) {
+        onItemClickListener = listener
     }
 
 
