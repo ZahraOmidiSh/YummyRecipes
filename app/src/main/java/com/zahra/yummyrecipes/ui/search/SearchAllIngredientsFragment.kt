@@ -89,6 +89,7 @@ class SearchAllIngredientsFragment : Fragment() {
         viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
             it.forEach { ingredient ->
                 if (ingredientsName == ingredient.ingredientsName) {
+                    ingredient.isSelected=true
                     selectedIngredientsList.add(ingredient)
                     viewModel.selectedItems.postValue(selectedIngredientsList)
 

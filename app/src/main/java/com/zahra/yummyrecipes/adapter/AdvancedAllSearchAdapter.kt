@@ -55,21 +55,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-
-                //Item click listener
-//                itemView.setOnClickListener {
-//                    if(item.isSelected){
-//                        item.isSelected=false
-//                        selectedItems.remove(item)
-//                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
-//
-//                    }else{
-//                        item.isSelected=true
-//                        selectedItems.add(item)
-//                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-//
-//                    }
-//                }
+                if (item.isSelected){
+                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                    root.isEnabled=false
+                }
 
 
                 //Click
