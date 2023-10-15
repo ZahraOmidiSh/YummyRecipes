@@ -92,8 +92,7 @@
 
         <argument
             android:name="IngredientName"
-            app:argType="string"
-            android:defaultValue="_" />
+            app:argType="string" />
     </fragment>
 
 
