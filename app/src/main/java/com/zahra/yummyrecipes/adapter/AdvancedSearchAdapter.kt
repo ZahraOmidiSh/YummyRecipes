@@ -50,19 +50,19 @@ class AdvancedSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
                 //Item click listener
-                itemView.setOnClickListener {
-                    if(item.isSelected){
-                        item.isSelected=false
-                        selectedItems.remove(item)
-                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
-
-                    }else{
-                        item.isSelected=true
-                        selectedItems.add(item)
-                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-
-                    }
-                }
+//                itemView.setOnClickListener {
+//                    if(item.isSelected){
+//                        item.isSelected=false
+//                        selectedItems.remove(item)
+//                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+//
+//                    }else{
+//                        item.isSelected=true
+//                        selectedItems.add(item)
+//                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+//
+//                    }
+//                }
 
 
                 //Click
