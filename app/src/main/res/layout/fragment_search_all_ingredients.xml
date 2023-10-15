@@ -59,6 +59,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--SelectedIngredients-->
+            <TextView
+                android:id="@+id/SelectedIngredientsTxt"
+                style="@style/Search_Titles"
+                android:layout_marginTop="@dimen/_20mdp"
+                android:text="@string/selected_ingredients"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Selected List-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/selectedList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20mdp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_5mdp"
+                android:paddingBottom="@dimen/_10mdp"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/SelectedIngredientsTxt" />
             <!--Suggested for you-->
             <TextView
                 android:id="@+id/suggestedForYouTxt"
@@ -67,19 +92,19 @@
                 android:text="@string/suggested_for_you"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/selectedList" />
             <!--Ingredients List-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/expandedList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/suggestedForYouTxt"
                 android:layout_marginTop="@dimen/_20mdp"
                 android:clipToPadding="false"
                 android:paddingHorizontal="@dimen/_5mdp"
                 android:paddingBottom="@dimen/_80mdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/suggestedForYouTxt" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
     <!--SearchWithIngredientsButton-->
