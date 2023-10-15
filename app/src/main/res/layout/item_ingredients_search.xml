@@ -4,6 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/_70mdp"
     android:layout_height="@dimen/_100mdp">
+
+    <!--Close-->
+    <ImageView
+        android:id="@+id/closeImg"
+        android:visibility="gone"
+        android:layout_width="@dimen/_12mdp"
+        android:layout_height="@dimen/_12mdp"
+        android:src="@drawable/plus"
+        android:rotation="45"
+        android:layout_margin="@dimen/_5mdp"
+        android:padding="@dimen/_1mdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_round_pale_pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        app:tint="@color/brown_coffee" />
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
