@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,6 +63,12 @@ class SearchFragment : Fragment() {
                 viewAllSearchByIngredients.setOnClickListener {
                     val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                     findNavController().navigate(direction)
+                }
+
+                //Click on items
+                advancedSearchAdapter.setonItemClickListener {ingredientName ->
+                    val action = RecipeFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                    findNavController().navigate(action)
                 }
 
             }
