@@ -15,7 +15,6 @@ import javax.inject.Inject
 class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-//    private val selectedItems = HashSet<IngredientsModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsSearchBinding.inflate(
@@ -49,21 +48,6 @@ class AdvancedSearchAdapter @Inject constructor() :
 //                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                //Item click listener
-//                itemView.setOnClickListener {
-//                    if(item.isSelected){
-//                        item.isSelected=false
-//                        selectedItems.remove(item)
-//                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
-//
-//                    }else{
-//                        item.isSelected=true
-//                        selectedItems.add(item)
-//                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-//
-//                    }
-//                }
-
 
                 //Click
                 root.setOnClickListener {
