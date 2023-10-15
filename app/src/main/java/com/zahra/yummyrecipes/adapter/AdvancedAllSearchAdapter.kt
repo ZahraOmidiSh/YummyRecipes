@@ -57,21 +57,37 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
 
                 //Item click listener
-                itemView.setOnClickListener {
-                    if(item.isSelected){
-                        item.isSelected=false
-                        selectedItems.remove(item)
-                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+//                itemView.setOnClickListener {
+//                    if(item.isSelected){
+//                        item.isSelected=false
+//                        selectedItems.remove(item)
+//                        cardLay.setBackgroundResource(R.drawable.bg_round_pale_pink)
+//
+//                    }else{
+//                        item.isSelected=true
+//                        selectedItems.add(item)
+//                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+//
+//                    }
+//                }
 
-                    }else{
-                        item.isSelected=true
-                        selectedItems.add(item)
-                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
 
-                    }
+                //Click
+                root.setOnClickListener {
+                    item.isSelected=true
+                    selectedItems.add(item)
+                    onItemClickListener?.let { it(item.ingredientsName) }
+                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+
                 }
             }
         }
+    }
+
+    var onItemClickListener: ((String) -> Unit)? = null
+
+    fun setonItemClickListener(listener: (String) -> Unit) {
+        onItemClickListener = listener
     }
 
     fun setData(data: List<IngredientsModel>) {
