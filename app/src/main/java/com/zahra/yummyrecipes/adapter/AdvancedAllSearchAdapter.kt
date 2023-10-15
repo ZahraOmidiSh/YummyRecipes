@@ -75,7 +75,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 //Click
                 root.setOnClickListener {
                     item.isSelected=true
-                    selectedItems.add(item)
                     onItemClickListener?.let { it(item.ingredientsName) }
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
 

@@ -65,6 +65,11 @@ class SearchAllIngredientsFragment : Fragment() {
                 }
             }
 
+            //Click
+            searchAdapter.setonItemClickListener {
+
+            }
+
         }
     }
 
