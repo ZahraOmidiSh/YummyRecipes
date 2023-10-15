@@ -67,7 +67,7 @@ class SearchFragment : Fragment() {
 
                 //Click on items
                 advancedSearchAdapter.setonItemClickListener {ingredientName ->
-                    val action = RecipeFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                    val action = RecipeFragmentDirections.actionToSearchAllIngredients()
                     findNavController().navigate(action)
                 }
 

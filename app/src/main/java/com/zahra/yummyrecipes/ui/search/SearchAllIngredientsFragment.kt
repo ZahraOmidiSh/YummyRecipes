@@ -53,7 +53,10 @@ class SearchAllIngredientsFragment : Fragment() {
         //Args
         args.let {
             ingredientName = args.ingredientName
-            addToSelectedItems(ingredientName)
+            if (ingredientName!="_"){
+                addToSelectedItems(ingredientName)
+            }
+
         }
         //InitViews
         binding.apply {
