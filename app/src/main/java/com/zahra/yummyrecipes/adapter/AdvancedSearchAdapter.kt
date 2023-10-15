@@ -15,7 +15,7 @@ import javax.inject.Inject
 class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private val selectedItems = HashSet<IngredientsModel>()
+//    private val selectedItems = HashSet<IngredientsModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsSearchBinding.inflate(
