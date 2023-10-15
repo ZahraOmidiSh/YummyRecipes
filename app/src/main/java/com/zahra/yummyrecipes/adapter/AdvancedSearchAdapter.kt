@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -48,9 +49,16 @@ class AdvancedSearchAdapter @Inject constructor() :
 //                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
+                //close
+                if (item.isSelected){
+                    closeImg.isVisible=true
+                }
+                closeImg.setOnClickListener{
+                    onItemClickListener?.let { it(item.ingredientsName) }
+                }
 
                 //Click
-                root.setOnClickListener {
+                cardLay.setOnClickListener {
                     item.isSelected=true
                     onItemClickListener?.let { it(item.ingredientsName) }
 

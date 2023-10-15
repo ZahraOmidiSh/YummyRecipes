@@ -77,11 +77,13 @@ class SearchAllIngredientsFragment : Fragment() {
                 }
             }
 
-            //Click
+            //Click on ingredients
             searchAdapter.setonItemClickListener { ingredientName ->
                 addToSelectedItems(ingredientName)
-
             }
+
+            //click on close
+
         }
     }
 
@@ -101,15 +103,37 @@ class SearchAllIngredientsFragment : Fragment() {
         }
     }
 
+    private fun removeFromSelectedItems(ingredientsName: String) {
+        viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+            it.forEach { ingredient ->
+                if (ingredientsName == ingredient.ingredientsName) {
+                    ingredient.isSelected=false
+                    selectedIngredientsList.remove(ingredient)
+                    viewModel.selectedItems.postValue(selectedIngredientsList)
+
+                    //remove from list
+                    setupSelectedItemsRecyclerView(selectedIngredientsList)
+                }
+
+            }
+        }
+    }
+
     private fun setupSelectedItemsRecyclerView(list: MutableList<IngredientsModel>) {
         binding.apply {
-            SelectedIngredientsTxt.isVisible=true
-            selectedList.isVisible=true
-            selectedAdapter.setData(list)
-            selectedList.setupRecyclerview(
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                selectedAdapter
-            )
+            if (list.size>0){
+                SelectedIngredientsTxt.isVisible=true
+                selectedList.isVisible=true
+                selectedAdapter.setData(list)
+                selectedList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    selectedAdapter
+                )
+            }else{
+                SelectedIngredientsTxt.isVisible=false
+                selectedList.isVisible=false
+            }
+
         }
 
 
