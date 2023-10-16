@@ -59,26 +59,26 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                if (item.isSelected){
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                    root.isEnabled=false
-                }else{
+//                if (item.isSelected){
+//                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+//                    root.isEnabled=false
+//                }else{
 //                    when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
 //                        Configuration.UI_MODE_NIGHT_YES -> {cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_dark)}
 //                        Configuration.UI_MODE_NIGHT_NO -> {cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_light)}
 //                        Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
 //                    }
                     root.isEnabled=true
-                }
+//                }
 
 
                 //Click
-                root.setOnClickListener {
-                    item.isSelected=true
-                    onItemClickListener?.let { it(item.ingredientsName) }
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                    root.isEnabled=false
-                }
+//                root.setOnClickListener {
+//                    item.isSelected=true
+//                    onItemClickListener?.let { it(item.ingredientsName) }
+//                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+//                    root.isEnabled=false
+//                }
 
             }
         }
