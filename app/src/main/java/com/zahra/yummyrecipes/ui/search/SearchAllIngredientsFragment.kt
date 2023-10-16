@@ -1,11 +1,11 @@
 package com.zahra.yummyrecipes.ui.search
 
+import android.app.Activity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,8 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
-import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
-import com.zahra.yummyrecipes.adapter.SelectedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -74,6 +72,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     setHasFixedSize(true)
                 }
             }
+
+            searchAdapter.setonItemClickListener {
+                addOrRemoveToSelectedItems(it)
+            }
 /*
             //Click on ingredients
             searchAdapter.setonItemClickListener { ingredientName ->
@@ -90,77 +92,38 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    /*
-    private fun addToSelectedItems(ingredientsName: String) {
+    private fun findIngredientModel(ingredientsName: String): IngredientsModel{
+        var ingredientsModel=IngredientsModel()
         viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
             it.forEach { ingredient ->
                 if (ingredientsName == ingredient.ingredientsName) {
-                    ingredient.isSelected=true
-                    selectedIngredientsList.add(ingredient)
-                    viewModel.selectedItems.postValue(selectedIngredientsList)
-
-                    //add to list
-                    setupSelectedItemsRecyclerView(selectedIngredientsList)
+                    ingredientsModel=ingredient
                 }
-
+                val index = it.indexOf(ingredient)
             }
+        }
+        return ingredientsModel
+    }
+    private fun addOrRemoveToSelectedItems(ingredientName:String){
+        val ingredientsModel=findIngredientModel(ingredientName)
+        if(ingredientsModel.isSelected){
+            selectedIngredientsList.remove(ingredientsModel)
+            ingredientsModel.isSelected=false
+            viewModel.selectedItems.postValue(selectedIngredientsList)
+        }else{
+            selectedIngredientsList.add(ingredientsModel)
+            ingredientsModel.isSelected=true
+            viewModel.selectedItems.postValue(selectedIngredientsList)
+
         }
     }
 
-    private fun removeFromSelectedItems(ingredientsName: String) {
-        viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-            it.forEach { ingredient ->
-                if (ingredientsName == ingredient.ingredientsName) {
-                    ingredient.isSelected=false
-//                    expandedIngredientsList.remove(ingredient)
-//                    viewModel.selectedItems.postValue(selectedIngredientsList)
-//
-//                    //remove from list
-//                    setupSelectedItemsRecyclerView(selectedIngredientsList)
-                    searchAdapter.notifyDataSetChanged()
-                }
-
-            }
-        }
-    }
-
-
-    private fun removeFromSuggestedItems(ingredientsName: String) {
-        viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-            it.forEach { ingredient ->
-                if (ingredientsName == ingredient.ingredientsName) {
-                    ingredient.isSelected=false
-                    selectedIngredientsList.remove(ingredient)
-                    viewModel.selectedItems.postValue(selectedIngredientsList)
-
-                    //remove from list
-                    setupSelectedItemsRecyclerView(selectedIngredientsList)
-                }
-
-            }
-        }
-    }
 
     private fun setupSelectedItemsRecyclerView(list: MutableList<IngredientsModel>) {
-        binding.apply {
-            if (list.size>0){
-                SelectedIngredientsTxt.isVisible=true
-                selectedList.isVisible=true
-                selectedAdapter.setData(list)
-                selectedList.setupRecyclerview(
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    selectedAdapter
-                )
-            }else{
-                SelectedIngredientsTxt.isVisible=false
-                selectedList.isVisible=false
-            }
-
-        }
 
 
     }
-*/
+
 
     override fun onDestroyView() {
         super.onDestroyView()
