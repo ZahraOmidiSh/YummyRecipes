@@ -34,8 +34,13 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private val viewModel: SearchViewModel by viewModels()
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
-    private val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+//    private val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
     private val selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.loadExpandedIngredientsList()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,102 +53,57 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
-//        args.let {
-//            ingredientName = args.ingredientName
-//            if (ingredientName!="_"){
-//                addToSelectedItems(ingredientName)
-//            }
-//
-//        }
+        args.let {
+            ingredientName = args.ingredientName
+            if (ingredientName!="_"){
+
+            }
+
+        }
         //InitViews
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
-            viewModel.loadExpandedIngredientsList()
+//            viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                expandedIngredientsList.clear()
-                expandedIngredientsList.addAll(it)
-                Log.e("expandedIngredientsList2",expandedIngredientsList.toString() )
+//                expandedIngredientsList.clear()
+//                expandedIngredientsList.addAll(it)
                 searchAdapter.setData(it)
                 //RecyclerView setup
                 expandedList.apply {
                     layoutManager =
                         GridLayoutManager(requireContext(), 4)
                     adapter = searchAdapter
-                    setHasFixedSize(true)
-                }
-            }
-
-            searchAdapter.setonItemClickListener {
-                changeSelection(it)
-                searchAdapter.setData(expandedIngredientsList)
-                Log.e("expandedIngredientsList3",expandedIngredientsList.toString() )
-                Log.e("expandedIngredientsList4",viewModel.expandedIngredientsList.toString() )
-                //RecyclerView setup
-                expandedList.apply {
-                    layoutManager =
-                        GridLayoutManager(requireContext(), 4)
-                    adapter = searchAdapter
-                    setHasFixedSize(true)
-                }
-            }
-
-        }
-    }
-
-    private fun changeSelection(ingredientsModel: IngredientsModel){
-        expandedIngredientsList.forEach { ingredient ->
-            if (ingredientsModel == ingredient) {
-                ingredient.isSelected = !ingredient.isSelected
-            }
-        }
-        Log.e("expandedIngredientsList",expandedIngredientsList.toString() )
-//            viewModel.expandedIngredientsList.value=expandedIngredientsList
-//            searchAdapter.setData(expandedIngredientsList)
-//            //RecyclerView setup
-//            binding.apply {
-//                expandedList.apply {
-//                    layoutManager =
-//                        GridLayoutManager(requireContext(), 4)
-//                    adapter = searchAdapter
 //                    setHasFixedSize(true)
-//                }
-//            }
-
-
-    }
-
-    private fun findIngredientModel(ingredientsName: String): IngredientsModel{
-        var ingredientsModel=IngredientsModel()
-        viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-            it.forEach { ingredient ->
-                if (ingredientsName == ingredient.ingredientsName) {
-                    ingredientsModel=ingredient
                 }
-                val index = it.indexOf(ingredient)
+                //Click
+                searchAdapter.setonItemClickListener {ingredientModel ->
+                     val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+                    viewModel.expandedIngredientsList.value?.forEach { ingredient ->
+                        if (ingredientModel == ingredient) {
+                            ingredient.isSelected = !ingredient.isSelected
+                        }
+                        expandedIngredientsList.add(ingredient)
+                    }
+                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
+//                    changeSelection(ingredientModel)
+//                    searchAdapter.setData(expandedIngredientsList)
+//                    //RecyclerView setup
+//                    expandedList.apply {
+//                        layoutManager =
+//                            GridLayoutManager(requireContext(), 4)
+//                        adapter = searchAdapter
+//                        setHasFixedSize(true)
+//                    }
+                }
+
+
             }
-        }
-        return ingredientsModel
-    }
-    private fun addOrRemoveToSelectedItems(ingredientName:String){
-        val ingredientsModel=findIngredientModel(ingredientName)
-        if(ingredientsModel.isSelected){
-            selectedIngredientsList.remove(ingredientsModel)
-            ingredientsModel.isSelected=false
-            viewModel.selectedItems.postValue(selectedIngredientsList)
-        }else{
-            selectedIngredientsList.add(ingredientsModel)
-            ingredientsModel.isSelected=true
-            viewModel.selectedItems.postValue(selectedIngredientsList)
+
 
         }
     }
-    private fun setupSelectedItemsRecyclerView(list: MutableList<IngredientsModel>) {
-
-
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
