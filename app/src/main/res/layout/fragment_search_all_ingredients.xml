@@ -13,100 +13,19 @@
         android:src="@drawable/plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--Title-->
-    <TextView
-        android:id="@+id/titleTxt"
-        style="@style/SearchTextView"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        android:text="@string/searchbyingredients"
-        android:textSize="@dimen/_18mdp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Search Common Ingredients-->
-    <EditText
-        android:id="@+id/searchEdt"
-        style="@style/SearchEditTextStyle"
-        android:layout_marginHorizontal="@dimen/_10mdp"
-        android:layout_marginTop="@dimen/_30mdp"
-        android:drawableStart="@drawable/magnifying_glass"
-        android:hint="@string/search_common_ingredients"
-        android:textColorHint="@color/philippine_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTxt" />
-    <!--Scroll View-->
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/ingredientsScroll"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:fadingEdge="vertical"
-        android:fadingEdgeLength="@dimen/_30mdp"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        android:requiresFadingEdge="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt">
-
-        <!--Description-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ingredientsLay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <!--SelectedIngredients-->
-            <TextView
-                android:id="@+id/SelectedIngredientsTxt"
-                style="@style/Search_Titles"
-                android:layout_marginTop="@dimen/_20mdp"
-                android:text="@string/selected_ingredients"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--Selected List-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/selectedList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20mdp"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingBottom="@dimen/_10mdp"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/SelectedIngredientsTxt" />
-            <!--Suggested for you-->
-            <TextView
-                android:id="@+id/suggestedForYouTxt"
-                style="@style/Search_Titles"
-                android:layout_marginTop="@dimen/_20mdp"
-                android:text="@string/suggested_for_you"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/selectedList" />
             <!--Ingredients List-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/expandedList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20mdp"
+                android:layout_marginTop="@dimen/_30mdp"
                 android:clipToPadding="false"
                 android:paddingHorizontal="@dimen/_5mdp"
                 android:paddingBottom="@dimen/_80mdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/suggestedForYouTxt" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                app:layout_constraintTop_toTopOf="parent" />
     <!--SearchWithIngredientsButton-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/SearchWithIngredientsButton"
