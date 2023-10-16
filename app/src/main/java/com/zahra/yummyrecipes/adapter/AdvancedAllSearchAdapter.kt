@@ -1,6 +1,8 @@
 package com.zahra.yummyrecipes.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -18,6 +20,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private val items = mutableListOf<IngredientsModel>()
     private val selectedItems = HashSet<IngredientsModel>()
+    private lateinit var context:Context
 
 
 
@@ -27,6 +30,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
             parent,
             false
         )
+        context=parent.context
         return ViewHolder(binding)
     }
 
@@ -58,6 +62,13 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 if (item.isSelected){
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                     root.isEnabled=false
+                }else{
+//                    when (context.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
+//                        Configuration.UI_MODE_NIGHT_YES -> {cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_dark)}
+//                        Configuration.UI_MODE_NIGHT_NO -> {cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_light)}
+//                        Configuration.UI_MODE_NIGHT_UNDEFINED -> {}
+//                    }
+                    root.isEnabled=true
                 }
 
 
@@ -68,6 +79,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                     root.isEnabled=false
                 }
+
             }
         }
     }
@@ -77,6 +89,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     fun setonItemClickListener(listener: (String) -> Unit) {
         onItemClickListener = listener
     }
+
 
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)

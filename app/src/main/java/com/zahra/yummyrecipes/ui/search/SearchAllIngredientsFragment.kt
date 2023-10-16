@@ -110,6 +110,24 @@ class SearchAllIngredientsFragment : Fragment() {
             it.forEach { ingredient ->
                 if (ingredientsName == ingredient.ingredientsName) {
                     ingredient.isSelected=false
+//                    expandedIngredientsList.remove(ingredient)
+//                    viewModel.selectedItems.postValue(selectedIngredientsList)
+//
+//                    //remove from list
+//                    setupSelectedItemsRecyclerView(selectedIngredientsList)
+                    searchAdapter.notifyDataSetChanged()
+                }
+
+            }
+        }
+    }
+
+
+    private fun removeFromSuggestedItems(ingredientsName: String) {
+        viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+            it.forEach { ingredient ->
+                if (ingredientsName == ingredient.ingredientsName) {
+                    ingredient.isSelected=false
                     selectedIngredientsList.remove(ingredient)
                     viewModel.selectedItems.postValue(selectedIngredientsList)
 
