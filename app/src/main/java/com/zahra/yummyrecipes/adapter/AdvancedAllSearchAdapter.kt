@@ -64,9 +64,9 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                 } else {
                     if (isDarkTheme()) {
-                        cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_dark)
+                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_dark)
                     } else {
-                        cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_light)
+                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_light)
                     }
                 }
 
