@@ -62,14 +62,11 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 if (item.isSelected) {
                     cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                    root.isEnabled = false
                 } else {
                     if (isDarkTheme()) {
                         cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_dark)
-                        root.isEnabled = true
                     } else {
                         cardLay.setBackgroundResource(R.drawable.bg_rounded_linen_stroke_light)
-                        root.isEnabled = true
                     }
                 }
 
