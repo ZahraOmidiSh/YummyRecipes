@@ -89,15 +89,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 }
             }
 
-/*
-            //Click on ingredients
-            searchAdapter.setonItemClickListener { ingredientName ->
-                addToSelectedItems(ingredientName)
-            }
-
-
-            */
-
         }
     }
 
