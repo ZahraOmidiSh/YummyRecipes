@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
+import com.zahra.yummyrecipes.adapter.SelectedSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -31,7 +31,7 @@ class SearchAllIngredientsFragment : Fragment() {
     lateinit var searchAdapter: AdvancedAllSearchAdapter
 
     @Inject
-    lateinit var selectedAdapter: AdvancedSearchAdapter
+    lateinit var selectedAdapter: SelectedSearchAdapter
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
@@ -83,10 +83,12 @@ class SearchAllIngredientsFragment : Fragment() {
             }
 
             //click on close
+            selectedAdapter.setonItemClickListener {ingredientName ->
+                removeFromSelectedItems(ingredientName)
 
+            }
         }
     }
-
     private fun addToSelectedItems(ingredientsName: String) {
         viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
             it.forEach { ingredient ->

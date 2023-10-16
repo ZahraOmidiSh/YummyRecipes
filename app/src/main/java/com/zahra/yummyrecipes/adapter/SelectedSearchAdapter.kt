@@ -7,14 +7,15 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import javax.inject.Inject
 
-class AdvancedSearchAdapter @Inject constructor() :
-    RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
+class SelectedSearchAdapter @Inject constructor() :
+    RecyclerView.Adapter<SelectedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,11 +35,14 @@ class AdvancedSearchAdapter @Inject constructor() :
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
+
     inner class ViewHolder(private val binding: ItemIngredientsSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: IngredientsModel) {
             binding.apply {
+                //closeImg Visibility
+                closeImg.isVisible=true
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
                 //Image
@@ -46,7 +50,7 @@ class AdvancedSearchAdapter @Inject constructor() :
                 ingredientImg.load(image) {
                     crossfade(true)
                     crossfade(500)
-//                    memoryCachePolicy(CachePolicy.ENABLED)
+                    memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
 
@@ -55,11 +59,11 @@ class AdvancedSearchAdapter @Inject constructor() :
                 }
 
                 //Click
-                cardLay.setOnClickListener {
-                    item.isSelected=true
-                    onItemClickListener?.let { it(item.ingredientsName) }
-
-                }
+//                cardLay.setOnClickListener {
+//                    item.isSelected=true
+//                    onItemClickListener?.let { it(item.ingredientsName) }
+//
+//                }
             }
         }
     }
