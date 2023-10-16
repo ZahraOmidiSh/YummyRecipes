@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.ui.search
 import android.app.Activity
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,6 +64,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
                 expandedIngredientsList.clear()
                 expandedIngredientsList.addAll(it)
+                Log.e("expandedIngredientsList2",expandedIngredientsList.toString() )
                 searchAdapter.setData(it)
                 //RecyclerView setup
                 expandedList.apply {
@@ -74,22 +76,51 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
 
             searchAdapter.setonItemClickListener {
-                addOrRemoveToSelectedItems(it)
+                changeSelection(it)
+                searchAdapter.setData(expandedIngredientsList)
+                Log.e("expandedIngredientsList3",expandedIngredientsList.toString() )
+                Log.e("expandedIngredientsList4",viewModel.expandedIngredientsList.toString() )
+                //RecyclerView setup
+                expandedList.apply {
+                    layoutManager =
+                        GridLayoutManager(requireContext(), 4)
+                    adapter = searchAdapter
+                    setHasFixedSize(true)
+                }
             }
+
 /*
             //Click on ingredients
             searchAdapter.setonItemClickListener { ingredientName ->
                 addToSelectedItems(ingredientName)
             }
 
-            //click on close
-            selectedAdapter.setonItemClickListener {ingredientName ->
-                removeFromSelectedItems(ingredientName)
 
-            }
             */
 
         }
+    }
+
+    private fun changeSelection(ingredientsModel: IngredientsModel){
+        expandedIngredientsList.forEach { ingredient ->
+            if (ingredientsModel == ingredient) {
+                ingredient.isSelected = !ingredient.isSelected
+            }
+        }
+        Log.e("expandedIngredientsList",expandedIngredientsList.toString() )
+//            viewModel.expandedIngredientsList.value=expandedIngredientsList
+//            searchAdapter.setData(expandedIngredientsList)
+//            //RecyclerView setup
+//            binding.apply {
+//                expandedList.apply {
+//                    layoutManager =
+//                        GridLayoutManager(requireContext(), 4)
+//                    adapter = searchAdapter
+//                    setHasFixedSize(true)
+//                }
+//            }
+
+
     }
 
     private fun findIngredientModel(ingredientsName: String): IngredientsModel{
@@ -117,8 +148,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
         }
     }
-
-
     private fun setupSelectedItemsRecyclerView(list: MutableList<IngredientsModel>) {
 
 
