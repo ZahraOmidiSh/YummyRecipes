@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.adapter.SelectedSearchAdapter
@@ -22,16 +23,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchAllIngredientsFragment : Fragment() {
+class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Binding
     private var _binding: FragmentSearchAllIngredientsBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var searchAdapter: AdvancedAllSearchAdapter
-
-    @Inject
-    lateinit var selectedAdapter: SelectedSearchAdapter
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
@@ -51,13 +49,13 @@ class SearchAllIngredientsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
-        args.let {
-            ingredientName = args.ingredientName
-            if (ingredientName!="_"){
-                addToSelectedItems(ingredientName)
-            }
-
-        }
+//        args.let {
+//            ingredientName = args.ingredientName
+//            if (ingredientName!="_"){
+//                addToSelectedItems(ingredientName)
+//            }
+//
+//        }
         //InitViews
         binding.apply {
             //close button
@@ -76,7 +74,7 @@ class SearchAllIngredientsFragment : Fragment() {
                     setHasFixedSize(true)
                 }
             }
-
+/*
             //Click on ingredients
             searchAdapter.setonItemClickListener { ingredientName ->
                 addToSelectedItems(ingredientName)
@@ -87,8 +85,12 @@ class SearchAllIngredientsFragment : Fragment() {
                 removeFromSelectedItems(ingredientName)
 
             }
+            */
+
         }
     }
+
+    /*
     private fun addToSelectedItems(ingredientsName: String) {
         viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
             it.forEach { ingredient ->
@@ -158,7 +160,7 @@ class SearchAllIngredientsFragment : Fragment() {
 
 
     }
-
+*/
 
     override fun onDestroyView() {
         super.onDestroyView()
