@@ -1,10 +1,20 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import android.app.SearchManager.QUERY
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.data.repository.SearchRepository
+import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.utils.Constants.API_KEY
+import com.zahra.yummyrecipes.utils.Constants.FULL_COUNT
+import com.zahra.yummyrecipes.utils.Constants.INGREDIENTS
+import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
+import com.zahra.yummyrecipes.utils.Constants.NUMBER
+import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 
-class SearchViewModel @Inject constructor() : ViewModel() {
+class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
     //Limited
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
 
@@ -119,6 +129,24 @@ class SearchViewModel @Inject constructor() : ViewModel() {
             }
         }
         return ingredients
+    }
+
+    fun searchQueries(list: List<String>): HashMap<String, String> {
+        val queries: HashMap<String, String> = HashMap()   //همینجا اینیشیالایز میکنیم
+        queries[API_KEY] = MY_API_KEY
+        queries[NUMBER] = FULL_COUNT.toString()
+        queries[QUERY] =list[0]
+        queries[INGREDIENTS] =list[1]
+        return queries
+    }
+
+    val searchData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
+
+    fun callSearchApi(queries: Map<String, String>) = viewModelScope.launch {
+        searchData.value = NetworkRequest.Loading()
+        //داخل پرانتز پایین باید QueryMap را ست کنیم
+        val response = repository.getSearchRecipes(queries)
+        searchData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
 
