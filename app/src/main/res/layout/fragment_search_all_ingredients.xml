@@ -19,7 +19,7 @@
         android:id="@+id/expandedList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_30mdp"
+        android:layout_marginTop="@dimen/_35mdp"
         android:paddingHorizontal="@dimen/_5mdp"
         android:paddingBottom="@dimen/_50mdp"
         app:layout_constraintEnd_toEndOf="parent"
