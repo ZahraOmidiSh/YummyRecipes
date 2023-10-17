@@ -53,25 +53,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         //Args
         args.let {
             ingredientName = args.ingredientName
-            if (ingredientName != "_") {
-                val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
-                viewModel.expandedIngredientsList.value?.forEach {ingredientModel ->
-                    Log.e(
-                        "expandedIngredientsList0",
-                        viewModel.expandedIngredientsList.value.toString()
-                    )
-                        if (ingredientName == ingredientModel.ingredientsName) {
-                            ingredientModel.isSelected = !ingredientModel.isSelected
-                        }
-                        expandedIngredientsList.add(ingredientModel)
-                    }
-                    Log.e("expandedIngredientsList1", expandedIngredientsList.toString())
-                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
-                    Log.e(
-                        "expandedIngredientsList2",
-                        viewModel.expandedIngredientsList.value.toString()
-                    )
-            }
         }
         //InitViews
         binding.apply {
@@ -80,6 +61,20 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //load data
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
                 Log.e("expandedIngredientsList3", viewModel.expandedIngredientsList.value.toString() )
+                val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+                if(ingredientName!="_"){
+                    it.forEach { ingredient ->
+                        if (ingredientName == ingredient.ingredientsName) {
+                            ingredient.isSelected = true
+                            ingredientName="_"
+                        }
+                        expandedIngredientsList.add(ingredient)
+                    }
+                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
+                    }
+
+
+
                 searchAdapter.setData(it)
                 //RecyclerView setup
                 expandedList.apply {
