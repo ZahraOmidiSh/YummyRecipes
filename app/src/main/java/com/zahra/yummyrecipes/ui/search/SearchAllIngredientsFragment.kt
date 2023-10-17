@@ -30,8 +30,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private val viewModel: SearchViewModel by viewModels()
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
-
-    //    private val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
     private val selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,21 +58,19 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                Log.e("expandedIngredientsList3", viewModel.expandedIngredientsList.value.toString() )
+                //consider the args
                 val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
-                if(ingredientName!="_"){
+                if (ingredientName != "_") {
                     it.forEach { ingredient ->
                         if (ingredientName == ingredient.ingredientsName) {
                             ingredient.isSelected = true
-                            ingredientName="_"
+                            ingredientName = "_"
                         }
                         expandedIngredientsList.add(ingredient)
                     }
                     viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
-                    }
-
-
-
+                }
+                //set data
                 searchAdapter.setData(it)
                 //RecyclerView setup
                 expandedList.apply {
@@ -83,20 +79,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     adapter = searchAdapter
                     setHasFixedSize(true)
                 }
-                Log.e("expandedIngredientsList4", viewModel.expandedIngredientsList.value.toString() )
                 //Click
                 searchAdapter.setonItemClickListener { ingredientModel ->
-                    val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+                    val expandIngredientsList: MutableList<IngredientsModel> = mutableListOf()
                     viewModel.expandedIngredientsList.value?.forEach { ingredient ->
                         if (ingredientModel == ingredient) {
                             ingredient.isSelected = !ingredient.isSelected
                         }
-                        expandedIngredientsList.add(ingredient)
+                        expandIngredientsList.add(ingredient)
                     }
-                    Log.e("expandedIngredientsList5", expandedIngredientsList.toString() )
-                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
-                    Log.e("expandedIngredientsList6", viewModel.expandedIngredientsList.value.toString() )
-
+                    viewModel.expandedIngredientsList.postValue(expandIngredientsList)
                 }
             }
         }
