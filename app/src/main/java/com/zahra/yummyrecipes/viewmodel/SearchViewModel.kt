@@ -131,12 +131,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         return ingredients
     }
 
-    fun searchQueries(list: List<String>): HashMap<String, String> {
+    fun searchQueries(search:String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()   //همینجا اینیشیالایز میکنیم
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
-        queries[QUERY] =list[0]
-        queries[INGREDIENTS] =list[1]
+        queries[QUERY] =search
         return queries
     }
 
