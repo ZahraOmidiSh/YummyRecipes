@@ -25,44 +25,72 @@
         android:id="@+id/searchEdt"
         style="@style/SearchEditTextStyle"
         android:layout_marginHorizontal="@dimen/_16mdp"
+        android:layout_marginTop="@dimen/_12mdp"
         android:drawableStart="@drawable/magnifying_glass"
         android:hint="@string/hungry"
-        android:layout_marginTop="@dimen/_12mdp"
         android:paddingHorizontal="@dimen/_5mdp"
         android:textColorHint="@color/philippine_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titleTxt" />
-    <!--Search By Ingredients-->
-    <TextView
-        android:id="@+id/searchByIngredientsTxt"
-        style="@style/Search_Titles"
-        android:layout_marginTop="@dimen/_20mdp"
-        android:text="@string/search_by_ingredients"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
-    <!--View All-->
-    <TextView
-        android:id="@+id/viewAllSearchByIngredients"
-        style="@style/View_All_Txt"
-        app:layout_constraintBottom_toBottomOf="@id/searchByIngredientsTxt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/searchByIngredientsTxt" />
 
-    <!--Ingredients List-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ingredientsList"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/simpleSearchLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10mdp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/_5mdp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt">
+        <!--List-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/simpleSearchList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingHorizontal="@dimen/_6mdp"
+            android:paddingBottom="@dimen/_80mdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/advancedSearchLay"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt">
+        <!--Search By Ingredients-->
+        <TextView
+            android:id="@+id/searchByIngredientsTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_20mdp"
+            android:text="@string/search_by_ingredients"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--View All-->
+        <TextView
+            android:id="@+id/viewAllSearchByIngredients"
+            style="@style/View_All_Txt"
+            app:layout_constraintBottom_toBottomOf="@id/searchByIngredientsTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/searchByIngredientsTxt" />
+        <!--Ingredients List-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredientsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_5mdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!--Internet-->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
+
         <include layout="@layout/internet_error" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
