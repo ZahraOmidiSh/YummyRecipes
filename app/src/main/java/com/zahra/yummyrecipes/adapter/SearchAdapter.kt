@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.databinding.ItemFavoriteBinding
-import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes.Result
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
@@ -54,13 +52,12 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.V
         @SuppressLint("SetTextI18n")
         fun bind(item: Result) {
             binding.apply {
-                item.let { result ->
                     //Text
-                    suggestedTitleTxt.text = result.title
-                    suggestedTimeTxt.text = result.readyInMinutes!!.minToHour()
-                    suggestedHeartTxt.text = result.aggregateLikes.toString()
+                    suggestedTitleTxt.text = item.title
+                    suggestedTimeTxt.text = item.readyInMinutes!!.minToHour()
+                    suggestedHeartTxt.text = item.aggregateLikes.toString()
                     //Image
-                    val imageSize = result.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
+                    val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
                     suggestedImg.load(imageSize) {
                         crossfade(true)
                         crossfade(800)
@@ -72,7 +69,7 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.V
                         onItemClickListener?.let { it(item.id!!) }
 
                     }
-                }
+
             }
         }
 
