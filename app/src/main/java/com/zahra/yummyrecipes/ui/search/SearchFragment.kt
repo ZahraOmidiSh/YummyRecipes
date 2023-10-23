@@ -122,10 +122,12 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
+                        advancedSearchLay.isVisible=false
                         simpleSearchList.showShimmer()
                     }
 
                     is NetworkRequest.Success -> {
+                        advancedSearchLay.isVisible=false
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
@@ -136,6 +138,7 @@ class SearchFragment : Fragment() {
                     }
 
                     is NetworkRequest.Error -> {
+                        advancedSearchLay.isVisible=false
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
