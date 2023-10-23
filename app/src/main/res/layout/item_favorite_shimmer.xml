@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_2mdp"
     android:paddingBottom="@dimen/_8mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardLay"
+        android:id="@+id/cardLay1"
         android:layout_width="@dimen/_140mdp"
         android:layout_height="@dimen/_210mdp"
+        android:layout_marginStart="@dimen/_4mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_12mdp"
         app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <!--Image-->
         <View
-            android:id="@+id/suggestedImg"
+            android:id="@+id/suggestedImg1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_130mdp"
             android:background="@color/mediumGray"
@@ -33,7 +34,7 @@
             android:paddingHorizontal="@dimen/_3mdp">
             <!--Heart-->
             <View
-                android:id="@+id/suggestedHeartTxt"
+                android:id="@+id/suggestedHeartTxt1"
                 android:layout_width="@dimen/_20mdp"
                 android:layout_height="@dimen/_14mdp"
                 android:layout_marginStart="2dp"
@@ -43,21 +44,21 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <!--Time-->
             <View
-                android:id="@+id/suggestedTimeTxt"
+                android:id="@+id/suggestedTimeTxt1"
                 android:layout_width="@dimen/_25mdp"
                 android:layout_height="@dimen/_14mdp"
                 android:background="@drawable/bg_shimmer_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt" />
+                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt1" />
             <!--Title-->
             <View
-                android:id="@+id/suggestedTitleTxt"
+                android:id="@+id/suggestedTitleTxt1"
                 android:layout_width="@dimen/_110mdp"
                 android:layout_height="@dimen/_6mdp"
                 android:layout_marginTop="@dimen/_7mdp"
                 android:background="@drawable/bg_shimmer_gray"
-                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt"
-                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt" />
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt1"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt1" />
 
             <View
                 android:id="@+id/suggestedTitleTxt2"
@@ -65,8 +66,73 @@
                 android:layout_height="@dimen/_6mdp"
                 android:layout_marginTop="@dimen/_20mdp"
                 android:background="@drawable/bg_shimmer_gray"
-                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt"
-                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt" />
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt1"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt1" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardLay2"
+        android:layout_width="@dimen/_140mdp"
+        android:layout_height="@dimen/_210mdp"
+        android:layout_marginEnd="@dimen/_4mdp"
+        android:elevation="@dimen/_5mdp"
+        app:cardCornerRadius="@dimen/_12mdp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Image-->
+        <View
+            android:id="@+id/suggestedImg2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130mdp"
+            android:background="@color/mediumGray"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_marginBottom="@dimen/_9mdp"
+            android:paddingHorizontal="@dimen/_3mdp">
+            <!--Heart-->
+            <View
+                android:id="@+id/suggestedHeartTxt2"
+                android:layout_width="@dimen/_20mdp"
+                android:layout_height="@dimen/_14mdp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="160dp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Time-->
+            <View
+                android:id="@+id/suggestedTimeTxt2"
+                android:layout_width="@dimen/_25mdp"
+                android:layout_height="@dimen/_14mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt2" />
+            <!--Title-->
+            <View
+                android:id="@+id/suggestedTitleTxt3"
+                android:layout_width="@dimen/_110mdp"
+                android:layout_height="@dimen/_6mdp"
+                android:layout_marginTop="@dimen/_7mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt2"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt2" />
+
+            <View
+                android:id="@+id/suggestedTitleTxt4"
+                android:layout_width="@dimen/_120mdp"
+                android:layout_height="@dimen/_6mdp"
+                android:layout_marginTop="@dimen/_20mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt2"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
