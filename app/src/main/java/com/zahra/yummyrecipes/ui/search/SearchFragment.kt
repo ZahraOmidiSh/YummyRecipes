@@ -12,12 +12,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.adapter.FavoriteAdapter
+import com.zahra.yummyrecipes.adapter.SearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.NetworkChecker
+import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
+import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +39,7 @@ class SearchFragment : Fragment() {
     lateinit var advancedSearchAdapter: AdvancedSearchAdapter
 
     @Inject
-    lateinit var favoriteAdapter: FavoriteAdapter
+    lateinit var searchAdapter: SearchAdapter
 
     @Inject
     lateinit var networkChecker: NetworkChecker
@@ -82,8 +87,9 @@ class SearchFragment : Fragment() {
                 }
 
                 //Click on items
-                advancedSearchAdapter.setonItemClickListener {ingredientName ->
-                    val action = SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                advancedSearchAdapter.setonItemClickListener { ingredientName ->
+                    val action =
+                        SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
                     findNavController().navigate(action)
                 }
 
@@ -91,24 +97,72 @@ class SearchFragment : Fragment() {
 
             //Check Internet
             lifecycleScope.launch {
-                withStarted {  }
-                networkChecker.checkNetworkAvailability().collect{ state ->
+                withStarted { }
+                networkChecker.checkNetworkAvailability().collect { state ->
                     initInternetLayout(state)
-                    isNetworkAvailable=state
+                    isNetworkAvailable = state
 
                 }
             }
 
             //Search
             searchEdt.addTextChangedListener {
-                if(it.toString().length >2 && isNetworkAvailable){
+                if (it.toString().length > 2 && isNetworkAvailable) {
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                 }
             }
         }
 
         //Show data
+        loadRecentData()
+    }
 
+    private fun loadRecentData() {
+        binding.apply {
+            viewModel.searchData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        simpleSearchList.showShimmer()
+                    }
+
+                    is NetworkRequest.Success -> {
+                        simpleSearchList.hideShimmer()
+                        response.data.let { data ->
+                            if (data?.results!!.isNotEmpty()) {
+                                searchAdapter.setData(data.results)
+                                initSearchListRecycler()
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        simpleSearchList.hideShimmer()
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    private fun initSearchListRecycler() {
+        binding.simpleSearchList.apply {
+            layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            adapter = searchAdapter
+        }
+
+        //Click
+        searchAdapter.setonItemClickListener {
+            goToDetailPage(it)
+
+        }
+    }
+
+    private fun goToDetailPage(id: Int) {
+        val action = SearchFragmentDirections.actionToDetail(id)
+        findNavController().navigate(action)
     }
 
     private fun initInternetLayout(isConnected: Boolean) {

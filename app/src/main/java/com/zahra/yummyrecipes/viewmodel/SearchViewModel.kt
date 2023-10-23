@@ -8,11 +8,13 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.data.repository.SearchRepository
 import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.FULL_COUNT
 import com.zahra.yummyrecipes.utils.Constants.INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
+import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -135,6 +137,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val queries: HashMap<String, String> = HashMap()   //همینجا اینیشیالایز میکنیم
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
+        queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] =search
         return queries
     }
