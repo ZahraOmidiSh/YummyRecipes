@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_8mdp">
+    <!--Card-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardLay"
+        android:layout_width="@dimen/_140mdp"
+        android:layout_height="@dimen/_210mdp"
+        android:elevation="@dimen/_5mdp"
+        app:cardCornerRadius="@dimen/_12mdp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Image-->
+        <View
+            android:id="@+id/suggestedImg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130mdp"
+            android:background="@color/mediumGray"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_marginBottom="@dimen/_9mdp"
+            android:paddingHorizontal="@dimen/_3mdp">
+            <!--Heart-->
+            <View
+                android:id="@+id/suggestedHeartTxt"
+                android:layout_width="@dimen/_20mdp"
+                android:layout_height="@dimen/_14mdp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="160dp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Time-->
+            <View
+                android:id="@+id/suggestedTimeTxt"
+                android:layout_width="@dimen/_25mdp"
+                android:layout_height="@dimen/_14mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/suggestedHeartTxt" />
+            <!--Title-->
+            <View
+                android:id="@+id/suggestedTitleTxt"
+                android:layout_width="@dimen/_110mdp"
+                android:layout_height="@dimen/_6mdp"
+                android:layout_marginTop="@dimen/_7mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt" />
+
+            <View
+                android:id="@+id/suggestedTitleTxt2"
+                android:layout_width="@dimen/_120mdp"
+                android:layout_height="@dimen/_6mdp"
+                android:layout_marginTop="@dimen/_20mdp"
+                android:background="@drawable/bg_shimmer_gray"
+                app:layout_constraintStart_toStartOf="@id/suggestedHeartTxt"
+                app:layout_constraintTop_toBottomOf="@+id/suggestedHeartTxt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
