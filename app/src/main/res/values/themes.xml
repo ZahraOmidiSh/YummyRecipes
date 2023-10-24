@@ -241,5 +241,10 @@
         <item name="tint">@color/philippine_gray</item>
     </style>
 
+    <!--Search With Button-->
+    <style name="SearchWithButtonStyle" >
+        <item name="backgroundTint">@color/search_with_button_light</item>
+    </style>
+
 
 </resources>

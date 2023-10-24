@@ -238,4 +238,9 @@
         <item name="android:padding">@dimen/_9mdp</item>
         <item name="tint">@color/linen</item>
     </style>
+
+    <!--Search With Button-->
+    <style name="SearchWithButtonStyle" >
+        <item name="backgroundTint">@color/search_with_button_dark</item>
+    </style>
 </resources>
