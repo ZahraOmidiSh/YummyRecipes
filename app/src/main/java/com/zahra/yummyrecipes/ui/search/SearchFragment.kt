@@ -108,7 +108,12 @@ class SearchFragment : Fragment() {
             //Search
             searchEdt.addTextChangedListener {
                 if (it.toString().length > 2 && isNetworkAvailable) {
+                    simpleSearchLay.isVisible=true
+                    advancedSearchLay.isVisible=false
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
+                }else{
+                    simpleSearchLay.isVisible=false
+                    advancedSearchLay.isVisible=true
                 }
             }
         }
