@@ -5,6 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchAllIngredientsFragment">
+
+    <!--Ingredients List-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expandedList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/_45mdp"
+        android:paddingHorizontal="@dimen/_5mdp"
+        android:paddingBottom="@dimen/_90mdp"
+        android:clipToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <!--Close-->
     <ImageView
         android:id="@+id/closeImg"
@@ -13,18 +27,6 @@
         android:src="@drawable/plus"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <!--Ingredients List-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/expandedList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_43mdp"
-        android:paddingHorizontal="@dimen/_5mdp"
-        android:paddingBottom="@dimen/_50mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <!--SearchWithIngredientsButton-->
@@ -35,7 +37,7 @@
         android:layout_marginHorizontal="@dimen/_20mdp"
         android:layout_marginBottom="@dimen/_30mdp"
         android:insetTop="0dp"
-        android:enabled="true"
+        android:enabled="false"
         style="@style/SearchWithButtonStyle"
         android:insetBottom="0dp"
         android:text="@string/search_with_0_ingredients"
