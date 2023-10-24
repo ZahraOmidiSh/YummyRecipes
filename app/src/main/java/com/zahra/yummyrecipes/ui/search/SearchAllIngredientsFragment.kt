@@ -65,9 +65,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
             //load data
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                selectedIngredientsList=it.filter {ingredientModel ->
-                    ingredientModel.isSelected } as MutableList<IngredientsModel>
-                Log.e("selectedItems",viewModel.selectedItems.value.toString() )
+
                 //consider the args
                 val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
                 if (ingredientName != "_") {
@@ -82,6 +80,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         expandedIngredientsList.add(ingredient)
                     }
                     viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
+                    selectedIngredientsList=
+                        viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
+                            ingredientModel.isSelected } as MutableList<IngredientsModel>
+                    Log.e("selectedItems",selectedIngredientsList.toString() )
 
                 }
                 //set data
@@ -103,6 +105,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         expandIngredientsList.add(ingredient)
                     }
                     viewModel.expandedIngredientsList.postValue(expandIngredientsList)
+                    selectedIngredientsList=
+                        viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
+                            ingredientModel.isSelected } as MutableList<IngredientsModel>
+                    Log.e("selectedItems2",selectedIngredientsList.toString() )
                 }
             }
         }
