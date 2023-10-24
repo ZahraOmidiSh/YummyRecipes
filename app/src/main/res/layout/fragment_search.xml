@@ -49,12 +49,11 @@
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/_6mdp"
             android:paddingBottom="@dimen/_80mdp"
-            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shimmer_recycler_auto_start="true"
-            app:shimmer_recycler_item_count="1"
+            app:shimmer_recycler_item_count="3"
             app:shimmer_recycler_layout="@layout/item_favorite_shimmer"
             app:shimmer_recycler_shape="linear" />
 
