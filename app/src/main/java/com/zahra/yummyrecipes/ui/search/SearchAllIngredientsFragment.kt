@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.ui.search
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,7 +31,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private val viewModel: SearchViewModel by viewModels()
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
-    private val selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+    private var selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +47,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
@@ -56,19 +58,31 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
+            //show the selected items size in button
+            viewModel.selectedItems.observe(viewLifecycleOwner){
+                searchWithIngredientsButton.isEnabled = it.size>0
+                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
+            }
             //load data
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+                selectedIngredientsList=it.filter {ingredientModel ->
+                    ingredientModel.isSelected } as MutableList<IngredientsModel>
+                Log.e("selectedItems",viewModel.selectedItems.value.toString() )
                 //consider the args
                 val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
                 if (ingredientName != "_") {
                     it.forEach { ingredient ->
                         if (ingredientName == ingredient.ingredientsName) {
                             ingredient.isSelected = true
+//                            selectedIngredientsList.add(ingredient)
+//                            viewModel.selectedItems.value=selectedIngredientsList
+//                            Log.e("selectedItems",viewModel.selectedItems.value.toString() )
                             ingredientName = "_"
                         }
                         expandedIngredientsList.add(ingredient)
                     }
                     viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
+
                 }
                 //set data
                 searchAdapter.setData(it)
