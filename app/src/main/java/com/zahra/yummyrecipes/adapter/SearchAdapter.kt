@@ -38,16 +38,6 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.V
 
     override fun getItemId(position: Int) = position.toLong()
 
-    override fun onViewAttachedToWindow(holder: ViewHolder) {
-        super.onViewAttachedToWindow(holder)
-        holder.initAnimation()
-    }
-
-    override fun onViewDetachedFromWindow(holder: ViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-        holder.clearAnimation()
-    }
-
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: Result) {
@@ -73,13 +63,6 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.V
             }
         }
 
-        fun initAnimation() {
-            binding.root.animation = AnimationUtils.loadAnimation(context, R.anim.item_anim)
-        }
-
-        fun clearAnimation() {
-            binding.root.clearAnimation()
-        }
 
     }
 
