@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,10 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(layoutInflater)
+        viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
+            Log.e("selected Search Fragment",selectedItems.toString() )
+        }
+
         return binding.root
     }
 
@@ -62,7 +67,11 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-
+            _binding = FragmentSearchBinding.inflate(layoutInflater)
+            viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
+                Log.e("selected Search Fragment 2",selectedItems.toString() )
+            }
+            Log.e("selected Search Fragment 2",viewModel.selectedItems.value.toString() )
             /*Ingredients*/
             //load data
             viewModel.loadLimitIngredientsList()

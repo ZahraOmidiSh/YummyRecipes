@@ -58,6 +58,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
+            //search with ingredientsButton
+            searchWithIngredientsButton.setOnClickListener {
+                val direction = SearchAllIngredientsFragmentDirections.actionToSearch()
+                findNavController().navigate(direction)
+            }
             //show the selected items size in button
             viewModel.selectedItems.observe(viewLifecycleOwner){
                 searchWithIngredientsButton.isEnabled = it.size>0
@@ -84,6 +89,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
                             ingredientModel.isSelected } as MutableList<IngredientsModel>
                     Log.e("selectedItems",selectedIngredientsList.toString() )
+                    viewModel.selectedItems.postValue(selectedIngredientsList)
+                    Log.e("selectedItems",viewModel.selectedItems.value.toString() )
 
                 }
                 //set data
@@ -106,9 +113,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     }
                     viewModel.expandedIngredientsList.postValue(expandIngredientsList)
                     selectedIngredientsList=
-                        viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
-                            ingredientModel.isSelected } as MutableList<IngredientsModel>
+                        viewModel.expandedIngredientsList.value?.filter { ingredientModels ->
+                            ingredientModels.isSelected } as MutableList<IngredientsModel>
                     Log.e("selectedItems2",selectedIngredientsList.toString() )
+                    viewModel.selectedItems.postValue(selectedIngredientsList)
+                    Log.e("selectedItems",viewModel.selectedItems.value.toString() )
                 }
             }
         }
