@@ -34,6 +34,9 @@
         android:name="com.zahra.yummyrecipes.ui.recipe.RecipeFragment"
         android:label="fragment_recipe"
         tools:layout="@layout/fragment_recipe" />
+    <action
+        android:id="@+id/actionToSearch"
+        app:destination="@id/searchFragment" />
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.zahra.yummyrecipes.ui.search.SearchFragment"
@@ -88,7 +91,7 @@
         android:id="@+id/searchAllIngredientsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.SearchAllIngredientsFragment"
         android:label="fragment_search_all_ingredients"
-        tools:layout="@layout/fragment_search_all_ingredients" >
+        tools:layout="@layout/fragment_search_all_ingredients">
 
         <argument
             android:name="IngredientName"
