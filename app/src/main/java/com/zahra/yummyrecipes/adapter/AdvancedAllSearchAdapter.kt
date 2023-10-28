@@ -21,7 +21,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private lateinit var binding: ItemIngredientsAllSearchBinding
     private val items = mutableListOf<IngredientsModel>()
-    private val selectedItems = HashSet<IngredientsModel>()
     private lateinit var context: Context
 
 
@@ -60,17 +59,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                if (item.isSelected) {
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                } else {
-                    if (isDarkTheme()) {
-                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_dark)
-                    } else {
-                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_light)
-                    }
-                }
-
-
                 //Click
                 root.setOnClickListener {
                     onItemClickListener?.let { it(item) }
@@ -85,12 +73,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     fun setonItemClickListener(listener: (IngredientsModel) -> Unit) {
         onItemClickListener = listener
     }
-
-    fun isDarkTheme(): Boolean {
-        return context.resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-    }
-
 
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
