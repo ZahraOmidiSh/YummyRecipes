@@ -156,7 +156,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
 
     fun loadSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch {
-        selectedItems.value=list
+        selectedItems.postValue(list)
     }
 
 
