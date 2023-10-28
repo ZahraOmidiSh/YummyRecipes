@@ -57,10 +57,6 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(layoutInflater)
-        viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
-            Log.e("selected Search Fragment 1",selectedItems.toString() )
-        }
-
         return binding.root
     }
 

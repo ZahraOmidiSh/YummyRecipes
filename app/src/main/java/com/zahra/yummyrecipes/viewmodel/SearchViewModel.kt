@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -155,8 +156,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //SelectedItems
     val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun loadSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch {
+    fun loadSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch(Dispatchers.IO) {
+        Log.e("loadSelectedItems", list.toString() )
         selectedItems.postValue(list)
+        Log.e("ValSelectedItems", selectedItems.value.toString() )
     }
 
 
