@@ -60,6 +60,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //search with ingredientsButton
             searchWithIngredientsButton.setOnClickListener {
+                Log.e("selectedItemsB",selectedIngredientsList.toString() )
+                viewModel.loadSelectedItems(selectedIngredientsList)
                 val direction = SearchAllIngredientsFragmentDirections.actionToSearch()
                 findNavController().navigate(direction)
             }
@@ -89,7 +91,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
                             ingredientModel.isSelected } as MutableList<IngredientsModel>
                     Log.e("selectedItems",selectedIngredientsList.toString() )
-                    viewModel.selectedItems.postValue(selectedIngredientsList)
+                    viewModel.loadSelectedItems(selectedIngredientsList)
                     Log.e("selectedItems",viewModel.selectedItems.value.toString() )
 
                 }
@@ -116,7 +118,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         viewModel.expandedIngredientsList.value?.filter { ingredientModels ->
                             ingredientModels.isSelected } as MutableList<IngredientsModel>
                     Log.e("selectedItems2",selectedIngredientsList.toString() )
-                    viewModel.selectedItems.postValue(selectedIngredientsList)
+                    viewModel.loadSelectedItems(selectedIngredientsList)
                     Log.e("selectedItems",viewModel.selectedItems.value.toString() )
                 }
             }

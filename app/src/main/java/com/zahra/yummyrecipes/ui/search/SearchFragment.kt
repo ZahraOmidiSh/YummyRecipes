@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -57,7 +58,7 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(layoutInflater)
         viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
-            Log.e("selected Search Fragment",selectedItems.toString() )
+            Log.e("selected Search Fragment 1",selectedItems.toString() )
         }
 
         return binding.root
@@ -70,8 +71,9 @@ class SearchFragment : Fragment() {
             _binding = FragmentSearchBinding.inflate(layoutInflater)
             viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
                 Log.e("selected Search Fragment 2",selectedItems.toString() )
+                Toast.makeText(requireContext(), selectedItems.toString(), Toast.LENGTH_SHORT).show()
             }
-            Log.e("selected Search Fragment 2",viewModel.selectedItems.value.toString() )
+            Log.e("selected Search Fragment 3",viewModel.selectedItems.value.toString() )
             /*Ingredients*/
             //load data
             viewModel.loadLimitIngredientsList()
