@@ -50,10 +50,6 @@ class AdvancedSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
 
-                closeImg.setOnClickListener{
-                    onItemClickListener?.let { it(item.ingredientsName) }
-                }
-
                 //Click
                 cardLay.setOnClickListener {
                     onItemClickListener?.let { it(item.ingredientsName) }
