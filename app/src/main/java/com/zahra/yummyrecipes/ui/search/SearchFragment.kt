@@ -68,14 +68,7 @@ class SearchFragment : Fragment() {
             /*Ingredients*/
             //RecyclerView setup
             advancedSearchAdapter.setSize(10)
-            ingredientsList.setupRecyclerview(
-                LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                ),
-                advancedSearchAdapter
-            )
+
             //load data
             viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
@@ -89,6 +82,15 @@ class SearchFragment : Fragment() {
                     val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
                     findNavController().navigate(direction)
                 }
+
+                ingredientsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    advancedSearchAdapter
+                )
 
                 //Click on items
                 advancedSearchAdapter.setonItemClickListener { ingredientName ->
