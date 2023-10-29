@@ -10,10 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
+import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -25,13 +27,14 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var searchAdapter: AdvancedAllSearchAdapter
+    lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
+    private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
     private var ingredientName = "_"
-    private lateinit var selectedIngredientsList:List<IngredientsModel>
+    private lateinit var selectedIngredientsList: List<IngredientsModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,71 +55,28 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         //Args
         args.let {
-            if(it.ingredientName != "_"){
+            if (it.ingredientName != "_") {
 
             }
         }
         //InitViews
         binding.apply {
+            viewModel.ingredientListSize = 20
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
-            //search with ingredientsButton
-            searchWithIngredientsButton.setOnClickListener {
-                viewModel.loadSelectedItems(selectedIngredientsList)
-                val direction = SearchAllIngredientsFragmentDirections.actionToSearch()
-                findNavController().navigate(direction)
-            }
-            //show the selected items size in button
-            viewModel.selectedItems.observe(viewLifecycleOwner){
-                searchWithIngredientsButton.isEnabled = it.size>0
-                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
-            }
             //load data
+            viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-
-                //consider the args
-                val expandedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
-                if (ingredientName != "_") {
-                    it.forEach { ingredient ->
-                        if (ingredientName == ingredient.ingredientsName) {
-                            ingredient.isSelected = true
-//                            selectedIngredientsList.add(ingredient)
-//                            viewModel.selectedItems.value=selectedIngredientsList
-                            ingredientName = "_"
-                        }
-                        expandedIngredientsList.add(ingredient)
-                    }
-                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
-                    selectedIngredientsList=
-                        viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
-                            ingredientModel.isSelected } as MutableList<IngredientsModel>
-                    viewModel.loadSelectedItems(selectedIngredientsList)
-
-                }
-                //set data
-                searchAdapter.setData(it)
-                //RecyclerView setup
-                expandedList.apply {
-                    layoutManager =
-                        GridLayoutManager(requireContext(), 4)
-                    adapter = searchAdapter
-                    setHasFixedSize(true)
-                }
-                //Click
-                searchAdapter.setonItemClickListener { ingredientModel ->
-                    val expandIngredientsList: MutableList<IngredientsModel> = mutableListOf()
-                    viewModel.expandedIngredientsList.value?.forEach { ingredient ->
-                        if (ingredientModel == ingredient) {
-                            ingredient.isSelected = !ingredient.isSelected
-                        }
-                        expandIngredientsList.add(ingredient)
-                    }
-                    viewModel.expandedIngredientsList.postValue(expandIngredientsList)
-                    selectedIngredientsList=
-                        viewModel.expandedIngredientsList.value?.filter { ingredientModels ->
-                            ingredientModels.isSelected } as MutableList<IngredientsModel>
-                    viewModel.loadSelectedItems(selectedIngredientsList)
-                }
+                searchIngredientsList.clear()
+                searchIngredientsList.addAll(it)
+                advancedAllSearchAdapter.setData(searchIngredientsList)
+            }
+            //RecyclerView setup
+            expandedList.apply {
+                layoutManager =
+                    GridLayoutManager(requireContext(), 4)
+                adapter = advancedAllSearchAdapter
+                setHasFixedSize(true)
             }
         }
     }
