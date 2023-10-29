@@ -64,7 +64,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            viewModel.ingredientListSize=10
+//            viewModel.ingredientListSize=10
             /*Ingredients*/
             //load data
             viewModel.loadExpandedIngredientsList()

@@ -61,7 +61,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
         //InitViews
         binding.apply {
-            viewModel.ingredientListSize = 20
+//            viewModel.ingredientListSize = 20
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
