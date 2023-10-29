@@ -31,7 +31,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private val viewModel: SearchViewModel by viewModels()
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
-    private var selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
+    private lateinit var selectedIngredientsList:List<IngredientsModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +52,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         //Args
         args.let {
-            ingredientName = args.ingredientName
+            if(it.ingredientName != "_"){
+
+            }
         }
         //InitViews
         binding.apply {
