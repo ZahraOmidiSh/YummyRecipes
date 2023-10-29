@@ -12,9 +12,10 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import javax.inject.Inject
 
-class AdvancedSearchAdapter @Inject constructor(private var size: Int) :
+class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
+    private  var listSize=0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsSearchBinding.inflate(
@@ -28,7 +29,7 @@ class AdvancedSearchAdapter @Inject constructor(private var size: Int) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(items[position])
 
-    override fun getItemCount() = size
+    override fun getItemCount() = listSize
 
     override fun getItemViewType(position: Int) = position
 
@@ -69,6 +70,10 @@ class AdvancedSearchAdapter @Inject constructor(private var size: Int) :
         items.clear()
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
+    }
+
+    fun setSize(size:Int){
+        listSize=size
     }
 
 }

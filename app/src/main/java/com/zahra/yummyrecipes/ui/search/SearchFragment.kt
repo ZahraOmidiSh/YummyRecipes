@@ -73,6 +73,7 @@ class SearchFragment : Fragment() {
                     searchIngredientsList.clear()
                     searchIngredientsList.addAll(it)
                     advancedSearchAdapter.setData(searchIngredientsList)
+                    advancedSearchAdapter.setSize(10)
                 }
                 //RecyclerView setup
                 ingredientsList.setupRecyclerview(
