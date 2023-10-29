@@ -65,11 +65,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
-            viewModel.loadExpandedIngredientsList()
+//            viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                searchIngredientsList.clear()
-                searchIngredientsList.addAll(it)
-                advancedAllSearchAdapter.setData(searchIngredientsList)
+//                searchIngredientsList.clear()
+//                searchIngredientsList.addAll(it)
+                advancedAllSearchAdapter.setData(it)
+                advancedAllSearchAdapter.setSize(24)
             }
             //RecyclerView setup
             expandedList.apply {
