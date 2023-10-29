@@ -53,6 +53,12 @@ class AdvancedSearchAdapter @Inject constructor() :
                 closeImg.setOnClickListener{
                     onItemClickListener?.let { it(item.ingredientsName) }
                 }
+
+                //Click
+                cardLay.setOnClickListener {
+                    onItemClickListener?.let { it(item.ingredientsName) }
+
+                }
             }
         }
     }
