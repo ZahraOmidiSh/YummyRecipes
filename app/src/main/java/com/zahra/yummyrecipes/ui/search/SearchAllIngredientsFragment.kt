@@ -61,17 +61,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
         //InitViews
         binding.apply {
-//            viewModel.ingredientListSize = 20
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
-//            viewModel.loadExpandedIngredientsList()
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-//                searchIngredientsList.clear()
-//                searchIngredientsList.addAll(it)
-                advancedAllSearchAdapter.setData(it)
-                advancedAllSearchAdapter.setSize(24)
-            }
+            advancedAllSearchAdapter.setSize(24)
             //RecyclerView setup
             expandedList.apply {
                 layoutManager =
@@ -79,6 +72,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
             }
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+                advancedAllSearchAdapter.setData(it)
+            }
+
         }
     }
 
