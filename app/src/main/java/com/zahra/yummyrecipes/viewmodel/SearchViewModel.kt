@@ -27,8 +27,8 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
     //Limited
+    /*
     val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-
     fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data = loadIngredientsList(
             "carrot",
@@ -44,6 +44,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         )
         limitIngredientsList.postValue(data)
     }
+*/
 
     //Expanded
     val expandedIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
@@ -79,7 +80,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     private fun loadIngredientsList(vararg strings: String): MutableList<IngredientsModel> {
         val ingredients = mutableListOf<IngredientsModel>()
-
         strings.forEach { ingredient ->
             when (ingredient) {
                 "carrot" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_carrot))
@@ -156,11 +156,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //SelectedItems
     val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun loadSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch(Dispatchers.IO) {
-        Log.e("loadSelectedItems", list.toString() )
+    fun fillSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch(Dispatchers.IO) {
         selectedItems.postValue(list)
-        Log.e("ValSelectedItems", selectedItems.value.toString() )
     }
+
+    var ingredientListSize :Int=0
 
 
 }
