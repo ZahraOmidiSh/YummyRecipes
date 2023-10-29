@@ -3,7 +3,6 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -13,10 +12,9 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import javax.inject.Inject
 
-class AdvancedSearchAdapter @Inject constructor(size:Int) :
+class AdvancedSearchAdapter @Inject constructor(private var size: Int) :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private var size=size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsSearchBinding.inflate(
@@ -53,13 +51,6 @@ class AdvancedSearchAdapter @Inject constructor(size:Int) :
 
                 closeImg.setOnClickListener{
                     onItemClickListener?.let { it(item.ingredientsName) }
-                }
-
-                //Click
-                cardLay.setOnClickListener {
-                    item.isSelected=true
-                    onItemClickListener?.let { it(item.ingredientsName) }
-
                 }
             }
         }
