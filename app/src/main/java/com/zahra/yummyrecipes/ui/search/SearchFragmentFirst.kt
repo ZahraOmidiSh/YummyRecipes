@@ -72,35 +72,35 @@ class SearchFragmentFirst : Fragment() {
             Log.e("selected Search Fragment 3",viewModel.selectedItems.value.toString() )
             /*Ingredients*/
             //load data
-            viewModel.loadLimitIngredientsList()
-            viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
-                if (searchIngredientsList.size == 0) {
-                    searchIngredientsList.clear()
-                    searchIngredientsList.addAll(it)
-                    advancedSearchAdapter.setData(searchIngredientsList)
-                }
-                //RecyclerView setup
-                ingredientsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    advancedSearchAdapter
-                )
-                viewAllSearchByIngredients.setOnClickListener {
-                    val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
-                    findNavController().navigate(direction)
-                }
-
-                //Click on items
-                advancedSearchAdapter.setonItemClickListener { ingredientName ->
-                    val action =
-                        SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
-                    findNavController().navigate(action)
-                }
-
-            }
+//            viewModel.loadLimitIngredientsList()
+//            viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
+//                if (searchIngredientsList.size == 0) {
+//                    searchIngredientsList.clear()
+//                    searchIngredientsList.addAll(it)
+//                    advancedSearchAdapter.setData(searchIngredientsList)
+//                }
+//                //RecyclerView setup
+//                ingredientsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    advancedSearchAdapter
+//                )
+//                viewAllSearchByIngredients.setOnClickListener {
+//                    val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
+//                    findNavController().navigate(direction)
+//                }
+//
+//                //Click on items
+//                advancedSearchAdapter.setonItemClickListener { ingredientName ->
+//                    val action =
+//                        SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
+//                    findNavController().navigate(action)
+//                }
+//
+//            }
 
             //Check Internet
             lifecycleScope.launch {

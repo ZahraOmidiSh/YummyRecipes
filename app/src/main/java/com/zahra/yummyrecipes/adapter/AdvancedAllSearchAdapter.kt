@@ -22,6 +22,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     private lateinit var binding: ItemIngredientsAllSearchBinding
     private val items = mutableListOf<IngredientsModel>()
     private lateinit var context: Context
+    private  var listSize=0
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,7 +39,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         holder.bind(items[position])
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = listSize
 
     override fun getItemViewType(position: Int) = position
 
@@ -80,5 +81,9 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         items.clear()
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
+    }
+
+    fun setSize(size:Int){
+        listSize=size
     }
 }

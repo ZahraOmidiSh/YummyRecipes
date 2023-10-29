@@ -59,11 +59,11 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //search with ingredientsButton
-            searchWithIngredientsButton.setOnClickListener {
-                viewModel.loadSelectedItems(selectedIngredientsList)
-                val direction = SearchAllIngredientsFragmentDirections.actionToSearch()
-                findNavController().navigate(direction)
-            }
+//            searchWithIngredientsButton.setOnClickListener {
+//                viewModel.loadSelectedItems(selectedIngredientsList)
+//                val direction = SearchAllIngredientsFragmentDirections.actionToSearch()
+//                findNavController().navigate(direction)
+//            }
             //show the selected items size in button
             viewModel.selectedItems.observe(viewLifecycleOwner){
                 searchWithIngredientsButton.isEnabled = it.size>0
@@ -88,7 +88,7 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
                     selectedIngredientsList=
                         viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
                             ingredientModel.isSelected } as MutableList<IngredientsModel>
-                    viewModel.loadSelectedItems(selectedIngredientsList)
+//                    viewModel.loadSelectedItems(selectedIngredientsList)
 
                 }
                 //set data
@@ -113,7 +113,7 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
                     selectedIngredientsList=
                         viewModel.expandedIngredientsList.value?.filter { ingredientModels ->
                             ingredientModels.isSelected } as MutableList<IngredientsModel>
-                    viewModel.loadSelectedItems(selectedIngredientsList)
+//                    viewModel.loadSelectedItems(selectedIngredientsList)
                 }
             }
         }
