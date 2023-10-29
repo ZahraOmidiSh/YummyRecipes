@@ -64,16 +64,11 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            _binding = FragmentSearchBinding.inflate(layoutInflater)
-            viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
-                Log.e("selected Search Fragment 2",selectedItems.toString() )
-                Toast.makeText(requireContext(), selectedItems.toString(), Toast.LENGTH_SHORT).show()
-            }
-            Log.e("selected Search Fragment 3",viewModel.selectedItems.value.toString() )
+            viewModel.ingredientListSize=10
             /*Ingredients*/
             //load data
-            viewModel.loadLimitIngredientsList()
-            viewModel.limitIngredientsList.observe(viewLifecycleOwner) {
+            viewModel.loadExpandedIngredientsList()
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
                 if (searchIngredientsList.size == 0) {
                     searchIngredientsList.clear()
                     searchIngredientsList.addAll(it)
