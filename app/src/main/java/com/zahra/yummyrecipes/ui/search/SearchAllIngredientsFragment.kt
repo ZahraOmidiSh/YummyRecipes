@@ -66,14 +66,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //load data
             advancedAllSearchAdapter.setSize(24)
             //RecyclerView setup
+
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+                advancedAllSearchAdapter.setData(it)
+            }
             expandedList.apply {
                 layoutManager =
                     GridLayoutManager(requireContext(), 4)
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
-            }
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-                advancedAllSearchAdapter.setData(it)
             }
 
         }
