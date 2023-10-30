@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,7 +33,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
-    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var viewModel: SearchViewModel
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
     private var ingredientName = "_"
@@ -39,7 +41,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadExpandedIngredientsList()
+        viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -65,15 +67,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
-//            advancedAllSearchAdapter.setSize(24)
-            //RecyclerView setup
-
-//            viewModel.loadExpandedIngredientsList()
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-//                searchIngredientsList.clear()
-//                searchIngredientsList.addAll(it)
-                advancedAllSearchAdapter.setData(it)
-            }
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner, Observer { expandedIngredients ->
+                Log.e("viewModel3", expandedIngredients.toString() )
+                advancedAllSearchAdapter.setData(expandedIngredients)
+            })
             expandedList.apply {
                 layoutManager =
                     GridLayoutManager(requireContext(), 4)
