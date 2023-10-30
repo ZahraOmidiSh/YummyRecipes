@@ -5,11 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -18,11 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
-import com.zahra.yummyrecipes.adapter.FavoriteAdapter
 import com.zahra.yummyrecipes.adapter.SearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
-import com.zahra.yummyrecipes.models.search.IngredientsModel
-import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.NetworkChecker
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -51,12 +46,12 @@ class SearchFragment : Fragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private var isNetworkAvailable by Delegates.notNull<Boolean>()
-    private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,35 +65,32 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-
             //load data
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner, Observer { expandedIngredients ->
-                Log.e("viewModel2", expandedIngredients.toString() )
-                advancedSearchAdapter.setData(expandedIngredients)
-            })
+            viewModel.expandedIngredientsList.observe(
+                viewLifecycleOwner,
+                Observer { expandedIngredients ->
+                    Log.e("viewModel2", expandedIngredients.toString())
+                    advancedSearchAdapter.setData(expandedIngredients)
+                })
+            viewAllSearchByIngredients.setOnClickListener {
+                val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
+                findNavController().navigate(direction)
+            }
+            ingredientsList.setupRecyclerview(
+                LinearLayoutManager(
+                    requireContext(),
+                    LinearLayoutManager.HORIZONTAL,
+                    false
+                ),
+                advancedSearchAdapter
+            )
 
-                viewAllSearchByIngredients.setOnClickListener {
-                    val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
-                    findNavController().navigate(direction)
-                }
-
-                ingredientsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    advancedSearchAdapter
-                )
-
-                //Click on items
-                advancedSearchAdapter.setonItemClickListener { ingredientName ->
-                    val action =
-                        SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
-                    findNavController().navigate(action)
-                }
-
-
+            //Click on items
+            advancedSearchAdapter.setonItemClickListener { ingredientName ->
+                val action =
+                    SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                findNavController().navigate(action)
+            }
 
             //Check Internet
             lifecycleScope.launch {
@@ -113,16 +105,15 @@ class SearchFragment : Fragment() {
             //Search
             searchEdt.addTextChangedListener {
                 if (it.toString().length > 2 && isNetworkAvailable) {
-                    simpleSearchLay.isVisible=true
-                    advancedSearchLay.isVisible=false
+                    simpleSearchLay.isVisible = true
+                    advancedSearchLay.isVisible = false
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
-                }else{
-                    simpleSearchLay.isVisible=false
-                    advancedSearchLay.isVisible=true
+                } else {
+                    simpleSearchLay.isVisible = false
+                    advancedSearchLay.isVisible = true
                 }
             }
-    }
-
+        }
         //Show data
         loadRecentData()
     }
@@ -132,12 +123,12 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        advancedSearchLay.isVisible=false
+                        advancedSearchLay.isVisible = false
                         simpleSearchList.showShimmer()
                     }
 
                     is NetworkRequest.Success -> {
-                        advancedSearchLay.isVisible=false
+                        advancedSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
@@ -148,7 +139,7 @@ class SearchFragment : Fragment() {
                     }
 
                     is NetworkRequest.Error -> {
-                        advancedSearchLay.isVisible=false
+                        advancedSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
