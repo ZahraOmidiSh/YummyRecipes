@@ -10,6 +10,8 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
@@ -47,10 +49,14 @@ class SearchFragment : Fragment() {
     lateinit var networkChecker: NetworkChecker
 
     //Others
-    private val viewModel: SearchViewModel by viewModels()
+    private lateinit var viewModel: SearchViewModel
     private var isNetworkAvailable by Delegates.notNull<Boolean>()
     private val searchIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,19 +70,11 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-//            viewModel.ingredientListSize=10
-            /*Ingredients*/
-            //RecyclerView setup
-//            advancedSearchAdapter.setSize(10)
 
             //load data
-//            viewModel.loadExpandedIngredientsList()
-            viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
-//                if (searchIngredientsList.size == 0) {
-//                    searchIngredientsList.clear()
-//                    searchIngredientsList.addAll(it)
-                    advancedSearchAdapter.setData(it)
-//                }
+            viewModel.expandedIngredientsList.observe(viewLifecycleOwner, Observer { expandedIngredients ->
+                Log.e("viewModel2", expandedIngredients.toString() )
+            })
 
                 viewAllSearchByIngredients.setOnClickListener {
                     val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
@@ -99,7 +97,7 @@ class SearchFragment : Fragment() {
                     findNavController().navigate(action)
                 }
 
-            }
+
 
             //Check Internet
             lifecycleScope.launch {
@@ -122,7 +120,7 @@ class SearchFragment : Fragment() {
                     advancedSearchLay.isVisible=true
                 }
             }
-        }
+    }
 
         //Show data
         loadRecentData()
