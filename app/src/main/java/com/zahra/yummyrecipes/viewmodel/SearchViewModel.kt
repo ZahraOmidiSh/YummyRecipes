@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -47,7 +48,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 */
 
     //Expanded
-    val expandedIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
+     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
+    val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
     fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data = loadIngredientsList(
             "carrot",
@@ -75,7 +77,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             "beans",
             "peanutButter"
         )
-        expandedIngredientsList.postValue(data)
+        _expandedIngredientsList.postValue(data)
     }
 
     private fun loadIngredientsList(vararg strings: String): MutableList<IngredientsModel> {
@@ -159,8 +161,5 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     fun fillSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch(Dispatchers.IO) {
         selectedItems.postValue(list)
     }
-
-    var ingredientListSize :Int=0
-
 
 }

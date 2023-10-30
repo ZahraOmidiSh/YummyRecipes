@@ -84,7 +84,7 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
                         }
                         expandedIngredientsList.add(ingredient)
                     }
-                    viewModel.expandedIngredientsList.postValue(expandedIngredientsList)
+                    viewModel._expandedIngredientsList.postValue(expandedIngredientsList)
                     selectedIngredientsList=
                         viewModel.expandedIngredientsList.value?.filter { ingredientModel ->
                             ingredientModel.isSelected } as MutableList<IngredientsModel>
@@ -109,7 +109,7 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
                         }
                         expandIngredientsList.add(ingredient)
                     }
-                    viewModel.expandedIngredientsList.postValue(expandIngredientsList)
+                    viewModel._expandedIngredientsList.postValue(expandIngredientsList)
                     selectedIngredientsList=
                         viewModel.expandedIngredientsList.value?.filter { ingredientModels ->
                             ingredientModels.isSelected } as MutableList<IngredientsModel>
