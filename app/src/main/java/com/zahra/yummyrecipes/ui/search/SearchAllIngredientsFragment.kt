@@ -18,6 +18,7 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -54,20 +55,23 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
-        args.let {
-            if (it.ingredientName != "_") {
-
-            }
-        }
+//        args.let {
+//            if (it.ingredientName != "_") {
+//
+//            }
+//        }
         //InitViews
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             //load data
-            advancedAllSearchAdapter.setSize(24)
+//            advancedAllSearchAdapter.setSize(24)
             //RecyclerView setup
 
+//            viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
+//                searchIngredientsList.clear()
+//                searchIngredientsList.addAll(it)
                 advancedAllSearchAdapter.setData(it)
             }
             expandedList.apply {

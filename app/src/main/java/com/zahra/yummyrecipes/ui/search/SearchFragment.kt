@@ -67,10 +67,10 @@ class SearchFragment : Fragment() {
 //            viewModel.ingredientListSize=10
             /*Ingredients*/
             //RecyclerView setup
-            advancedSearchAdapter.setSize(10)
+//            advancedSearchAdapter.setSize(10)
 
             //load data
-            viewModel.loadExpandedIngredientsList()
+//            viewModel.loadExpandedIngredientsList()
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
 //                if (searchIngredientsList.size == 0) {
 //                    searchIngredientsList.clear()
@@ -153,6 +153,8 @@ class SearchFragment : Fragment() {
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
+
+                    else -> {}
                 }
 
             }
