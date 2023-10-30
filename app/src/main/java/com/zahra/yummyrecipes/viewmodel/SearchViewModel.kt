@@ -50,6 +50,14 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Expanded
      val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
+
+    fun updateExpandedIngredientByName(ingredientName: String, isSelected: Boolean) {
+        val currentList = _expandedIngredientsList.value ?: return
+        val updatedList = currentList.toMutableList()
+        val itemToUpdate = updatedList.find { it.ingredientsName == ingredientName }
+        itemToUpdate?.isSelected = isSelected
+        _expandedIngredientsList.value = updatedList
+    }
     fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data = loadIngredientsList(
             "carrot",
