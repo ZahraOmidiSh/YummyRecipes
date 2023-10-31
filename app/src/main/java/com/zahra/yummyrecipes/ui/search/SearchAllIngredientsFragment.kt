@@ -32,6 +32,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
+    private var ingredientName = "_"
     private lateinit var selectedIngredientsList: List<IngredientsModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +61,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
         //Args
         args.let {
+            ingredientName=it.adapterPositon.toString()
+            if (ingredientName!="_"){
+                viewModel.updateExpandedIngredientByName(ingredientName,true)
+            }
         }
         //InitViews
         binding.apply {
