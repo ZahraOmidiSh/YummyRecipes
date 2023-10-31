@@ -48,7 +48,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 */
 
     //Expanded
-     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
+    val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
 
     fun updateExpandedIngredientByName(ingredientName: String, isSelected: Boolean) {
@@ -58,6 +58,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         itemToUpdate?.isSelected = isSelected
         _expandedIngredientsList.value = updatedList
     }
+
     fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
         val data = loadIngredientsList(
             "carrot",
@@ -144,12 +145,12 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         return ingredients
     }
 
-    fun searchQueries(search:String): HashMap<String, String> {
+    fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()   //همینجا اینیشیالایز میکنیم
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
-        queries[QUERY] =search
+        queries[QUERY] = search
         return queries
     }
 
@@ -166,8 +167,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //SelectedItems
     val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun fillSelectedItems(list:MutableList<IngredientsModel>)= viewModelScope.launch(Dispatchers.IO) {
-        selectedItems.postValue(list)
-    }
+    fun fillSelectedItems(list: MutableList<IngredientsModel>) =
+        viewModelScope.launch(Dispatchers.IO) {
+            selectedItems.postValue(list)
+        }
 
 }

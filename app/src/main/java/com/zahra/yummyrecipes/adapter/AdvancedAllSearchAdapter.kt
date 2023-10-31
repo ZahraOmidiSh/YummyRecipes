@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-//    private lateinit var binding: ItemIngredientsAllSearchBinding
+    //    private lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
     private var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
@@ -33,7 +33,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position],selectedItems.contains(position))
+        holder.bind(items[position], selectedItems.contains(position))
     }
 
     override fun getItemCount() = items.size
@@ -42,7 +42,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
 
     override fun getItemId(position: Int) = position.toLong()
 
-    inner class ViewHolder (private val binding: ItemIngredientsAllSearchBinding):
+    inner class ViewHolder(private val binding: ItemIngredientsAllSearchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: IngredientsModel, isSelected: Boolean) {
@@ -66,7 +66,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 //Click
                 root.setOnClickListener {
                     val position = adapterPosition
-                    if(position != RecyclerView.NO_POSITION){
+                    if (position != RecyclerView.NO_POSITION) {
                         toggleItemSelection(position)
                         onItemClickListener?.let { it(item) }
                     }
@@ -74,6 +74,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
             }
         }
     }
+
     private fun toggleItemSelection(position: Int) {
         if (selectedItems.contains(position)) {
             selectedItems.remove(position)

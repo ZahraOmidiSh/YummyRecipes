@@ -17,7 +17,7 @@ class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private lateinit var binding: ItemIngredientsSearchBinding
     private var items = mutableListOf<IngredientsModel>()
-    private  var listSize=0
+    private var listSize = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemIngredientsSearchBinding.inflate(
@@ -76,8 +76,8 @@ class AdvancedSearchAdapter @Inject constructor() :
         diffUtils.dispatchUpdatesTo(this)
     }
 
-    fun setSize(size:Int){
-        listSize=size
+    fun setSize(size: Int) {
+        listSize = size
     }
 
 }
