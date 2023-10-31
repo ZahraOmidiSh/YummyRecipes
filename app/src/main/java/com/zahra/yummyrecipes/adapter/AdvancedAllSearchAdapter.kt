@@ -81,10 +81,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     private fun toggleItemSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
+        if (selectedItemPosition == position) {
+            selectedItemPosition = RecyclerView.NO_POSITION
         } else {
-            selectedItems.add(position)
+            selectedItemPosition = position
         }
         notifyItemChanged(position)
     }
