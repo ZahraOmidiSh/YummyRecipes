@@ -45,7 +45,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSearchAllIngredientsBinding.inflate(layoutInflater)
+        _binding = FragmentSearchAllIngredientsBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -57,27 +57,27 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         binding.apply {
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
-            //load data
-            viewModel.expandedIngredientsList.observe(
-                viewLifecycleOwner,
-                Observer { expandedIngredients ->
-                    Log.e("viewModel3", expandedIngredients.toString())
-                    advancedAllSearchAdapter.setData(expandedIngredients)
-                })
+            // Set up RecyclerView
             expandedList.apply {
                 layoutManager =
                     GridLayoutManager(requireContext(), 4)
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
             }
-            advancedAllSearchAdapter.setonItemClickListener {ingredientModel ->
+            // Observe and update data
+            viewModel.expandedIngredientsList.observe(
+                viewLifecycleOwner,
+                Observer { expandedIngredients ->
+                    Log.e("viewModel3", expandedIngredients.toString())
+                    advancedAllSearchAdapter.setData(expandedIngredients)
+                })
+            // Set item click listener
+            advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
                 ingredientModel.isSelected = !ingredientModel.isSelected
-                if(ingredientModel.isSelected){
-
-                }else{
-
-                }
-                viewModel.updateExpandedIngredientByName(ingredientModel.ingredientsName, ingredientModel.isSelected)
+                viewModel.updateExpandedIngredientByName(
+                    ingredientModel.ingredientsName,
+                    ingredientModel.isSelected
+                )
             }
         }
     }
