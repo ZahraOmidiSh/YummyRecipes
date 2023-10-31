@@ -17,7 +17,6 @@ class AdvancedSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedSearchAdapter.ViewHolder>() {
     private lateinit var binding: ItemIngredientsSearchBinding
     private var items = mutableListOf<IngredientsModel>()
-    private var listSize = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemIngredientsSearchBinding.inflate(
@@ -68,7 +67,6 @@ class AdvancedSearchAdapter @Inject constructor() :
         onItemClickListener = listener
     }
 
-
     fun setData(data: List<IngredientsModel>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
@@ -76,9 +74,4 @@ class AdvancedSearchAdapter @Inject constructor() :
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
     }
-
-    fun setSize(size: Int) {
-        listSize = size
-    }
-
 }

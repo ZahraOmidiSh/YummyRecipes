@@ -32,8 +32,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private val args: SearchAllIngredientsFragmentArgs by navArgs()
-    private var ingredientName = "_"
-    private var isSelected = false
     private lateinit var selectedIngredientsList: List<IngredientsModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,12 +56,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             if (selectedPosition != null) {
                 advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
             }
-
-        //Args
-        args.let {
-
-            ingredientName = args.ingredientName
-        }
 
         //InitViews
         binding.apply {

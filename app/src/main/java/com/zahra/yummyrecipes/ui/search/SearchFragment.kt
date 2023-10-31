@@ -14,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.adapter.SearchAdapter
@@ -34,7 +33,6 @@ class SearchFragment : Fragment() {
     //Binding
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private var selectedItemPosition: Int = RecyclerView.NO_POSITION
 
     @Inject
     lateinit var advancedSearchAdapter: AdvancedSearchAdapter

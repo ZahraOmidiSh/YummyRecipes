@@ -16,7 +16,6 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    //    private lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
     private var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
@@ -75,6 +74,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
             }
         }
     }
+
     fun updateSelectedItemPosition(position: Int) {
         selectedItemPosition = position
         notifyDataSetChanged()
