@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.adapter.SearchAdapter
@@ -33,6 +34,7 @@ class SearchFragment : Fragment() {
     //Binding
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private var selectedItemPosition: Int = RecyclerView.NO_POSITION
 
     @Inject
     lateinit var advancedSearchAdapter: AdvancedSearchAdapter
@@ -73,7 +75,7 @@ class SearchFragment : Fragment() {
                     advancedSearchAdapter.setData(expandedIngredients)
                 })
             viewAllSearchByIngredients.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
+                val direction = SearchFragmentDirections.actionToSearchAllIngredients(-1)
                 findNavController().navigate(direction)
             }
             ingredientsList.setupRecyclerview(
@@ -86,9 +88,9 @@ class SearchFragment : Fragment() {
             )
 
             //Click on items
-            advancedSearchAdapter.setonItemClickListener { ingredientName ->
+            advancedSearchAdapter.setonItemClickListener { ingredientPosition ->
                 val action =
-                    SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                    SearchFragmentDirections.actionToSearchAllIngredients(ingredientPosition)
                 findNavController().navigate(action)
             }
 
