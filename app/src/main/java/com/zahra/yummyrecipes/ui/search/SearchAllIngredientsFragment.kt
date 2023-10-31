@@ -59,13 +59,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 //            }
 
 
-        //Args
-        args.let {
-            ingredientName=it.adapterPositon.toString()
-            if (ingredientName!="_"){
-                viewModel.updateExpandedIngredientByName(ingredientName,true)
-            }
-        }
+
         //InitViews
         binding.apply {
             //close button
@@ -76,6 +70,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     GridLayoutManager(requireContext(), 4)
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
+            }
+
+            //Args
+            args.let {
+                ingredientName=it.ingredientName
+                if (ingredientName!="_"){
+                    Log.e("args", ingredientName )
+                    viewModel.updateExpandedIngredientByName(ingredientName,true)
+                }
             }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
