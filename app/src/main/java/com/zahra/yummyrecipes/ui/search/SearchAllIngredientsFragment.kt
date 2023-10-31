@@ -52,12 +52,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Args
-//        args.let {
-//            if (it.ingredientName != "_") {
-//
-//            }
-//        }
+
         //InitViews
         binding.apply {
             //close button
@@ -82,10 +77,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 }else{
 
                 }
-
                 viewModel.updateExpandedIngredientByName(ingredientModel.ingredientsName, ingredientModel.isSelected)
             }
-
         }
     }
 
