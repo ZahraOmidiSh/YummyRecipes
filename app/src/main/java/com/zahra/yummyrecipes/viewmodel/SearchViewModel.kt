@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +12,6 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.FULL_COUNT
-import com.zahra.yummyrecipes.utils.Constants.INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
@@ -27,25 +25,6 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
-    //Limited
-    /*
-    val limitIngredientsList = MutableLiveData<MutableList<IngredientsModel>>()
-    fun loadLimitIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
-        val data = loadIngredientsList(
-            "carrot",
-            "chicken",
-            "egg",
-            "pasta",
-            "apple",
-            "banana",
-            "cheese",
-            "rice",
-            "milk",
-            "fish"
-        )
-        limitIngredientsList.postValue(data)
-    }
-*/
 
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
@@ -163,13 +142,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         searchData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-
     //SelectedItems
     val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
 
-    fun fillSelectedItems(list: MutableList<IngredientsModel>) =
-        viewModelScope.launch(Dispatchers.IO) {
-            selectedItems.postValue(list)
-        }
 
 }

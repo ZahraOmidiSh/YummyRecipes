@@ -50,10 +50,10 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Args
-        args.let {
-            ingredientName = args.ingredientName
-        }
+//        //Args
+//        args.let {
+//            ingredientName = args.ingredientName
+//        }
         //InitViews
         binding.apply {
             //close button

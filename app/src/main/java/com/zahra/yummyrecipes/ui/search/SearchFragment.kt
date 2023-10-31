@@ -73,7 +73,7 @@ class SearchFragment : Fragment() {
                     advancedSearchAdapter.setData(expandedIngredients)
                 })
             viewAllSearchByIngredients.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToSearchAllIngredients("_")
+                val direction = SearchFragmentDirections.actionToSearchAllIngredients(-1)
                 findNavController().navigate(direction)
             }
             ingredientsList.setupRecyclerview(
@@ -86,9 +86,9 @@ class SearchFragment : Fragment() {
             )
 
             //Click on items
-            advancedSearchAdapter.setonItemClickListener { ingredientName ->
+            advancedSearchAdapter.setonItemClickListener { ingredientPosition ->
                 val action =
-                    SearchFragmentDirections.actionToSearchAllIngredients(ingredientName)
+                    SearchFragmentDirections.actionToSearchAllIngredients(ingredientPosition)
                 findNavController().navigate(action)
             }
 
