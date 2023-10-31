@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
@@ -53,9 +54,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
-        args.let {
-
-        }
+            val selectedPosition = arguments?.getInt("selectedPosition", RecyclerView.NO_POSITION)
+            if (selectedPosition != null) {
+                advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
+            }
 
         //InitViews
         binding.apply {
