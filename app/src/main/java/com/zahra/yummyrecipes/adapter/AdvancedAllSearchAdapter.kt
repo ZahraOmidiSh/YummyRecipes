@@ -20,6 +20,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     private var items = mutableListOf<IngredientsModel>()
     private var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
+    private var selectedItemPosition: Int = RecyclerView.NO_POSITION
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -58,7 +59,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     error(R.drawable.bg_rounded_white)
                 }
                 // Set item color based on selection
-                if (isSelected) {
+                if (adapterPosition == selectedItemPosition) {
                     root.setBackgroundColor(context.getColor(R.color.big_foot_feet2))
                 } else {
                     root.setBackgroundColor(context.getColor(android.R.color.transparent))
@@ -73,6 +74,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
             }
         }
+    }
+    fun updateSelectedItemPosition(position: Int) {
+        selectedItemPosition = position
+        notifyDataSetChanged()
     }
 
     private fun toggleItemSelection(position: Int) {
