@@ -95,7 +95,8 @@
 
         <argument
             android:name="IngredientPosition"
-            app:argType="Int" />
+            app:argType="integer"
+            android:defaultValue="-1" />
     </dialog>
 
 
