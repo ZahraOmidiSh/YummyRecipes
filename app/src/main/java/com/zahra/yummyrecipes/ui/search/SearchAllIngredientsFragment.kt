@@ -52,6 +52,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Args
+        args.let {
+
+        }
 
         //InitViews
         binding.apply {
@@ -68,7 +72,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    Log.e("viewModel3", expandedIngredients.toString())
                     advancedAllSearchAdapter.setData(expandedIngredients)
                 })
             // Set item click listener
