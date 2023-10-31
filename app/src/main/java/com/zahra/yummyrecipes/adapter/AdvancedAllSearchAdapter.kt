@@ -19,7 +19,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     private lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
     private lateinit var context: Context
-    private  var listSize=0
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -78,9 +77,5 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         items.clear()
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
-    }
-
-    fun setSize(size:Int){
-        listSize=size
     }
 }
