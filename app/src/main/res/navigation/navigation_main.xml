@@ -94,8 +94,8 @@
         tools:layout="@layout/fragment_search_all_ingredients">
 
         <argument
-            android:name="adapterPositon"
-            app:argType="integer" />
+            android:name="IngredientName"
+            app:argType="string" />
     </dialog>
 
 

@@ -60,7 +60,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
         //Args
         args.let {
-            advancedAllSearchAdapter.updateSelectedItemPosition(it.adapterPositon)
         }
         //InitViews
         binding.apply {
