@@ -52,11 +52,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Args
-            val selectedPosition = arguments?.getInt("selectedPosition", RecyclerView.NO_POSITION)
-            if (selectedPosition != null) {
-                advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
-            }
+//            val selectedPosition = arguments?.getInt("selectedPosition", RecyclerView.NO_POSITION)
+//            if (selectedPosition != null) {
+//                advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
+//            }
 
+
+        //Args
+        args.let {
+            advancedAllSearchAdapter.updateSelectedItemPosition(it.adapterPositon)
+        }
         //InitViews
         binding.apply {
             //close button
