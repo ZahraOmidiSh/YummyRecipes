@@ -54,16 +54,17 @@ class AdvancedSearchAdapter @Inject constructor() :
 
                 //Click
                 root.setOnClickListener {
-                    onItemClickListener?.let { it(item.ingredientsName) }
+                    val selectedItemPosition = adapterPosition
+                    onItemClickListener?.let { it(selectedItemPosition) }
 
                 }
             }
         }
     }
 
-    var onItemClickListener: ((String) -> Unit)? = null
+    var onItemClickListener: ((Int) -> Unit)? = null
 
-    fun setonItemClickListener(listener: (String) -> Unit) {
+    fun setonItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
     }
 
