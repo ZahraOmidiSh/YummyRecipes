@@ -59,6 +59,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
             }
 
+        //Args
+        args.let {
+
+            ingredientName = args.ingredientName
+        }
+
         //InitViews
         binding.apply {
             //close button
