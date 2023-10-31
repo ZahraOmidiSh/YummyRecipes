@@ -16,23 +16,24 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    private lateinit var binding: ItemIngredientsAllSearchBinding
+//    private lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
+    private var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = ItemIngredientsAllSearchBinding.inflate(
+        val binding = ItemIngredientsAllSearchBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
         context = parent.context
-        return ViewHolder()
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position],selectedItems.contains(position))
     }
 
     override fun getItemCount() = items.size
@@ -41,10 +42,10 @@ class AdvancedAllSearchAdapter @Inject constructor() :
 
     override fun getItemId(position: Int) = position.toLong()
 
-    inner class ViewHolder :
+    inner class ViewHolder (private val binding: ItemIngredientsAllSearchBinding):
         RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: IngredientsModel) {
+        fun bind(item: IngredientsModel, isSelected: Boolean) {
             binding.apply {
                 //Text
                 ingredientNameTxt.text = item.ingredientsName
@@ -56,13 +57,30 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
+                // Set item color based on selection
+                if (isSelected) {
+                    root.setBackgroundColor(context.getColor(R.color.big_foot_feet2))
+                } else {
+                    root.setBackgroundColor(context.getColor(android.R.color.transparent))
+                }
                 //Click
                 root.setOnClickListener {
-                    onItemClickListener?.let { it(item) }
+                    val position = adapterPosition
+                    if(position != RecyclerView.NO_POSITION){
+                        toggleItemSelection(position)
+                        onItemClickListener?.let { it(item) }
+                    }
                 }
-
             }
         }
+    }
+    private fun toggleItemSelection(position: Int) {
+        if (selectedItems.contains(position)) {
+            selectedItems.remove(position)
+        } else {
+            selectedItems.add(position)
+        }
+        notifyItemChanged(position)
     }
 
     var onItemClickListener: ((IngredientsModel) -> Unit)? = null
