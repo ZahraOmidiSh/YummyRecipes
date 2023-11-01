@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -16,7 +17,6 @@ import javax.inject.Inject
 
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
-    //    private lateinit var binding: ItemIngredientsAllSearchBinding
     private var items = mutableListOf<IngredientsModel>()
     private var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
@@ -59,9 +59,13 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 // Set item color based on selection
                 if (isSelected) {
-                    root.setBackgroundColor(context.getColor(R.color.big_foot_feet2))
+                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
                 } else {
-                    root.setBackgroundColor(context.getColor(android.R.color.transparent))
+                    if (isDarkTheme()) {
+                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_dark)
+                    } else {
+                        cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_light)
+                    }
                 }
                 //Click
                 root.setOnClickListener {
@@ -73,6 +77,11 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
             }
         }
+    }
+
+    fun isDarkTheme(): Boolean {
+        return context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
     fun toggleItemSelection(position: Int) {
