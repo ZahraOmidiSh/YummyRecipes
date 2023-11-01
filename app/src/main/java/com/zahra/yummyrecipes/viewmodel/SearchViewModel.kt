@@ -38,6 +38,13 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         _expandedIngredientsList.value = updatedList
     }
 
+
+    fun getIngredientId(ingredientName: String): Int {
+        val list = _expandedIngredientsList.value
+        val item = list!!.find { it.ingredientsName == ingredientName }
+        return item!!.ingredientId
+    }
+
     fun setAllIsSelectedToFalse() {
         _expandedIngredientsList.value!!.forEach {
             it.isSelected=false
