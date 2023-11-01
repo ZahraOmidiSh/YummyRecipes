@@ -4,8 +4,7 @@ import androidx.room.PrimaryKey
 import com.zahra.yummyrecipes.R
 
 data class IngredientsModel(
-    @PrimaryKey(autoGenerate = true)
-    var ingredientId :Int=-1,
+    var ingredientId :Int,
     var ingredientsName:String="",
     var ingredientsImg:Int= 0,
     var isSelected:Boolean =false
