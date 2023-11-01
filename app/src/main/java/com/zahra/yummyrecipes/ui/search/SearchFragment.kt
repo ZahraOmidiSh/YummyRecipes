@@ -69,7 +69,6 @@ class SearchFragment : Fragment() {
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    Log.e("viewModel2", expandedIngredients.toString())
                     advancedSearchAdapter.setData(expandedIngredients)
                 })
             viewAllSearchByIngredients.setOnClickListener {

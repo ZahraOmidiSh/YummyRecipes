@@ -53,13 +53,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Args
-//            val selectedPosition = arguments?.getInt("selectedPosition", RecyclerView.NO_POSITION)
-//            if (selectedPosition != null) {
-//                advancedAllSearchAdapter.updateSelectedItemPosition(selectedPosition)
-//            }
-
-
         //InitViews
         binding.apply {
             //close button
@@ -70,7 +63,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     GridLayoutManager(requireContext(), 4)
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
-                Log.e("args1", viewModel.expandedIngredientsList.value.toString())
             }
 
             //Args
@@ -79,20 +71,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 ingredientPosition = it.ingredientPosition
                 viewModel.setAllIsSelectedToFalse()
                 if (ingredientName != "_") {
-                    Log.e("args", ingredientName)
                     viewModel.updateExpandedIngredientByName(ingredientName, true)
                     advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
                     advancedAllSearchAdapter.notifyDataSetChanged()
-                    Log.e("args2", viewModel.expandedIngredientsList.value.toString())
                 }
             }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    Log.e("args3", viewModel.expandedIngredientsList.value.toString())
                     advancedAllSearchAdapter.setData(expandedIngredients)
-                    Log.e("args4", viewModel.expandedIngredientsList.value.toString())
                 })
             // Set item click listener
             advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
