@@ -78,49 +78,49 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val ingredients = mutableListOf<IngredientsModel>()
         strings.forEach { ingredient ->
             when (ingredient) {
-                "carrot" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_carrot))
-                "chicken" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_chicken))
-                "egg" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_egg))
-                "pasta" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_pasta))
-                "apple" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_apple))
-                "banana" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_banana))
-                "cheese" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_cheese))
-                "rice" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_rice))
-                "milk" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_milk))
-                "fish" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_fish))
-                "shrimp" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_shrimp))
-                "avocado" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_avocado))
-                "meat" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_meat))
-                "potato" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_potato))
-                "honey" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_honey))
-                "tomato" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_tomato))
-                "flour" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_flour))
-                "broccoli" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_broccoli))
+                "carrot" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_carrot))
+                "chicken" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_chicken))
+                "egg" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_egg))
+                "pasta" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_pasta))
+                "apple" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_apple))
+                "banana" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_banana))
+                "cheese" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_cheese))
+                "rice" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_rice))
+                "milk" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_milk))
+                "fish" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_fish))
+                "shrimp" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_shrimp))
+                "avocado" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_avocado))
+                "meat" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_meat))
+                "potato" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_potato))
+                "honey" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_honey))
+                "tomato" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_tomato))
+                "flour" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_flour))
+                "broccoli" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_broccoli))
                 "strawberries" -> ingredients.add(
                     IngredientsModel(
-                        ingredient,
+                        -1,ingredient,
                         R.drawable.s_strawberries
                     )
                 )
 
-                "butter" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_butter))
+                "butter" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_butter))
                 "darkChocolate" -> ingredients.add(
-                    IngredientsModel(
+                    IngredientsModel(-1,
                         "dark chocolate",
                         R.drawable.s_dark_chocolate
                     )
                 )
 
                 "pineapple" -> ingredients.add(
-                    IngredientsModel(
+                    IngredientsModel(-1,
                         "pine apple",
                         R.drawable.s_pineapple
                     )
                 )
 
-                "beans" -> ingredients.add(IngredientsModel(ingredient, R.drawable.s_beans))
+                "beans" -> ingredients.add(IngredientsModel(-1,ingredient, R.drawable.s_beans))
                 "peanutButter" -> ingredients.add(
-                    IngredientsModel(
+                    IngredientsModel(-1,
                         "peanut butter",
                         R.drawable.s_peanut_butter
                     )
