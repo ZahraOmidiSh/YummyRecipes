@@ -46,9 +46,12 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     }
 
     fun setAllIsSelectedToFalse() {
-        _expandedIngredientsList.value!!.forEach {
+        val currentList = _expandedIngredientsList.value ?: return
+        val updatedList = currentList.toMutableList()
+        updatedList.forEach {
             it.isSelected=false
         }
+        _expandedIngredientsList.value = updatedList
     }
 
     fun loadExpandedIngredientsList() = viewModelScope.launch(Dispatchers.IO) {
