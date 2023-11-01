@@ -75,9 +75,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         }
     }
 
-    private fun toggleItemSelection(position: Int) {
-        //
-        //
+     fun toggleItemSelection(position: Int) {
         if (selectedItems.contains(position)) {
             selectedItems.remove(position)
         } else {
