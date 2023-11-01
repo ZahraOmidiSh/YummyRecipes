@@ -60,7 +60,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 //            }
 
 
-
         //InitViews
         binding.apply {
             //close button
@@ -71,29 +70,29 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     GridLayoutManager(requireContext(), 4)
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
-                Log.e("args1", viewModel.expandedIngredientsList.value.toString() )
+                Log.e("args1", viewModel.expandedIngredientsList.value.toString())
             }
 
             //Args
             args.let {
-                ingredientName=it.ingredientName
-                ingredientPosition=it.ingredientPosition
+                ingredientName = it.ingredientName
+                ingredientPosition = it.ingredientPosition
                 viewModel.setAllIsSelectedToFalse()
-                if (ingredientName!="_"){
-                    Log.e("args", ingredientName )
-                    viewModel.updateExpandedIngredientByName(ingredientName,true)
+                if (ingredientName != "_") {
+                    Log.e("args", ingredientName)
+                    viewModel.updateExpandedIngredientByName(ingredientName, true)
                     advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
                     advancedAllSearchAdapter.notifyDataSetChanged()
-                    Log.e("args2", viewModel.expandedIngredientsList.value.toString() )
+                    Log.e("args2", viewModel.expandedIngredientsList.value.toString())
                 }
             }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    Log.e("args3", viewModel.expandedIngredientsList.value.toString() )
+                    Log.e("args3", viewModel.expandedIngredientsList.value.toString())
                     advancedAllSearchAdapter.setData(expandedIngredients)
-                    Log.e("args4", viewModel.expandedIngredientsList.value.toString() )
+                    Log.e("args4", viewModel.expandedIngredientsList.value.toString())
                 })
             // Set item click listener
             advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
