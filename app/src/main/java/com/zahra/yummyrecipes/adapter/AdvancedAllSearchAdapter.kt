@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -14,10 +13,9 @@ import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ItemIngredientsAllSearchBinding
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
-import com.zahra.yummyrecipes.viewmodel.SelectionViewModel
 import javax.inject.Inject
 
-class AdvancedAllSearchAdapter @Inject constructor(private val selectionViewModel: SelectionViewModel) :
+class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
     private var selectedItems = mutableSetOf<Int>()
@@ -72,7 +70,6 @@ class AdvancedAllSearchAdapter @Inject constructor(private val selectionViewMode
                 //Click
                 root.setOnClickListener {
                     val position = adapterPosition
-                    selectionViewModel.toggleItemSelection(position)
                     if (position != RecyclerView.NO_POSITION) {
                         toggleItemSelection(position)
                         onItemClickListener?.let { it(item) }
