@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,12 +73,17 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     viewModel.updateExpandedIngredientByName(ingredientName, true)
                     advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
                     advancedAllSearchAdapter.notifyDataSetChanged()
+                    ingredientName="_"
                 }
             }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
+                    selectedIngredientsList=expandedIngredients.filter {
+                        it.isSelected
+                    }
+                    Log.e("selectedIngredientsList", selectedIngredientsList.toString() )
                     advancedAllSearchAdapter.setData(expandedIngredients)
                 })
             // Set item click listener
