@@ -83,6 +83,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     selectedIngredientsList = expandedIngredients.filter {
                         it.isSelected
                     }
+                    viewModel.updateSelectedList(selectedIngredientsList)
                     Log.e("selectedIngredientsList", selectedIngredientsList.toString())
                     Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
                     advancedAllSearchAdapter.setData(expandedIngredients)

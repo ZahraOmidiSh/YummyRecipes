@@ -65,6 +65,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            Log.e("selectedIngredientsList3", viewModel.selectedList.value.toString())
             //load data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
