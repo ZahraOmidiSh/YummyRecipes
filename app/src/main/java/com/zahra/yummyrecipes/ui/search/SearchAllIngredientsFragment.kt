@@ -83,11 +83,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     selectedIngredientsList = expandedIngredients.filter {
                         it.isSelected
                     }
+                    advancedAllSearchAdapter.setData(expandedIngredients)
                     viewModel.updateSelectedList(selectedIngredientsList)
                     Log.e("selectedIngredientsList", selectedIngredientsList.toString())
                     Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
-                    advancedAllSearchAdapter.setData(expandedIngredients)
                 })
+            viewModel.selectedList.observe(viewLifecycleOwner){
+                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
+                searchWithIngredientsButton.isEnabled = it.isNotEmpty()
+            }
             // Set item click listener
             advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
                 ingredientModel.isSelected = !ingredientModel.isSelected
