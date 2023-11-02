@@ -88,8 +88,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     Log.e("selectedIngredientsList", selectedIngredientsList.toString())
                     Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
                 })
-            viewModel.selectedList.observe(viewLifecycleOwner){
-                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
+            viewModel.selectedList.observe(viewLifecycleOwner) {
+                searchWithIngredientsButton.text = "SEARCH WITH ${it.size} INGREDIENTS"
                 searchWithIngredientsButton.isEnabled = it.isNotEmpty()
             }
             // Set item click listener

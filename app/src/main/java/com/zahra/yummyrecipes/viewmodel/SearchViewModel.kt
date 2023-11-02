@@ -30,10 +30,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     val _selectedList = MutableLiveData<List<IngredientsModel>>()
     val selectedList: LiveData<List<IngredientsModel>> get() = _selectedList
 
-    fun updateSelectedList(list: List<IngredientsModel>){
+    fun updateSelectedList(list: List<IngredientsModel>) {
         _selectedList.value = list
 
     }
+
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
