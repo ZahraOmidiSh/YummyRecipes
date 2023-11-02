@@ -73,17 +73,18 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     viewModel.updateExpandedIngredientByName(ingredientName, true)
                     advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
                     advancedAllSearchAdapter.notifyDataSetChanged()
-                    ingredientName="_"
+                    ingredientName = "_"
                 }
             }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    selectedIngredientsList=expandedIngredients.filter {
+                    selectedIngredientsList = expandedIngredients.filter {
                         it.isSelected
                     }
-                    Log.e("selectedIngredientsList", selectedIngredientsList.toString() )
+                    Log.e("selectedIngredientsList", selectedIngredientsList.toString())
+                    Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
                     advancedAllSearchAdapter.setData(expandedIngredients)
                 })
             // Set item click listener
