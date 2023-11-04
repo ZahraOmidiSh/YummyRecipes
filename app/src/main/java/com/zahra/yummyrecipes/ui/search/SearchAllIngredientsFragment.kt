@@ -1,11 +1,13 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -34,11 +36,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private var ingredientName = "_"
     private var ingredientPosition = -1
     private lateinit var selectedIngredientsList: List<IngredientsModel>
+    private lateinit var selectedItemsInFragment: MutableSet<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
     }
+//    override fun onConfigurationChanged(newConfig: Configuration) {
+//        super.onConfigurationChanged(newConfig)
+//        viewModel.expandedIngredientsList.value?.let { advancedAllSearchAdapter.setData(it) }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,36 +72,34 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
 
             //Args
-            args.let {
-                ingredientName = it.ingredientName
-                ingredientPosition = it.ingredientPosition
-                viewModel.setAllIsSelectedToFalse()
-                if (ingredientName != "_") {
-                    viewModel.updateExpandedIngredientByName(ingredientName, true)
-                    advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
-                    advancedAllSearchAdapter.notifyDataSetChanged()
-                    ingredientName = "_"
-                }
-            }
+//            args.let {
+//                ingredientName = it.ingredientName
+//                ingredientPosition = it.ingredientPosition
+//                viewModel.setAllIsSelectedToFalse()
+//                if (ingredientName != "_") {
+//                    viewModel.updateExpandedIngredientByName(ingredientName, true)
+//                    advancedAllSearchAdapter.toggleItemSelection(ingredientPosition)
+//                    ingredientName = "_"
+//                }
+//            }
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
                 Observer { expandedIngredients ->
-                    selectedIngredientsList = expandedIngredients.filter {
-                        it.isSelected
-                    }
+//                    selectedIngredientsList = expandedIngredients.filter {
+//                        it.isSelected
+//                    }
                     advancedAllSearchAdapter.setData(expandedIngredients)
-                    viewModel.updateSelectedList(selectedIngredientsList)
-                    Log.e("selectedIngredientsList", selectedIngredientsList.toString())
-                    Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
+//                    viewModel.updateSelectedList(selectedIngredientsList)
+//                    Log.e("selectedIngredientsList", selectedIngredientsList.toString())
+//                    Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
                 })
-            viewModel.selectedList.observe(viewLifecycleOwner) {
-                searchWithIngredientsButton.text = "SEARCH WITH ${it.size} INGREDIENTS"
-                searchWithIngredientsButton.isEnabled = it.isNotEmpty()
-            }
+//            viewModel.selectedList.observe(viewLifecycleOwner) {
+//                searchWithIngredientsButton.text = "SEARCH WITH ${it.size} INGREDIENTS"
+//                searchWithIngredientsButton.isEnabled = it.isNotEmpty()
+//            }
             // Set item click listener
             advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
-                ingredientModel.isSelected = !ingredientModel.isSelected
                 viewModel.updateExpandedIngredientByName(
                     ingredientModel.ingredientsName,
                     ingredientModel.isSelected
