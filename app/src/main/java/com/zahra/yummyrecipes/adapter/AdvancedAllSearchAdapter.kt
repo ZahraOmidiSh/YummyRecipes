@@ -18,7 +18,8 @@ import javax.inject.Inject
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-    private var selectedItems = mutableSetOf<Int>()
+
+    //    var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
 
 
@@ -33,7 +34,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position], selectedItems.contains(position))
+        holder.bind(items[position], items[position].isSelected)
     }
 
     override fun getItemCount() = items.size
@@ -70,10 +71,8 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 //Click
                 root.setOnClickListener {
                     val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        toggleItemSelection(position)
-                        onItemClickListener?.let { it(item) }
-                    }
+                    toggleItemSelection(position)
+                    onItemClickListener?.let { it(item) }
                 }
             }
         }
@@ -85,11 +84,7 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     }
 
     fun toggleItemSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-        } else {
-            selectedItems.add(position)
-        }
+        items[position].isSelected = !items[position].isSelected
         notifyItemChanged(position)
     }
 
@@ -106,4 +101,5 @@ class AdvancedAllSearchAdapter @Inject constructor() :
         items.addAll(data)
         diffUtils.dispatchUpdatesTo(this)
     }
+
 }
