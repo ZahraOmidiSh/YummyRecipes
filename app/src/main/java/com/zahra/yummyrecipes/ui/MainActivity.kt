@@ -58,7 +58,6 @@ class MainActivity : BaseActivity() {
         }
         if (!isThemeChanged) {
             // This line will only execute if the activity is not recreated due to a theme change
-            // Add your code here
             viewModel.loadExpandedIngredientsList()
         }
         //load data

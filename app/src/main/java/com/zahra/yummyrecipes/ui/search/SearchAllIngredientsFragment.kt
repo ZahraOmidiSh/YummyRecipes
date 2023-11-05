@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,8 +26,14 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
+    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the theme change state
+        outState.putBoolean("themeChanged", true)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
@@ -45,9 +52,17 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
+        if (savedInstanceState != null) {
+            // Check if the activity is being recreated due to a theme change
+            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
+        }
         binding.apply {
             //close button
-            closeImg.setOnClickListener { findNavController().navigateUp() }
+            closeImg.setOnClickListener {
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    it.isSelected=false
+                }
+                findNavController().navigateUp() }
             // Set up RecyclerView
             expandedList.apply {
                 layoutManager =

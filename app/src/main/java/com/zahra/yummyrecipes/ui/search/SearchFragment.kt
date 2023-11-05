@@ -42,12 +42,19 @@ class SearchFragment : Fragment() {
     lateinit var networkChecker: NetworkChecker
 
     //Others
+    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
     private var isNetworkAvailable by Delegates.notNull<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the theme change state
+        outState.putBoolean("themeChanged", true)
     }
 
     override fun onCreateView(
@@ -63,6 +70,15 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            if (savedInstanceState != null) {
+                // Check if the activity is being recreated due to a theme change
+                isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
+            }
+            if (!isThemeChanged) {
+                // This line will only execute if the activity is not recreated due to a theme change
+                viewModel.loadExpandedIngredientsList()
+            }
+
             //load data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner
