@@ -42,10 +42,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
     }
-//    override fun onConfigurationChanged(newConfig: Configuration) {
-//        super.onConfigurationChanged(newConfig)
-//        viewModel.expandedIngredientsList.value?.let { advancedAllSearchAdapter.setData(it) }
-//    }
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        viewModel.expandedIngredientsList.value?.let { advancedAllSearchAdapter.setData(it) }
+        Log.e("logZahra 11", viewModel.expandedIngredientsList.value.toString())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +62,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+//            viewModel.setAllIsSelectedToFalse()
             //close button
             closeImg.setOnClickListener { findNavController().navigateUp() }
             // Set up RecyclerView
@@ -90,10 +92,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 //                        it.isSelected
 //                    }
                     advancedAllSearchAdapter.setData(expandedIngredients)
+                    Log.e("logZahra 4", viewModel.expandedIngredientsList.value.toString())
 //                    viewModel.updateSelectedList(selectedIngredientsList)
 //                    Log.e("selectedIngredientsList", selectedIngredientsList.toString())
 //                    Log.e("selectedIngredientsList2", viewModel.selectedList.value.toString())
                 })
+//            viewModel.expandedIngredientsList.value?.let { advancedAllSearchAdapter.setData(it) }
 //            viewModel.selectedList.observe(viewLifecycleOwner) {
 //                searchWithIngredientsButton.text = "SEARCH WITH ${it.size} INGREDIENTS"
 //                searchWithIngredientsButton.isEnabled = it.isNotEmpty()
@@ -104,6 +108,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     ingredientModel.ingredientsName,
                     ingredientModel.isSelected
                 )
+                Log.e("logZahra 5", viewModel.expandedIngredientsList.value.toString())
             }
         }
     }

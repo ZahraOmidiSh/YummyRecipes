@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -70,9 +71,12 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 //Click
                 root.setOnClickListener {
-                    val position = adapterPosition
-                    toggleItemSelection(position)
-                    onItemClickListener?.let { it(item) }
+                    // Toggle item selection
+                    item.isSelected = !item.isSelected
+                    // Update UI
+                    bind(item, item.isSelected)
+                    // Notify item click listener
+                    onItemClickListener?.invoke(item)
                 }
             }
         }

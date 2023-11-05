@@ -65,7 +65,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            Log.e("selectedIngredientsList3", viewModel.selectedList.value.toString())
+            Log.e("logZahra 1", viewModel.expandedIngredientsList.value.toString())
             //load data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner,
@@ -88,6 +88,7 @@ class SearchFragment : Fragment() {
             //Click on items
             advancedSearchAdapter.setonItemClickListener { ingredientName ->
                 val id = viewModel.getIngredientId(ingredientName)
+                viewModel.updateExpandedIngredientByName(ingredientName,true)
                 val action =
                     SearchFragmentDirections.actionToSearchAllIngredients(ingredientName, id)
                 findNavController().navigate(action)
