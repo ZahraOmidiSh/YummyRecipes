@@ -29,7 +29,6 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
 
     //Others
     private val viewModel: SearchViewModel by viewModels()
-    private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
     private var selectedIngredientsList: MutableList<IngredientsModel> = mutableListOf()
 

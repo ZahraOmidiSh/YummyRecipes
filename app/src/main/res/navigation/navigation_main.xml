@@ -92,13 +92,6 @@
         android:name="com.zahra.yummyrecipes.ui.search.SearchAllIngredientsFragment"
         android:label="fragment_search_all_ingredients"
         tools:layout="@layout/fragment_search_all_ingredients">
-
-        <argument
-            android:name="IngredientName"
-            app:argType="string" />
-        <argument
-            android:name="IngredientPosition"
-            app:argType="integer" />
     </dialog>
 
 

@@ -32,7 +32,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     //Others
     private lateinit var viewModel: SearchViewModel
-    private val args: SearchAllIngredientsFragmentArgs by navArgs()
     private var ingredientName = "_"
     private var ingredientPosition = -1
     private lateinit var selectedIngredientsList: List<IngredientsModel>
