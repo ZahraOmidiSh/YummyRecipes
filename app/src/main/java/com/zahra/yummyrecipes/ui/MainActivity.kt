@@ -27,6 +27,7 @@ class MainActivity : BaseActivity() {
     private val binding get() = _binding!!
 
     //Other
+    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
     private lateinit var navHost: NavHostFragment
     private val callback = object : OnBackPressedCallback(false) {
@@ -39,16 +40,32 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Save the theme change state
+        outState.putBoolean("themeChanged", true)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (savedInstanceState != null) {
+            // Check if the activity is being recreated due to a theme change
+            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
+        }
+        if (!isThemeChanged) {
+            // This line will only execute if the activity is not recreated due to a theme change
+            // Add your code here
+            viewModel.loadExpandedIngredientsList()
+        }
         //load data
-        viewModel.loadExpandedIngredientsList()
-        viewModel.expandedIngredientsList.observe(this, Observer { expandedIngredients ->
+
+        viewModel.expandedIngredientsList.observe(this) { expandedIngredients ->
             Log.e("viewModel", expandedIngredients.toString())
-        })
+        }
         //onBackPress
         onBackPressedDispatcher.addCallback(this, callback)
         //Setup nav host
