@@ -3,7 +3,6 @@ package com.zahra.yummyrecipes.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -19,10 +18,7 @@ import javax.inject.Inject
 class AdvancedAllSearchAdapter @Inject constructor() :
     RecyclerView.Adapter<AdvancedAllSearchAdapter.ViewHolder>() {
     private var items = mutableListOf<IngredientsModel>()
-
-    //    var selectedItems = mutableSetOf<Int>()
     private lateinit var context: Context
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemIngredientsAllSearchBinding.inflate(
@@ -85,11 +81,6 @@ class AdvancedAllSearchAdapter @Inject constructor() :
     fun isDarkTheme(): Boolean {
         return context.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
-    }
-
-    fun toggleItemSelection(position: Int) {
-        items[position].isSelected = !items[position].isSelected
-        notifyItemChanged(position)
     }
 
     var onItemClickListener: ((IngredientsModel) -> Unit)? = null

@@ -64,10 +64,10 @@ class SearchAllIngredientsFragmentFirst : BottomSheetDialogFragment() {
 //                findNavController().navigate(direction)
 //            }
             //show the selected items size in button
-            viewModel.selectedItems.observe(viewLifecycleOwner){
-                searchWithIngredientsButton.isEnabled = it.size>0
-                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
-            }
+//            viewModel.selectedItems.observe(viewLifecycleOwner){
+//                searchWithIngredientsButton.isEnabled = it.size>0
+//                searchWithIngredientsButton.text="SEARCH WITH ${it.size} INGREDIENTS"
+//            }
             //load data
             viewModel.expandedIngredientsList.observe(viewLifecycleOwner) {
 

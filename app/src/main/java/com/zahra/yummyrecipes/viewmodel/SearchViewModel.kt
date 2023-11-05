@@ -25,15 +25,6 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
-    //Selected
-    //Expanded
-    val _selectedList = MutableLiveData<List<IngredientsModel>>()
-    val selectedList: LiveData<List<IngredientsModel>> get() = _selectedList
-
-    fun updateSelectedList(list: List<IngredientsModel>) {
-        _selectedList.value = list
-
-    }
 
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
@@ -44,21 +35,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val updatedList = currentList.toMutableList()
         val itemToUpdate = updatedList.find { it.ingredientsName == ingredientName }
         itemToUpdate?.isSelected = isSelected
-        _expandedIngredientsList.value = updatedList
-    }
-
-    fun getIngredientId(ingredientName: String): Int {
-        val list = _expandedIngredientsList.value
-        val item = list!!.find { it.ingredientsName == ingredientName }
-        return item!!.ingredientId
-    }
-
-    fun setAllIsSelectedToFalse() {
-        val currentList = _expandedIngredientsList.value ?: return
-        val updatedList = currentList.toMutableList()
-        updatedList.forEach {
-            it.isSelected = false
-        }
         _expandedIngredientsList.value = updatedList
     }
 
@@ -175,9 +151,5 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val response = repository.getSearchRecipes(queries)
         searchData.value = NetworkResponse(response).generalNetworkResponse()
     }
-
-    //SelectedItems
-    val selectedItems = MutableLiveData<MutableList<IngredientsModel>>()
-
 
 }

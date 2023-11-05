@@ -65,11 +65,11 @@ class SearchFragmentFirst : Fragment() {
         //InitViews
         binding.apply {
             _binding = FragmentSearchBinding.inflate(layoutInflater)
-            viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
-                Log.e("selected Search Fragment 2",selectedItems.toString() )
-                Toast.makeText(requireContext(), selectedItems.toString(), Toast.LENGTH_SHORT).show()
-            }
-            Log.e("selected Search Fragment 3",viewModel.selectedItems.value.toString() )
+//            viewModel.selectedItems.observe(viewLifecycleOwner){selectedItems->
+//                Log.e("selected Search Fragment 2",selectedItems.toString() )
+//                Toast.makeText(requireContext(), selectedItems.toString(), Toast.LENGTH_SHORT).show()
+//            }
+//            Log.e("selected Search Fragment 3",viewModel.selectedItems.value.toString() )
             /*Ingredients*/
             //load data
 //            viewModel.loadLimitIngredientsList()

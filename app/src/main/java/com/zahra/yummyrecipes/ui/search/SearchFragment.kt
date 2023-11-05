@@ -1,14 +1,12 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
@@ -65,13 +63,12 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            Log.e("logZahra 1", viewModel.expandedIngredientsList.value.toString())
             //load data
             viewModel.expandedIngredientsList.observe(
-                viewLifecycleOwner,
-                Observer { expandedIngredients ->
-                    advancedSearchAdapter.setData(expandedIngredients)
-                })
+                viewLifecycleOwner
+            ) { expandedIngredients ->
+                advancedSearchAdapter.setData(expandedIngredients)
+            }
             viewAllSearchByIngredients.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
@@ -87,8 +84,7 @@ class SearchFragment : Fragment() {
 
             //Click on items
             advancedSearchAdapter.setonItemClickListener { ingredientName ->
-                val id = viewModel.getIngredientId(ingredientName)
-                viewModel.updateExpandedIngredientByName(ingredientName,true)
+                viewModel.updateExpandedIngredientByName(ingredientName, true)
                 val action =
                     SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(action)
