@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
@@ -27,6 +28,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
+    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
+        if (savedInstanceState != null) {
+            // Check if the activity is being recreated due to a theme change
+            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
+        }
         binding.apply {
             //close button
             closeImg.setOnClickListener {
@@ -76,6 +82,27 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 )
             }
         }
+
+// Set up BottomSheetCallback
+        val behavior = (dialog as? BottomSheetDialog)?.behavior
+        behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                if (slideOffset == -1f && !isThemeChanged) {
+                    // Bottom sheet is fully expanded and the theme has not changed
+                    // Perform any necessary action here
+                    viewModel.expandedIngredientsList.value!!.forEach {
+                        if(it.isSelected){
+                            it.isSelected=false
+                        }
+
+                    }
+                }
+            }
+
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                // Handle other state changes if needed
+            }
+        })
 
     }
 
