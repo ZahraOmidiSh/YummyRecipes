@@ -27,14 +27,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
-    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        // Save the theme change state
-        outState.putBoolean("themeChanged", true)
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
@@ -53,10 +47,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
-        if (savedInstanceState != null) {
-            // Check if the activity is being recreated due to a theme change
-            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
-        }
         binding.apply {
             //close button
             closeImg.setOnClickListener {
@@ -85,27 +75,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     ingredientModel.isSelected
                 )
             }
-//            root.let {
-//                val behavior = BottomSheetBehavior.from(it)
-//                behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-//                    override fun onStateChanged(bottomSheet: View, newState: Int) {
-//
-//                    }
-//
-//                    override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//                        // This code will be executed while the BottomSheet is being scrolled
-//
-//                        if (slideOffset < 0) {
-//                            // Add your code here for scrolling below
-//                            // Code to be executed when scrolling below the BottomSheet
-//                            viewModel.expandedIngredientsList.value!!.forEach { model ->
-//                                model.isSelected = false
-//                            }
-//                            findNavController().navigateUp()
-//                        }
-//                    }
-//                })
-//            }
         }
 
     }
