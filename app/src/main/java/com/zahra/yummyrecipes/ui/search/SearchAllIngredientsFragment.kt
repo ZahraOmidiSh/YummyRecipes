@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
@@ -84,7 +85,29 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     ingredientModel.isSelected
                 )
             }
+//            root.let {
+//                val behavior = BottomSheetBehavior.from(it)
+//                behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+//                    override fun onStateChanged(bottomSheet: View, newState: Int) {
+//
+//                    }
+//
+//                    override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//                        // This code will be executed while the BottomSheet is being scrolled
+//
+//                        if (slideOffset < 0) {
+//                            // Add your code here for scrolling below
+//                            // Code to be executed when scrolling below the BottomSheet
+//                            viewModel.expandedIngredientsList.value!!.forEach { model ->
+//                                model.isSelected = false
+//                            }
+//                            findNavController().navigateUp()
+//                        }
+//                    }
+//                })
+//            }
         }
+
     }
 
     override fun onDestroyView() {
