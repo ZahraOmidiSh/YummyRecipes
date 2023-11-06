@@ -76,7 +76,13 @@ class SearchFragment : Fragment() {
             }
             if (!isThemeChanged) {
                 // This line will only execute if the activity is not recreated due to a theme change
-                viewModel.loadExpandedIngredientsList()
+//                viewModel.loadExpandedIngredientsList()
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if(it.isSelected){
+                        it.isSelected=false
+                    }
+
+                }
             }
 
             //load data
