@@ -135,7 +135,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     }
 
     fun searchQueries(search: String): HashMap<String, String> {
-        val queries: HashMap<String, String> = HashMap()   //همینجا اینیشیالایز میکنیم
+        val queries: HashMap<String, String> = HashMap()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
@@ -147,7 +147,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun callSearchApi(queries: Map<String, String>) = viewModelScope.launch {
         searchData.value = NetworkRequest.Loading()
-        //داخل پرانتز پایین باید QueryMap را ست کنیم
         val response = repository.getSearchRecipes(queries)
         searchData.value = NetworkResponse(response).generalNetworkResponse()
     }
