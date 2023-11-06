@@ -67,7 +67,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 adapter = advancedAllSearchAdapter
                 setHasFixedSize(true)
             }
-
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner
@@ -83,18 +82,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
         }
 
-// Set up BottomSheetCallback
+        // Set up BottomSheetCallback
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
                 if (slideOffset == -1f && !isThemeChanged) {
                     // Bottom sheet is fully expanded and the theme has not changed
-                    // Perform any necessary action here
                     viewModel.expandedIngredientsList.value!!.forEach {
                         if(it.isSelected){
                             it.isSelected=false
                         }
-
                     }
                 }
             }
@@ -103,7 +100,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 // Handle other state changes if needed
             }
         })
-
     }
 
     override fun onDestroyView() {
