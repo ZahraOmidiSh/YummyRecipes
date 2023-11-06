@@ -50,11 +50,9 @@ class AdvancedSearchAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-
                 //Click
                 root.setOnClickListener {
                     onItemClickListener?.let { it(item.ingredientsName) }
-
                 }
             }
         }
