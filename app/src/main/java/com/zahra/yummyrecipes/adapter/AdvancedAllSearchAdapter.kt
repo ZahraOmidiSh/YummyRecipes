@@ -57,7 +57,11 @@ class AdvancedAllSearchAdapter @Inject constructor() :
                 }
                 // Set item color based on selection
                 if (isSelected) {
-                    cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                    if (isDarkTheme()) {
+                        cardLay.setBackgroundResource(R.drawable.bg_very_rounded_congo_pink)
+                    } else {
+                        cardLay.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                    }
                 } else {
                     if (isDarkTheme()) {
                         cardLay.setBackgroundResource(R.drawable.bg_below_rounded_deselected_dark)
