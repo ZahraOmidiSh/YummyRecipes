@@ -1,11 +1,12 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,6 +32,21 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
 
+    // Get a reference to your button view
+//    val searchWithIngredientsButton = binding.searchWithIngredientsButton
+
+
+    // Get the parent ConstraintLayout
+//    val root = binding.root as ConstraintLayout
+
+    // Create new LayoutParams for the button
+//    val layoutParams = ConstraintLayout.LayoutParams(
+//        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
+//        ConstraintLayout.LayoutParams.WRAP_CONTENT
+//    )
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
@@ -54,6 +70,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
         }
         binding.apply {
+
             //close button
             closeImg.setOnClickListener {
                 viewModel.expandedIngredientsList.value!!.forEach {
@@ -95,9 +112,33 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         }
                     }
                 }
+// Set the desired constraints for the button
+                val layoutParams = binding.searchWithIngredientsButton.layoutParams as ConstraintLayout.LayoutParams
+                layoutParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+                layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+                layoutParams.marginStart = 20 // Set the start margin in pixels
+                layoutParams.marginEnd = 20 // Set the end margin in pixels
+
+                // Calculate the desired bottom margin based on the slide offset
+                val height = bottomSheet.height
+                Log.e("height", height.toString() )
+                layoutParams.bottomMargin = (height * (1- slideOffset)).toInt()
+                Log.e("height_bottomMargin", layoutParams.bottomMargin.toString() )
+
+                // Set the LayoutParams on the button
+                binding.searchWithIngredientsButton.layoutParams = layoutParams
+
+                // Request a layout update to reflect the changes
+                binding.root.requestLayout()
             }
 
+
             override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                val height = bottomSheet.height
+//                Log.e("height", height.toString() )
+
+
             }
         })
     }
