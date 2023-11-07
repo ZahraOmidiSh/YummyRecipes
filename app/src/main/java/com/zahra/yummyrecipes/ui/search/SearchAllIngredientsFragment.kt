@@ -57,9 +57,10 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button
             closeImg.setOnClickListener {
                 viewModel.expandedIngredientsList.value!!.forEach {
-                    it.isSelected=false
+                    it.isSelected = false
                 }
-                findNavController().navigateUp() }
+                findNavController().navigateUp()
+            }
             // Set up RecyclerView
             expandedList.apply {
                 layoutManager =
@@ -89,8 +90,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 if (slideOffset == -1f && !isThemeChanged) {
                     // Bottom sheet is fully expanded and the theme has not changed
                     viewModel.expandedIngredientsList.value!!.forEach {
-                        if(it.isSelected){
-                            it.isSelected=false
+                        if (it.isSelected) {
+                            it.isSelected = false
                         }
                     }
                 }
