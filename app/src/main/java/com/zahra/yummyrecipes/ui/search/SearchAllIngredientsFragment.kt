@@ -98,7 +98,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                // Handle other state changes if needed
             }
         })
     }
