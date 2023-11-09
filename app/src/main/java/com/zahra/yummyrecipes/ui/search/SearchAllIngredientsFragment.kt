@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -112,32 +113,27 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         }
                     }
                 }
-// Set the desired constraints for the button
-                val layoutParams = binding.searchWithIngredientsButton.layoutParams as ConstraintLayout.LayoutParams
-                layoutParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-                layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
-                layoutParams.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
-                layoutParams.marginStart = 20 // Set the start margin in pixels
-                layoutParams.marginEnd = 20 // Set the end margin in pixels
 
-                // Calculate the desired bottom margin based on the slide offset
-                val height = bottomSheet.height
-                Log.e("height", height.toString() )
-                layoutParams.bottomMargin = (height * (1- slideOffset)).toInt()
-                Log.e("height_bottomMargin", layoutParams.bottomMargin.toString() )
+//                val desiredPosition = ((binding.root.height - 1000) * slideOffset)+900
 
-                // Set the LayoutParams on the button
-                binding.searchWithIngredientsButton.layoutParams = layoutParams
+                // Set the position of your view
+//                binding.searchWithIngredientsButton.y = desiredPosition
 
-                // Request a layout update to reflect the changes
-                binding.root.requestLayout()
+
+                val bottomSheetHeight = bottomSheet.height
+
+                val parentHeight = binding.root.height
+
+                // Calculate the desired position based on the height of the bottom sheet
+                val desiredPosition = parentHeight - bottomSheetHeight.toFloat()+900+(600*slideOffset)
+                Log.e("desiredPosition", desiredPosition.toString())
+
+                // Set the position of your view
+                binding.searchWithIngredientsButton.y = desiredPosition
             }
 
-
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                val height = bottomSheet.height
-//                Log.e("height", height.toString() )
-
+                // Handle state changes if needed
 
             }
         })
