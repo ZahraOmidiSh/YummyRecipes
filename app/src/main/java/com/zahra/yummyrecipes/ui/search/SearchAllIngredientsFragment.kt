@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -32,22 +33,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
-
-    // Get a reference to your button view
-//    val searchWithIngredientsButton = binding.searchWithIngredientsButton
-
-
-    // Get the parent ConstraintLayout
-//    val root = binding.root as ConstraintLayout
-
-    // Create new LayoutParams for the button
-//    val layoutParams = ConstraintLayout.LayoutParams(
-//        ConstraintLayout.LayoutParams.MATCH_CONSTRAINT,
-//        ConstraintLayout.LayoutParams.WRAP_CONTENT
-//    )
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
@@ -66,11 +51,49 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
+
+
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                val parentHeight = binding.root.height
+                 val parentWidth = binding.root.width
+                Log.e("parentHeight", parentHeight.toString() )
+                Log.e("parentWidth", parentWidth.toString() )
+                val fraction = parentHeight/parentWidth
+                Log.e("fraction", fraction.toString() )
+                var desiredPosition=0.0
+                if(fraction>=1.85){
+                    desiredPosition =0.622*parentHeight
+                }else{
+                    desiredPosition =0.54*parentHeight
+                }
+                // Set the position of your view
+                binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
+                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                // Use the parent width here
+            }
+        })
+//        Log.e("parentWidth", parentWidth.toString() )
+
+
+
+
         if (savedInstanceState != null) {
             // Check if the activity is being recreated due to a theme change
             isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
         }
         binding.apply {
+
+//            val layoutParams = searchWithIngredientsButton.layoutParams as ConstraintLayout.LayoutParams
+//            layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+//            if(fraction>=1.8){
+//                layoutParams.topMargin = (0.95*parentHeight).toInt()
+//            }else{
+//                layoutParams.topMargin  = (0.50*parentHeight).toInt()
+//            }
+//            layoutParams.topMargin = 200 // Set the top margin in pixels
+//            searchWithIngredientsButton.layoutParams = layoutParams
+//            searchWithIngredientsButton.requestLayout()
 
             //close button
             closeImg.setOnClickListener {
@@ -122,14 +145,26 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
                 val bottomSheetHeight = bottomSheet.height
 
-                val parentHeight = binding.root.height
+
 
                 // Calculate the desired position based on the height of the bottom sheet
-                val desiredPosition = parentHeight - bottomSheetHeight.toFloat()+900+(600*slideOffset)
-                Log.e("desiredPosition", desiredPosition.toString())
+//                val desiredPosition = parentHeight - bottomSheetHeight.toFloat()+1350+(600*slideOffset)
+                val parentHeight = binding.root.height
+                val parentWidth = binding.root.width
+//                Log.e("screenHeight", parentHeight.toString() )
+                val fraction = parentHeight/parentWidth
+                var desiredPosition=0.0
+                if(fraction>=1.85){
+                     desiredPosition =0.622*parentHeight+(600*slideOffset)
+                }else{
+                     desiredPosition =0.54*parentHeight+(600*slideOffset)
+                }
+
+//                Log.e("parentHeight", parentHeight.toString() )
+//                Log.e("parentWidth", parentWidth.toString() )
 
                 // Set the position of your view
-                binding.searchWithIngredientsButton.y = desiredPosition
+                binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
