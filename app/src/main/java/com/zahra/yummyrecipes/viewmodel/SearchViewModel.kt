@@ -20,13 +20,29 @@ import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Collections.list
 import javax.inject.Inject
 
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
+    //SlideOffset for Button Position
     var slideOffset=0f
+
+    //Selected Ingredient List
+    val _selectedIngredientsNameData = MutableLiveData<List<String>>()
+    val selectedIngredientsNameData : LiveData<List<String>> get() = _selectedIngredientsNameData
+    fun updateSelectedIngredientsName() {
+        val updatedSelectedList = expandedIngredientsList.value?.filter {
+            it.isSelected
+        }
+        val list = mutableListOf<String>()
+        updatedSelectedList?.forEach {
+            list.add(it.ingredientsName)
+        }
+        _selectedIngredientsNameData.value=list
+    }
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
