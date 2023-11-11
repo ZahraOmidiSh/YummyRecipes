@@ -1,15 +1,12 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -37,7 +34,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private lateinit var viewModel: SearchViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -52,13 +49,13 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //set button position
-        setButtonPosition()
-
-        // Check if the activity is being recreated due to a theme change
-        themeChangeChecker(savedInstanceState)
-
         binding.apply {
+
+            // Check if the activity is being recreated due to a theme change
+            themeChangeChecker(savedInstanceState)
+
+            //set button first position
+            setButtonFirstPosition()
 
             //close button listener
             closeButton(closeImg)
@@ -79,6 +76,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
         // Set up BottomSheetCallback
         setBottomSheetCallback()
+    }
+
+    private fun setButtonFirstPosition() {
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                setButtonPosition(viewModel.slideOffset)
+                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
     }
 
     private fun setItemClickListener() {
@@ -114,16 +121,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setButtonPosition() {
-        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                setButtonPosition(0f)
-                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
-    }
-
     private fun setBottomSheetCallback() {
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -136,6 +133,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         }
                     }
                 }
+                viewModel.slideOffset = slideOffset
                 setButtonPosition(slideOffset)
             }
 

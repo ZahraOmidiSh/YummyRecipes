@@ -26,6 +26,7 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
+    var slideOffset=0f
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
