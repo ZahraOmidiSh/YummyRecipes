@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -50,81 +52,79 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //InitViews
+        //set button position
+        setButtonPosition()
 
+        // Check if the activity is being recreated due to a theme change
+        themeChangeChecker(savedInstanceState)
 
-        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                val parentHeight = binding.root.height
-                 val parentWidth = binding.root.width
-                Log.e("parentHeight", parentHeight.toString() )
-                Log.e("parentWidth", parentWidth.toString() )
-                val fraction = parentHeight/parentWidth
-                Log.e("fraction", fraction.toString() )
-                var desiredPosition=0.0
-                if(fraction>=1.85){
-                    desiredPosition =0.622*parentHeight
-                }else{
-                    desiredPosition =0.54*parentHeight
-                }
-                // Set the position of your view
-                binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
-                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                // Use the parent width here
-            }
-        })
-//        Log.e("parentWidth", parentWidth.toString() )
-
-
-
-
-        if (savedInstanceState != null) {
-            // Check if the activity is being recreated due to a theme change
-            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
-        }
         binding.apply {
 
-//            val layoutParams = searchWithIngredientsButton.layoutParams as ConstraintLayout.LayoutParams
-//            layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-//            if(fraction>=1.8){
-//                layoutParams.topMargin = (0.95*parentHeight).toInt()
-//            }else{
-//                layoutParams.topMargin  = (0.50*parentHeight).toInt()
-//            }
-//            layoutParams.topMargin = 200 // Set the top margin in pixels
-//            searchWithIngredientsButton.layoutParams = layoutParams
-//            searchWithIngredientsButton.requestLayout()
+            //close button listener
+            closeButton(closeImg)
 
-            //close button
-            closeImg.setOnClickListener {
-                viewModel.expandedIngredientsList.value!!.forEach {
-                    it.isSelected = false
-                }
-                findNavController().navigateUp()
-            }
             // Set up RecyclerView
-            expandedList.apply {
-                layoutManager =
-                    GridLayoutManager(requireContext(), 4)
-                adapter = advancedAllSearchAdapter
-                setHasFixedSize(true)
-            }
+            setupRecyclerView(expandedList)
+
             // Observe and update data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner
             ) { expandedIngredients ->
                 advancedAllSearchAdapter.setData(expandedIngredients)
             }
+
             // Set item click listener
-            advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
-                viewModel.updateExpandedIngredientByName(
-                    ingredientModel.ingredientsName,
-                    ingredientModel.isSelected
-                )
-            }
+            setItemClickListener()
         }
 
         // Set up BottomSheetCallback
+        setBottomSheetCallback()
+    }
+
+    private fun setItemClickListener() {
+        advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
+            viewModel.updateExpandedIngredientByName(
+                ingredientModel.ingredientsName,
+                ingredientModel.isSelected
+            )
+        }
+    }
+
+    private fun setupRecyclerView(expandedList: RecyclerView) {
+        expandedList.apply {
+            layoutManager =
+                GridLayoutManager(requireContext(), 4)
+            adapter = advancedAllSearchAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun closeButton(closeImg: ImageView) {
+        closeImg.setOnClickListener {
+            viewModel.expandedIngredientsList.value!!.forEach {
+                it.isSelected = false
+            }
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun themeChangeChecker(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) {
+            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
+        }
+    }
+
+    private fun setButtonPosition() {
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                setButtonPosition(0f)
+                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+    }
+
+    private fun setBottomSheetCallback() {
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
@@ -136,42 +136,27 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         }
                     }
                 }
-
-//                val desiredPosition = ((binding.root.height - 1000) * slideOffset)+900
-
-                // Set the position of your view
-//                binding.searchWithIngredientsButton.y = desiredPosition
-
-
-                val bottomSheetHeight = bottomSheet.height
-
-
-
-                // Calculate the desired position based on the height of the bottom sheet
-//                val desiredPosition = parentHeight - bottomSheetHeight.toFloat()+1350+(600*slideOffset)
-                val parentHeight = binding.root.height
-                val parentWidth = binding.root.width
-//                Log.e("screenHeight", parentHeight.toString() )
-                val fraction = parentHeight/parentWidth
-                var desiredPosition=0.0
-                if(fraction>=1.85){
-                     desiredPosition =0.622*parentHeight+(600*slideOffset)
-                }else{
-                     desiredPosition =0.54*parentHeight+(600*slideOffset)
-                }
-
-//                Log.e("parentHeight", parentHeight.toString() )
-//                Log.e("parentWidth", parentWidth.toString() )
-
-                // Set the position of your view
-                binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
+                setButtonPosition(slideOffset)
             }
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                // Handle state changes if needed
-
             }
         })
+    }
+
+    fun setButtonPosition(slideOffset: Float) {
+        val parentHeight = binding.root.height
+        val parentWidth = binding.root.width
+        val fraction = parentHeight / parentWidth
+        var desiredPosition = 0.0
+        if (fraction >= 1.85) {
+            desiredPosition = 0.622 * parentHeight + (600 * slideOffset)
+        } else {
+            desiredPosition = 0.54 * parentHeight + (600 * slideOffset)
+        }
+        // Set the position of your view
+        binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
+
     }
 
     override fun onDestroyView() {
