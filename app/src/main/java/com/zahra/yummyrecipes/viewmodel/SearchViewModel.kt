@@ -12,6 +12,7 @@ import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.FULL_COUNT
+import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
@@ -154,12 +155,22 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
+        queries[INCLUDE_INGREDIENTS]=selectedIngredientsToString()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search
         return queries
     }
+    private  fun selectedIngredientsToString():String{
+        var ingredients=""
+        selectedIngredientsNameData.value?.forEach {
+            ingredients= "$ingredients&$it"
+        }
+        ingredients.removeRange(0,0)
+        return ingredients
+    }
+
 
     val searchData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
 
