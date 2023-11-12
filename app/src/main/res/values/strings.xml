@@ -54,4 +54,7 @@
     <string name="suggested_for_you">Suggested For You</string>
     <string name="search_with_0_ingredients">SEARCH WITH 0 INGREDIENTS</string>
     <string name="selected_ingredients">Selected Ingredients</string>
+    <string name="filters">Filters</string>
+    <string name="diets_filter">Diets</string>
+    <string name="ingredients_filter">Ingredients</string>
 </resources>
