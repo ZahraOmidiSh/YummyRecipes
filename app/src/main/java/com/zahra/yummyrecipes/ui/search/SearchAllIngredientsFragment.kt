@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
+import android.widget.Button
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -42,9 +43,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchAllIngredientsBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -78,32 +77,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Observe and update Selected data
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
-                if (selectedList.isNotEmpty()) {
-                    searchWithIngredientsButton.isEnabled = true
-                    searchWithIngredientsButton.setTextColor(resources.getColor(R.color.white))
-                    if (isDarkTheme()) {
-                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(requireContext(), R.color.congo_pink))
-//                        searchWithIngredientsButton.setBackgroundColor(resources.getColor(R.color.congo_pink))
-                    } else {
-                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(requireContext(), R.color.big_foot_feet))
-//                        searchWithIngredientsButton.setBackgroundColor(resources.getColor(R.color.big_foot_feet))
-//                        searchWithIngredientsButton.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                    }
-                } else {
-                    searchWithIngredientsButton.isEnabled = false
-                    searchWithIngredientsButton.setTextColor(resources.getColor(R.color.gray))
-                    if (isDarkTheme()) {
-                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(requireContext(), R.color.eerie_black))
-                    } else {
-                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
-                            ContextCompat.getColor(requireContext(), R.color.mediumGray))
-//                        searchWithIngredientsButton.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
-                    }
-                }
-                searchWithIngredientsButton.text = "SEARCH WITH ${selectedList.size} INGREDIENTS"
+                setButtonColor(selectedList)
             }
 
             // Set item click listener
@@ -112,6 +86,44 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
         // Set up BottomSheetCallback
         setBottomSheetCallback()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setButtonColor(selectedList: List<String>) {
+        binding.apply {
+            if (selectedList.isNotEmpty()) {
+                searchWithIngredientsButton.isEnabled = true
+                searchWithIngredientsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.big_foot_feet)
+                }
+            } else {
+                searchWithIngredientsButton.isEnabled = false
+                searchWithIngredientsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.gray
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                } else {
+                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                }
+            }
+            searchWithIngredientsButton.text = "SEARCH WITH ${selectedList.size} INGREDIENTS"
+        }
+    }
+
+    private fun setButtonBackgroundTint(Button: Button, color: Int) {
+        Button.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
     }
 
     private fun setButtonFirstPosition() {
@@ -127,8 +139,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private fun setItemClickListener() {
         advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
             viewModel.updateExpandedIngredientByName(
-                ingredientModel.ingredientsName,
-                ingredientModel.isSelected
+                ingredientModel.ingredientsName, ingredientModel.isSelected
             )
             viewModel.updateSelectedIngredientsName()
         }
@@ -136,8 +147,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun setupRecyclerView(expandedList: RecyclerView) {
         expandedList.apply {
-            layoutManager =
-                GridLayoutManager(requireContext(), 4)
+            layoutManager = GridLayoutManager(requireContext(), 4)
             adapter = advancedAllSearchAdapter
             setHasFixedSize(true)
         }
@@ -148,7 +158,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             viewModel.expandedIngredientsList.value!!.forEach {
                 it.isSelected = false
             }
-            viewModel.slideOffset=0f
+            viewModel.slideOffset = 0f
             findNavController().navigateUp()
         }
     }
@@ -161,7 +171,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
-            viewModel.slideOffset=0f
+            viewModel.slideOffset = 0f
             viewModel.expandedIngredientsList.value!!.forEach {
                 if (it.isSelected) {
                     it.isSelected = false
@@ -174,6 +184,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 viewModel.slideOffset = slideOffset
                 setButtonPosition(slideOffset)
             }
+
             override fun onStateChanged(bottomSheet: View, newState: Int) {
             }
         })
@@ -195,8 +206,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     }
 
     private fun isDarkTheme(): Boolean {
-        return requireContext().resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        return requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onDestroyView() {
