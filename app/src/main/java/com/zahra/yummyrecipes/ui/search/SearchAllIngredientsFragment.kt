@@ -82,6 +82,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 setButtonColor(selectedList)
             }
 
+            //Selected Ingredients Button Listener
+            searchWithIngredientsButton.setOnClickListener {
+                viewModel.slideOffset = 0f
+                findNavController().navigateUp()
+            }
+
             // Set item click listener
             setItemClickListener()
         }
