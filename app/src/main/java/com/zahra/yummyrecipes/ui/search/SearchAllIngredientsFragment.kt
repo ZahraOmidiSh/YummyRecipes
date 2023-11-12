@@ -1,12 +1,15 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
@@ -50,6 +54,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            //Selected Ingredients List
+            viewModel.updateSelectedIngredientsName()
 
             // Check if the activity is being recreated due to a theme change
             themeChangeChecker(savedInstanceState)
@@ -63,11 +69,41 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             // Set up RecyclerView
             setupRecyclerView(expandedList)
 
-            // Observe and update data
+            // Observe and update Ingredients data
             viewModel.expandedIngredientsList.observe(
                 viewLifecycleOwner
             ) { expandedIngredients ->
                 advancedAllSearchAdapter.setData(expandedIngredients)
+            }
+
+            //Observe and update Selected data
+            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
+                if (selectedList.isNotEmpty()) {
+                    searchWithIngredientsButton.isEnabled = true
+                    searchWithIngredientsButton.setTextColor(resources.getColor(R.color.white))
+                    if (isDarkTheme()) {
+                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(requireContext(), R.color.congo_pink))
+//                        searchWithIngredientsButton.setBackgroundColor(resources.getColor(R.color.congo_pink))
+                    } else {
+                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(requireContext(), R.color.big_foot_feet))
+//                        searchWithIngredientsButton.setBackgroundColor(resources.getColor(R.color.big_foot_feet))
+//                        searchWithIngredientsButton.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                    }
+                } else {
+                    searchWithIngredientsButton.isEnabled = false
+                    searchWithIngredientsButton.setTextColor(resources.getColor(R.color.gray))
+                    if (isDarkTheme()) {
+                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(requireContext(), R.color.eerie_black))
+                    } else {
+                        searchWithIngredientsButton.backgroundTintList = ColorStateList.valueOf(
+                            ContextCompat.getColor(requireContext(), R.color.mediumGray))
+//                        searchWithIngredientsButton.setBackgroundResource(R.drawable.bg_rounded_big_foot_feet)
+                    }
+                }
+                searchWithIngredientsButton.text = "SEARCH WITH ${selectedList.size} INGREDIENTS"
             }
 
             // Set item click listener
@@ -94,6 +130,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 ingredientModel.ingredientsName,
                 ingredientModel.isSelected
             )
+            viewModel.updateSelectedIngredientsName()
         }
     }
 
@@ -111,6 +148,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             viewModel.expandedIngredientsList.value!!.forEach {
                 it.isSelected = false
             }
+            viewModel.slideOffset=0f
             findNavController().navigateUp()
         }
     }
@@ -122,27 +160,26 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     }
 
     private fun setBottomSheetCallback() {
+        (dialog as? BottomSheetDialog)?.setOnDismissListener {
+            viewModel.slideOffset=0f
+            viewModel.expandedIngredientsList.value!!.forEach {
+                if (it.isSelected) {
+                    it.isSelected = false
+                }
+            }
+        }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                if (slideOffset == -1f && !isThemeChanged) {
-                    // Bottom sheet is fully expanded and the theme has not changed
-                    viewModel.expandedIngredientsList.value!!.forEach {
-                        if (it.isSelected) {
-                            it.isSelected = false
-                        }
-                    }
-                }
                 viewModel.slideOffset = slideOffset
                 setButtonPosition(slideOffset)
             }
-
             override fun onStateChanged(bottomSheet: View, newState: Int) {
             }
         })
     }
 
-    fun setButtonPosition(slideOffset: Float) {
+    private fun setButtonPosition(slideOffset: Float) {
         val parentHeight = binding.root.height
         val parentWidth = binding.root.width
         val fraction = parentHeight / parentWidth
@@ -155,6 +192,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         // Set the position of your view
         binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
 
+    }
+
+    private fun isDarkTheme(): Boolean {
+        return requireContext().resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onDestroyView() {
