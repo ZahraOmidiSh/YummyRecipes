@@ -124,9 +124,8 @@ class SearchFragment : Fragment() {
             //Search
             searchEdt.addTextChangedListener {
                 if (it.toString().length > 2 && isNetworkAvailable) {
-                    simpleSearchLay.isVisible = true
-                    advancedSearchLay.isVisible = false
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
+                    loadRecentData()
                 } else {
                     simpleSearchLay.isVisible = false
                     advancedSearchLay.isVisible = true
@@ -134,7 +133,7 @@ class SearchFragment : Fragment() {
             }
         }
         //Show data
-        loadRecentData()
+//        loadRecentData()
     }
 
     private fun loadRecentData() {
@@ -143,11 +142,12 @@ class SearchFragment : Fragment() {
                 when (response) {
                     is NetworkRequest.Loading -> {
                         advancedSearchLay.isVisible = false
+                        simpleSearchLay.isVisible=true
                         simpleSearchList.showShimmer()
                     }
-
                     is NetworkRequest.Success -> {
                         advancedSearchLay.isVisible = false
+                        simpleSearchLay.isVisible=true
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
@@ -159,6 +159,7 @@ class SearchFragment : Fragment() {
 
                     is NetworkRequest.Error -> {
                         advancedSearchLay.isVisible = false
+                        simpleSearchLay.isVisible=false
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
