@@ -40,18 +40,70 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/someFiltersLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_6mdp"
+            app:layout_constraintTop_toTopOf="parent">
+            <!--SearchWithIngredientsButton-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/filtersButton"
+                style="@style/FilterButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8mdp"
+                android:insetTop="@dimen/_7mdp"
+                android:insetBottom="@dimen/_7mdp"
+                android:text="@string/filters"
+                android:textSize="@dimen/_7font_mdp"
+                app:cornerRadius="@dimen/_25mdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--SearchWithIngredientsButton-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/dietsButton"
+                style="@style/FilterButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8mdp"
+                android:insetTop="@dimen/_7mdp"
+                android:insetBottom="@dimen/_7mdp"
+                android:text="@string/diets_filter"
+                android:textSize="@dimen/_7font_mdp"
+                app:cornerRadius="@dimen/_25mdp"
+                app:layout_constraintStart_toEndOf="@+id/filtersButton"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--SearchWithIngredientsButton-->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/ingredientsButton"
+                style="@style/FilterButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10mdp"
+                android:insetTop="@dimen/_7mdp"
+                android:insetBottom="@dimen/_7mdp"
+                android:text="@string/ingredients_filter"
+                android:textSize="@dimen/_7font_mdp"
+                app:cornerRadius="@dimen/_25mdp"
+                app:layout_constraintStart_toEndOf="@+id/dietsButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         <!--List-->
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/simpleSearchList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_6mdp"
             android:clipToPadding="false"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/_6mdp"
             android:paddingBottom="@dimen/_80mdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/someFiltersLay"
             app:shimmer_recycler_auto_start="true"
             app:shimmer_recycler_item_count="3"
             app:shimmer_recycler_layout="@layout/item_favorite_shimmer"
@@ -63,6 +115,7 @@
         android:id="@+id/advancedSearchLay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
         <!--Search By Ingredients-->
