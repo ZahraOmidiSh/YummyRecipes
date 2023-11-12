@@ -19,6 +19,7 @@ object Constants {
     const val SORT = "sort"
     const val SORT_DIRECTION = "sortDirection"
     const val DIET = "diet"
+    const val INCLUDE_INGREDIENTS = "includeIngredients"
 
     //APIs value
     const val MAIN_COURSE = "main course"
