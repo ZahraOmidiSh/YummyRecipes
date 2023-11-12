@@ -243,4 +243,10 @@
     <style name="SearchWithButtonStyle" >
         <item name="backgroundTint">@color/search_with_button_dark</item>
     </style>
+
+    <!--Filters Button-->
+    <style name="FilterButtonStyle" >
+        <item name="backgroundTint">@color/eerie_black</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
 </resources>

@@ -246,5 +246,11 @@
         <item name="backgroundTint">@color/search_with_button_light</item>
     </style>
 
+    <!--Filters Button-->
+    <style name="FilterButtonStyle" >
+        <item name="backgroundTint">@color/pale_pink</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 
 </resources>
