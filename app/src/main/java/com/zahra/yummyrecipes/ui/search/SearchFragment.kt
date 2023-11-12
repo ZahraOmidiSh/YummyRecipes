@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,6 +71,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            Log.e("SelectedList3", viewModel.selectedIngredientsNameData.value.toString())
             if (savedInstanceState != null) {
                 // Check if the activity is being recreated due to a theme change
                 isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
@@ -89,6 +91,7 @@ class SearchFragment : Fragment() {
                 advancedSearchAdapter.setData(expandedIngredients)
             }
             viewAllSearchByIngredients.setOnClickListener {
+                Log.e("SelectedList4", viewModel.selectedIngredientsNameData.value.toString())
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
@@ -105,6 +108,8 @@ class SearchFragment : Fragment() {
                 viewModel.updateExpandedIngredientByName(ingredientName, true)
                 val action =
                     SearchFragmentDirections.actionToSearchAllIngredients()
+                viewModel.updateSelectedIngredientsName()
+                Log.e("SelectedList5", viewModel.selectedIngredientsNameData.value.toString())
                 findNavController().navigate(action)
             }
 

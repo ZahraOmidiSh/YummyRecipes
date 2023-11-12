@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,6 +54,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            Log.e("SelectedList1", viewModel.selectedIngredientsNameData.value.toString())
             //Selected Ingredients List
             viewModel.updateSelectedIngredientsName()
 
@@ -142,6 +144,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 ingredientModel.ingredientsName, ingredientModel.isSelected
             )
             viewModel.updateSelectedIngredientsName()
+            Log.e("SelectedList2", viewModel.selectedIngredientsNameData.value.toString())
         }
     }
 
@@ -159,6 +162,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 it.isSelected = false
             }
             viewModel.slideOffset = 0f
+            viewModel._selectedIngredientsNameData.value = emptyList()
             findNavController().navigateUp()
         }
     }
@@ -177,6 +181,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     it.isSelected = false
                 }
             }
+            viewModel._selectedIngredientsNameData.value = emptyList()
         }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
