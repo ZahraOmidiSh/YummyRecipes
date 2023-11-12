@@ -28,21 +28,22 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
     //SlideOffset for Button Position
-    var slideOffset=0f
+    var slideOffset = 0f
 
     //Selected Ingredient List
     val _selectedIngredientsNameData = MutableLiveData<List<String>>()
-    val selectedIngredientsNameData : LiveData<List<String>> get() = _selectedIngredientsNameData
+    val selectedIngredientsNameData: LiveData<List<String>> get() = _selectedIngredientsNameData
     fun updateSelectedIngredientsName() {
         val updatedSelectedList = expandedIngredientsList.value?.filter {
             it.isSelected
         }
-        val list = mutableListOf<String>()
+        val nameList = mutableListOf<String>()
         updatedSelectedList?.forEach {
-            list.add(it.ingredientsName)
+            nameList.add(it.ingredientsName)
         }
-        _selectedIngredientsNameData.value=list
+        _selectedIngredientsNameData.value = nameList
     }
+
     //Expanded
     val _expandedIngredientsList = MutableLiveData<List<IngredientsModel>>()
     val expandedIngredientsList: LiveData<List<IngredientsModel>> get() = _expandedIngredientsList
