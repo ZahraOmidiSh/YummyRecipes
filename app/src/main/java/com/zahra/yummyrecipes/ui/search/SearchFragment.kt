@@ -139,19 +139,20 @@ class SearchFragment : Fragment() {
                 }
             }
 
-            viewModel.isSearchWithIngredient.observe(viewLifecycleOwner){
-                if(it){
+            viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
+                if (it) {
+                    closeImg.isVisible = true
                     viewModel.callSearchApi(viewModel.searchQueries(""))
                     loadRecentData()
-                    ingredientsButton.text = "INGREDIENTS " +"("+viewModel.selectedIngredientsNameData.value?.size.toString()+")"
+                    ingredientsButton.text =
+                        "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
                     } else {
                         setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                     }
-                }
-                else
-                {
+                } else {
+                    closeImg.isVisible = false
                     ingredientsButton.text = "INGREDIENTS"
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
@@ -164,6 +165,12 @@ class SearchFragment : Fragment() {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
+            //Close listener
+            closeImg.setOnClickListener {
+                viewModel.loadExpandedIngredientsList()
+                simpleSearchLay.isVisible = false
+                advancedSearchLay.isVisible = true
+            }
         }
         //Show data
 //        loadRecentData()
@@ -175,12 +182,13 @@ class SearchFragment : Fragment() {
                 when (response) {
                     is NetworkRequest.Loading -> {
                         advancedSearchLay.isVisible = false
-                        simpleSearchLay.isVisible=true
+                        simpleSearchLay.isVisible = true
                         simpleSearchList.showShimmer()
                     }
+
                     is NetworkRequest.Success -> {
                         advancedSearchLay.isVisible = false
-                        simpleSearchLay.isVisible=true
+                        simpleSearchLay.isVisible = true
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
@@ -192,7 +200,7 @@ class SearchFragment : Fragment() {
 
                     is NetworkRequest.Error -> {
                         advancedSearchLay.isVisible = false
-                        simpleSearchLay.isVisible=false
+                        simpleSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
@@ -224,6 +232,7 @@ class SearchFragment : Fragment() {
     private fun initInternetLayout(isConnected: Boolean) {
         binding.internetLay.isVisible = isConnected.not()
     }
+
     private fun setButtonBackgroundTint(Button: Button, color: Int) {
         Button.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(requireContext(), color)
