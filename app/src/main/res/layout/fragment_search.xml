@@ -38,6 +38,7 @@
         android:id="@+id/simpleSearchLay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
 
@@ -115,7 +116,7 @@
         android:id="@+id/advancedSearchLay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
         <!--Search By Ingredients-->

@@ -131,6 +131,13 @@ class SearchFragment : Fragment() {
                     advancedSearchLay.isVisible = true
                 }
             }
+
+            viewModel.isSearchWithIngredient.observe(viewLifecycleOwner){
+                if(it){
+                    viewModel.callSearchApi(viewModel.searchQueries(""))
+                    loadRecentData()
+                }
+            }
         }
         //Show data
 //        loadRecentData()
