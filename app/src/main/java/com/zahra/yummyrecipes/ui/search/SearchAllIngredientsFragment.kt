@@ -85,7 +85,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
-                viewModel.isSearchWithIngredient=true
+                viewModel.isSearchWithIngredient.value=true
                 findNavController().navigateUp()
             }
 
