@@ -6,33 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchFragment">
 
-    <!--Title-->
-    <TextView
-        android:id="@+id/titleTxt"
-        style="@style/SearchTextView"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        android:text="@string/search"
-        android:textSize="@dimen/_18mdp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <!--Search-->
     <EditText
         android:id="@+id/searchEdt"
         style="@style/SearchEditTextStyle"
         android:layout_marginHorizontal="@dimen/_16mdp"
-        android:layout_marginTop="@dimen/_12mdp"
+        android:layout_marginTop="@dimen/_22mdp"
         android:drawableStart="@drawable/magnifying_glass"
         android:hint="@string/hungry"
         android:paddingHorizontal="@dimen/_5mdp"
         android:textColorHint="@color/philippine_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTxt" />
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Close-->
+    <ImageView
+        android:id="@+id/closeImg"
+        style="@style/AdvancedSearchButtons"
+        android:layout_margin="@dimen/_3mdp"
+        android:rotation="45"
+        android:src="@drawable/plus"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/simpleSearchLay"
