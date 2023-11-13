@@ -167,9 +167,15 @@ class SearchFragment : Fragment() {
             }
             //Close listener
             closeImg.setOnClickListener {
-                viewModel.loadExpandedIngredientsList()
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if (it.isSelected) {
+                        it.isSelected = false
+                    }
+                }
                 simpleSearchLay.isVisible = false
                 advancedSearchLay.isVisible = true
+                closeImg.isVisible=false
+
             }
         }
         //Show data
