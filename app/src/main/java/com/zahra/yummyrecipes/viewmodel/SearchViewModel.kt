@@ -28,6 +28,8 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
+    //Search With Ingredient
+    var isSearchWithIngredient=false
     //SlideOffset for Button Position
     var slideOffset = 0f
 
