@@ -1,10 +1,15 @@
 package com.zahra.yummyrecipes.ui.search
 
+import android.annotation.SuppressLint
+import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -14,6 +19,7 @@ import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
 import com.zahra.yummyrecipes.adapter.SearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchBinding
@@ -67,6 +73,7 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
@@ -136,7 +143,26 @@ class SearchFragment : Fragment() {
                 if(it){
                     viewModel.callSearchApi(viewModel.searchQueries(""))
                     loadRecentData()
+                    ingredientsButton.text = "INGREDIENTS " +"("+viewModel.selectedIngredientsNameData.value?.size.toString()+")"
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
+                    }
                 }
+                else
+                {
+                    ingredientsButton.text = "INGREDIENTS"
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
+                    } else {
+                        setButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                    }
+                }
+            }
+            ingredientsButton.setOnClickListener {
+                val direction = SearchFragmentDirections.actionToSearchAllIngredients()
+                findNavController().navigate(direction)
             }
         }
         //Show data
@@ -197,6 +223,15 @@ class SearchFragment : Fragment() {
 
     private fun initInternetLayout(isConnected: Boolean) {
         binding.internetLay.isVisible = isConnected.not()
+    }
+    private fun setButtonBackgroundTint(Button: Button, color: Int) {
+        Button.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
+    }
+
+    private fun isDarkTheme(): Boolean {
+        return requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onDestroyView() {
