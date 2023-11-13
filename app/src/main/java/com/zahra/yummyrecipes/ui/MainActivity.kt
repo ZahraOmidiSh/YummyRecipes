@@ -140,6 +140,21 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun visibilityBottomMenuInSearch() {
+        binding.apply {
+
+            viewModel.isSearchWithIngredient.observe(this@MainActivity, Observer {isSelected->
+                if(isSelected){
+                    mainBottomAppbar.isVisible = false
+                    cartFab.isVisible = false
+                }else{
+                    mainBottomAppbar.isVisible = true
+                    cartFab.isVisible = true
+                }
+            })
+        }
+    }
+
     override fun onNavigateUp(): Boolean {
         return navHost.navController.navigateUp() || super.onNavigateUp()
     }
