@@ -58,8 +58,6 @@
     <string name="diets_filter">Diets</string>
     <string name="ingredients_filter">Ingredients</string>
     <string name="search_by_meal">Search by Meal</string>
-    <string name="breakfast">BREAKFAST</string>
-    <string name="lunch">LUNCH</string>
-    <string name="snack">SNACK</string>
-    <string name="drink">DRINK</string>
+    <string name="most_popular_categories">Most Popular Categories</string>
+
 </resources>

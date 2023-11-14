@@ -109,108 +109,243 @@
             app:shimmer_recycler_shape="linear" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Ingredients search layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/IngredientsSearchLay"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt">
-        <!--Search By Ingredients-->
-        <TextView
-            android:id="@+id/searchByIngredientsTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_20mdp"
-            android:text="@string/search_by_ingredients"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--View All-->
-        <TextView
-            android:id="@+id/viewAllSearchByIngredients"
-            style="@style/View_All_Txt"
-            app:layout_constraintBottom_toBottomOf="@id/searchByIngredientsTxt"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/searchByIngredientsTxt" />
-        <!--Ingredients List-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ingredientsList"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt"
+        android:fillViewport="true"
+        android:clipToPadding="false">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/advancesSearchLay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/_5mdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Meal search layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/MealsSearchLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:layout_constraintTop_toBottomOf="@id/IngredientsSearchLay">
-        <!--Search By Ingredients-->
-        <TextView
-            android:id="@+id/searchByMealTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_20mdp"
-            android:text="@string/search_by_meal"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <!--Ingredients search layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/IngredientsSearchLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent">
+                <!--Search By Ingredients-->
+                <TextView
+                    android:id="@+id/searchByIngredientsTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_20mdp"
+                    android:text="@string/search_by_ingredients"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--View All-->
+                <TextView
+                    android:id="@+id/viewAllSearchByIngredients"
+                    style="@style/View_All_Txt"
+                    app:layout_constraintBottom_toBottomOf="@id/searchByIngredientsTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/searchByIngredientsTxt" />
+                <!--Ingredients List-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ingredientsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_5mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Meal search layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/MealsSearchLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/IngredientsSearchLay">
+                <!--Search By Ingredients Txt-->
+                <TextView
+                    android:id="@+id/searchByMealTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_20mdp"
+                    android:text="@string/search_by_meal"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Breakfast-->
+                <ImageView
+                    android:id="@+id/breakfastMeal"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/vegan"
+                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />
+                <!--Lunch-->
+                <ImageView
+                    android:id="@+id/lunchMeal"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/vegan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
+                    app:layout_constraintTop_toTopOf="@id/breakfastMeal" />
+                <!--Snack-->
+                <ImageView
+                    android:id="@+id/SnackMeal"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/vegan"
+                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/breakfastMeal" />
+                <!--Drink-->
+                <ImageView
+                    android:id="@+id/drinkMeal"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/vegan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
+                    app:layout_constraintTop_toTopOf="@id/SnackMeal" />
 
-        <!--Breakfast-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/breakfastMeal"
-            android:layout_width="@dimen/_120mdp"
-            android:layout_height="@dimen/_70mdp"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:text="@string/breakfast"
-            app:cornerRadius="@dimen/_8mdp"
-            app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />
-        <!--Lunch-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/lunchMeal"
-            android:layout_width="@dimen/_120mdp"
-            android:layout_height="@dimen/_70mdp"
-            android:text="@string/lunch"
-            app:cornerRadius="@dimen/_8mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
-            app:layout_constraintTop_toTopOf="@id/breakfastMeal" />
-        <!--Breakfast-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/SnackMeal"
-            android:layout_width="@dimen/_120mdp"
-            android:layout_height="@dimen/_70mdp"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:text="@string/snack"
-            app:cornerRadius="@dimen/_8mdp"
-            app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/breakfastMeal" />
-        <!--Lunch-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/drinkMeal"
-            android:layout_width="@dimen/_120mdp"
-            android:layout_height="@dimen/_70mdp"
-            android:text="@string/drink"
-            app:cornerRadius="@dimen/_8mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
-            app:layout_constraintTop_toTopOf="@id/SnackMeal" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Most popular categories-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mostPopularCategoriesLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/MealsSearchLay">
+                <!--Most popular categories Txt-->
+                <TextView
+                    android:id="@+id/mostPopularCategoriesTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_20mdp"
+                    android:text="@string/most_popular_categories"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--LowCarb-->
+                <ImageView
+                    android:id="@+id/lowCarb"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toStartOf="@+id/AirFryer"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mostPopularCategoriesTxt" />
+                <!--AirFryer-->
+                <ImageView
+                    android:id="@+id/AirFryer"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/lowCarb"
+                    app:layout_constraintTop_toTopOf="@id/lowCarb" />
+                <!--Asian-->
+                <ImageView
+                    android:id="@+id/Asian"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toStartOf="@+id/Mexican"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/lowCarb" />
+                <!--Mexican-->
+                <ImageView
+                    android:id="@+id/Mexican"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/Asian"
+                    app:layout_constraintTop_toTopOf="@id/Asian" />
+                <!--Vegetarian-->
+                <ImageView
+                    android:id="@+id/Vegetarian"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toStartOf="@+id/bakedGoods"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/Asian" />
+                <!--baked Goods-->
+                <ImageView
+                    android:id="@+id/bakedGoods"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/Vegetarian"
+                    app:layout_constraintTop_toTopOf="@id/Vegetarian" />
+                <!--A-->
+                <ImageView
+                    android:id="@+id/A"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toStartOf="@+id/B"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/Vegetarian" />
+                <!--B-->
+                <ImageView
+                    android:id="@+id/B"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/A"
+                    app:layout_constraintTop_toTopOf="@id/A" />
+                <!--C-->
+                <ImageView
+                    android:id="@+id/C"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toStartOf="@+id/D"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/A" />
+                <!--D-->
+                <ImageView
+                    android:id="@+id/D"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:background="@drawable/weight_loss"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/C"
+                    app:layout_constraintTop_toTopOf="@id/C" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
 
     <!--Internet-->
     <androidx.constraintlayout.widget.ConstraintLayout
