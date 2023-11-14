@@ -31,6 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Simple search layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/simpleSearchLay"
         android:layout_width="match_parent"
@@ -108,13 +109,12 @@
             app:shimmer_recycler_shape="linear" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <!--Ingredients search layout-->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/advancedSearchLay"
+        android:id="@+id/IngredientsSearchLay"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
         <!--Search By Ingredients-->
         <TextView
@@ -146,7 +146,71 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchByIngredientsTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Meal search layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/MealsSearchLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/IngredientsSearchLay">
+        <!--Search By Ingredients-->
+        <TextView
+            android:id="@+id/searchByMealTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_20mdp"
+            android:text="@string/search_by_meal"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <!--Breakfast-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/breakfastMeal"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_70mdp"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:text="@string/breakfast"
+            app:cornerRadius="@dimen/_8mdp"
+            app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />
+        <!--Lunch-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/lunchMeal"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_70mdp"
+            android:text="@string/lunch"
+            app:cornerRadius="@dimen/_8mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
+            app:layout_constraintTop_toTopOf="@id/breakfastMeal" />
+        <!--Breakfast-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/SnackMeal"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_70mdp"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:text="@string/snack"
+            app:cornerRadius="@dimen/_8mdp"
+            app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/breakfastMeal" />
+        <!--Lunch-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/drinkMeal"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_70mdp"
+            android:text="@string/drink"
+            app:cornerRadius="@dimen/_8mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
+            app:layout_constraintTop_toTopOf="@id/SnackMeal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!--Internet-->
     <androidx.constraintlayout.widget.ConstraintLayout

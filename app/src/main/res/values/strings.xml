@@ -47,7 +47,7 @@
     <string name="check_your_connection">Check your connection</string>
     <string name="favorites">Favorite</string>
     <string name="add_new_recipe_to_favorites">Add new recipe to favorite</string>
-    <string name="search_by_ingredients">Search By Ingredients</string>
+    <string name="search_by_ingredients">Search by Ingredients</string>
     <string name="searchbyingredients">SearchByIngredients</string>
     <string name="search_common_ingredients">Search Common Ingredients</string>
     <string name="hungry">Hungry?</string>
@@ -57,4 +57,9 @@
     <string name="filters">Filters</string>
     <string name="diets_filter">Diets</string>
     <string name="ingredients_filter">Ingredients</string>
+    <string name="search_by_meal">Search by Meal</string>
+    <string name="breakfast">BREAKFAST</string>
+    <string name="lunch">LUNCH</string>
+    <string name="snack">SNACK</string>
+    <string name="drink">DRINK</string>
 </resources>
