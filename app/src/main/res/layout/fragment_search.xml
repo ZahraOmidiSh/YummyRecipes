@@ -111,17 +111,21 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/advancedSearchScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/searchEdt"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
         android:fillViewport="true"
-        android:clipToPadding="false">
+        android:paddingBottom="@dimen/_95mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/advancesSearchLay"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
             <!--Ingredients search layout-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/IngredientsSearchLay"
@@ -344,7 +348,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 
 
     <!--Internet-->

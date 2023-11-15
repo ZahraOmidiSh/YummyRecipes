@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -135,7 +136,7 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                 } else {
                     simpleSearchLay.isVisible = false
-                    advancedSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = true
                 }
             }
 
@@ -173,7 +174,7 @@ class SearchFragment : Fragment() {
                     }
                 }
                 simpleSearchLay.isVisible = false
-                advancedSearchLay.isVisible = true
+                advancedSearchScroll.isVisible = true
                 closeImg.isVisible=false
 
             }
@@ -187,13 +188,13 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        advancedSearchLay.isVisible = false
+                        advancedSearchScroll.isVisible = false
                         simpleSearchLay.isVisible = true
                         simpleSearchList.showShimmer()
                     }
 
                     is NetworkRequest.Success -> {
-                        advancedSearchLay.isVisible = false
+                        advancedSearchScroll.isVisible = false
                         simpleSearchLay.isVisible = true
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
@@ -205,7 +206,7 @@ class SearchFragment : Fragment() {
                     }
 
                     is NetworkRequest.Error -> {
-                        advancedSearchLay.isVisible = false
+                        advancedSearchScroll.isVisible = false
                         simpleSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
