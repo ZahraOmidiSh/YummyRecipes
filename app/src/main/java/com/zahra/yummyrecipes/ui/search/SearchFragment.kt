@@ -52,6 +52,7 @@ class SearchFragment : Fragment() {
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
     private var isNetworkAvailable by Delegates.notNull<Boolean>()
+    private var searchString=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -127,7 +128,9 @@ class SearchFragment : Fragment() {
             }
             //Search
             searchEdt.addTextChangedListener {
-                if (it.toString().length > 2 && isNetworkAvailable) {
+//                if (it.toString().length > 2 && isNetworkAvailable) {
+                if (isNetworkAvailable) {
+                    searchString=it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
                 } else {
@@ -139,7 +142,7 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
                 if (it) {
                     closeImg.isVisible = true
-                    viewModel.callSearchApi(viewModel.searchQueries(""))
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
                     ingredientsButton.text =
                         "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
@@ -169,6 +172,7 @@ class SearchFragment : Fragment() {
                         it.isSelected = false
                     }
                 }
+                searchString=""
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
