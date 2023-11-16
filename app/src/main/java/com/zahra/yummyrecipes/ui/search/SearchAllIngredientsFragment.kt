@@ -56,6 +56,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         binding.apply {
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
+                println("clearing1: ${notSureItems.size}")
             }
             //Selected Ingredients List
             viewModel.updateSelectedIngredientsName()
@@ -69,8 +70,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button listener
 //            closeButton(closeImg)
             closeImg.setOnClickListener {
+//                notSureItems.forEach {
+//                    if (viewModel.expandedIngredientsList.value.contains())
+//                }
+                println("clearing2: ${notSureItems.size}")
                 notSureItems.clear()
-                findNavController().navigateUp()
+                println("clearing3: ${notSureItems.size}")
+                println("clearing3.5: ${viewModel.selectedIngredientsNameData.value?.size}")
+//                findNavController().navigateUp()
+                dismiss()
             }
 
             // Set up RecyclerView
@@ -92,15 +100,16 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
 
-                notSureItems.forEach {
-                    viewModel.updateExpandedIngredientByName(
-                        it, true
-                    )
-                }
+//                notSureItems.forEach {
+//                    viewModel.updateExpandedIngredientByName(
+//                        it, true
+//                    )
+//                }
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value =
                     viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
                 notSureItems.clear()
+                println("clearing4: ${notSureItems.size}")
                 findNavController().navigateUp()
             }
 
@@ -113,7 +122,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setButtonColor(selectedList: List<String>) {
+    private fun setButtonColor(notSureItems: List<String>) {
         binding.apply {
             if (notSureItems.isNotEmpty()) {
                 searchWithIngredientsButton.isEnabled = true
@@ -160,6 +169,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setItemClickListener() {
         advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
             if (notSureItems.contains(ingredientModel.ingredientsName)) {
@@ -200,6 +210,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 //            )
 //            viewModel.updateSelectedIngredientsName()
         }
+        println("clearing3.5: ${viewModel.expandedIngredientsList.value.toString()}")
     }
 
     private fun setupRecyclerView(expandedList: RecyclerView) {

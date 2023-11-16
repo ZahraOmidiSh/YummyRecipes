@@ -97,6 +97,9 @@ class SearchFragment : Fragment() {
                 advancedSearchAdapter.setData(expandedIngredients)
             }
             viewAllSearchByIngredients.setOnClickListener {
+                viewModel.expandedIngredientsList.value?.forEach {
+                    it.isSelected=false
+                }
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
