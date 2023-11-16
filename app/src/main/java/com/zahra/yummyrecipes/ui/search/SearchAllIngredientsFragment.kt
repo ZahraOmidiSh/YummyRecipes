@@ -163,12 +163,17 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
-            viewModel.expandedIngredientsList.value!!.forEach {
-                it.isSelected = false
+            if (viewModel.isSearchWithIngredient.value == true){
+                findNavController().navigateUp()
+            }else{
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    it.isSelected = false
+                }
+                viewModel.slideOffset = 0f
+                viewModel._selectedIngredientsNameData.value = emptyList()
+                findNavController().navigateUp()
             }
-            viewModel.slideOffset = 0f
-            viewModel._selectedIngredientsNameData.value = emptyList()
-            findNavController().navigateUp()
+
         }
     }
 
