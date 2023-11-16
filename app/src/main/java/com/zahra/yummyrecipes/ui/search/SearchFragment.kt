@@ -113,6 +113,9 @@ class SearchFragment : Fragment() {
             )
             //Click on items
             advancedSearchAdapter.setonItemClickListener { ingredientName ->
+                viewModel.expandedIngredientsList.value?.forEach {
+                    it.isSelected=false
+                }
                 viewModel.updateExpandedIngredientByName(ingredientName, true)
                 val action =
                     SearchFragmentDirections.actionToSearchAllIngredients()
