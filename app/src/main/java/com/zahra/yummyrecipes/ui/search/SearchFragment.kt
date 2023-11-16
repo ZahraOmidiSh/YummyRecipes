@@ -98,7 +98,7 @@ class SearchFragment : Fragment() {
             }
             viewAllSearchByIngredients.setOnClickListener {
                 viewModel.expandedIngredientsList.value?.forEach {
-                    it.isSelected=false
+                    it.isSelected = false
                 }
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
@@ -114,7 +114,7 @@ class SearchFragment : Fragment() {
             //Click on items
             advancedSearchAdapter.setonItemClickListener { ingredientName ->
                 viewModel.expandedIngredientsList.value?.forEach {
-                    it.isSelected=false
+                    it.isSelected = false
                 }
                 viewModel.updateExpandedIngredientByName(ingredientName, true)
                 val action =
