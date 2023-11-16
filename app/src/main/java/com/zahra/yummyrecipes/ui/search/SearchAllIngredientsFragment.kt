@@ -71,11 +71,17 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             closeImg.setOnClickListener {
                 notSureItems.clear()
                 viewModel.slideOffset = 0f
-                viewModel.expandedIngredientsList.value!!.forEach {
-                    if (it.isSelected) {
-                        it.isSelected = false
+                if (viewModel.isSearchWithIngredient.value == true) {
+
+
+                } else {
+                    viewModel.expandedIngredientsList.value!!.forEach {
+                        if (it.isSelected) {
+                            it.isSelected = false
+                        }
                     }
                 }
+
                 findNavController().navigateUp()
             }
 
@@ -91,7 +97,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Observe and update Selected data
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
-            setButtonColor(notSureItems)
+                setButtonColor(notSureItems)
             }
 
             //Selected Ingredients Button Listener
