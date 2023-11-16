@@ -21,6 +21,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
+import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -35,9 +36,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     lateinit var advancedAllSearchAdapter: AdvancedAllSearchAdapter
 
     //Others
-    private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
     private var notSureItems = mutableListOf<String>()
+    private var temporaryItems = mutableListOf<IngredientsModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -60,8 +61,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 notSureItems = it.toMutableList()
                 println("clearing1: ${notSureItems.size}")
             }
-            // Check if the activity is being recreated due to a theme change
-            themeChangeChecker(savedInstanceState)
 
             //set button first position
             setButtonFirstPosition()
@@ -243,11 +242,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun themeChangeChecker(savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-            isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
-        }
-    }
 
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
