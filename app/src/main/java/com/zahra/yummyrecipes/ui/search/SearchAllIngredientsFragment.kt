@@ -22,6 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
+import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -38,6 +39,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
+    private var unselecteditems = mutableListOf<IngredientsModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -85,6 +87,13 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
                 viewModel.isSearchWithIngredient.value = true
+                unselecteditems.forEach {
+                    viewModel.updateExpandedIngredientByName(
+                        it.ingredientsName, it.isSelected
+                    )
+                }
+                viewModel.updateSelectedIngredientsName()
+                unselecteditems.clear()
                 findNavController().navigateUp()
             }
 
@@ -146,10 +155,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun setItemClickListener() {
         advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
-            viewModel.updateExpandedIngredientByName(
-                ingredientModel.ingredientsName, ingredientModel.isSelected
-            )
-            viewModel.updateSelectedIngredientsName()
+            unselecteditems.add(ingredientModel)
+//            viewModel.updateExpandedIngredientByName(
+//                ingredientModel.ingredientsName, ingredientModel.isSelected
+//            )
+//            viewModel.updateSelectedIngredientsName()
         }
     }
 
@@ -163,14 +173,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
-            if (viewModel.isSearchWithIngredient.value == true){
+            if (viewModel.isSearchWithIngredient.value == true) {
                 findNavController().navigateUp()
-            }else{
+            } else {
                 viewModel.expandedIngredientsList.value!!.forEach {
                     it.isSelected = false
                 }
                 viewModel.slideOffset = 0f
                 viewModel._selectedIngredientsNameData.value = emptyList()
+                unselecteditems.clear()
                 findNavController().navigateUp()
             }
 

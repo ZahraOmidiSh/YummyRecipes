@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,7 +51,7 @@ class SearchFragment : Fragment() {
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
     private var isNetworkAvailable by Delegates.notNull<Boolean>()
-    private var searchString=""
+    private var searchString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -130,7 +129,7 @@ class SearchFragment : Fragment() {
             searchEdt.addTextChangedListener {
 //                if (it.toString().length > 2 && isNetworkAvailable) {
                 if (isNetworkAvailable) {
-                    searchString=it.toString()
+                    searchString = it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
                 } else {
@@ -172,7 +171,7 @@ class SearchFragment : Fragment() {
                         it.isSelected = false
                     }
                 }
-                searchString=""
+                searchString = ""
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
