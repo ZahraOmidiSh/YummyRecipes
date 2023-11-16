@@ -54,7 +54,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            Log.e("SelectedList1", viewModel.selectedIngredientsNameData.value.toString())
             //Selected Ingredients List
             viewModel.updateSelectedIngredientsName()
 
@@ -85,7 +84,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
-                viewModel.isSearchWithIngredient.value=true
+                viewModel.isSearchWithIngredient.value = true
                 findNavController().navigateUp()
             }
 
@@ -151,7 +150,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 ingredientModel.ingredientsName, ingredientModel.isSelected
             )
             viewModel.updateSelectedIngredientsName()
-            Log.e("SelectedList2", viewModel.selectedIngredientsNameData.value.toString())
         }
     }
 

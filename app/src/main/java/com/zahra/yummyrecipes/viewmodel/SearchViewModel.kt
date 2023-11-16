@@ -29,7 +29,8 @@ import javax.inject.Inject
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
     //Search With Ingredient
-    var isSearchWithIngredient=MutableLiveData<Boolean>()
+    var isSearchWithIngredient = MutableLiveData<Boolean>()
+
     //SlideOffset for Button Position
     var slideOffset = 0f
 
@@ -157,19 +158,20 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[INCLUDE_INGREDIENTS]=selectedIngredientsToString()
+        queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search
         return queries
     }
-    private  fun selectedIngredientsToString():String{
-        var ingredients=""
+
+    private fun selectedIngredientsToString(): String {
+        var ingredients = ""
         selectedIngredientsNameData.value?.forEach {
-            ingredients= "$ingredients&$it"
+            ingredients = "$ingredients&$it"
         }
-        ingredients.removeRange(0,0)
+        ingredients.removeRange(0, 0)
         return ingredients
     }
 

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ScrollView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -79,7 +78,6 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            Log.e("SelectedList3", viewModel.selectedIngredientsNameData.value.toString())
             if (savedInstanceState != null) {
                 // Check if the activity is being recreated due to a theme change
                 isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
@@ -99,7 +97,6 @@ class SearchFragment : Fragment() {
                 advancedSearchAdapter.setData(expandedIngredients)
             }
             viewAllSearchByIngredients.setOnClickListener {
-                Log.e("SelectedList4", viewModel.selectedIngredientsNameData.value.toString())
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
@@ -117,7 +114,6 @@ class SearchFragment : Fragment() {
                 val action =
                     SearchFragmentDirections.actionToSearchAllIngredients()
                 viewModel.updateSelectedIngredientsName()
-                Log.e("SelectedList5", viewModel.selectedIngredientsNameData.value.toString())
                 findNavController().navigate(action)
             }
 
@@ -175,12 +171,10 @@ class SearchFragment : Fragment() {
                 }
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
-                closeImg.isVisible=false
+                closeImg.isVisible = false
 
             }
         }
-        //Show data
-//        loadRecentData()
     }
 
     private fun loadRecentData() {
