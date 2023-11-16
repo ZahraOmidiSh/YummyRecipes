@@ -158,7 +158,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
+        if (selectedIngredientsToString().isNotEmpty()){
+            queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
+        }
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = FULL_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
