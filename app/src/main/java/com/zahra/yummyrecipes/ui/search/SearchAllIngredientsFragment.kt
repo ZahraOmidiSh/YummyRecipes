@@ -54,13 +54,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            //Selected Ingredients List
+            viewModel.updateSelectedIngredientsName()
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
                 println("clearing1: ${notSureItems.size}")
             }
-            //Selected Ingredients List
-            viewModel.updateSelectedIngredientsName()
-
             // Check if the activity is being recreated due to a theme change
             themeChangeChecker(savedInstanceState)
 
@@ -70,15 +69,14 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button listener
 //            closeButton(closeImg)
             closeImg.setOnClickListener {
-//                notSureItems.forEach {
-//                    if (viewModel.expandedIngredientsList.value.contains())
-//                }
-                println("clearing2: ${notSureItems.size}")
                 notSureItems.clear()
-                println("clearing3: ${notSureItems.size}")
-                println("clearing3.5: ${viewModel.selectedIngredientsNameData.value?.size}")
-//                findNavController().navigateUp()
-                dismiss()
+                viewModel.slideOffset = 0f
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if (it.isSelected) {
+                        it.isSelected = false
+                    }
+                }
+                findNavController().navigateUp()
             }
 
             // Set up RecyclerView
@@ -92,24 +90,23 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
 
             //Observe and update Selected data
-//            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
+            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
             setButtonColor(notSureItems)
-//            }
+            }
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
 
-//                notSureItems.forEach {
-//                    viewModel.updateExpandedIngredientByName(
-//                        it, true
-//                    )
-//                }
+                notSureItems.forEach {
+                    viewModel.updateExpandedIngredientByName(
+                        it, true
+                    )
+                }
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value =
                     viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
                 notSureItems.clear()
-                println("clearing4: ${notSureItems.size}")
                 findNavController().navigateUp()
             }
 
