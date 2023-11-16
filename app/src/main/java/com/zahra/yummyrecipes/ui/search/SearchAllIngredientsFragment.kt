@@ -54,11 +54,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner){
-                notSureItems=it.toMutableList()
+            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
+                notSureItems = it.toMutableList()
             }
             //Selected Ingredients List
-            viewModel.updateSelectedIngredientsName( )
+            viewModel.updateSelectedIngredientsName()
 
             // Check if the activity is being recreated due to a theme change
             themeChangeChecker(savedInstanceState)
@@ -85,7 +85,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Observe and update Selected data
 //            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
-                setButtonColor(notSureItems)
+            setButtonColor(notSureItems)
 //            }
 
             //Selected Ingredients Button Listener
@@ -98,7 +98,8 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     )
                 }
                 viewModel.updateSelectedIngredientsName()
-                viewModel.isSearchWithIngredient.value = viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
+                viewModel.isSearchWithIngredient.value =
+                    viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
                 notSureItems.clear()
                 findNavController().navigateUp()
             }
@@ -161,9 +162,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun setItemClickListener() {
         advancedAllSearchAdapter.setonItemClickListener { ingredientModel ->
-            if(notSureItems.contains(ingredientModel.ingredientsName)){
+            if (notSureItems.contains(ingredientModel.ingredientsName)) {
                 notSureItems.remove(ingredientModel.ingredientsName)
-            }else{
+            } else {
                 notSureItems.add(ingredientModel.ingredientsName)
             }
             binding.apply {
@@ -212,9 +213,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
 //            if (viewModel.isSearchWithIngredient.value == true) {
-                notSureItems.clear()
+            notSureItems.clear()
             viewModel.updateSelectedIngredientsName()
-                findNavController().navigateUp()
+            findNavController().navigateUp()
 //            } else {
 //                viewModel.expandedIngredientsList.value!!.forEach {
 //                    it.isSelected = false
