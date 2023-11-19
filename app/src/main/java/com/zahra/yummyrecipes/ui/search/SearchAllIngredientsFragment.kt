@@ -55,6 +55,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            viewModel.confirmedSelection.value=false
             //Selected Ingredients List
             viewModel.updateSelectedIngredientsName()
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
@@ -120,6 +121,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
+                viewModel.confirmedSelection.value=true
                 viewModel.slideOffset = 0f
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
@@ -129,6 +131,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value =
                     viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
+
                 notSureItems.clear()
                 findNavController().navigateUp()
             }
