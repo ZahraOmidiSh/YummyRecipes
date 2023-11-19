@@ -74,21 +74,21 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                         notSureItems = it.toMutableList()
                     }
-                        viewModel._expandedIngredientsList.value?.forEach {ingredientModel ->
-                            ingredientModel.isSelected=false
-                        }
-                        notSureItems.forEach {name->
-                            viewModel.updateExpandedIngredientByName(
-                                name, true
-                            )
-                        }
+                    viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
+                        ingredientModel.isSelected = false
+                    }
+                    notSureItems.forEach { name ->
+                        viewModel.updateExpandedIngredientByName(
+                            name, true
+                        )
+                    }
                     viewModel.expandedIngredientsList.value?.let { it1 ->
                         advancedAllSearchAdapter.setData(
                             it1
                         )
                     }
                     viewModel.updateSelectedIngredientsName()
-                        println("clearing1: ${notSureItems.size}")
+                    println("clearing1: ${notSureItems.size}")
 //                    }
 
                 } else {
@@ -116,6 +116,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
                 setButtonColor(notSureItems)
             }
+
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
@@ -155,20 +156,35 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 } else {
                     setButtonBackgroundTint(searchWithIngredientsButton, R.color.big_foot_feet)
                 }
+                searchWithIngredientsButton.text = "SEARCH WITH ${notSureItems.size} INGREDIENTS"
             } else {
-                searchWithIngredientsButton.isEnabled = false
-                searchWithIngredientsButton.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.gray
-                    )
-                )
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                if (viewModel.isSearchWithIngredient.value == true) {
+
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                    } else {
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                    }
+                    searchWithIngredientsButton.text =
+                        "SEARCH WITHOUT INGREDIENTS!"
                 } else {
-                    setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                    searchWithIngredientsButton.isEnabled = false
+                    searchWithIngredientsButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.gray
+                        )
+                    )
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                    } else {
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                    }
+                    searchWithIngredientsButton.text =
+                        "SEARCH WITH ${notSureItems.size} INGREDIENTS"
                 }
+
             }
-            searchWithIngredientsButton.text = "SEARCH WITH ${notSureItems.size} INGREDIENTS"
+
         }
     }
 
@@ -263,14 +279,14 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
             viewModel.slideOffset = 0f
-            if(viewModel.isSearchWithIngredient.value==true){
+            if (viewModel.isSearchWithIngredient.value == true) {
                 viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                     notSureItems = it.toMutableList()
                 }
-                viewModel._expandedIngredientsList.value?.forEach {ingredientModel ->
-                    ingredientModel.isSelected=false
+                viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
+                    ingredientModel.isSelected = false
                 }
-                notSureItems.forEach {name->
+                notSureItems.forEach { name ->
                     viewModel.updateExpandedIngredientByName(
                         name, true
                     )
@@ -281,7 +297,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     )
                 }
                 viewModel.updateSelectedIngredientsName()
-            }else{
+            } else {
                 viewModel.expandedIngredientsList.value!!.forEach {
                     if (it.isSelected) {
                         it.isSelected = false

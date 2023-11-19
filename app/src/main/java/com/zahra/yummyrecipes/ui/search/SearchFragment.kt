@@ -50,7 +50,8 @@ class SearchFragment : Fragment() {
     //Others
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
-    private var isNetworkAvailable by Delegates.notNull<Boolean>()
+//    private var isNetworkAvailable by Delegates.notNull<Boolean>()
+private var isNetworkAvailable: Boolean? = null
     private var searchString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,6 +79,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            isNetworkAvailable = networkChecker.checkNetworkAvailability().value
             if (savedInstanceState != null) {
                 // Check if the activity is being recreated due to a theme change
                 isThemeChanged = savedInstanceState.getBoolean("themeChanged", false)
@@ -134,7 +136,7 @@ class SearchFragment : Fragment() {
             //Search
             searchEdt.addTextChangedListener {
 //                if (it.toString().length > 2 && isNetworkAvailable) {
-                if (isNetworkAvailable) {
+                if (isNetworkAvailable == true) {
                     searchString = it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
