@@ -263,12 +263,33 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
             viewModel.slideOffset = 0f
-            viewModel.expandedIngredientsList.value!!.forEach {
-                if (it.isSelected) {
-                    it.isSelected = false
+            if(viewModel.isSearchWithIngredient.value==true){
+                viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
+                    notSureItems = it.toMutableList()
                 }
+                viewModel._expandedIngredientsList.value?.forEach {ingredientModel ->
+                    ingredientModel.isSelected=false
+                }
+                notSureItems.forEach {name->
+                    viewModel.updateExpandedIngredientByName(
+                        name, true
+                    )
+                }
+                viewModel.expandedIngredientsList.value?.let { it1 ->
+                    advancedAllSearchAdapter.setData(
+                        it1
+                    )
+                }
+                viewModel.updateSelectedIngredientsName()
+            }else{
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if (it.isSelected) {
+                        it.isSelected = false
+                    }
+                }
+                viewModel._selectedIngredientsNameData.value = emptyList()
             }
-            viewModel._selectedIngredientsNameData.value = emptyList()
+
         }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
