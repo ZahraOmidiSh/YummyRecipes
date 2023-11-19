@@ -71,7 +71,25 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 notSureItems.clear()
                 viewModel.slideOffset = 0f
                 if (viewModel.isSearchWithIngredient.value == true) {
-
+                    viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
+                        notSureItems = it.toMutableList()
+                    }
+                        viewModel._expandedIngredientsList.value?.forEach {ingredientModel ->
+                            ingredientModel.isSelected=false
+                        }
+                        notSureItems.forEach {name->
+                            viewModel.updateExpandedIngredientByName(
+                                name, true
+                            )
+                        }
+                    viewModel.expandedIngredientsList.value?.let { it1 ->
+                        advancedAllSearchAdapter.setData(
+                            it1
+                        )
+                    }
+                    viewModel.updateSelectedIngredientsName()
+                        println("clearing1: ${notSureItems.size}")
+//                    }
 
                 } else {
                     viewModel.expandedIngredientsList.value!!.forEach {
@@ -102,7 +120,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
                 viewModel.slideOffset = 0f
-
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
                         it, true
