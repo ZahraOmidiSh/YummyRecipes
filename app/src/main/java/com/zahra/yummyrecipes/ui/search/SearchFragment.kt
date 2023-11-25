@@ -149,29 +149,46 @@ class SearchFragment : Fragment() {
             }
 
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
-                if (viewModel.confirmedSelection.value == true) {
-                    if (it) {
-                        closeImg.isVisible = true
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                        loadRecentData()
-                        ingredientsButton.text =
-                            "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
-                        if (isDarkTheme()) {
-                            setButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
-                        } else {
-                            setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
-                        }
+                if (it) {
+                    closeImg.isVisible = true
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    loadRecentData()
+                    ingredientsButton.text =
+                        "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
                     } else {
-                        closeImg.isVisible = false
+                        setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    if(searchString.isNotEmpty()){
+                        closeImg.isVisible = true
                         ingredientsButton.text = "INGREDIENTS"
                         if (isDarkTheme()) {
-                            setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
-                        } else {
                             setButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                        } else {
+                            setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
                         }
+                    }else{
+                        ingredientsButton.text = "INGREDIENTS"
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                        } else {
+                            setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
+                        }
+                        viewModel._expandedIngredientsList.value!!.forEach {ingredientModel ->
+                            if (ingredientModel.isSelected) {
+                                ingredientModel.isSelected = false
+                            }
+                        }
+                        viewModel.updateSelectedIngredientsName()
+                        closeImg.isVisible = false
+                        simpleSearchLay.isVisible=false
+                        advancedSearchScroll.isVisible=true
                     }
-                }
+//
 
+                }
             }
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()

@@ -149,7 +149,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                         setButtonBackgroundTint(searchWithIngredientsButton, R.color.big_foot_feet)
                     }
                     searchWithIngredientsButton.text =
-                        "SEARCH WITHOUT INGREDIENTS!"
+                        "NO INGREDIENTS!"
                 } else {
                     searchWithIngredientsButton.isEnabled = false
                     searchWithIngredientsButton.setTextColor(
@@ -223,7 +223,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                             )
                         }
                         searchWithIngredientsButton.text =
-                            "SEARCH WITHOUT INGREDIENTS!"
+                            "NO INGREDIENTS!"
                     } else {
                         searchWithIngredientsButton.isEnabled = false
                         searchWithIngredientsButton.setTextColor(
