@@ -66,39 +66,18 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             setButtonFirstPosition()
 
             //close button listener
-//            closeButton(closeImg)
             closeImg.setOnClickListener {
-//                notSureItems.clear()
                 viewModel.slideOffset = 0f
                 if (viewModel.isSearchWithIngredient.value == true) {
-//                    viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
-//                        notSureItems = it.toMutableList()
-//                    }
-//                    viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
-//                        ingredientModel.isSelected = false
-//                    }
-//                    notSureItems.forEach { name ->
-//                        viewModel.updateExpandedIngredientByName(
-//                            name, true
-//                        )
-//                    }
-//                    viewModel.expandedIngredientsList.value?.let { it1 ->
-//                        advancedAllSearchAdapter.setData(
-//                            it1
-//                        )
-//                    }
                     viewModel.updateExpandedIngredientBySelectedNames()
-//                    viewModel.updateSelectedIngredientsName()
-//                    }
-
                 } else {
                     viewModel.expandedIngredientsList.value!!.forEach {
                         if (it.isSelected) {
                             it.isSelected = false
                         }
                     }
+                    viewModel.updateSelectedIngredientsName()
                 }
-
                 findNavController().navigateUp()
             }
 
