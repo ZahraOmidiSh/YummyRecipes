@@ -182,9 +182,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         return queries
     }
 
-    private fun selectedIngredientsToString(): String {
+    private fun selectedIngredientsToString(list: List<String> ): String {
         var ingredients = ""
-        selectedIngredientsNameData.value?.forEach {
+        list.forEach {
             ingredients = "$ingredients&$it"
         }
         ingredients.removeRange(0, 0)

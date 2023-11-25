@@ -104,6 +104,7 @@ class SearchFragment : Fragment() {
                     it.isSelected = false
                 }
                 viewModel.updateSelectedIngredientsName()
+                viewModel.isSearchWithIngredient.value=false
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
