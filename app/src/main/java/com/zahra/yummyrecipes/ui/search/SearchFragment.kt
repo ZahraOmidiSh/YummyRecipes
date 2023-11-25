@@ -50,8 +50,9 @@ class SearchFragment : Fragment() {
     //Others
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
-//    private var isNetworkAvailable by Delegates.notNull<Boolean>()
-private var isNetworkAvailable: Boolean? = null
+
+    //    private var isNetworkAvailable by Delegates.notNull<Boolean>()
+    private var isNetworkAvailable: Boolean? = null
     private var searchString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -147,7 +148,7 @@ private var isNetworkAvailable: Boolean? = null
             }
 
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
-                if (viewModel.confirmedSelection.value==true){
+                if (viewModel.confirmedSelection.value == true) {
                     if (it) {
                         closeImg.isVisible = true
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))

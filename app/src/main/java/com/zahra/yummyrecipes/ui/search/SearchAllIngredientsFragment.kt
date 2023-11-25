@@ -55,9 +55,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+
+            viewModel.updateExpandedIngredientBySelectedNames()
+
             viewModel.confirmedSelection.value=false
             //Selected Ingredients List
-            viewModel.updateSelectedIngredientsName()
+//            viewModel.updateSelectedIngredientsName()
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
                 println("clearing1: ${notSureItems.size}")
