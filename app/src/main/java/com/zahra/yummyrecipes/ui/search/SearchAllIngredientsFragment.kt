@@ -255,20 +255,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
-//            if (viewModel.isSearchWithIngredient.value == true) {
             notSureItems.clear()
             viewModel.updateSelectedIngredientsName()
             findNavController().navigateUp()
-//            } else {
-//                viewModel.expandedIngredientsList.value!!.forEach {
-//                    it.isSelected = false
-//                }
-//                viewModel.slideOffset = 0f
-//                viewModel._selectedIngredientsNameData.value = emptyList()
-//                notSureItems.clear()
-//                findNavController().navigateUp()
-//            }
-
         }
     }
 
@@ -277,32 +266,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
             viewModel.slideOffset = 0f
             if (viewModel.isSearchWithIngredient.value == true) {
-                viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
-                    notSureItems = it.toMutableList()
-                }
-                viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
-                    ingredientModel.isSelected = false
-                }
-                notSureItems.forEach { name ->
-                    viewModel.updateExpandedIngredientByName(
-                        name, true
-                    )
-                }
-                viewModel.expandedIngredientsList.value?.let { it1 ->
-                    advancedAllSearchAdapter.setData(
-                        it1
-                    )
-                }
-                viewModel.updateSelectedIngredientsName()
+                viewModel.updateExpandedIngredientBySelectedNames()
             } else {
                 viewModel.expandedIngredientsList.value!!.forEach {
                     if (it.isSelected) {
                         it.isSelected = false
                     }
                 }
-                viewModel._selectedIngredientsNameData.value = emptyList()
+                viewModel.updateSelectedIngredientsName()
             }
-
         }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
