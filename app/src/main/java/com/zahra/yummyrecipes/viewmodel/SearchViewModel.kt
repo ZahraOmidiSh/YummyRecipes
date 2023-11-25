@@ -32,7 +32,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     var isSearchWithIngredient = MutableLiveData<Boolean>()
 
     //Confirmed to show the selections
-    var confirmedSelection = MutableLiveData<Boolean>()
+//    var confirmedSelection = 0
 
     //SlideOffset for Button Position
     var slideOffset = 0f
