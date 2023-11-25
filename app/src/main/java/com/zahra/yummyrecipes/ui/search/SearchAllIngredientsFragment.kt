@@ -38,6 +38,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureItems = mutableListOf<String>()
+    private var confirmedSelection = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -54,10 +55,11 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+            //Confirm Selection
+//            confirmedSelection=viewModel.confirmedSelection
             //make just selected items "isSelected=true"
             viewModel.updateExpandedIngredientBySelectedNames()
 
-            viewModel.confirmedSelection.value = false
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
             }
@@ -99,7 +101,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
-                viewModel.confirmedSelection.value = true
+//                viewModel.confirmedSelection.value = true
                 viewModel.slideOffset = 0f
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
@@ -142,9 +144,9 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 if (viewModel.isSearchWithIngredient.value == true) {
 
                     if (isDarkTheme()) {
-                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.congo_pink)
                     } else {
-                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.big_foot_feet)
                     }
                     searchWithIngredientsButton.text =
                         "SEARCH WITHOUT INGREDIENTS!"
@@ -213,15 +215,15 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     if (viewModel.isSearchWithIngredient.value == true) {
                         searchWithIngredientsButton.isEnabled = true
                         if (isDarkTheme()) {
+                            setButtonBackgroundTint(searchWithIngredientsButton, R.color.congo_pink)
+                        } else {
                             setButtonBackgroundTint(
                                 searchWithIngredientsButton,
-                                R.color.eerie_black
+                                R.color.big_foot_feet
                             )
-                        } else {
-                            setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
                         }
                         searchWithIngredientsButton.text =
-                            "No INGREDIENTS!"
+                            "SEARCH WITHOUT INGREDIENTS!"
                     } else {
                         searchWithIngredientsButton.isEnabled = false
                         searchWithIngredientsButton.setTextColor(
