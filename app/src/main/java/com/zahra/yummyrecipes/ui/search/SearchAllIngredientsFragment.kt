@@ -38,7 +38,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureItems = mutableListOf<String>()
-    private var temporaryItems = mutableListOf<IngredientsModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -55,15 +54,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-
+            //make just selected items "isSelected=true"
             viewModel.updateExpandedIngredientBySelectedNames()
 
             viewModel.confirmedSelection.value=false
-            //Selected Ingredients List
-//            viewModel.updateSelectedIngredientsName()
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
-                println("clearing1: ${notSureItems.size}")
             }
 
             //set button first position
@@ -72,27 +68,27 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //close button listener
 //            closeButton(closeImg)
             closeImg.setOnClickListener {
-                notSureItems.clear()
+//                notSureItems.clear()
                 viewModel.slideOffset = 0f
                 if (viewModel.isSearchWithIngredient.value == true) {
-                    viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
-                        notSureItems = it.toMutableList()
-                    }
-                    viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
-                        ingredientModel.isSelected = false
-                    }
-                    notSureItems.forEach { name ->
-                        viewModel.updateExpandedIngredientByName(
-                            name, true
-                        )
-                    }
-                    viewModel.expandedIngredientsList.value?.let { it1 ->
-                        advancedAllSearchAdapter.setData(
-                            it1
-                        )
-                    }
-                    viewModel.updateSelectedIngredientsName()
-                    println("clearing1: ${notSureItems.size}")
+//                    viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
+//                        notSureItems = it.toMutableList()
+//                    }
+//                    viewModel._expandedIngredientsList.value?.forEach { ingredientModel ->
+//                        ingredientModel.isSelected = false
+//                    }
+//                    notSureItems.forEach { name ->
+//                        viewModel.updateExpandedIngredientByName(
+//                            name, true
+//                        )
+//                    }
+//                    viewModel.expandedIngredientsList.value?.let { it1 ->
+//                        advancedAllSearchAdapter.setData(
+//                            it1
+//                        )
+//                    }
+                    viewModel.updateExpandedIngredientBySelectedNames()
+//                    viewModel.updateSelectedIngredientsName()
 //                    }
 
                 } else {
