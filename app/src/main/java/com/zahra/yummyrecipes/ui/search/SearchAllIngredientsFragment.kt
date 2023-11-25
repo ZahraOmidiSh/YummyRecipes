@@ -57,7 +57,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             //make just selected items "isSelected=true"
             viewModel.updateExpandedIngredientBySelectedNames()
 
-            viewModel.confirmedSelection.value=false
+            viewModel.confirmedSelection.value = false
             viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 notSureItems = it.toMutableList()
             }
@@ -99,7 +99,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
-                viewModel.confirmedSelection.value=true
+                viewModel.confirmedSelection.value = true
                 viewModel.slideOffset = 0f
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
@@ -194,6 +194,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 notSureItems.add(ingredientModel.ingredientsName)
             }
             binding.apply {
+
                 if (notSureItems.isNotEmpty()) {
                     searchWithIngredientsButton.isEnabled = true
                     searchWithIngredientsButton.setTextColor(
@@ -206,27 +207,42 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     } else {
                         setButtonBackgroundTint(searchWithIngredientsButton, R.color.big_foot_feet)
                     }
+                    searchWithIngredientsButton.text =
+                        "SEARCH WITH ${notSureItems.size} INGREDIENTS"
                 } else {
-                    searchWithIngredientsButton.isEnabled = false
-                    searchWithIngredientsButton.setTextColor(
-                        ContextCompat.getColor(
-                            requireContext(), R.color.gray
-                        )
-                    )
-                    if (isDarkTheme()) {
-                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.eerie_black)
+                    if (viewModel.isSearchWithIngredient.value == true) {
+                        searchWithIngredientsButton.isEnabled = true
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(
+                                searchWithIngredientsButton,
+                                R.color.eerie_black
+                            )
+                        } else {
+                            setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                        }
+                        searchWithIngredientsButton.text =
+                            "No INGREDIENTS!"
                     } else {
-                        setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                        searchWithIngredientsButton.isEnabled = false
+                        searchWithIngredientsButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.gray
+                            )
+                        )
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(
+                                searchWithIngredientsButton,
+                                R.color.eerie_black
+                            )
+                        } else {
+                            setButtonBackgroundTint(searchWithIngredientsButton, R.color.mediumGray)
+                        }
+                        searchWithIngredientsButton.text =
+                            "SEARCH WITH ${notSureItems.size} INGREDIENTS"
                     }
                 }
-                searchWithIngredientsButton.text = "SEARCH WITH ${notSureItems.size} INGREDIENTS"
             }
-//            viewModel.updateExpandedIngredientByName(
-//                ingredientModel.ingredientsName, ingredientModel.isSelected
-//            )
-//            viewModel.updateSelectedIngredientsName()
         }
-        println("clearing3.5: ${viewModel.expandedIngredientsList.value.toString()}")
     }
 
     private fun setupRecyclerView(expandedList: RecyclerView) {
