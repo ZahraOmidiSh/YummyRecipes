@@ -103,6 +103,7 @@ class SearchFragment : Fragment() {
                 viewModel.expandedIngredientsList.value?.forEach {
                     it.isSelected = false
                 }
+                viewModel.updateSelectedIngredientsName()
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
