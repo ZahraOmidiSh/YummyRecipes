@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
-import com.zahra.yummyrecipes.utils.Constants.FULL_COUNT
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
@@ -26,7 +24,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.util.Collections.list
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,9 +32,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     //Search With Ingredient
     var isSearchWithIngredient = MutableLiveData<Boolean>()
-
-    //Confirmed to show the selections
-//    var confirmedSelection = 0
 
     //SlideOffset for Button Position
     var slideOffset = 0f
@@ -68,7 +62,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         _expandedIngredientsList.value = updatedList
     }
 
-     fun updateExpandedIngredientBySelectedNames() {
+    fun updateExpandedIngredientBySelectedNames() {
         _expandedIngredientsList.value!!.forEach {
             if (it.isSelected) {
                 it.isSelected = false
@@ -179,7 +173,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val queries: HashMap<String, String> = HashMap()
         if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
-            Log.e("problem7", selectedIngredientsToString() )
         }
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = 4.toString()
@@ -190,41 +183,27 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     private fun selectedIngredientsToString(): String {
         var ingredients = ""
-        if(isSearchWithIngredient.value==true){
+        if (isSearchWithIngredient.value == true) {
             selectedIngredientsNameData.value?.forEach {
                 ingredients = "$ingredients&$it"
             }
-            ingredients=ingredients.removeRange(0, 1)
-            Log.e("problem1", selectedIngredientsNameData.value.toString() )
-            Log.e("problem2", isSearchWithIngredient.value.toString() )
-            Log.e("problem3", ingredients )
+            ingredients = ingredients.removeRange(0, 1)
             return ingredients
-        }else{
-            Log.e("problem4", selectedIngredientsNameData.value.toString() )
-            Log.e("problem5", isSearchWithIngredient.value.toString() )
-            Log.e("problem6", ingredients )
-            return  "NO"
+        } else {
+            return "NO"
         }
-
-
     }
-
 
     val searchData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
 
-//    fun callSearchApi(queries: Map<String, String>) = viewModelScope.launch {
-//        searchData.value = NetworkRequest.Loading()
-//        val response = repository.getSearchRecipes(queries)
-//        searchData.value = NetworkResponse(response).generalNetworkResponse()
-//    }
+    private val searchQueryChannel = Channel<Map<String, String>>()
 
-    private val searchQueryChannel=Channel<Map<String, String>>()
-    init{
+    init {
         viewModelScope.launch {
-            searchQueryChannel.receiveAsFlow().debounce(600).collectLatest {query ->
+            searchQueryChannel.receiveAsFlow().debounce(600).collectLatest { query ->
                 searchData.value = NetworkRequest.Loading()
                 val response = repository.getSearchRecipes(query)
-                searchData.value=NetworkResponse(response).generalNetworkResponse()
+                searchData.value = NetworkResponse(response).generalNetworkResponse()
             }
         }
     }
