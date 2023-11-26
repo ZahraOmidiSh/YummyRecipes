@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedSearchAdapter
@@ -99,61 +99,69 @@ class SearchFragment : Fragment() {
             ) { expandedIngredients ->
                 advancedSearchAdapter.setData(expandedIngredients)
             }
-            viewAllSearchByIngredients.setOnClickListener {
-                viewModel.expandedIngredientsList.value?.forEach {
-                    it.isSelected = false
-                }
-                viewModel.updateSelectedIngredientsName()
-                viewModel.isSearchWithIngredient.value = false
+
+            //view all ingredient button listener
+            viewAllListener()
+
+            // Set up RecyclerView
+            setupRecyclerView(ingredientsList)
+
+            //Click on items
+            clickOnIngredientListListener()
+
+            //Check Internet
+            checkInternet()
+
+            //box Search
+            textChangeListener()
+
+            //ingredient search
+            ingredientSearch()
+
+            ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
-            ingredientsList.setupRecyclerview(
-                LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.HORIZONTAL,
-                    false
-                ),
-                advancedSearchAdapter
-            )
-            //Click on items
-            advancedSearchAdapter.setonItemClickListener { ingredientName ->
-                viewModel.expandedIngredientsList.value?.forEach {
-                    it.isSelected = false
+            //Close listener
+            searchClose()
+
+        }
+    }
+
+    private fun searchClose() {
+        binding.apply {
+            closeImg.setOnClickListener {
+                searchEdt.text.clear()
+                searchString = ""
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if (it.isSelected) {
+                        it.isSelected = false
+                    }
                 }
-                viewModel.updateExpandedIngredientByName(ingredientName, true)
-                val action =
-                    SearchFragmentDirections.actionToSearchAllIngredients()
                 viewModel.updateSelectedIngredientsName()
-                findNavController().navigate(action)
-            }
+                viewModel.isSearchWithIngredient.value = false
+                simpleSearchLay.isVisible = false
+                advancedSearchScroll.isVisible = true
+                closeImg.isVisible = false
 
-            //Check Internet
-            lifecycleScope.launch {
-                withStarted { }
-                networkChecker.checkNetworkAvailability().collect { state ->
-                    initInternetLayout(state)
-                    isNetworkAvailable = state
-                }
             }
-            //Search
-            searchEdt.addTextChangedListener {
-//                if (!isThemeChanged) {
-                closeImg.isVisible = true
-//                if (it.toString().length > 2 && isNetworkAvailable) {
-                if (it.toString().length > 2 && isNetworkAvailable == true) {
-                    searchString = it.toString()
-                    viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
-                    loadRecentData()
-                    Log.e("problem8", viewModel.searchQueries(it.toString()).toString())
-                } else {
-//                    simpleSearchLay.isVisible = false
-//                    advancedSearchScroll.isVisible = true
-                }
+        }
+    }
+
+    private fun textChangeListener() {
+        binding.searchEdt.addTextChangedListener {
+            binding.closeImg.isVisible = true
+            if (it.toString().length > 2 && isNetworkAvailable == true) {
+                searchString = it.toString()
+                viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
+                loadRecentData()
             }
+        }
+    }
 
-//            }
-
+    @SuppressLint("SetTextI18n")
+    private fun ingredientSearch() {
+        binding.apply {
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
                 if (it) {
                     closeImg.isVisible = true
@@ -161,13 +169,12 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     ingredientsButton.text =
                         "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
-                    setOneButtonTextColor(ingredientsButton,R.color.white)
+                    setOneButtonTextColor(ingredientsButton, R.color.white)
                     if (isDarkTheme()) {
-                        setOneButtonBackgroundTint(ingredientsButton,R.color.congo_pink)
+                        setOneButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
                     } else {
-                        setOneButtonBackgroundTint(ingredientsButton,R.color.big_foot_feet)
+                        setOneButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                     }
-                    Log.e("problem9", viewModel.searchQueries(it.toString()).toString())
                 } else {
                     if (searchString.isNotEmpty()) {
                         closeImg.isVisible = true
@@ -202,30 +209,54 @@ class SearchFragment : Fragment() {
                         simpleSearchLay.isVisible = false
                         advancedSearchScroll.isVisible = true
                     }
-//
-
                 }
             }
-            ingredientsButton.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToSearchAllIngredients()
-                findNavController().navigate(direction)
-            }
-            //Close listener
-            closeImg.setOnClickListener {
-                searchEdt.text.clear()
-                searchString=""
-                viewModel.expandedIngredientsList.value!!.forEach {
-                    if (it.isSelected) {
-                        it.isSelected = false
-                    }
-                }
-                viewModel.updateSelectedIngredientsName()
-                viewModel.isSearchWithIngredient.value = false
-                simpleSearchLay.isVisible = false
-                advancedSearchScroll.isVisible = true
-                closeImg.isVisible = false
+        }
+    }
 
+    private fun checkInternet() {
+        lifecycleScope.launch {
+            withStarted { }
+            networkChecker.checkNetworkAvailability().collect { state ->
+                initInternetLayout(state)
+                isNetworkAvailable = state
             }
+        }
+    }
+
+    private fun clickOnIngredientListListener() {
+        advancedSearchAdapter.setonItemClickListener { ingredientName ->
+            viewModel.expandedIngredientsList.value?.forEach {
+                it.isSelected = false
+            }
+            viewModel.updateExpandedIngredientByName(ingredientName, true)
+            val action =
+                SearchFragmentDirections.actionToSearchAllIngredients()
+            viewModel.updateSelectedIngredientsName()
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun setupRecyclerView(ingredientsList: RecyclerView) {
+        ingredientsList.setupRecyclerview(
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                false
+            ),
+            advancedSearchAdapter
+        )
+    }
+
+    private fun viewAllListener() {
+        binding.viewAllSearchByIngredients.setOnClickListener {
+            viewModel.expandedIngredientsList.value?.forEach {
+                it.isSelected = false
+            }
+            viewModel.updateSelectedIngredientsName()
+            viewModel.isSearchWithIngredient.value = false
+            val direction = SearchFragmentDirections.actionToSearchAllIngredients()
+            findNavController().navigate(direction)
         }
     }
 
@@ -270,7 +301,6 @@ class SearchFragment : Fragment() {
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = searchAdapter
         }
-
         //Click
         searchAdapter.setonItemClickListener {
             goToDetailPage(it)
@@ -321,7 +351,6 @@ class SearchFragment : Fragment() {
                 requireContext(), color
             )
         )
-
     }
 
     private fun setOneButtonTextColor(button: Button, color: Int) {
