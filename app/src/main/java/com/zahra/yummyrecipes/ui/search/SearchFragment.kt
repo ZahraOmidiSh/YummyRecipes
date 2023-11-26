@@ -142,7 +142,6 @@ class SearchFragment : Fragment() {
                 closeImg.isVisible = true
 //                if (it.toString().length > 2 && isNetworkAvailable) {
                 if (it.toString().length > 2 && isNetworkAvailable == true) {
-
                     searchString = it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
@@ -181,7 +180,7 @@ class SearchFragment : Fragment() {
                             setAllButtonTextColor(R.color.rose_ebony)
                             setAllButtonBackgroundTint(R.color.whiteSmoke)
                         }
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString.toString()))
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
                         ingredientsButton.text = "INGREDIENTS"
@@ -214,6 +213,7 @@ class SearchFragment : Fragment() {
             //Close listener
             closeImg.setOnClickListener {
                 searchEdt.text.clear()
+                searchString=""
                 viewModel.expandedIngredientsList.value!!.forEach {
                     if (it.isSelected) {
                         it.isSelected = false
