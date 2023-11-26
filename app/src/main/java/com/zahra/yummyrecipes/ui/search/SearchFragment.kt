@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -139,13 +140,14 @@ class SearchFragment : Fragment() {
             //Search
             searchEdt.addTextChangedListener {
 //                if (it.toString().length > 2 && isNetworkAvailable) {
-                if (isNetworkAvailable == true) {
+                if (it.toString().length > 2 && isNetworkAvailable == true) {
                     searchString = it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
+                    Log.e("problem8", viewModel.searchQueries(it.toString()).toString() )
                 } else {
-                    simpleSearchLay.isVisible = false
-                    advancedSearchScroll.isVisible = true
+//                    simpleSearchLay.isVisible = false
+//                    advancedSearchScroll.isVisible = true
                 }
             }
 
@@ -161,6 +163,7 @@ class SearchFragment : Fragment() {
                     } else {
                         setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                     }
+                    Log.e("problem9", viewModel.searchQueries(it.toString()).toString() )
                 } else {
                     if(searchString.isNotEmpty()){
                         closeImg.isVisible = true

@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -172,23 +173,36 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        if (selectedIngredientsToString().isNotEmpty()) {
+        if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
+            Log.e("problem7", selectedIngredientsToString() )
         }
         queries[API_KEY] = MY_API_KEY
-        queries[NUMBER] = FULL_COUNT.toString()
+        queries[NUMBER] = 4.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search
         return queries
     }
 
-    private fun selectedIngredientsToString(list: List<String> ): String {
+    private fun selectedIngredientsToString(): String {
         var ingredients = ""
-        list.forEach {
-            ingredients = "$ingredients&$it"
+        if(isSearchWithIngredient.value==true){
+            selectedIngredientsNameData.value?.forEach {
+                ingredients = "$ingredients&$it"
+            }
+            ingredients=ingredients.removeRange(0, 1)
+            Log.e("problem1", selectedIngredientsNameData.value.toString() )
+            Log.e("problem2", isSearchWithIngredient.value.toString() )
+            Log.e("problem3", ingredients )
+            return ingredients
+        }else{
+            Log.e("problem4", selectedIngredientsNameData.value.toString() )
+            Log.e("problem5", isSearchWithIngredient.value.toString() )
+            Log.e("problem6", ingredients )
+            return  "NO"
         }
-        ingredients.removeRange(0, 0)
-        return ingredients
+
+
     }
 
 
