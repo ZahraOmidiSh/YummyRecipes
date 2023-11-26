@@ -21,7 +21,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.AdvancedAllSearchAdapter
 import com.zahra.yummyrecipes.databinding.FragmentSearchAllIngredientsBinding
-import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -38,7 +37,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureItems = mutableListOf<String>()
-    private var confirmedSelection = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -55,8 +53,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            //Confirm Selection
-//            confirmedSelection=viewModel.confirmedSelection
             //make just selected items "isSelected=true"
             viewModel.updateExpandedIngredientBySelectedNames()
 
@@ -68,20 +64,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             setButtonFirstPosition()
 
             //close button listener
-            closeImg.setOnClickListener {
-                viewModel.slideOffset = 0f
-                if (viewModel.isSearchWithIngredient.value == true) {
-                    viewModel.updateExpandedIngredientBySelectedNames()
-                } else {
-                    viewModel.expandedIngredientsList.value!!.forEach {
-                        if (it.isSelected) {
-                            it.isSelected = false
-                        }
-                    }
-                    viewModel.updateSelectedIngredientsName()
-                }
-                findNavController().navigateUp()
-            }
+            closeButton(closeImg)
 
             // Set up RecyclerView
             setupRecyclerView(expandedList)
@@ -94,14 +77,12 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
             }
 
             //Observe and update Selected data
-            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) { selectedList ->
+            viewModel.selectedIngredientsNameData.observe(viewLifecycleOwner) {
                 setButtonColor(notSureItems)
             }
 
-
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
-//                viewModel.confirmedSelection.value = true
                 viewModel.slideOffset = 0f
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
@@ -111,7 +92,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value =
                     viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true
-
                 notSureItems.clear()
                 findNavController().navigateUp()
             }
@@ -142,7 +122,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 searchWithIngredientsButton.text = "SEARCH WITH ${notSureItems.size} INGREDIENTS"
             } else {
                 if (viewModel.isSearchWithIngredient.value == true) {
-
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(searchWithIngredientsButton, R.color.congo_pink)
                     } else {
@@ -165,9 +144,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                     searchWithIngredientsButton.text =
                         "SEARCH WITH ${notSureItems.size} INGREDIENTS"
                 }
-
             }
-
         }
     }
 
@@ -196,7 +173,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 notSureItems.add(ingredientModel.ingredientsName)
             }
             binding.apply {
-
                 if (notSureItems.isNotEmpty()) {
                     searchWithIngredientsButton.isEnabled = true
                     searchWithIngredientsButton.setTextColor(
@@ -257,8 +233,17 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
-            notSureItems.clear()
-            viewModel.updateSelectedIngredientsName()
+            viewModel.slideOffset = 0f
+            if (viewModel.isSearchWithIngredient.value == true) {
+                viewModel.updateExpandedIngredientBySelectedNames()
+            } else {
+                viewModel.expandedIngredientsList.value!!.forEach {
+                    if (it.isSelected) {
+                        it.isSelected = false
+                    }
+                }
+                viewModel.updateSelectedIngredientsName()
+            }
             findNavController().navigateUp()
         }
     }
