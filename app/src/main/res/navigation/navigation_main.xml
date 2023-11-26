@@ -93,6 +93,12 @@
         android:label="fragment_search_all_ingredients"
         tools:layout="@layout/fragment_search_all_ingredients">
     </dialog>
+    <dialog
+        android:id="@+id/dietsFragment"
+        android:name="com.zahra.yummyrecipes.ui.search.DietsFragment"
+        android:label="DietsFragment"
+        tools:layout="@layout/fragment_diets">
+    </dialog>
 
 
 </navigation>
