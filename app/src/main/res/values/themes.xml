@@ -248,8 +248,8 @@
 
     <!--Filters Button-->
     <style name="FilterButtonStyle" >
-        <item name="backgroundTint">@color/pale_pink</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/whiteSmoke</item>
+        <item name="android:textColor">@color/rose_ebony</item>
     </style>
 
 
