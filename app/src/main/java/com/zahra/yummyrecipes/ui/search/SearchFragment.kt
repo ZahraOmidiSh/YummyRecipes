@@ -31,7 +31,6 @@ import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class SearchFragment : Fragment() {
@@ -105,7 +104,7 @@ class SearchFragment : Fragment() {
                     it.isSelected = false
                 }
                 viewModel.updateSelectedIngredientsName()
-                viewModel.isSearchWithIngredient.value=false
+                viewModel.isSearchWithIngredient.value = false
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
@@ -139,17 +138,22 @@ class SearchFragment : Fragment() {
             }
             //Search
             searchEdt.addTextChangedListener {
+//                if (!isThemeChanged) {
+                closeImg.isVisible = true
 //                if (it.toString().length > 2 && isNetworkAvailable) {
                 if (it.toString().length > 2 && isNetworkAvailable == true) {
+
                     searchString = it.toString()
                     viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                     loadRecentData()
-                    Log.e("problem8", viewModel.searchQueries(it.toString()).toString() )
+                    Log.e("problem8", viewModel.searchQueries(it.toString()).toString())
                 } else {
 //                    simpleSearchLay.isVisible = false
 //                    advancedSearchScroll.isVisible = true
                 }
             }
+
+//            }
 
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
                 if (it) {
@@ -158,37 +162,46 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     ingredientsButton.text =
                         "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
+                    setOneButtonTextColor(ingredientsButton,R.color.white)
                     if (isDarkTheme()) {
-                        setButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
+                        setOneButtonBackgroundTint(ingredientsButton,R.color.congo_pink)
                     } else {
-                        setButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
+                        setOneButtonBackgroundTint(ingredientsButton,R.color.big_foot_feet)
                     }
-                    Log.e("problem9", viewModel.searchQueries(it.toString()).toString() )
+                    Log.e("problem9", viewModel.searchQueries(it.toString()).toString())
                 } else {
-                    if(searchString.isNotEmpty()){
+                    if (searchString.isNotEmpty()) {
                         closeImg.isVisible = true
                         ingredientsButton.text = "INGREDIENTS"
+
                         if (isDarkTheme()) {
-                            setButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                            setAllButtonTextColor(R.color.white)
+                            setAllButtonBackgroundTint(R.color.eerie_black)
                         } else {
-                            setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
+                            setAllButtonTextColor(R.color.rose_ebony)
+                            setAllButtonBackgroundTint(R.color.whiteSmoke)
                         }
-                    }else{
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString.toString()))
+                        loadRecentData()
+                    } else {
                         ingredientsButton.text = "INGREDIENTS"
+
                         if (isDarkTheme()) {
-                            setButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                            setAllButtonTextColor(R.color.white)
+                            setAllButtonBackgroundTint(R.color.eerie_black)
                         } else {
-                            setButtonBackgroundTint(ingredientsButton, R.color.pale_pink)
+                            setAllButtonTextColor(R.color.rose_ebony)
+                            setAllButtonBackgroundTint(R.color.whiteSmoke)
                         }
-                        viewModel._expandedIngredientsList.value!!.forEach {ingredientModel ->
+                        viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
                             if (ingredientModel.isSelected) {
                                 ingredientModel.isSelected = false
                             }
                         }
                         viewModel.updateSelectedIngredientsName()
                         closeImg.isVisible = false
-                        simpleSearchLay.isVisible=false
-                        advancedSearchScroll.isVisible=true
+                        simpleSearchLay.isVisible = false
+                        advancedSearchScroll.isVisible = true
                     }
 //
 
@@ -200,12 +213,14 @@ class SearchFragment : Fragment() {
             }
             //Close listener
             closeImg.setOnClickListener {
+                searchEdt.text.clear()
                 viewModel.expandedIngredientsList.value!!.forEach {
                     if (it.isSelected) {
                         it.isSelected = false
                     }
                 }
-                searchString = ""
+                viewModel.updateSelectedIngredientsName()
+                viewModel.isSearchWithIngredient.value = false
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -271,9 +286,49 @@ class SearchFragment : Fragment() {
         binding.internetLay.isVisible = isConnected.not()
     }
 
-    private fun setButtonBackgroundTint(Button: Button, color: Int) {
-        Button.backgroundTintList = ColorStateList.valueOf(
+    private fun setAllButtonBackgroundTint(color: Int) {
+        binding.ingredientsButton.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(requireContext(), color)
+        )
+        binding.filtersButton.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
+        binding.dietsButton.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
+
+    }
+
+    private fun setOneButtonBackgroundTint(button: Button, color: Int) {
+        button.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
+    }
+
+    private fun setAllButtonTextColor(color: Int) {
+        binding.ingredientsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), color
+            )
+        )
+        binding.filtersButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), color
+            )
+        )
+        binding.dietsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), color
+            )
+        )
+
+    }
+
+    private fun setOneButtonTextColor(button: Button, color: Int) {
+        button.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), R.color.white
+            )
         )
     }
 
