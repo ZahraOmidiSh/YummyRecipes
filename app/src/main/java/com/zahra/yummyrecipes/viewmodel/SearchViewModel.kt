@@ -21,6 +21,10 @@ import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.util.Collections.list
 import javax.inject.Inject
@@ -208,10 +212,25 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     val searchData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
 
+//    fun callSearchApi(queries: Map<String, String>) = viewModelScope.launch {
+//        searchData.value = NetworkRequest.Loading()
+//        val response = repository.getSearchRecipes(queries)
+//        searchData.value = NetworkResponse(response).generalNetworkResponse()
+//    }
+
+    private val searchQueryChannel=Channel<Map<String, String>>()
+    init{
+        viewModelScope.launch {
+            searchQueryChannel.receiveAsFlow().debounce(600).collectLatest {query ->
+                searchData.value = NetworkRequest.Loading()
+                val response = repository.getSearchRecipes(query)
+                searchData.value=NetworkResponse(response).generalNetworkResponse()
+            }
+        }
+    }
+
     fun callSearchApi(queries: Map<String, String>) = viewModelScope.launch {
-        searchData.value = NetworkRequest.Loading()
-        val response = repository.getSearchRecipes(queries)
-        searchData.value = NetworkResponse(response).generalNetworkResponse()
+        searchQueryChannel.send(queries)
     }
 
 }
