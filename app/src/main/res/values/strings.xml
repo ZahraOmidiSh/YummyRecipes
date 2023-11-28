@@ -59,5 +59,15 @@
     <string name="ingredients_filter">Ingredients</string>
     <string name="search_by_meal">Search by Meal</string>
     <string name="most_popular_categories">Most Popular Categories</string>
+    <string name="show_results">SHOW RESULTS</string>
+    <string name="lifestyles">Lifestyles</string>
+    <string name="high_fiber">High-Fiber</string>
+    <string name="keto">Keto</string>
+    <string name="low_calorie">Low Calorie</string>
+    <string name="high_protein">High-Protein</string>
+    <string name="low_carb">Low-Carb</string>
+    <string name="low_fat">Low-Fat</string>
+    <string name="low_sugar">Low-Sugar</string>
+    <string name="vegetarian">VEGETARIAN</string>
 
 </resources>
