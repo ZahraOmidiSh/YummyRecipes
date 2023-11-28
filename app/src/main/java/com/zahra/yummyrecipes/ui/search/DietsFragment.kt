@@ -64,14 +64,14 @@ class DietsFragment : BottomSheetDialogFragment() {
         binding.apply {
             ketoButton.setOnClickListener {
                 if(notSureDiets.contains("Keto")){
-                    notSureDiets.remove("Keto,")
+                    notSureDiets.remove("Keto")
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ketoButton, R.color.eerie_black)
                     } else {
                         setButtonBackgroundTint(ketoButton, R.color.mediumGray)
                     }
                 }else{
-                    notSureDiets.add("Keto,")
+                    notSureDiets.add("Keto")
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ketoButton, R.color.congo_pink)
                     } else {

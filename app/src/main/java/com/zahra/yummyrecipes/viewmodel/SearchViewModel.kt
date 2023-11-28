@@ -11,6 +11,7 @@ import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
+import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
@@ -173,6 +174,14 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         val queries: HashMap<String, String> = HashMap()
         if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
+        }
+        if (isSearchWithDiets.value==true){
+            var diets = ""
+            selectedDietsData.value?.forEach {
+                diets = "$diets,$it"
+            }
+            diets = diets.removeRange(0, 1)
+            queries[DIET] = "diet=$diets"
         }
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = 4.toString()
