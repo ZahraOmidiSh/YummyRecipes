@@ -33,10 +33,6 @@ class DietsFragment : BottomSheetDialogFragment() {
     //dairy free - egg free- gluten free - grain free - peanut free -
     // seafood free - shellfish free - soy free - wheat free
 
-
-
-
-
     //Binding
     private var _binding: FragmentDietsBinding? = null
     private val binding get() = _binding!!

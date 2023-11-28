@@ -94,7 +94,7 @@
         tools:layout="@layout/fragment_search_all_ingredients">
     </dialog>
     <action
-        android:id="@+id/actionTodiets"
+        android:id="@+id/actionToDiets"
         app:destination="@id/dietsFragment" />
     <dialog
         android:id="@+id/dietsFragment"
