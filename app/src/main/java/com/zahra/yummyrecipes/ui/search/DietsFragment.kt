@@ -39,6 +39,7 @@ class DietsFragment : BottomSheetDialogFragment() {
 
     //    //Others
     private lateinit var viewModel: SearchViewModel
+    private var notSureDiets = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -56,11 +57,77 @@ class DietsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
+            notSureDiets = diets.toMutableList()
+            setButtonColor(notSureDiets)
+        }
         binding.apply {
-            //set button first position
-//            setButtonFirstPosition()
-//            // Set up BottomSheetCallback
-//            setBottomSheetCallback()
+            ketoButton.setOnClickListener {
+                if(notSureDiets.contains("Keto")){
+                    notSureDiets.remove("Keto,")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(ketoButton, R.color.eerie_black)
+                    } else {
+                        setButtonBackgroundTint(ketoButton, R.color.mediumGray)
+                    }
+                }else{
+                    notSureDiets.add("Keto,")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(ketoButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(ketoButton, R.color.big_foot_feet)
+                    }
+                }
+
+            }
+
+            //Selected Ingredients Button Listener
+            showResultsButton.setOnClickListener {
+                viewModel._selectedDietsData.value=notSureDiets
+                viewModel.isSearchWithDiets.value =
+                    viewModel.selectedDietsData.value?.isNotEmpty() == true
+                notSureDiets.clear()
+                findNavController().navigateUp()
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setButtonColor(notSureDiets: List<String>) {
+        binding.apply {
+            if (notSureDiets.isNotEmpty()) {
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            } else {
+                if (viewModel.isSearchWithDiets.value == true) {
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    showResultsButton.isEnabled = false
+                    showResultsButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.gray
+                        )
+                    )
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(showResultsButton, R.color.eerie_black)
+                    } else {
+                        setButtonBackgroundTint(showResultsButton, R.color.mediumGray)
+                    }
+                }
+            }
         }
     }
 
@@ -103,6 +170,16 @@ class DietsFragment : BottomSheetDialogFragment() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
             }
         })
+    }
+
+    private fun isDarkTheme(): Boolean {
+        return requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    }
+
+    private fun setButtonBackgroundTint(Button: Button, color: Int) {
+        Button.backgroundTintList = ColorStateList.valueOf(
+            ContextCompat.getColor(requireContext(), color)
+        )
     }
 
     override fun onDestroyView() {
