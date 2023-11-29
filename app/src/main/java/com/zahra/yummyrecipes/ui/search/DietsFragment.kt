@@ -40,6 +40,7 @@ class DietsFragment : BottomSheetDialogFragment() {
     //    //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureDiets = mutableListOf<String>()
+    private var notSureMacroAmounts = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -59,18 +60,22 @@ class DietsFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
             notSureDiets = diets.toMutableList()
-            setButtonColor(notSureDiets)
+            setButtonColor()
+        }
+        viewModel.selectedMacroAmountData.observe(viewLifecycleOwner) { diets ->
+            notSureMacroAmounts = diets.toMutableList()
+            setButtonColor()
         }
         binding.apply {
             ketoButton.setOnClickListener {
-                if(notSureDiets.contains("Keto")){
+                if (notSureDiets.contains("Keto")) {
                     notSureDiets.remove("Keto")
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ketoButton, R.color.eerie_black)
                     } else {
                         setButtonBackgroundTint(ketoButton, R.color.mediumGray)
                     }
-                }else{
+                } else {
                     notSureDiets.add("Keto")
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ketoButton, R.color.congo_pink)
@@ -78,24 +83,123 @@ class DietsFragment : BottomSheetDialogFragment() {
                         setButtonBackgroundTint(ketoButton, R.color.big_foot_feet)
                     }
                 }
-
+                if (notSureDiets.isNotEmpty() || notSureMacroAmounts.isNotEmpty()) {
+                    showResultsButton.isEnabled = true
+                    showResultsButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithMacroAmount.value == true) {
+                        showResultsButton.isEnabled = true
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                        } else {
+                            setButtonBackgroundTint(
+                                showResultsButton,
+                                R.color.big_foot_feet
+                            )
+                        }
+                    } else {
+                        showResultsButton.isEnabled = false
+                        showResultsButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.gray
+                            )
+                        )
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(
+                                showResultsButton,
+                                R.color.eerie_black
+                            )
+                        } else {
+                            setButtonBackgroundTint(showResultsButton, R.color.mediumGray)
+                        }
+                    }
+                }
             }
 
-            //Selected Ingredients Button Listener
-            showResultsButton.setOnClickListener {
-                viewModel._selectedDietsData.value=notSureDiets
-                viewModel.isSearchWithDiets.value =
-                    viewModel.selectedDietsData.value?.isNotEmpty() == true
-                notSureDiets.clear()
-                findNavController().navigateUp()
+            highFiberButton.setOnClickListener {
+                if (notSureMacroAmounts.contains("minFiber")) {
+                    notSureMacroAmounts.remove("minFiber=10")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(highFiberButton, R.color.eerie_black)
+                    } else {
+                        setButtonBackgroundTint(highFiberButton, R.color.mediumGray)
+                    }
+                } else {
+                    notSureMacroAmounts.add("minFiber=10")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(highFiberButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(highFiberButton, R.color.big_foot_feet)
+                    }
+                }
+                if (notSureDiets.isNotEmpty() || notSureMacroAmounts.isNotEmpty()) {
+                    showResultsButton.isEnabled = true
+                    showResultsButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithMacroAmount.value == true) {
+                        showResultsButton.isEnabled = true
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                        } else {
+                            setButtonBackgroundTint(
+                                showResultsButton,
+                                R.color.big_foot_feet
+                            )
+                        }
+                    } else {
+                        showResultsButton.isEnabled = false
+                        showResultsButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.gray
+                            )
+                        )
+                        if (isDarkTheme()) {
+                            setButtonBackgroundTint(
+                                showResultsButton,
+                                R.color.eerie_black
+                            )
+                        } else {
+                            setButtonBackgroundTint(showResultsButton, R.color.mediumGray)
+                        }
+                    }
+
+
+                }
+
+                //Selected Ingredients Button Listener
+                showResultsButton.setOnClickListener {
+                    viewModel._selectedDietsData.value = notSureDiets
+                    viewModel.isSearchWithDiets.value =
+                        viewModel.selectedDietsData.value?.isNotEmpty() == true
+                    notSureDiets.clear()
+                    findNavController().navigateUp()
+                }
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setButtonColor(notSureDiets: List<String>) {
+    private fun setButtonColor() {
         binding.apply {
-            if (notSureDiets.isNotEmpty()) {
+            if (notSureDiets.isNotEmpty() || notSureMacroAmounts.isNotEmpty()) {
                 showResultsButton.isEnabled = true
                 showResultsButton.setTextColor(
                     ContextCompat.getColor(
@@ -108,7 +212,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                     setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
                 }
             } else {
-                if (viewModel.isSearchWithDiets.value == true) {
+                if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithMacroAmount.value == true) {
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
                     } else {

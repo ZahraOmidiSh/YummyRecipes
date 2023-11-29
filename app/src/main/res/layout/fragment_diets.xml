@@ -181,10 +181,11 @@
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:layout_marginTop="@dimen/_60mdp"
         android:text="@string/show_results"
         android:textSize="@dimen/_10font_mdp"
         app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/ketoButton"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
