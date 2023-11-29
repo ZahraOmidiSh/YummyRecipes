@@ -15,12 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Lifestyles-->
+    <!--DietStyles-->
     <TextView
-        android:id="@+id/lifestylesTxt"
+        android:id="@+id/dietsTxt"
         style="@style/Search_Titles"
         android:layout_marginTop="@dimen/_20mdp"
-        android:text="@string/lifestyles"
+        android:text="@string/diets"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toStartOf="@+id/veganButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lifestylesTxt" />
+        app:layout_constraintTop_toBottomOf="@id/dietsTxt" />
     <!--Vegan Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/veganButton"
@@ -82,7 +82,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_60mdp"
+        android:layout_marginTop="@dimen/_40mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
