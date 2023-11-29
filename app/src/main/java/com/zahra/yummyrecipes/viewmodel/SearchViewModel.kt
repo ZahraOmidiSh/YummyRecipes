@@ -190,21 +190,12 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         return queries
     }
 
-    //Diet or Macro
-    var isDietOrMacro = MutableLiveData<Boolean>()
     //Diets
     var isSearchWithDiets = MutableLiveData<Boolean>()
 
     //Selected Diets
     val _selectedDietsData = MutableLiveData<List<String>>()
     val selectedDietsData: LiveData<List<String>> get() = _selectedDietsData
-
-    //Macro
-    var isSearchWithMacroAmount = MutableLiveData<Boolean>()
-
-    //Selected Diets
-    val _selectedMacroAmountData = MutableLiveData<List<String>>()
-    val selectedMacroAmountData: LiveData<List<String>> get() = _selectedMacroAmountData
 
     private fun selectedIngredientsToString(): String {
         var ingredients = ""
