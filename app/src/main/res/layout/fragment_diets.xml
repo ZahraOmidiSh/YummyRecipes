@@ -25,102 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--High-Fiber Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/highFiberButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/high_fiber"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/HighProteinButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lifestylesTxt" />
-    <!--High-Protein Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/HighProteinButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/high_protein"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/lowCalorieButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/highFiberButton"
-        app:layout_constraintTop_toBottomOf="@id/lifestylesTxt" />
-    <!--Low Calorie Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/lowCalorieButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/low_calorie"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/HighProteinButton"
-        app:layout_constraintTop_toBottomOf="@id/lifestylesTxt" />
-    <!--Low-Carb Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/lowCarbButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/low_carb"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/lowFatButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/highFiberButton" />
-    <!--Low-Fat Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/lowFatButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/low_fat"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/lowSugarButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/lowCarbButton"
-        app:layout_constraintTop_toBottomOf="@id/highFiberButton" />
-    <!--Low Sugar Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/lowSugarButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/low_sugar"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/lowFatButton"
-        app:layout_constraintTop_toBottomOf="@id/highFiberButton" />
     <!--Ketogenic Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/ketogenicButton"
@@ -130,14 +34,14 @@
         android:layout_marginStart="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
+        android:layout_marginTop="@dimen/_8mdp"
         android:text="@string/Ketogenic"
         android:textSize="@dimen/_7font_mdp"
         app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintEnd_toStartOf="@+id/veganButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/lowCarbButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lowCarbButton" />
+        app:layout_constraintTop_toBottomOf="@id/lifestylesTxt" />
     <!--Vegan Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/veganButton"
@@ -153,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@+id/vegetarianButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/ketogenicButton"
-        app:layout_constraintTop_toBottomOf="@id/lowCarbButton" />
+        app:layout_constraintTop_toTopOf="@id/ketogenicButton" />
     <!--Vegetarian Button-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/vegetarianButton"
@@ -169,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/veganButton"
-        app:layout_constraintTop_toBottomOf="@id/lowCarbButton" />
+        app:layout_constraintTop_toTopOf="@id/ketogenicButton" />
 
     <!--SearchWithIngredientsButton-->
     <com.google.android.material.button.MaterialButton
