@@ -190,6 +190,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         return queries
     }
 
+    //Diet or Macro
+    var isDietOrMacro = MutableLiveData<Boolean>()
     //Diets
     var isSearchWithDiets = MutableLiveData<Boolean>()
 
