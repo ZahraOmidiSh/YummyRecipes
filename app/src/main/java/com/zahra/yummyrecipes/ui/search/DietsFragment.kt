@@ -53,19 +53,31 @@ class DietsFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //observe data - set showResultsButton color
-        viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
-            notSureDiets = diets.toMutableList()
-            setShowResultButtonColor()
-            setDietsButtonColor(notSureDiets)
-        }
-        viewModel.selectedMacroAmountData.observe(viewLifecycleOwner) { diets ->
-            notSureMacroAmounts = diets.toMutableList()
-            setShowResultButtonColor()
-            setMacrosButtonColor(notSureMacroAmounts)
-        }
-
         binding.apply {
+
+            //observe data - set showResultsButton color
+            viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
+                notSureDiets = diets.toMutableList()
+                setShowResultButtonColor()
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(ketogenicButton, R.color.eerie_black)
+                } else {
+                    setButtonBackgroundTint(ketogenicButton, R.color.mediumGray)
+                }
+                setDietsButtonColor(notSureDiets)
+            }
+
+            viewModel.selectedMacroAmountData.observe(viewLifecycleOwner) { diets ->
+                notSureMacroAmounts = diets.toMutableList()
+                setShowResultButtonColor()
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(highFiberButton, R.color.eerie_black)
+                } else {
+                    setButtonBackgroundTint(highFiberButton, R.color.mediumGray)
+                }
+                setMacrosButtonColor(notSureMacroAmounts)
+            }
+
             ketogenicButton.setOnClickListener {
                 if (notSureDiets.contains("Ketogenic")) {
                     notSureDiets.remove("Ketogenic")
@@ -122,20 +134,22 @@ class DietsFragment : BottomSheetDialogFragment() {
                 } else {
                     setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
                 }
-
-                //Selected Ingredients Button Listener
-                showResultsButton.setOnClickListener {
-                    viewModel._selectedDietsData.value = notSureDiets
-                    viewModel.isSearchWithDiets.value =
-                        viewModel.selectedDietsData.value?.isNotEmpty() == true
-                    notSureDiets.clear()
-                    viewModel._selectedMacroAmountData.value = notSureMacroAmounts
-                    viewModel.isSearchWithMacroAmount.value =
-                        viewModel.selectedMacroAmountData.value?.isNotEmpty() == true
-                    notSureMacroAmounts.clear()
-                    findNavController().navigateUp()
-                }
             }
+            //Selected Ingredients Button Listener
+            showResultsButton.setOnClickListener {
+                viewModel._selectedDietsData.value = notSureDiets
+                viewModel.isSearchWithDiets.value =
+                    viewModel.selectedDietsData.value?.isNotEmpty() == true
+                notSureDiets.clear()
+                viewModel._selectedMacroAmountData.value = notSureMacroAmounts
+                viewModel.isSearchWithMacroAmount.value =
+                    viewModel.selectedMacroAmountData.value?.isNotEmpty() == true
+                notSureMacroAmounts.clear()
+                viewModel.isDietOrMacro.value =
+                    !(viewModel.isSearchWithDiets.value == false && viewModel.isSearchWithMacroAmount.value == false)
+                findNavController().navigateUp()
+            }
+
         }
     }
 

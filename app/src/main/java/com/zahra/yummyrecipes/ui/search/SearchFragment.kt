@@ -186,6 +186,68 @@ class SearchFragment : Fragment() {
                         ingredientsButton.text = "INGREDIENTS"
 
                         if (isDarkTheme()) {
+                            setOneButtonTextColor(ingredientsButton, R.color.white)
+                            setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                        } else {
+                            setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
+                        }
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                        loadRecentData()
+                    } else {
+                        ingredientsButton.text = "INGREDIENTS"
+
+                        if (isDarkTheme()) {
+                            setOneButtonTextColor(ingredientsButton, R.color.white)
+                            setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                        } else {
+                            setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
+                        }
+                        viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
+                            if (ingredientModel.isSelected) {
+                                ingredientModel.isSelected = false
+                            }
+                        }
+                        viewModel.updateSelectedIngredientsName()
+//                        closeImg.isVisible = false
+//                        simpleSearchLay.isVisible = false
+//                        advancedSearchScroll.isVisible = true
+                    }
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun dietsSearch() {
+        binding.apply {
+            viewModel.isDietOrMacro.observe(viewLifecycleOwner) {
+                if (it) {
+                    closeImg.isVisible = true
+                    simpleSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = false
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    loadRecentData()
+                    val dietsNumber =
+                        (viewModel.selectedDietsData.value?.size
+                            ?: 0) + (viewModel.selectedMacroAmountData.value?.size ?: 0)
+                    dietsButton.text =
+                        "Diets ($dietsNumber)"
+                    setOneButtonTextColor(dietsButton, R.color.white)
+                    if (isDarkTheme()) {
+                        setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                    } else {
+                        setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    if (searchString.isNotEmpty()) {
+                        closeImg.isVisible = true
+                        simpleSearchLay.isVisible = true
+                        advancedSearchScroll.isVisible = false
+                        dietsButton.text = "Diets"
+
+                        if (isDarkTheme()) {
                             setAllButtonTextColor(R.color.white)
                             setAllButtonBackgroundTint(R.color.eerie_black)
                         } else {
@@ -195,7 +257,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        ingredientsButton.text = "INGREDIENTS"
+                        dietsButton.text = "Diets"
 
                         if (isDarkTheme()) {
                             setAllButtonTextColor(R.color.white)
@@ -204,15 +266,9 @@ class SearchFragment : Fragment() {
                             setAllButtonTextColor(R.color.rose_ebony)
                             setAllButtonBackgroundTint(R.color.whiteSmoke)
                         }
-                        viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
-                            if (ingredientModel.isSelected) {
-                                ingredientModel.isSelected = false
-                            }
-                        }
-                        viewModel.updateSelectedIngredientsName()
-                        closeImg.isVisible = false
-                        simpleSearchLay.isVisible = false
-                        advancedSearchScroll.isVisible = true
+//                        closeImg.isVisible = false
+//                        simpleSearchLay.isVisible = false
+//                        advancedSearchScroll.isVisible = true
                     }
                 }
             }
