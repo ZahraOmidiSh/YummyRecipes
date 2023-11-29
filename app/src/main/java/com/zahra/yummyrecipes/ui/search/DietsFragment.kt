@@ -67,17 +67,6 @@ class DietsFragment : BottomSheetDialogFragment() {
                 setDietsButtonColor(notSureDiets)
             }
 
-            viewModel.selectedMacroAmountData.observe(viewLifecycleOwner) { diets ->
-                notSureMacroAmounts = diets.toMutableList()
-                setShowResultButtonColor()
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(highFiberButton, R.color.eerie_black)
-                } else {
-                    setButtonBackgroundTint(highFiberButton, R.color.mediumGray)
-                }
-                setMacrosButtonColor(notSureMacroAmounts)
-            }
-
             ketogenicButton.setOnClickListener {
                 if (notSureDiets.contains("Ketogenic")) {
                     notSureDiets.remove("Ketogenic")
@@ -107,46 +96,12 @@ class DietsFragment : BottomSheetDialogFragment() {
                 }
             }
 
-            highFiberButton.setOnClickListener {
-                if (notSureMacroAmounts.contains("minFiber")) {
-                    notSureMacroAmounts.remove("minFiber=20")
-                    if (isDarkTheme()) {
-                        setButtonBackgroundTint(highFiberButton, R.color.eerie_black)
-                    } else {
-                        setButtonBackgroundTint(highFiberButton, R.color.mediumGray)
-                    }
-                } else {
-                    notSureMacroAmounts.add("minFiber=20")
-                    if (isDarkTheme()) {
-                        setButtonBackgroundTint(highFiberButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(highFiberButton, R.color.big_foot_feet)
-                    }
-                }
-                showResultsButton.isEnabled = true
-                showResultsButton.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.white
-                    )
-                )
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
-                } else {
-                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
-                }
-            }
             //Selected Ingredients Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
                 notSureDiets.clear()
-                viewModel._selectedMacroAmountData.value = notSureMacroAmounts
-                viewModel.isSearchWithMacroAmount.value =
-                    viewModel.selectedMacroAmountData.value?.isNotEmpty() == true
-                notSureMacroAmounts.clear()
-                viewModel.isDietOrMacro.value =
-                    !(viewModel.isSearchWithDiets.value == false && viewModel.isSearchWithMacroAmount.value == false)
                 findNavController().navigateUp()
             }
 
@@ -200,24 +155,6 @@ class DietsFragment : BottomSheetDialogFragment() {
             }
         }
     }
-
-    private fun setMacrosButtonColor(macroList: List<String>) {
-        binding.apply {
-            macroList.forEach { macro ->
-                when (macro) {
-                    "minFiber=20" ->
-                        if (isDarkTheme()) {
-                            setButtonBackgroundTint(highFiberButton, R.color.congo_pink)
-                        } else {
-                            setButtonBackgroundTint(highFiberButton, R.color.big_foot_feet)
-                        }
-
-                    else -> {}
-                }
-            }
-        }
-    }
-
 
     private fun setButtonFirstPosition() {
         binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
