@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -201,6 +202,7 @@ class DietsFragment : BottomSheetDialogFragment() {
             //Selected Ingredients Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
+                Log.e("diet", viewModel._selectedDietsData.value.toString() )
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
                 notSureDiets.clear()

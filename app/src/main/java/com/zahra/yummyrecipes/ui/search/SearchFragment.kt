@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -148,6 +149,8 @@ class SearchFragment : Fragment() {
                 }
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value = false
+                viewModel._selectedDietsData.value= emptyList()
+                viewModel.isSearchWithDiets.value=false
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -336,6 +339,8 @@ class SearchFragment : Fragment() {
                             if (data?.results!!.isNotEmpty()) {
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
+                                Log.e("diet1", viewModel.selectedDietsData.value.toString() )
+                                Log.e("diet2", viewModel.selectedIngredientsNameData.value.toString() )
                             }
                         }
                     }
