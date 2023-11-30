@@ -110,6 +110,94 @@ class DietsFragment : BottomSheetDialogFragment() {
                 }
             }
 
+            veganButton.setOnClickListener {
+                if (notSureDiets.contains("Vegan")) {
+                    notSureDiets.remove("Vegan")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(veganButton, R.color.eerie_black)
+                        veganButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
+                    } else {
+                        setButtonBackgroundTint(veganButton, R.color.whiteSmoke)
+                        veganButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
+                    }
+                } else {
+                    notSureDiets.add("Vegan")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(veganButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(veganButton, R.color.big_foot_feet)
+                    }
+                    veganButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                }
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            }
+
+            vegetarianButton.setOnClickListener {
+                if (notSureDiets.contains("Vegetarian")) {
+                    notSureDiets.remove("Vegetarian")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(vegetarianButton, R.color.eerie_black)
+                        vegetarianButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
+                    } else {
+                        setButtonBackgroundTint(vegetarianButton, R.color.whiteSmoke)
+                        vegetarianButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
+                    }
+                } else {
+                    notSureDiets.add("Vegetarian")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(vegetarianButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(vegetarianButton, R.color.big_foot_feet)
+                    }
+                    vegetarianButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                }
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            }
+
             //Selected Ingredients Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
