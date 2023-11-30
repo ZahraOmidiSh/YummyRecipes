@@ -72,5 +72,6 @@
     <string name="gluten_free">GLUTEN FREE</string>
     <string name="pescetarian">PESCETARIAN</string>
     <string name="paleo">PALEO</string>
+    <string name="allergies">ALLERGIES</string>
 
 </resources>
