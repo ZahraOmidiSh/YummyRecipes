@@ -1,6 +1,7 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -178,10 +179,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
-                diets = "$diets,$it"
+                diets = "$diets|$it".trim()
             }
             diets = diets.removeRange(0, 1)
-            queries[DIET] = "diet=$diets"
+            queries[DIET] = diets
         }
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = 10.toString()
