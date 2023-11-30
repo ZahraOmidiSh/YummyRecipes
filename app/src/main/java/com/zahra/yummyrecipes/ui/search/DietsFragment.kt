@@ -34,7 +34,6 @@ class DietsFragment : BottomSheetDialogFragment() {
     //    //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureDiets = mutableListOf<String>()
-    private var notSureMacroAmounts = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -59,11 +58,11 @@ class DietsFragment : BottomSheetDialogFragment() {
             viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
                 notSureDiets = diets.toMutableList()
                 setShowResultButtonColor()
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(ketogenicButton, R.color.eerie_black)
-                } else {
-                    setButtonBackgroundTint(ketogenicButton, R.color.mediumGray)
-                }
+//                if (isDarkTheme()) {
+//                    setButtonBackgroundTint(ketogenicButton, R.color.eerie_black)
+//                } else {
+//                    setButtonBackgroundTint(ketogenicButton, R.color.mediumGray)
+//                }
                 setDietsButtonColor(notSureDiets)
             }
 
@@ -72,8 +71,18 @@ class DietsFragment : BottomSheetDialogFragment() {
                     notSureDiets.remove("Ketogenic")
                     if (isDarkTheme()) {
                         setButtonBackgroundTint(ketogenicButton, R.color.eerie_black)
+                        ketogenicButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
                     } else {
-                        setButtonBackgroundTint(ketogenicButton, R.color.mediumGray)
+                        setButtonBackgroundTint(ketogenicButton, R.color.whiteSmoke)
+                        ketogenicButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
                     }
                 } else {
                     notSureDiets.add("Ketogenic")
@@ -82,6 +91,11 @@ class DietsFragment : BottomSheetDialogFragment() {
                     } else {
                         setButtonBackgroundTint(ketogenicButton, R.color.big_foot_feet)
                     }
+                    ketogenicButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
                 }
                 showResultsButton.isEnabled = true
                 showResultsButton.setTextColor(
@@ -111,7 +125,7 @@ class DietsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     private fun setShowResultButtonColor() {
         binding.apply {
-            if (notSureDiets.isEmpty() && notSureMacroAmounts.isEmpty()) {
+            if (notSureDiets.isEmpty()) {
                 showResultsButton.isEnabled = false
                 showResultsButton.setTextColor(
                     ContextCompat.getColor(
@@ -139,18 +153,27 @@ class DietsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setDietsButtonColor(dietsList: List<String>) {
+    private fun setDietsButtonColor(notSureDiets: List<String>) {
         binding.apply {
-            dietsList.forEach { diet ->
+            notSureDiets.forEach { diet ->
                 when (diet) {
-                    "Ketogenic" ->
-                        if (isDarkTheme()) {
-                            setButtonBackgroundTint(ketogenicButton, R.color.congo_pink)
-                        } else {
-                            setButtonBackgroundTint(ketogenicButton, R.color.big_foot_feet)
-                        }
+                    "Ketogenic" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(ketogenicButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(ketogenicButton, R.color.big_foot_feet)
+                    }
 
-                    else -> {}
+                    "Vegetarian" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(vegetarianButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(vegetarianButton, R.color.big_foot_feet)
+                    }
+
+                    "Vegan" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(veganButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(veganButton, R.color.big_foot_feet)
+                    }
                 }
             }
         }
