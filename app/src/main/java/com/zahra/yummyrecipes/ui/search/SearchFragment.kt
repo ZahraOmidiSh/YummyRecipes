@@ -155,12 +155,6 @@ class SearchFragment : Fragment() {
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
-                Log.e("diet3", viewModel.selectedDietsData.value.toString())
-                Log.e(
-                    "diet4",
-                    viewModel.selectedIngredientsNameData.value.toString()
-                )
-
             }
         }
     }
@@ -341,11 +335,6 @@ class SearchFragment : Fragment() {
                             if (data?.results!!.isNotEmpty()) {
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
-                                Log.e("diet1", viewModel.selectedDietsData.value.toString())
-                                Log.e(
-                                    "diet2",
-                                    viewModel.selectedIngredientsNameData.value.toString()
-                                )
                             }
                         }
                     }
