@@ -131,6 +131,7 @@ class SearchFragment : Fragment() {
                 val direction = SearchFragmentDirections.actionToDiets()
                 findNavController().navigate(direction)
             }
+
             //Close listener
             searchClose()
 
@@ -154,6 +155,11 @@ class SearchFragment : Fragment() {
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
+                Log.e("diet3", viewModel.selectedDietsData.value.toString())
+                Log.e(
+                    "diet4",
+                    viewModel.selectedIngredientsNameData.value.toString()
+                )
 
             }
         }
@@ -246,12 +252,12 @@ class SearchFragment : Fragment() {
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
                         dietsButton.text = "DIETS"
-                        setOneButtonTextColor(dietsButton, R.color.white)
-
                         if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                            setOneButtonTextColor(dietsButton, R.color.white)
+                            setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
                         } else {
-                            setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                            setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
                         }
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
@@ -387,7 +393,7 @@ class SearchFragment : Fragment() {
     private fun setOneButtonTextColor(button: Button, color: Int) {
         button.setTextColor(
             ContextCompat.getColor(
-                requireContext(), R.color.white
+                requireContext(), color
             )
         )
     }

@@ -84,6 +84,7 @@
         android:layout_marginHorizontal="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_40mdp"
         android:enabled="false"
+        android:layout_marginBottom="@dimen/_10mdp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/show_results"
