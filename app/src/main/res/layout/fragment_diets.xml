@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--DietStyles-->
+    <!--Diets-->
     <TextView
         android:id="@+id/dietsTxt"
         style="@style/Search_Titles"

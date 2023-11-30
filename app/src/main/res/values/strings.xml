@@ -73,5 +73,11 @@
     <string name="pescetarian">PESCETARIAN</string>
     <string name="paleo">PALEO</string>
     <string name="allergies">ALLERGIES</string>
+    <string name="dairy">DAIRY</string>
+    <string name="egg">EGG</string>
+    <string name="grain">Grain</string>
+    <string name="peanut">PEANUT</string>
+    <string name="seafood">SEAFOOD</string>
+    <string name="soy">SOY</string>
 
 </resources>
