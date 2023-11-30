@@ -102,6 +102,15 @@
         android:label="DietsFragment"
         tools:layout="@layout/fragment_diets">
     </dialog>
+    <action
+        android:id="@+id/actionToAllergies"
+        app:destination="@id/allergiesFragment" />
+    <dialog
+        android:id="@+id/allergiesFragment"
+        android:name="com.zahra.yummyrecipes.ui.search.AllergiesFragment"
+        android:label="fragment_allergies"
+        tools:layout="@layout/fragment_allergies" >
+    </dialog>
 
 
 </navigation>
