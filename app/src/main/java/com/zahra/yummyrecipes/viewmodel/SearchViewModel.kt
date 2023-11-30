@@ -14,6 +14,7 @@ import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
+import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
 import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
@@ -173,9 +174,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     fun searchQueries(search: String): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
+        //Ingredients
         if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
         }
+        //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
@@ -183,6 +186,15 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
             diets = diets.removeRange(0, 1)
             queries[DIET] = diets
+        }
+        //Allergies
+        if (isSearchWithAllergies.value == true) {
+            var allergies = ""
+            selectedDietsData.value?.forEach {
+                allergies = "$allergies,$it".trim()
+            }
+            allergies = allergies.removeRange(0, 1)
+            queries[INTOLERANCES] = allergies
         }
         queries[API_KEY] = MY_API_KEY
         queries[NUMBER] = 20.toString()
@@ -197,6 +209,13 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Selected Diets
     val _selectedDietsData = MutableLiveData<List<String>>()
     val selectedDietsData: LiveData<List<String>> get() = _selectedDietsData
+
+    //Allergies
+    var isSearchWithAllergies = MutableLiveData<Boolean>()
+
+    //Selected Diets
+    val _selectedAllergiesData = MutableLiveData<List<String>>()
+    val selectedAllergiesData: LiveData<List<String>> get() = _selectedAllergiesData
 
     private fun selectedIngredientsToString(): String {
         var ingredients = ""
