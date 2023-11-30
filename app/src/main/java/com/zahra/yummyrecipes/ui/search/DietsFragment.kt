@@ -267,47 +267,6 @@ class DietsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setButtonFirstPosition() {
-        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                setButtonPosition(viewModel.slideOffset)
-                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
-    }
-
-    private fun setButtonPosition(slideOffset: Float) {
-        val parentHeight = binding.root.height
-        val parentWidth = binding.root.width
-        val fraction = parentHeight / parentWidth
-        var desiredPosition = 0.0
-        if (fraction >= 1.85) {
-            desiredPosition = 0.622 * parentHeight + (600 * slideOffset)
-        } else {
-            desiredPosition = 0.54 * parentHeight + (600 * slideOffset)
-        }
-        // Set the position of your view
-        binding.showResultsButton.y = desiredPosition.toFloat()
-
-    }
-
-    private fun setBottomSheetCallback() {
-        (dialog as? BottomSheetDialog)?.setOnDismissListener {
-            viewModel.slideOffset = 0f
-        }
-        val behavior = (dialog as? BottomSheetDialog)?.behavior
-        behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                viewModel.slideOffset = slideOffset
-                setButtonPosition(slideOffset)
-            }
-
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-            }
-        })
-    }
-
     private fun isDarkTheme(): Boolean {
         return requireContext().resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }

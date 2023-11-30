@@ -118,6 +118,9 @@ class SearchFragment : Fragment() {
             //ingredient search
             ingredientSearch()
 
+            //dietsSearch
+            dietsSearch()
+
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
