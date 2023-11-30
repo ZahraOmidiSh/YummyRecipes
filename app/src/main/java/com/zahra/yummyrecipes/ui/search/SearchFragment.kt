@@ -229,12 +229,6 @@ class SearchFragment : Fragment() {
                     advancedSearchScroll.isVisible = false
                     viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
-//                    val dietsNumber =
-//                        (viewModel.selectedDietsData.value?.size
-//                            ?: 0) + (viewModel.selectedMacroAmountData.value?.size ?: 0)
-//                    dietsButton.text =
-//                        "Diets ($dietsNumber)"
-//                    setOneButtonTextColor(dietsButton, R.color.white)
                     if (isDarkTheme()) {
                         setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
                     } else {

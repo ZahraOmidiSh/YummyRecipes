@@ -175,7 +175,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
         }
-        if (isSearchWithDiets.value==true){
+        if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
                 diets = "$diets,$it"
