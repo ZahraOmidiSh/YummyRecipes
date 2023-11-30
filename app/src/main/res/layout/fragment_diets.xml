@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/_20mdp"
     tools:context=".ui.search.DietsFragment">
 
     <!--Close-->
@@ -125,14 +126,14 @@
         app:layout_constraintStart_toEndOf="@+id/pescetarianButton"
         app:layout_constraintTop_toTopOf="@id/glutenFreeButton" />
 
-    <!--SearchWithIngredientsButton-->
+    <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showResultsButton"
         style="@style/SearchWithButtonStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_40mdp"
+        android:layout_marginTop="@dimen/_30mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
