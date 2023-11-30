@@ -378,40 +378,9 @@ class SearchFragment : Fragment() {
         binding.internetLay.isVisible = isConnected.not()
     }
 
-    private fun setAllButtonBackgroundTint(color: Int) {
-        binding.ingredientsButton.backgroundTintList = ColorStateList.valueOf(
-            ContextCompat.getColor(requireContext(), color)
-        )
-        binding.filtersButton.backgroundTintList = ColorStateList.valueOf(
-            ContextCompat.getColor(requireContext(), color)
-        )
-        binding.dietsButton.backgroundTintList = ColorStateList.valueOf(
-            ContextCompat.getColor(requireContext(), color)
-        )
-
-    }
-
     private fun setOneButtonBackgroundTint(button: Button, color: Int) {
         button.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(requireContext(), color)
-        )
-    }
-
-    private fun setAllButtonTextColor(color: Int) {
-        binding.ingredientsButton.setTextColor(
-            ContextCompat.getColor(
-                requireContext(), color
-            )
-        )
-        binding.filtersButton.setTextColor(
-            ContextCompat.getColor(
-                requireContext(), color
-            )
-        )
-        binding.dietsButton.setTextColor(
-            ContextCompat.getColor(
-                requireContext(), color
-            )
         )
     }
 
