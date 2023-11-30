@@ -32,9 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
-        android:layout_marginTop="@dimen/_8mdp"
         android:text="@string/Ketogenic"
         android:textSize="@dimen/_7font_mdp"
         app:cornerRadius="@dimen/_25mdp"
@@ -75,6 +75,56 @@
         app:layout_constraintStart_toEndOf="@+id/veganButton"
         app:layout_constraintTop_toTopOf="@id/ketogenicButton" />
 
+    <!--Gluten Free Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/glutenFreeButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/gluten_free"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/pescetarianButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ketogenicButton" />
+    <!--Pescetarian Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pescetarianButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/pescetarian"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/paleoButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/glutenFreeButton"
+        app:layout_constraintTop_toTopOf="@id/glutenFreeButton" />
+    <!--Paleo Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/paleoButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/paleo"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pescetarianButton"
+        app:layout_constraintTop_toTopOf="@id/glutenFreeButton" />
+
     <!--SearchWithIngredientsButton-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showResultsButton"
@@ -84,7 +134,6 @@
         android:layout_marginHorizontal="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_40mdp"
         android:enabled="false"
-        android:layout_marginBottom="@dimen/_10mdp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/show_results"
@@ -92,5 +141,5 @@
         app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ketogenicButton" />
+        app:layout_constraintTop_toBottomOf="@id/glutenFreeButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

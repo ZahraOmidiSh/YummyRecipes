@@ -69,5 +69,8 @@
     <string name="low_fat">Low-Fat</string>
     <string name="low_sugar">Low-Sugar</string>
     <string name="vegetarian">VEGETARIAN</string>
+    <string name="gluten_free">GLUTEN FREE</string>
+    <string name="pescetarian">PESCETARIAN</string>
+    <string name="paleo">PALEO</string>
 
 </resources>
