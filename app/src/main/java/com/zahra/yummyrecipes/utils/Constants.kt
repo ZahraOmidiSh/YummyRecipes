@@ -21,6 +21,7 @@ object Constants {
     const val SORT = "sort"
     const val SORT_DIRECTION = "sortDirection"
     const val DIET = "diet"
+    const val INTOLERANCES = "Intolerances"
     const val INCLUDE_INGREDIENTS = "includeIngredients"
 
     //APIs value
