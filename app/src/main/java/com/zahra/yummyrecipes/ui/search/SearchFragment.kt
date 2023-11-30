@@ -201,6 +201,10 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
+                        if(viewModel.isSearchWithDiets.value==true){
+                            viewModel.callSearchApi(viewModel.searchQueries(""))
+                            loadRecentData()
+                        }
                         ingredientsButton.text = "INGREDIENTS"
 
                         if (isDarkTheme()) {
@@ -256,6 +260,10 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
+                        if(viewModel.isSearchWithIngredient.value==true){
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
+                        }
                         dietsButton.text = "DIETS"
 
                         if (isDarkTheme()) {
