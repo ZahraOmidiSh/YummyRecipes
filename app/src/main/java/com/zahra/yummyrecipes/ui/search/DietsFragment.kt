@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.ui.search
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Button
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -63,22 +65,22 @@ class DietsFragment : BottomSheetDialogFragment() {
             }
 
             ketogenicButton.setOnClickListener {
-                setButtonClickListener(ketogenicButton,"Ketogenic")
+                setButtonClickListener(ketogenicButton, "Ketogenic")
             }
             veganButton.setOnClickListener {
-                setButtonClickListener(veganButton,"Vegan")
+                setButtonClickListener(veganButton, "Vegan")
             }
             vegetarianButton.setOnClickListener {
-                setButtonClickListener(vegetarianButton,"Vegetarian")
+                setButtonClickListener(vegetarianButton, "Vegetarian")
             }
             glutenFreeButton.setOnClickListener {
-                setButtonClickListener(glutenFreeButton,"Gluten Free")
+                setButtonClickListener(glutenFreeButton, "Gluten Free")
             }
             pescetarianButton.setOnClickListener {
-                setButtonClickListener(pescetarianButton,"Pescetarian")
+                setButtonClickListener(pescetarianButton, "Pescetarian")
             }
             paleoButton.setOnClickListener {
-                setButtonClickListener(paleoButton,"Paleo")
+                setButtonClickListener(paleoButton, "Paleo")
             }
 
             //Selected Ingredients Button Listener
@@ -90,10 +92,13 @@ class DietsFragment : BottomSheetDialogFragment() {
                 notSureDiets.clear()
                 findNavController().navigateUp()
             }
+            closeImg.setOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
-    private fun setButtonClickListener(button: Button,dietName:String) {
+    private fun setButtonClickListener(button: Button, dietName: String) {
         if (notSureDiets.contains(dietName)) {
             notSureDiets.remove(dietName)
             if (isDarkTheme()) {
@@ -113,11 +118,8 @@ class DietsFragment : BottomSheetDialogFragment() {
             }
         } else {
             notSureDiets.add(dietName)
-            if (isDarkTheme()) {
-                setButtonBackgroundTint(button, R.color.congo_pink)
-            } else {
-                setButtonBackgroundTint(button, R.color.big_foot_feet)
-            }
+            setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
+
             button.setTextColor(
                 ContextCompat.getColor(
                     requireContext(), R.color.white
@@ -130,11 +132,12 @@ class DietsFragment : BottomSheetDialogFragment() {
                 requireContext(), R.color.white
             )
         )
-        if (isDarkTheme()) {
-            setButtonBackgroundTint(binding.showResultsButton, R.color.congo_pink)
-        } else {
-            setButtonBackgroundTint(binding.showResultsButton, R.color.big_foot_feet)
-        }
+        setButtonBackgroundBasedOnTheme(
+            binding.showResultsButton,
+            R.color.congo_pink,
+            R.color.big_foot_feet
+        )
+
     }
 
 
@@ -148,11 +151,11 @@ class DietsFragment : BottomSheetDialogFragment() {
                         requireContext(), R.color.gray
                     )
                 )
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(showResultsButton, R.color.eerie_black)
-                } else {
-                    setButtonBackgroundTint(showResultsButton, R.color.mediumGray)
-                }
+                setButtonBackgroundBasedOnTheme(
+                    showResultsButton,
+                    R.color.eerie_black,
+                    R.color.mediumGray
+                )
             } else {
                 showResultsButton.isEnabled = true
                 showResultsButton.setTextColor(
@@ -160,11 +163,11 @@ class DietsFragment : BottomSheetDialogFragment() {
                         requireContext(), R.color.white
                     )
                 )
-                if (isDarkTheme()) {
-                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
-                } else {
-                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
-                }
+                setButtonBackgroundBasedOnTheme(
+                    showResultsButton,
+                    R.color.congo_pink,
+                    R.color.big_foot_feet
+                )
             }
         }
     }
@@ -173,44 +176,56 @@ class DietsFragment : BottomSheetDialogFragment() {
         binding.apply {
             notSureDiets.forEach { diet ->
                 when (diet) {
-                    "Ketogenic" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(ketogenicButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(ketogenicButton, R.color.big_foot_feet)
-                    }
+                    "Ketogenic" -> setButtonBackgroundBasedOnTheme(
+                        ketogenicButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
-                    "Vegetarian" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(vegetarianButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(vegetarianButton, R.color.big_foot_feet)
-                    }
+                    "Vegetarian" -> setButtonBackgroundBasedOnTheme(
+                        vegetarianButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
-                    "Vegan" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(veganButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(veganButton, R.color.big_foot_feet)
-                    }
+                    "Vegan" -> setButtonBackgroundBasedOnTheme(
+                        veganButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
-                    "Pescetarian" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(pescetarianButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(pescetarianButton, R.color.big_foot_feet)
-                    }
+                    "Pescetarian" -> setButtonBackgroundBasedOnTheme(
+                        pescetarianButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
-                    "Gluten Free" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(glutenFreeButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(glutenFreeButton, R.color.big_foot_feet)
-                    }
+                    "Gluten Free" -> setButtonBackgroundBasedOnTheme(
+                        glutenFreeButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
-                    "Paleo" -> if (isDarkTheme()) {
-                        setButtonBackgroundTint(paleoButton, R.color.congo_pink)
-                    } else {
-                        setButtonBackgroundTint(paleoButton, R.color.big_foot_feet)
-                    }
+                    "Paleo" -> setButtonBackgroundBasedOnTheme(
+                        paleoButton,
+                        R.color.congo_pink,
+                        R.color.big_foot_feet
+                    )
 
                 }
             }
+        }
+    }
+
+    private fun setButtonBackgroundBasedOnTheme(
+        button: Button,
+        darkThemeColor: Int,
+        lightThemeColor: Int
+    ) {
+        if (isDarkTheme()) {
+            setButtonBackgroundTint(button, darkThemeColor)
+        } else {
+            setButtonBackgroundTint(button, lightThemeColor)
         }
     }
 
