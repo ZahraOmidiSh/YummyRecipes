@@ -149,8 +149,8 @@ class SearchFragment : Fragment() {
                 }
                 viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value = false
-                viewModel._selectedDietsData.value= emptyList()
-                viewModel.isSearchWithDiets.value=false
+                viewModel._selectedDietsData.value = emptyList()
+                viewModel.isSearchWithDiets.value = false
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -216,9 +216,6 @@ class SearchFragment : Fragment() {
                             }
                         }
                         viewModel.updateSelectedIngredientsName()
-//                        closeImg.isVisible = false
-//                        simpleSearchLay.isVisible = false
-//                        advancedSearchScroll.isVisible = true
                     }
                 }
             }
@@ -235,6 +232,9 @@ class SearchFragment : Fragment() {
                     advancedSearchScroll.isVisible = false
                     viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
+                    dietsButton.text =
+                        "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
+                    setOneButtonTextColor(dietsButton, R.color.white)
                     if (isDarkTheme()) {
                         setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
                     } else {
@@ -245,30 +245,26 @@ class SearchFragment : Fragment() {
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
-                        dietsButton.text = "Diets"
+                        dietsButton.text = "DIETS"
+                        setOneButtonTextColor(dietsButton, R.color.white)
 
                         if (isDarkTheme()) {
-                            setAllButtonTextColor(R.color.white)
-                            setAllButtonBackgroundTint(R.color.eerie_black)
+                            setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
                         } else {
-                            setAllButtonTextColor(R.color.rose_ebony)
-                            setAllButtonBackgroundTint(R.color.whiteSmoke)
+                            setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
                         }
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        dietsButton.text = "Diets"
+                        dietsButton.text = "DIETS"
 
                         if (isDarkTheme()) {
-                            setAllButtonTextColor(R.color.white)
-                            setAllButtonBackgroundTint(R.color.eerie_black)
+                            setOneButtonTextColor(dietsButton, R.color.white)
+                            setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
                         } else {
-                            setAllButtonTextColor(R.color.rose_ebony)
-                            setAllButtonBackgroundTint(R.color.whiteSmoke)
+                            setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
                         }
-//                        closeImg.isVisible = false
-//                        simpleSearchLay.isVisible = false
-//                        advancedSearchScroll.isVisible = true
                     }
                 }
             }
@@ -339,8 +335,11 @@ class SearchFragment : Fragment() {
                             if (data?.results!!.isNotEmpty()) {
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
-                                Log.e("diet1", viewModel.selectedDietsData.value.toString() )
-                                Log.e("diet2", viewModel.selectedIngredientsNameData.value.toString() )
+                                Log.e("diet1", viewModel.selectedDietsData.value.toString())
+                                Log.e(
+                                    "diet2",
+                                    viewModel.selectedIngredientsNameData.value.toString()
+                                )
                             }
                         }
                     }
