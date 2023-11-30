@@ -185,7 +185,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[DIET] = diets
         }
         queries[API_KEY] = MY_API_KEY
-        queries[NUMBER] = 10.toString()
+        queries[NUMBER] = 20.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search
         return queries
