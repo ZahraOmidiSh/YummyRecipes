@@ -105,7 +105,6 @@ class DietsFragment : BottomSheetDialogFragment() {
                     setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
                 }
             }
-
             veganButton.setOnClickListener {
                 if (notSureDiets.contains("Vegan")) {
                     notSureDiets.remove("Vegan")
@@ -149,7 +148,6 @@ class DietsFragment : BottomSheetDialogFragment() {
                     setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
                 }
             }
-
             vegetarianButton.setOnClickListener {
                 if (notSureDiets.contains("Vegetarian")) {
                     notSureDiets.remove("Vegetarian")
@@ -193,11 +191,140 @@ class DietsFragment : BottomSheetDialogFragment() {
                     setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
                 }
             }
+            glutenFreeButton.setOnClickListener {
+                if (notSureDiets.contains("Gluten Free")) {
+                    notSureDiets.remove("Gluten Free")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.eerie_black)
+                        glutenFreeButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
+                    } else {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.whiteSmoke)
+                        glutenFreeButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
+                    }
+                } else {
+                    notSureDiets.add("Gluten Free")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.big_foot_feet)
+                    }
+                    glutenFreeButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                }
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            }
+            pescetarianButton.setOnClickListener {
+                if (notSureDiets.contains("Pescetarian")) {
+                    notSureDiets.remove("Pescetarian")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(pescetarianButton, R.color.eerie_black)
+                        pescetarianButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
+                    } else {
+                        setButtonBackgroundTint(pescetarianButton, R.color.whiteSmoke)
+                        pescetarianButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
+                    }
+                } else {
+                    notSureDiets.add("Pescetarian")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(pescetarianButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(pescetarianButton, R.color.big_foot_feet)
+                    }
+                    pescetarianButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                }
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            }
+            paleoButton.setOnClickListener {
+                if (notSureDiets.contains("Paleo")) {
+                    notSureDiets.remove("Paleo")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(paleoButton, R.color.eerie_black)
+                        paleoButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.white
+                            )
+                        )
+                    } else {
+                        setButtonBackgroundTint(paleoButton, R.color.whiteSmoke)
+                        paleoButton.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(), R.color.rose_ebony
+                            )
+                        )
+                    }
+                } else {
+                    notSureDiets.add("Paleo")
+                    if (isDarkTheme()) {
+                        setButtonBackgroundTint(paleoButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(paleoButton, R.color.big_foot_feet)
+                    }
+                    paleoButton.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.white
+                        )
+                    )
+                }
+                showResultsButton.isEnabled = true
+                showResultsButton.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+                if (isDarkTheme()) {
+                    setButtonBackgroundTint(showResultsButton, R.color.congo_pink)
+                } else {
+                    setButtonBackgroundTint(showResultsButton, R.color.big_foot_feet)
+                }
+            }
 
             //Selected Ingredients Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
-                Log.e("diet", viewModel._selectedDietsData.value.toString() )
+                Log.e("diet", viewModel._selectedDietsData.value.toString())
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
                 notSureDiets.clear()
@@ -259,16 +386,19 @@ class DietsFragment : BottomSheetDialogFragment() {
                     } else {
                         setButtonBackgroundTint(veganButton, R.color.big_foot_feet)
                     }
+
                     "Pescetarian" -> if (isDarkTheme()) {
                         setButtonBackgroundTint(pescetarianButton, R.color.congo_pink)
                     } else {
                         setButtonBackgroundTint(pescetarianButton, R.color.big_foot_feet)
                     }
+
                     "Gluten Free" -> if (isDarkTheme()) {
                         setButtonBackgroundTint(glutenFreeButton, R.color.congo_pink)
                     } else {
                         setButtonBackgroundTint(glutenFreeButton, R.color.big_foot_feet)
                     }
+
                     "Paleo" -> if (isDarkTheme()) {
                         setButtonBackgroundTint(paleoButton, R.color.congo_pink)
                     } else {
