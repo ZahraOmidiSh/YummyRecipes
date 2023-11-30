@@ -59,11 +59,6 @@ class DietsFragment : BottomSheetDialogFragment() {
             viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
                 notSureDiets = diets.toMutableList()
                 setShowResultButtonColor()
-//                if (isDarkTheme()) {
-//                    setButtonBackgroundTint(ketogenicButton, R.color.eerie_black)
-//                } else {
-//                    setButtonBackgroundTint(ketogenicButton, R.color.mediumGray)
-//                }
                 setDietsButtonColor(notSureDiets)
             }
 
@@ -264,6 +259,22 @@ class DietsFragment : BottomSheetDialogFragment() {
                     } else {
                         setButtonBackgroundTint(veganButton, R.color.big_foot_feet)
                     }
+                    "Pescetarian" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(pescetarianButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(pescetarianButton, R.color.big_foot_feet)
+                    }
+                    "Gluten Free" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(glutenFreeButton, R.color.big_foot_feet)
+                    }
+                    "Paleo" -> if (isDarkTheme()) {
+                        setButtonBackgroundTint(paleoButton, R.color.congo_pink)
+                    } else {
+                        setButtonBackgroundTint(paleoButton, R.color.big_foot_feet)
+                    }
+
                 }
             }
         }
