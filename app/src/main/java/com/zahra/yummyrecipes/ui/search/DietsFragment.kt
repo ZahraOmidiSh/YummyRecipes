@@ -79,7 +79,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                 setButtonClickListener(paleoButton, "Paleo")
             }
 
-            //Selected Ingredients Button Listener
+            //Show results Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
                 viewModel.isSearchWithDiets.value =

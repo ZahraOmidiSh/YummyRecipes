@@ -190,7 +190,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         //Allergies
         if (isSearchWithAllergies.value == true) {
             var allergies = ""
-            selectedDietsData.value?.forEach {
+            selectedAllergiesData.value?.forEach {
                 allergies = "$allergies,$it".trim()
             }
             allergies = allergies.removeRange(0, 1)

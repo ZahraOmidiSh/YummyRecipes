@@ -9,19 +9,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentAllergiesBinding
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 
-class AllergiesFragment : Fragment() {
+class AllergiesFragment : BottomSheetDialogFragment() {
     //Binding
     private var _binding: FragmentAllergiesBinding? = null
     private val binding get() = _binding!!
 
-    //    //Others
+    //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureAllergies = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,6 @@ class AllergiesFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
     }
 
-    //
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -37,7 +36,6 @@ class AllergiesFragment : Fragment() {
         return binding.root
     }
 
-    //
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +68,7 @@ class AllergiesFragment : Fragment() {
                 setButtonClickListener(soyButton, "Soy")
             }
 
-            //Selected Ingredients Button Listener
+            //Show results Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedAllergiesData.value = notSureAllergies
                 viewModel.isSearchWithAllergies.value =
@@ -119,13 +117,10 @@ class AllergiesFragment : Fragment() {
             )
         )
         setButtonBackgroundBasedOnTheme(
-            binding.showResultsButton,
-            R.color.congo_pink,
-            R.color.big_foot_feet
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
         )
 
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun setShowResultButtonColor() {
@@ -138,9 +133,7 @@ class AllergiesFragment : Fragment() {
                     )
                 )
                 setButtonBackgroundBasedOnTheme(
-                    showResultsButton,
-                    R.color.eerie_black,
-                    R.color.mediumGray
+                    showResultsButton, R.color.eerie_black, R.color.mediumGray
                 )
             } else {
                 showResultsButton.isEnabled = true
@@ -150,9 +143,7 @@ class AllergiesFragment : Fragment() {
                     )
                 )
                 setButtonBackgroundBasedOnTheme(
-                    showResultsButton,
-                    R.color.congo_pink,
-                    R.color.big_foot_feet
+                    showResultsButton, R.color.congo_pink, R.color.big_foot_feet
                 )
             }
         }
@@ -163,39 +154,27 @@ class AllergiesFragment : Fragment() {
             notSureAllergies.forEach { allergy ->
                 when (allergy) {
                     "Dairy" -> setButtonBackgroundBasedOnTheme(
-                        dairyButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        dairyButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Egg" -> setButtonBackgroundBasedOnTheme(
-                        eggButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        eggButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Grain" -> setButtonBackgroundBasedOnTheme(
-                        grainButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        grainButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Peanut" -> setButtonBackgroundBasedOnTheme(
-                        peanutButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        peanutButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Seafood" -> setButtonBackgroundBasedOnTheme(
-                        seafoodButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        seafoodButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Soy" -> setButtonBackgroundBasedOnTheme(
-                        soyButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        soyButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                 }
@@ -204,9 +183,7 @@ class AllergiesFragment : Fragment() {
     }
 
     private fun setButtonBackgroundBasedOnTheme(
-        button: Button,
-        darkThemeColor: Int,
-        lightThemeColor: Int
+        button: Button, darkThemeColor: Int, lightThemeColor: Int
     ) {
         if (isDarkTheme()) {
             setButtonBackgroundTint(button, darkThemeColor)
