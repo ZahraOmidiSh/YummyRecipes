@@ -132,6 +132,11 @@ class SearchFragment : Fragment() {
                 findNavController().navigate(direction)
             }
 
+            allergiesButton.setOnClickListener {
+                val direction = SearchFragmentDirections.actionToAllergies()
+                findNavController().navigate(direction)
+            }
+
             //Close listener
             searchClose()
 
