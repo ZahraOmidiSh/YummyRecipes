@@ -122,6 +122,9 @@ class SearchFragment : Fragment() {
             //dietsSearch
             dietsSearch()
 
+            //dietsSearch
+            allergySearch()
+
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
@@ -157,6 +160,8 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithIngredient.value = false
                 viewModel._selectedDietsData.value = emptyList()
                 viewModel.isSearchWithDiets.value = false
+                viewModel._selectedAllergiesData.value = emptyList()
+                viewModel.isSearchWithAllergies.value = false
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -206,7 +211,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if(viewModel.isSearchWithDiets.value==true){
+                        if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
                             viewModel.callSearchApi(viewModel.searchQueries(""))
                             loadRecentData()
                         }
@@ -265,7 +270,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if(viewModel.isSearchWithIngredient.value==true){
+                        if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true) {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         }
@@ -277,6 +282,59 @@ class SearchFragment : Fragment() {
                         } else {
                             setOneButtonTextColor(dietsButton, R.color.rose_ebony)
                             setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun allergySearch() {
+        binding.apply {
+            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
+                if (it) {
+                    closeImg.isVisible = true
+                    simpleSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = false
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    loadRecentData()
+                    allergiesButton.text =
+                        "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
+                    setOneButtonTextColor(allergiesButton, R.color.white)
+                    if (isDarkTheme()) {
+                        setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
+                    } else {
+                        setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
+                    }
+                } else {
+                    if (searchString.isNotEmpty()) {
+                        closeImg.isVisible = true
+                        simpleSearchLay.isVisible = true
+                        advancedSearchScroll.isVisible = false
+                        allergiesButton.text = "ALLERGIES"
+                        if (isDarkTheme()) {
+                            setOneButtonTextColor(allergiesButton, R.color.white)
+                            setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                        } else {
+                            setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+                        }
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                        loadRecentData()
+                    } else {
+                        if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
+                        }
+                        allergiesButton.text = "ALLERGIES"
+
+                        if (isDarkTheme()) {
+                            setOneButtonTextColor(allergiesButton, R.color.white)
+                            setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                        } else {
+                            setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
                         }
                     }
                 }
