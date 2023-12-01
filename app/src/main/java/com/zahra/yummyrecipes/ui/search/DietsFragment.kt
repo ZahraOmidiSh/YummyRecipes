@@ -26,10 +26,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DietsFragment : BottomSheetDialogFragment() {
 
-    //Allergies
-    //dairy free - egg free- gluten free - grain free - peanut free -
-    // seafood free - shellfish free - soy free - wheat free
-
     //Binding
     private var _binding: FragmentDietsBinding? = null
     private val binding get() = _binding!!
@@ -86,7 +82,6 @@ class DietsFragment : BottomSheetDialogFragment() {
             //Selected Ingredients Button Listener
             showResultsButton.setOnClickListener {
                 viewModel._selectedDietsData.value = notSureDiets
-                Log.e("diet", viewModel._selectedDietsData.value.toString())
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
                 notSureDiets.clear()
