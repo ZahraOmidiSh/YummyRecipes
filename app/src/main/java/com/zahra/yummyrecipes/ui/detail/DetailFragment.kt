@@ -21,7 +21,6 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.google.android.material.chip.ChipGroup
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.utils.*
 import com.zahra.yummyrecipes.adapter.EquipmentsAdapter
 import com.zahra.yummyrecipes.adapter.IngredientsAdapter
 import com.zahra.yummyrecipes.adapter.InstructionsStepsAdapter
@@ -34,16 +33,10 @@ import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.S
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
 import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
-import com.zahra.yummyrecipes.utils.Constants
-import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
+import com.zahra.yummyrecipes.utils.*
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.NetworkChecker
-import com.zahra.yummyrecipes.utils.NetworkRequest
-import com.zahra.yummyrecipes.utils.isVisible
-import com.zahra.yummyrecipes.utils.minToHour
-import com.zahra.yummyrecipes.utils.setupRecyclerview
-import com.zahra.yummyrecipes.utils.showSnackBar
+import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -116,8 +109,8 @@ class DetailFragment : Fragment() {
                 }
                 //Similar
                 if (state) {
-                    viewModel.callSimilarApi(recipeId, MY_API_KEY)
-                    binding.similarTitle.isVisible=true
+                    viewModel.callSimilarApi(recipeId, setAPIKEY())
+                    binding.similarTitle.isVisible = true
                 }
             }
         }
@@ -129,7 +122,7 @@ class DetailFragment : Fragment() {
 
 
     private fun loadDetailDataFromApi() {
-        viewModel.callDetailApi(recipeId, MY_API_KEY)
+        viewModel.callDetailApi(recipeId, setAPIKEY())
         binding.apply {
             viewModel.detailData.observe(viewLifecycleOwner) { response ->
                 when (response) {
@@ -257,20 +250,20 @@ class DetailFragment : Fragment() {
                     it[0]?.let { step ->
                         if (step.steps!!.isNotEmpty()) {
                             //Equipment
-                            equipmentTitle.isVisible=true
-                            equipmentCount.isVisible=true
-                            equipmentsList.isVisible=true
-                            line4.isVisible=true
+                            equipmentTitle.isVisible = true
+                            equipmentCount.isVisible = true
+                            equipmentsList.isVisible = true
+                            line4.isVisible = true
                             equipmentCount.text =
                                 "${step.steps[0].equipment!!.size} items"
                             initEquipmentsList(step.steps[0].equipment!!.toMutableList())
-                            equipmentTitle.isVisible=true
+                            equipmentTitle.isVisible = true
 
 
                             //Steps
-                            cookingTitle.isVisible=true
-                            instructionCount.isVisible=true
-                            cookingInstructionsList.isVisible=true
+                            cookingTitle.isVisible = true
+                            instructionCount.isVisible = true
+                            cookingInstructionsList.isVisible = true
                             instructionCount.text = "${step.steps.size} steps"
                             initInstructionStepList(step.steps.toMutableList())
 

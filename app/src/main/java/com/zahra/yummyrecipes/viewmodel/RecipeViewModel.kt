@@ -17,7 +17,6 @@ import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.HEALTHINESS
 import com.zahra.yummyrecipes.utils.Constants.LIMITED_COUNT
 import com.zahra.yummyrecipes.utils.Constants.MAIN_COURSE
-import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.POPULARITY
 import com.zahra.yummyrecipes.utils.Constants.PRICE
@@ -27,6 +26,7 @@ import com.zahra.yummyrecipes.utils.Constants.TIME
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
 import com.zahra.yummyrecipes.utils.Constants.VEGAN
+import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -143,7 +143,7 @@ class RecipeViewModel @Inject constructor(
 
     fun suggestedQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[TYPE] = getMealType()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
@@ -181,7 +181,7 @@ class RecipeViewModel @Inject constructor(
     //Queries
     fun economicalQueries(number: Int): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = number.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[TYPE] = MAIN_COURSE
@@ -220,7 +220,7 @@ class RecipeViewModel @Inject constructor(
     //Queries
     fun quickQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[TYPE] = MAIN_COURSE
@@ -260,7 +260,7 @@ class RecipeViewModel @Inject constructor(
     //Queries
     fun veganQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[DIET] = VEGAN
@@ -300,7 +300,7 @@ class RecipeViewModel @Inject constructor(
     //Queries
     fun healthyQueries(): HashMap<String, String> {
         val queries: HashMap<String, String> = HashMap()
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = LIMITED_COUNT.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[SORT] = HEALTHINESS

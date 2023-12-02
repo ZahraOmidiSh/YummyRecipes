@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
 import android.app.SearchManager.QUERY
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,9 +14,9 @@ import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
-import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
+import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -196,7 +195,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             allergies = allergies.removeRange(0, 1)
             queries[INTOLERANCES] = allergies
         }
-        queries[API_KEY] = MY_API_KEY
+        queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = 8.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search

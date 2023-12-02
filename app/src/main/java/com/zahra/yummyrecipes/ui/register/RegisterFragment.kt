@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentRegisterBinding
 import com.zahra.yummyrecipes.models.register.BodyRegister
-import com.zahra.yummyrecipes.utils.Constants.MY_API_KEY
+import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkChecker
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.showSnackBar
@@ -79,7 +79,7 @@ class RegisterFragment : Fragment() {
                             networkChecker.checkNetworkAvailability().collect { state ->
                                 if (state) {
                                     //Call api
-                                    viewModel.callRegisterApi(MY_API_KEY, body)
+                                    viewModel.callRegisterApi(setAPIKEY(), body)
 
                                 } else {
                                     root.showSnackBar(getString(R.string.check_internet))
