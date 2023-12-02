@@ -8,8 +8,8 @@ object Constants {
     const val NETWORK_TIMEOUT = 60L
 
 //        const val MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
-    const val MY_API_KEY = "a4b8ec5f10364b5ab29353dfd26175de"
-//    const val MY_API_KEY = "fd80793063ce4faea1e5515031576a77"   //nouri
+//    const val MY_API_KEY = "a4b8ec5f10364b5ab29353dfd26175de"
+    const val MY_API_KEY = "fd80793063ce4faea1e5515031576a77"   //nouri
 //    const val MY_API_KEY = "82c37db267e047cdae8f0d81188a3357"   //outlook
 
 
@@ -21,7 +21,7 @@ object Constants {
     const val SORT = "sort"
     const val SORT_DIRECTION = "sortDirection"
     const val DIET = "diet"
-    const val INTOLERANCES = "Intolerances"
+    const val INTOLERANCES = "intolerances"
     const val INCLUDE_INGREDIENTS = "includeIngredients"
 
     //APIs value

@@ -197,7 +197,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[INTOLERANCES] = allergies
         }
         queries[API_KEY] = MY_API_KEY
-        queries[NUMBER] = 20.toString()
+        queries[NUMBER] = 8.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
         queries[QUERY] = search
         return queries

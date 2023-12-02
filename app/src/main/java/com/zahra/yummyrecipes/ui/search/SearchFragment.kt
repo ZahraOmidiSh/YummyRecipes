@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -156,12 +155,12 @@ class SearchFragment : Fragment() {
                         it.isSelected = false
                     }
                 }
-                viewModel.updateSelectedIngredientsName()
                 viewModel.isSearchWithIngredient.value = false
-                viewModel._selectedDietsData.value = emptyList()
                 viewModel.isSearchWithDiets.value = false
-                viewModel._selectedAllergiesData.value = emptyList()
                 viewModel.isSearchWithAllergies.value = false
+                viewModel.updateSelectedIngredientsName()
+                viewModel._selectedDietsData.value = emptyList()
+                viewModel._selectedAllergiesData.value = emptyList()
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -211,12 +210,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(""))
-                            loadRecentData()
-                        }
                         ingredientsButton.text = "INGREDIENTS"
-
                         if (isDarkTheme()) {
                             setOneButtonTextColor(ingredientsButton, R.color.white)
                             setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
@@ -270,10 +264,6 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        }
                         dietsButton.text = "DIETS"
 
                         if (isDarkTheme()) {
@@ -323,10 +313,6 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        }
                         allergiesButton.text = "ALLERGIES"
 
                         if (isDarkTheme()) {
