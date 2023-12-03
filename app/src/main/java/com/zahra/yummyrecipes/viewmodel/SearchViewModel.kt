@@ -186,7 +186,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             selectedDietsData.value?.forEach {
                 diets = "$diets|$it".trim()
             }
-            diets = diets.removeRange(0, 1)
+//            diets = diets.removeRange(0, 1)
             queries[DIET] = diets
         }
         //Allergies
@@ -195,7 +195,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             selectedAllergiesData.value?.forEach {
                 allergies = "$allergies,$it".trim()
             }
-            allergies = allergies.removeRange(0, 1)
+//            allergies = allergies.removeRange(0, 1)
             queries[INTOLERANCES] = allergies
         }
         queries[API_KEY] = setAPIKEY()

@@ -80,7 +80,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-//            viewModel.isCloseButtonPressed.value = false
+            viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
             if (savedInstanceState != null) {
                 // Check if the activity is being recreated due to a theme change
@@ -143,6 +143,18 @@ class SearchFragment : Fragment() {
             //Close listener
             searchClose()
 
+            viewModel.isCloseButtonPressed.observe(viewLifecycleOwner){
+                if(it){
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
+                }else{
+                    simpleSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = false
+                    closeImg.isVisible = true
+                }
+            }
+
         }
     }
 
@@ -157,12 +169,12 @@ class SearchFragment : Fragment() {
                         it.isSelected = false
                     }
                 }
-                viewModel.isSearchWithIngredient.value = false
-                viewModel.isSearchWithDiets.value = false
-                viewModel.isSearchWithAllergies.value = false
                 viewModel.updateSelectedIngredientsName()
                 viewModel._selectedDietsData.value = emptyList()
                 viewModel._selectedAllergiesData.value = emptyList()
+                viewModel.isSearchWithIngredient.value = false
+                viewModel.isSearchWithDiets.value = false
+                viewModel.isSearchWithAllergies.value = false
                 simpleSearchLay.isVisible = false
                 advancedSearchScroll.isVisible = true
                 closeImg.isVisible = false
@@ -173,6 +185,7 @@ class SearchFragment : Fragment() {
     private fun textChangeListener() {
         binding.searchEdt.addTextChangedListener {
             binding.closeImg.isVisible = true
+            viewModel.isCloseButtonPressed.value=false
             if (it.toString().length > 2 && isNetworkAvailable == true) {
                 searchString = it.toString()
                 viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
@@ -214,7 +227,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isCloseButtonPressed.value == true && (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true)) {
+                        if (viewModel.isCloseButtonPressed.value == false && (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true)) {
                             viewModel.callSearchApi(viewModel.searchQueries(""))
                             loadRecentData()
                         }
@@ -275,7 +288,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isCloseButtonPressed.value == true &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true)) {
+                        if (viewModel.isCloseButtonPressed.value == false &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true)) {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         }
@@ -330,7 +343,7 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
-                        if (viewModel.isCloseButtonPressed.value == true &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true)) {
+                        if (viewModel.isCloseButtonPressed.value == false &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true)) {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         }
