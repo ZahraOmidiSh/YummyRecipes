@@ -32,6 +32,9 @@ import javax.inject.Inject
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
 
+    //Close Button is pressed
+    var isCloseButtonPressed = MutableLiveData<Boolean>()
+
     //Search With Ingredient
     var isSearchWithIngredient = MutableLiveData<Boolean>()
 

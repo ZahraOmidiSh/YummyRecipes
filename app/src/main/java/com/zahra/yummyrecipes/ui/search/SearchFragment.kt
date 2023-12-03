@@ -80,6 +80,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+//            viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
             if (savedInstanceState != null) {
                 // Check if the activity is being recreated due to a theme change
@@ -147,6 +148,7 @@ class SearchFragment : Fragment() {
 
     private fun searchClose() {
         binding.apply {
+            viewModel.isCloseButtonPressed.value = true
             closeImg.setOnClickListener {
                 searchEdt.text.clear()
                 searchString = ""
@@ -184,6 +186,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
                 if (it) {
+                    viewModel.isCloseButtonPressed.value = false
                     closeImg.isVisible = true
                     viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
@@ -197,6 +200,7 @@ class SearchFragment : Fragment() {
                     }
                 } else {
                     if (searchString.isNotEmpty()) {
+                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         ingredientsButton.text = "INGREDIENTS"
 
@@ -210,7 +214,12 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
+                        if (viewModel.isCloseButtonPressed.value == true && (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true)) {
+                            viewModel.callSearchApi(viewModel.searchQueries(""))
+                            loadRecentData()
+                        }
                         ingredientsButton.text = "INGREDIENTS"
+
                         if (isDarkTheme()) {
                             setOneButtonTextColor(ingredientsButton, R.color.white)
                             setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
@@ -235,6 +244,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
                 if (it) {
+                    viewModel.isCloseButtonPressed.value = false
                     closeImg.isVisible = true
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
@@ -250,6 +260,7 @@ class SearchFragment : Fragment() {
                     }
                 } else {
                     if (searchString.isNotEmpty()) {
+                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
@@ -264,6 +275,10 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
+                        if (viewModel.isCloseButtonPressed.value == true &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true)) {
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
+                        }
                         dietsButton.text = "DIETS"
 
                         if (isDarkTheme()) {
@@ -284,6 +299,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
                 if (it) {
+                    viewModel.isCloseButtonPressed.value = false
                     closeImg.isVisible = true
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
@@ -299,6 +315,7 @@ class SearchFragment : Fragment() {
                     }
                 } else {
                     if (searchString.isNotEmpty()) {
+                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
@@ -313,6 +330,10 @@ class SearchFragment : Fragment() {
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                     } else {
+                        if (viewModel.isCloseButtonPressed.value == true &&(viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true)) {
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
+                        }
                         allergiesButton.text = "ALLERGIES"
 
                         if (isDarkTheme()) {
