@@ -187,7 +187,7 @@
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/vegan"
+                    android:src="@drawable/breakfast_search"
                     app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
