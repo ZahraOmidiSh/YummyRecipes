@@ -140,6 +140,13 @@ class SearchFragment : Fragment() {
                 findNavController().navigate(direction)
             }
 
+            breakfastMeal.setOnClickListener {
+                viewModel.isCloseButtonPressed.value=false
+                closeImg.isVisible = true
+                viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                loadRecentData()
+            }
+
             //Close listener
             closeImg.setOnClickListener {
                 searchClose()

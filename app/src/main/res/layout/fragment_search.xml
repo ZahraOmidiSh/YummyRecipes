@@ -182,16 +182,56 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--Breakfast-->
-                <ImageView
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/breakfastMeal"
+                    android:layout_width="@dimen/_120mdp"
+                    android:layout_height="@dimen/_70mdp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchByMealTxt">
+                    <!--Shadow-->
+                    <View
+                        android:layout_height="match_parent"
+                        android:alpha="0.9"
+                        android:background="@drawable/bg_shadow_white"
+                        android:layout_width="match_parent"/>
+                    <!--Image-->
+                    <ImageView
+                        android:id="@+id/fewIngredientImg"
+                        android:layout_width="80dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="@dimen/_60mdp"
+                        android:layout_marginTop="@dimen/_16mdp"
+                        android:src="@drawable/fullbreakfasttoas" />
+
+                    <!--Title-->
+                    <TextView
+                        android:id="@+id/fewIngredientTitleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:textColor="@color/rose_ebony"
+                        android:textSize="@dimen/_14mdp"
+                        android:text="@string/breakfast" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!--<ImageView
                     android:id="@+id/breakfastMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:layout_marginTop="@dimen/_8mdp"
-                    android:src="@drawable/breakfast_search"
+                    android:src="@drawable/breakfast_search_b"
                     app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />
+                    app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />-->
                 <!--Lunch-->
                 <ImageView
                     android:id="@+id/lunchMeal"
