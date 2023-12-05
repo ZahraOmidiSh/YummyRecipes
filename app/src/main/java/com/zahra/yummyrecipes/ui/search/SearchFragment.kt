@@ -141,7 +141,10 @@ class SearchFragment : Fragment() {
             }
 
             //Close listener
-            searchClose()
+            closeImg.setOnClickListener {
+                searchClose()
+            }
+
 
 //            viewModel.isCloseButtonPressed.observe(viewLifecycleOwner){
 //                if(it){
@@ -160,8 +163,7 @@ class SearchFragment : Fragment() {
 
     private fun searchClose() {
         binding.apply {
-            viewModel.isCloseButtonPressed.value = true
-            closeImg.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = true
                 searchEdt.text.clear()
                 searchString = ""
                 viewModel.expandedIngredientsList.value!!.forEach {
@@ -175,10 +177,9 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithIngredient.value = false
                 viewModel.isSearchWithDiets.value = false
                 viewModel.isSearchWithAllergies.value = false
-                simpleSearchLay.isVisible = false
-                advancedSearchScroll.isVisible = true
-                closeImg.isVisible = false
-            }
+//                simpleSearchLay.isVisible = false
+//                advancedSearchScroll.isVisible = true
+//                closeImg.isVisible = false
         }
     }
 
@@ -187,7 +188,7 @@ class SearchFragment : Fragment() {
             binding.closeImg.isVisible = true
 //            viewModel.isCloseButtonPressed.value=false
             if (it.toString().length > 2 && isNetworkAvailable == true) {
-                viewModel.isCloseButtonPressed.value=false
+                viewModel.isCloseButtonPressed.value = false
                 searchString = it.toString()
                 viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
                 loadRecentData()
@@ -197,9 +198,9 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun ingredientSearch() {
-        if(viewModel.isCloseButtonPressed.value==false){
-            binding.apply {
-                viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
+        binding.apply {
+            viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
+                if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
 //                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
@@ -250,6 +251,10 @@ class SearchFragment : Fragment() {
                             viewModel.updateSelectedIngredientsName()
                         }
                     }
+                }else{
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
                 }
             }
         }
@@ -258,9 +263,9 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun dietsSearch() {
-        if(viewModel.isCloseButtonPressed.value==false){
-            binding.apply {
-                viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+        binding.apply {
+            viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+                if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
 //                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
@@ -308,6 +313,10 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
+                }else{
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
                 }
             }
         }
@@ -316,9 +325,9 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun allergySearch() {
-        if(viewModel.isCloseButtonPressed.value==false){
-            binding.apply {
-                viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
+        binding.apply {
+            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
+                if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
 //                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
@@ -366,10 +375,13 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
+                }else{
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
                 }
             }
         }
-
     }
 
     private fun checkInternet() {
