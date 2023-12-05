@@ -84,6 +84,9 @@ class DietsFragment : BottomSheetDialogFragment() {
                 viewModel._selectedDietsData.value = notSureDiets
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
+                if (viewModel.isSearchWithDiets.value == true) {
+                    viewModel.isCloseButtonPressed.value = false
+                }
                 notSureDiets.clear()
                 findNavController().navigateUp()
             }

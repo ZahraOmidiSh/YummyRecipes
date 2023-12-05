@@ -73,6 +73,9 @@ class AllergiesFragment : BottomSheetDialogFragment() {
                 viewModel._selectedAllergiesData.value = notSureAllergies
                 viewModel.isSearchWithAllergies.value =
                     viewModel.selectedAllergiesData.value?.isNotEmpty() == true
+                if (viewModel.isSearchWithAllergies.value == true) {
+                    viewModel.isCloseButtonPressed.value = false
+                }
                 notSureAllergies.clear()
                 findNavController().navigateUp()
             }
