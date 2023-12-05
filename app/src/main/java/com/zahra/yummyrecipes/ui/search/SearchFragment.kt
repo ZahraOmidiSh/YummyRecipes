@@ -144,20 +144,6 @@ class SearchFragment : Fragment() {
             closeImg.setOnClickListener {
                 searchClose()
             }
-
-
-//            viewModel.isCloseButtonPressed.observe(viewLifecycleOwner){
-//                if(it){
-//                    simpleSearchLay.isVisible = false
-//                    advancedSearchScroll.isVisible = true
-//                    closeImg.isVisible = false
-//                }else{
-//                    simpleSearchLay.isVisible = true
-//                    advancedSearchScroll.isVisible = false
-//                    closeImg.isVisible = true
-//                }
-//            }
-
         }
     }
 
@@ -186,7 +172,6 @@ class SearchFragment : Fragment() {
     private fun textChangeListener() {
         binding.searchEdt.addTextChangedListener {
             binding.closeImg.isVisible = true
-//            viewModel.isCloseButtonPressed.value=false
             if (it.toString().length > 2 && isNetworkAvailable == true) {
                 viewModel.isCloseButtonPressed.value = false
                 searchString = it.toString()
@@ -234,27 +219,27 @@ class SearchFragment : Fragment() {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
-                            ingredientsButton.text = "INGREDIENTS"
-
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(ingredientsButton, R.color.white)
-                                setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
-                            }
-                            viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
-                                if (ingredientModel.isSelected) {
-                                    ingredientModel.isSelected = false
-                                }
-                            }
-                            viewModel.updateSelectedIngredientsName()
                         }
                     }
                 }else{
                     simpleSearchLay.isVisible = false
                     advancedSearchScroll.isVisible = true
                     closeImg.isVisible = false
+                    ingredientsButton.text = "INGREDIENTS"
+
+                    if (isDarkTheme()) {
+                        setOneButtonTextColor(ingredientsButton, R.color.white)
+                        setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                    } else {
+                        setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
+                        setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
+                    }
+                    viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
+                        if (ingredientModel.isSelected) {
+                            ingredientModel.isSelected = false
+                        }
+                    }
+                    viewModel.updateSelectedIngredientsName()
                 }
             }
         }
@@ -302,21 +287,21 @@ class SearchFragment : Fragment() {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
                             }
-                            dietsButton.text = "DIETS"
-
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(dietsButton, R.color.white)
-                                setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
-                            }
                         }
                     }
                 }else{
                     simpleSearchLay.isVisible = false
                     advancedSearchScroll.isVisible = true
                     closeImg.isVisible = false
+                    dietsButton.text = "DIETS"
+
+                    if (isDarkTheme()) {
+                        setOneButtonTextColor(dietsButton, R.color.white)
+                        setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
+                    } else {
+                        setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                        setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                    }
                 }
             }
         }
@@ -364,21 +349,21 @@ class SearchFragment : Fragment() {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
                             }
-                            allergiesButton.text = "ALLERGIES"
-
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(allergiesButton, R.color.white)
-                                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
-                            }
                         }
                     }
                 }else{
                     simpleSearchLay.isVisible = false
                     advancedSearchScroll.isVisible = true
                     closeImg.isVisible = false
+                    allergiesButton.text = "ALLERGIES"
+
+                    if (isDarkTheme()) {
+                        setOneButtonTextColor(allergiesButton, R.color.white)
+                        setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                    } else {
+                        setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+                        setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+                    }
                 }
             }
         }
