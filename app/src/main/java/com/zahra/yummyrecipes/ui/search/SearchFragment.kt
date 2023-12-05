@@ -149,23 +149,23 @@ class SearchFragment : Fragment() {
 
     private fun searchClose() {
         binding.apply {
-                viewModel.isCloseButtonPressed.value = true
-                searchEdt.text.clear()
-                searchString = ""
-                viewModel.expandedIngredientsList.value!!.forEach {
-                    if (it.isSelected) {
-                        it.isSelected = false
-                    }
+            viewModel.isCloseButtonPressed.value = true
+            searchEdt.text.clear()
+            searchString = ""
+            viewModel.expandedIngredientsList.value!!.forEach {
+                if (it.isSelected) {
+                    it.isSelected = false
                 }
-                viewModel.updateSelectedIngredientsName()
-                viewModel._selectedDietsData.value = emptyList()
-                viewModel._selectedAllergiesData.value = emptyList()
-                viewModel.isSearchWithIngredient.value = false
-                viewModel.isSearchWithDiets.value = false
-                viewModel.isSearchWithAllergies.value = false
-//                simpleSearchLay.isVisible = false
-//                advancedSearchScroll.isVisible = true
-//                closeImg.isVisible = false
+            }
+            viewModel.updateSelectedIngredientsName()
+            viewModel._selectedDietsData.value = emptyList()
+            viewModel._selectedAllergiesData.value = emptyList()
+            viewModel.isSearchWithIngredient.value = false
+            viewModel.isSearchWithDiets.value = false
+            viewModel.isSearchWithAllergies.value = false
+            simpleSearchLay.isVisible = false
+            advancedSearchScroll.isVisible = true
+            closeImg.isVisible = false
         }
     }
 
@@ -221,19 +221,8 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
-                }else{
-                    simpleSearchLay.isVisible = false
-                    advancedSearchScroll.isVisible = true
-                    closeImg.isVisible = false
-                    ingredientsButton.text = "INGREDIENTS"
-
-                    if (isDarkTheme()) {
-                        setOneButtonTextColor(ingredientsButton, R.color.white)
-                        setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
-                    } else {
-                        setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
-                        setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
-                    }
+                } else {
+                    setAllFilterButtonsToDefault()
                     viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
                         if (ingredientModel.isSelected) {
                             ingredientModel.isSelected = false
@@ -289,19 +278,8 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
-                }else{
-                    simpleSearchLay.isVisible = false
-                    advancedSearchScroll.isVisible = true
-                    closeImg.isVisible = false
-                    dietsButton.text = "DIETS"
-
-                    if (isDarkTheme()) {
-                        setOneButtonTextColor(dietsButton, R.color.white)
-                        setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
-                    } else {
-                        setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                        setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
-                    }
+                } else {
+                    setAllFilterButtonsToDefault()
                 }
             }
         }
@@ -351,23 +329,13 @@ class SearchFragment : Fragment() {
                             }
                         }
                     }
-                }else{
-                    simpleSearchLay.isVisible = false
-                    advancedSearchScroll.isVisible = true
-                    closeImg.isVisible = false
-                    allergiesButton.text = "ALLERGIES"
-
-                    if (isDarkTheme()) {
-                        setOneButtonTextColor(allergiesButton, R.color.white)
-                        setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
-                    } else {
-                        setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
-                        setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
-                    }
+                } else {
+                    setAllFilterButtonsToDefault()
                 }
             }
         }
     }
+
 
     private fun checkInternet() {
         lifecycleScope.launch {
@@ -475,6 +443,30 @@ class SearchFragment : Fragment() {
         button.backgroundTintList = ColorStateList.valueOf(
             ContextCompat.getColor(requireContext(), color)
         )
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setAllFilterButtonsToDefault() {
+        binding.apply {
+            ingredientsButton.text = "INGREDIENTS"
+            dietsButton.text = "DIETS"
+            allergiesButton.text = "ALLERGIES"
+            if (isDarkTheme()) {
+                setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
+                setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
+                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                setOneButtonTextColor(ingredientsButton, R.color.white)
+                setOneButtonTextColor(dietsButton, R.color.white)
+                setOneButtonTextColor(allergiesButton, R.color.white)
+            } else {
+                setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
+                setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+                setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
+                setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+            }
+        }
     }
 
     private fun setOneButtonTextColor(button: Button, color: Int) {
