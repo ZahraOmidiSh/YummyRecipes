@@ -187,7 +187,6 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
-//                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
@@ -201,7 +200,6 @@ class SearchFragment : Fragment() {
                         }
                     } else {
                         if (searchString.isNotEmpty()) {
-//                            viewModel.isCloseButtonPressed.value = false
                             closeImg.isVisible = true
                             ingredientsButton.text = "INGREDIENTS"
 
@@ -223,12 +221,6 @@ class SearchFragment : Fragment() {
                     }
                 } else {
                     setAllFilterButtonsToDefault()
-                    viewModel._expandedIngredientsList.value!!.forEach { ingredientModel ->
-                        if (ingredientModel.isSelected) {
-                            ingredientModel.isSelected = false
-                        }
-                    }
-                    viewModel.updateSelectedIngredientsName()
                 }
             }
         }
@@ -241,7 +233,6 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
-//                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
@@ -257,7 +248,6 @@ class SearchFragment : Fragment() {
                         }
                     } else {
                         if (searchString.isNotEmpty()) {
-//                            viewModel.isCloseButtonPressed.value = false
                             closeImg.isVisible = true
                             simpleSearchLay.isVisible = true
                             advancedSearchScroll.isVisible = false
@@ -292,7 +282,6 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
-//                        viewModel.isCloseButtonPressed.value = false
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
@@ -308,7 +297,6 @@ class SearchFragment : Fragment() {
                         }
                     } else {
                         if (searchString.isNotEmpty()) {
-//                            viewModel.isCloseButtonPressed.value = false
                             closeImg.isVisible = true
                             simpleSearchLay.isVisible = true
                             advancedSearchScroll.isVisible = false
