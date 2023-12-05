@@ -16,6 +16,7 @@ import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
+import com.zahra.yummyrecipes.utils.Constants.TYPE
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
@@ -31,6 +32,10 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
+
+    //meal selected
+    var isMealSelected = MutableLiveData<Boolean>()
+    var selectedMeal=MutableLiveData<String>()
 
     //Close Button is pressed
     var isCloseButtonPressed = MutableLiveData<Boolean>()
@@ -197,6 +202,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
 //            allergies = allergies.removeRange(0, 1)
             queries[INTOLERANCES] = allergies
+        }
+        //Meal
+        if(isMealSelected.value==true){
+            queries[TYPE] = selectedMeal.value.toString()
         }
         queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = 8.toString()
