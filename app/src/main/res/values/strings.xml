@@ -80,5 +80,6 @@
     <string name="seafood">SEAFOOD</string>
     <string name="soy">SOY</string>
     <string name="breakfast">Breakfast</string>
+    <string name="main_course">Main Course</string>
 
 </resources>

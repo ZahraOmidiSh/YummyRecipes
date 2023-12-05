@@ -90,7 +90,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--List-->
         <com.todkars.shimmer.ShimmerRecyclerView
@@ -182,27 +181,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--Breakfast-->
-
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/breakfastMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
+                    android:layout_marginTop="@dimen/_8mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
                     app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchByMealTxt">
                     <!--Shadow-->
                     <View
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:alpha="0.9"
-                        android:background="@drawable/bg_shadow_white"
-                        android:layout_width="match_parent"/>
+                        android:background="@drawable/bg_shadow_white" />
                     <!--Image-->
                     <ImageView
-                        android:id="@+id/fewIngredientImg"
+                        android:id="@+id/breakfastImg"
                         android:layout_width="80dp"
                         android:layout_height="70dp"
                         android:layout_marginStart="@dimen/_60mdp"
@@ -211,37 +209,54 @@
 
                     <!--Title-->
                     <TextView
-                        android:id="@+id/fewIngredientTitleTxt"
+                        android:id="@+id/breakfastTitleTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10mdp"
                         android:layout_marginTop="@dimen/_10mdp"
+                        android:text="@string/breakfast"
                         android:textColor="@color/rose_ebony"
-                        android:textSize="@dimen/_14mdp"
-                        android:text="@string/breakfast" />
+                        android:textSize="@dimen/_14mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
-
-                <!--<ImageView
-                    android:id="@+id/breakfastMeal"
+                <!--Main Course-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mainCourseMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:src="@drawable/breakfast_search_b"
-                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchByMealTxt" />-->
-                <!--Lunch-->
-                <ImageView
-                    android:id="@+id/lunchMeal"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/vegan"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
-                    app:layout_constraintTop_toTopOf="@id/breakfastMeal" />
+                    app:layout_constraintTop_toTopOf="@id/breakfastMeal">
+                    <!--Shadow-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.9"
+                        android:background="@drawable/bg_shadow_white" />
+                    <!--Image-->
+                    <ImageView
+                        android:id="@+id/mainCourseImg"
+                        android:layout_width="80dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="@dimen/_60mdp"
+                        android:layout_marginTop="@dimen/_16mdp"
+                        android:src="@drawable/lunch" />
+
+                    <!--Title-->
+                    <TextView
+                        android:id="@+id/mainCourseTitleTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10mdp"
+                        android:layout_marginTop="@dimen/_10mdp"
+                        android:text="@string/main_course"
+                        android:textColor="@color/rose_ebony"
+                        android:textSize="@dimen/_13mdp" />
+                </com.google.android.material.card.MaterialCardView>
+
                 <!--Snack-->
                 <ImageView
                     android:id="@+id/SnackMeal"
