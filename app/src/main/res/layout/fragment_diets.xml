@@ -83,7 +83,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_8mdp"
-        android:layout_marginTop="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
         android:text="@string/gluten_free"
@@ -126,6 +125,115 @@
         app:layout_constraintStart_toEndOf="@+id/pescetarianButton"
         app:layout_constraintTop_toTopOf="@id/glutenFreeButton" />
 
+    <!--Allergies-->
+    <TextView
+        android:id="@+id/allergiesTxt"
+        style="@style/Search_Titles"
+        android:layout_marginTop="@dimen/_30mdp"
+        android:text="@string/allergies"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/glutenFreeButton" />
+
+    <!--Dairy Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dairyButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/dairy"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/eggButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/allergiesTxt" />
+    <!--Egg Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/eggButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/egg"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/grainButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dairyButton"
+        app:layout_constraintTop_toTopOf="@id/dairyButton" />
+    <!--Grain Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/grainButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/grain"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eggButton"
+        app:layout_constraintTop_toTopOf="@id/dairyButton" />
+
+    <!--Peanut Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/peanutButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/peanut"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/seafoodButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dairyButton" />
+    <!--Seafood Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/seafoodButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/seafood"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/soyButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/peanutButton"
+        app:layout_constraintTop_toTopOf="@id/peanutButton" />
+    <!--Soy Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/soyButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/soy"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seafoodButton"
+        app:layout_constraintTop_toTopOf="@id/peanutButton" />
+
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showResultsButton"
@@ -133,7 +241,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_30mdp"
+        android:layout_marginTop="@dimen/_20mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
@@ -142,5 +250,5 @@
         app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/glutenFreeButton" />
+        app:layout_constraintTop_toBottomOf="@id/peanutButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
