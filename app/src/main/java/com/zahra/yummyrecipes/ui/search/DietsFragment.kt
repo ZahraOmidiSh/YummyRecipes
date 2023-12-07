@@ -33,6 +33,7 @@ class DietsFragment : BottomSheetDialogFragment() {
     //    //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureDiets = mutableListOf<String>()
+    private var notSureAllergies = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -56,27 +57,57 @@ class DietsFragment : BottomSheetDialogFragment() {
             //observe data - set showResultsButton color
             viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
                 notSureDiets = diets.toMutableList()
-                setShowResultButtonColor()
+//                setShowResultButtonColor()
                 setDietsButtonColor(notSureDiets)
             }
 
+            //observe data - set showResultsButton color
+            viewModel.selectedAllergiesData.observe(viewLifecycleOwner) { allergies ->
+                notSureAllergies = allergies.toMutableList()
+//                setShowResultButtonColor()
+                setAllergiesButtonColor(notSureAllergies)
+            }
+
+            setShowResultButtonColor()
+
+            //lifestyles
             ketogenicButton.setOnClickListener {
-                setButtonClickListener(ketogenicButton, "Ketogenic")
+                setLifestylesButtonClickListener(ketogenicButton, "Ketogenic")
             }
             veganButton.setOnClickListener {
-                setButtonClickListener(veganButton, "Vegan")
+                setLifestylesButtonClickListener(veganButton, "Vegan")
             }
             vegetarianButton.setOnClickListener {
-                setButtonClickListener(vegetarianButton, "Vegetarian")
+                setLifestylesButtonClickListener(vegetarianButton, "Vegetarian")
             }
             glutenFreeButton.setOnClickListener {
-                setButtonClickListener(glutenFreeButton, "Gluten Free")
+                setLifestylesButtonClickListener(glutenFreeButton, "Gluten Free")
             }
             pescetarianButton.setOnClickListener {
-                setButtonClickListener(pescetarianButton, "Pescetarian")
+                setLifestylesButtonClickListener(pescetarianButton, "Pescetarian")
             }
             paleoButton.setOnClickListener {
-                setButtonClickListener(paleoButton, "Paleo")
+                setLifestylesButtonClickListener(paleoButton, "Paleo")
+            }
+
+            //allergies
+            dairyButton.setOnClickListener {
+                setAllergiesButtonClickListener(dairyButton, "Dairy")
+            }
+            eggButton.setOnClickListener {
+                setAllergiesButtonClickListener(eggButton, "Egg")
+            }
+            grainButton.setOnClickListener {
+                setAllergiesButtonClickListener(grainButton, "Grain")
+            }
+            peanutButton.setOnClickListener {
+                setAllergiesButtonClickListener(peanutButton, "Peanut")
+            }
+            seafoodButton.setOnClickListener {
+                setAllergiesButtonClickListener(seafoodButton, "Seafood")
+            }
+            soyButton.setOnClickListener {
+                setAllergiesButtonClickListener(soyButton, "Soy")
             }
 
             //Show results Button Listener
@@ -84,10 +115,14 @@ class DietsFragment : BottomSheetDialogFragment() {
                 viewModel._selectedDietsData.value = notSureDiets
                 viewModel.isSearchWithDiets.value =
                     viewModel.selectedDietsData.value?.isNotEmpty() == true
-                if (viewModel.isSearchWithDiets.value == true) {
+                viewModel._selectedAllergiesData.value = notSureAllergies
+                viewModel.isSearchWithAllergies.value =
+                    viewModel.selectedAllergiesData.value?.isNotEmpty() == true
+                if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
                     viewModel.isCloseButtonPressed.value = false
                 }
                 notSureDiets.clear()
+                notSureAllergies.clear()
                 findNavController().navigateUp()
             }
             closeImg.setOnClickListener {
@@ -96,7 +131,7 @@ class DietsFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setButtonClickListener(button: Button, dietName: String) {
+    private fun setLifestylesButtonClickListener(button: Button, dietName: String) {
         if (notSureDiets.contains(dietName)) {
             notSureDiets.remove(dietName)
             if (isDarkTheme()) {
@@ -131,9 +166,47 @@ class DietsFragment : BottomSheetDialogFragment() {
             )
         )
         setButtonBackgroundBasedOnTheme(
-            binding.showResultsButton,
-            R.color.congo_pink,
-            R.color.big_foot_feet
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
+        )
+
+    }
+
+    private fun setAllergiesButtonClickListener(button: Button, allergyName: String) {
+        if (notSureAllergies.contains(allergyName)) {
+            notSureAllergies.remove(allergyName)
+            if (isDarkTheme()) {
+                setButtonBackgroundTint(button, R.color.eerie_black)
+                button.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.white
+                    )
+                )
+            } else {
+                setButtonBackgroundTint(button, R.color.whiteSmoke)
+                button.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(), R.color.rose_ebony
+                    )
+                )
+            }
+        } else {
+            notSureAllergies.add(allergyName)
+            setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
+
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), R.color.white
+                )
+            )
+        }
+        binding.showResultsButton.isEnabled = true
+        binding.showResultsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), R.color.white
+            )
+        )
+        setButtonBackgroundBasedOnTheme(
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
         )
 
     }
@@ -142,7 +215,7 @@ class DietsFragment : BottomSheetDialogFragment() {
     @SuppressLint("SetTextI18n")
     private fun setShowResultButtonColor() {
         binding.apply {
-            if (notSureDiets.isEmpty()) {
+            if (notSureDiets.isEmpty() && notSureAllergies.isEmpty()) {
                 showResultsButton.isEnabled = false
                 showResultsButton.setTextColor(
                     ContextCompat.getColor(
@@ -150,9 +223,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                     )
                 )
                 setButtonBackgroundBasedOnTheme(
-                    showResultsButton,
-                    R.color.eerie_black,
-                    R.color.mediumGray
+                    showResultsButton, R.color.eerie_black, R.color.mediumGray
                 )
             } else {
                 showResultsButton.isEnabled = true
@@ -162,9 +233,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                     )
                 )
                 setButtonBackgroundBasedOnTheme(
-                    showResultsButton,
-                    R.color.congo_pink,
-                    R.color.big_foot_feet
+                    showResultsButton, R.color.congo_pink, R.color.big_foot_feet
                 )
             }
         }
@@ -175,39 +244,60 @@ class DietsFragment : BottomSheetDialogFragment() {
             notSureDiets.forEach { diet ->
                 when (diet) {
                     "Ketogenic" -> setButtonBackgroundBasedOnTheme(
-                        ketogenicButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        ketogenicButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Vegetarian" -> setButtonBackgroundBasedOnTheme(
-                        vegetarianButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        vegetarianButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Vegan" -> setButtonBackgroundBasedOnTheme(
-                        veganButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        veganButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Pescetarian" -> setButtonBackgroundBasedOnTheme(
-                        pescetarianButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        pescetarianButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Gluten Free" -> setButtonBackgroundBasedOnTheme(
-                        glutenFreeButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        glutenFreeButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                     "Paleo" -> setButtonBackgroundBasedOnTheme(
-                        paleoButton,
-                        R.color.congo_pink,
-                        R.color.big_foot_feet
+                        paleoButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                }
+            }
+        }
+    }
+
+    private fun setAllergiesButtonColor(notSureAllergies: List<String>) {
+        binding.apply {
+            notSureAllergies.forEach { allergy ->
+                when (allergy) {
+                    "Dairy" -> setButtonBackgroundBasedOnTheme(
+                        dairyButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "Egg" -> setButtonBackgroundBasedOnTheme(
+                        eggButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "Grain" -> setButtonBackgroundBasedOnTheme(
+                        grainButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "Peanut" -> setButtonBackgroundBasedOnTheme(
+                        peanutButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "Seafood" -> setButtonBackgroundBasedOnTheme(
+                        seafoodButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "Soy" -> setButtonBackgroundBasedOnTheme(
+                        soyButton, R.color.congo_pink, R.color.big_foot_feet
                     )
 
                 }
@@ -216,9 +306,7 @@ class DietsFragment : BottomSheetDialogFragment() {
     }
 
     private fun setButtonBackgroundBasedOnTheme(
-        button: Button,
-        darkThemeColor: Int,
-        lightThemeColor: Int
+        button: Button, darkThemeColor: Int, lightThemeColor: Int
     ) {
         if (isDarkTheme()) {
             setButtonBackgroundTint(button, darkThemeColor)

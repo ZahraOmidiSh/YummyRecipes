@@ -15,7 +15,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentAllergiesBinding
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllergiesFragment : BottomSheetDialogFragment() {
     //Binding
     private var _binding: FragmentAllergiesBinding? = null
@@ -50,22 +52,22 @@ class AllergiesFragment : BottomSheetDialogFragment() {
             }
 
             dairyButton.setOnClickListener {
-                setButtonClickListener(dairyButton, "Dairy")
+                setAllergiesButtonClickListener(dairyButton, "Dairy")
             }
             eggButton.setOnClickListener {
-                setButtonClickListener(eggButton, "Egg")
+                setAllergiesButtonClickListener(eggButton, "Egg")
             }
             grainButton.setOnClickListener {
-                setButtonClickListener(grainButton, "Grain")
+                setAllergiesButtonClickListener(grainButton, "Grain")
             }
             peanutButton.setOnClickListener {
-                setButtonClickListener(peanutButton, "Peanut")
+                setAllergiesButtonClickListener(peanutButton, "Peanut")
             }
             seafoodButton.setOnClickListener {
-                setButtonClickListener(seafoodButton, "Seafood")
+                setAllergiesButtonClickListener(seafoodButton, "Seafood")
             }
             soyButton.setOnClickListener {
-                setButtonClickListener(soyButton, "Soy")
+                setAllergiesButtonClickListener(soyButton, "Soy")
             }
 
             //Show results Button Listener
@@ -85,7 +87,7 @@ class AllergiesFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setButtonClickListener(button: Button, allergyName: String) {
+    private fun setAllergiesButtonClickListener(button: Button, allergyName: String) {
         if (notSureAllergies.contains(allergyName)) {
             notSureAllergies.remove(allergyName)
             if (isDarkTheme()) {
