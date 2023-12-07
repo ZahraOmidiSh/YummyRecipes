@@ -141,7 +141,7 @@ class SearchFragment : Fragment() {
             }
 
             breakfastMeal.setOnClickListener {
-                viewModel.isCloseButtonPressed.value=false
+                viewModel.isCloseButtonPressed.value = false
                 closeImg.isVisible = true
                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                 loadRecentData()
@@ -231,6 +231,67 @@ class SearchFragment : Fragment() {
                 }
             }
         }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun dietsAndAllergiesSearch() {
+        binding.apply {
+            var dietSearch = false
+            var allergiesSearch = false
+            viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+                dietSearch = it
+            }
+            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
+                allergiesSearch = it
+            }
+
+            if (dietSearch || allergiesSearch) {
+                closeImg.isVisible = true
+                simpleSearchLay.isVisible = true
+                advancedSearchScroll.isVisible = false
+                viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                loadRecentData()
+                dietsButton.text =
+                    "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
+                setOneButtonTextColor(dietsButton, R.color.white)
+                if (isDarkTheme()) {
+                    setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                } else {
+                    setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                }
+                allergiesButton.text =
+                    "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
+                setOneButtonTextColor(allergiesButton, R.color.white)
+                if (isDarkTheme()) {
+                    setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
+                } else {
+                    setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
+                }
+            } else {
+                if (searchString.isNotEmpty()) {
+                    closeImg.isVisible = true
+                    simpleSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = false
+                    allergiesButton.text = "ALLERGIES"
+                    if (isDarkTheme()) {
+                        setOneButtonTextColor(allergiesButton, R.color.white)
+                        setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                    } else {
+                        setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+                        setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+                    }
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    loadRecentData()
+                } else {
+                    if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                        loadRecentData()
+                    }
+                }
+            }
+        }
+
 
     }
 
