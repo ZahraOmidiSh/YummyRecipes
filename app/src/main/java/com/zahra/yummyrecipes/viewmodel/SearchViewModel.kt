@@ -35,7 +35,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 
     //meal selected
     var isMealSelected = MutableLiveData<Boolean>()
-    var selectedMeal=MutableLiveData<String>()
+    var selectedMeal = MutableLiveData<String>()
 
     //Close Button is pressed
     var isCloseButtonPressed = MutableLiveData<Boolean>()
@@ -204,7 +204,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[INTOLERANCES] = allergies
         }
         //Meal
-        if(isMealSelected.value==true){
+        if (isMealSelected.value == true) {
             queries[TYPE] = selectedMeal.value.toString()
         }
         queries[API_KEY] = setAPIKEY()
@@ -213,6 +213,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         queries[QUERY] = search
         return queries
     }
+
+    //Diets and Allergies
+    var isSearchWithDietsOrAllergies = MutableLiveData<Boolean>()
 
     //Diets
     var isSearchWithDiets = MutableLiveData<Boolean>()
