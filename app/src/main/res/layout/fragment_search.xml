@@ -270,7 +270,7 @@
                     app:layout_constraintTop_toBottomOf="@id/breakfastMeal" />
                 <!--Drink-->
                 <ImageView
-                    android:id="@+id/dinnerMeal"
+                    android:id="@+id/dessertMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:background="@drawable/vegan"
