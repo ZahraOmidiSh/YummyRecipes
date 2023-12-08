@@ -81,5 +81,7 @@
     <string name="soy">SOY</string>
     <string name="breakfast">Breakfast</string>
     <string name="main_course">Main Course</string>
+    <string name="snack">Snack</string>
+    <string name="dessert">Dessert</string>
 
 </resources>

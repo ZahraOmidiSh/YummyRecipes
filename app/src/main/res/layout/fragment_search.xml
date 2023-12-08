@@ -188,96 +188,113 @@
                     android:layout_marginTop="@dimen/_8mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
-                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+                    app:layout_constraintEnd_toStartOf="@+id/maincourseMeal"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchByMealTxt">
-                    <!--Shadow-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.9"
-                        android:background="@drawable/bg_shadow_white" />
                     <!--Image-->
                     <ImageView
-                        android:id="@+id/breakfastImg"
-                        android:layout_width="80dp"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="@dimen/_60mdp"
-                        android:layout_marginTop="@dimen/_16mdp"
-                        android:src="@drawable/fullbreakfasttoas" />
-
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mealbreakfast" />
                     <!--Title-->
                     <TextView
-                        android:id="@+id/breakfastTitleTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/breakfast"
-                        android:textColor="@color/rose_ebony"
-                        android:textSize="@dimen/_14mdp" />
+                        android:textColor="@color/tart_orange"
+                        android:textSize="@dimen/_13mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
-                <!--Main Course-->
+                <!--MainCourse-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mainCourseMeal"
+                    android:id="@+id/maincourseMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
+                    app:layout_constraintStart_toEndOf="@id/breakfastMeal"
                     app:layout_constraintTop_toTopOf="@id/breakfastMeal">
-                    <!--Shadow-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.9"
-                        android:background="@drawable/bg_shadow_white" />
                     <!--Image-->
                     <ImageView
-                        android:id="@+id/mainCourseImg"
-                        android:layout_width="80dp"
-                        android:layout_height="70dp"
-                        android:layout_marginStart="@dimen/_60mdp"
-                        android:layout_marginTop="@dimen/_16mdp"
-                        android:src="@drawable/lunch" />
-
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mealmaincourse" />
                     <!--Title-->
                     <TextView
-                        android:id="@+id/mainCourseTitleTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/main_course"
-                        android:textColor="@color/rose_ebony"
-                        android:textSize="@dimen/_13mdp" />
-                </com.google.android.material.card.MaterialCardView>
+                        android:textColor="@color/portland_orange"
+                        android:textSize="@dimen/_12mdp" />
 
+                </com.google.android.material.card.MaterialCardView>
                 <!--Snack-->
-                <ImageView
-                    android:id="@+id/SnackMeal"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/snackMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/vegan"
-                    app:layout_constraintEnd_toStartOf="@+id/lunchMeal"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/dessertMeal"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/breakfastMeal" />
-                <!--Drink-->
-                <ImageView
+                    app:layout_constraintTop_toBottomOf="@id/breakfastMeal">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mealsnack" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/snack"
+                        android:textColor="@color/wet_asphalt"
+                        android:textSize="@dimen/_13mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
+                <!--Dessert-->
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/dessertMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/vegan"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/breakfastMeal"
-                    app:layout_constraintTop_toTopOf="@id/SnackMeal" />
+                    app:layout_constraintStart_toEndOf="@id/snackMeal"
+                    app:layout_constraintTop_toTopOf="@id/snackMeal">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/mealdessert" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/dessert"
+                        android:textColor="@color/chinese_yellow"
+                        android:textSize="@dimen/_12mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Most popular categories-->
