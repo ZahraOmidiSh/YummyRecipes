@@ -135,16 +135,16 @@ class SearchFragment : Fragment() {
                 findNavController().navigate(direction)
             }
 
-            allergiesButton.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToAllergies()
-                findNavController().navigate(direction)
+            filtersButton.setOnClickListener {
+//                val direction = SearchFragmentDirections.actionToAllergies()
+//                findNavController().navigate(direction)
             }
 
             breakfastMeal.setOnClickListener {
-                viewModel.isCloseButtonPressed.value = false
-                closeImg.isVisible = true
-                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                loadRecentData()
+//                viewModel.isCloseButtonPressed.value = false
+//                closeImg.isVisible = true
+//                viewModel.callSearchApi(viewModel.searchQueries(searchString))
+//                loadRecentData()
             }
 
             //Close listener
@@ -245,55 +245,62 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
                 allergiesSearch = it
             }
-
-            if (dietSearch || allergiesSearch) {
-                closeImg.isVisible = true
-                simpleSearchLay.isVisible = true
-                advancedSearchScroll.isVisible = false
-                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                loadRecentData()
-                dietsButton.text =
-                    "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
-                setOneButtonTextColor(dietsButton, R.color.white)
-                if (isDarkTheme()) {
-                    setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
-                } else {
-                    setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
-                }
-                allergiesButton.text =
-                    "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
-                setOneButtonTextColor(allergiesButton, R.color.white)
-                if (isDarkTheme()) {
-                    setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
-                } else {
-                    setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
-                }
-            } else {
-                if (searchString.isNotEmpty()) {
+            if (viewModel.isCloseButtonPressed.value == false) {
+                if (dietSearch || allergiesSearch) {
                     closeImg.isVisible = true
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
-                    allergiesButton.text = "ALLERGIES"
-                    if (isDarkTheme()) {
-                        setOneButtonTextColor(allergiesButton, R.color.white)
-                        setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
-                    } else {
-                        setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
-                        setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
-                    }
                     viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
+                    var sizeDiets = 0
+                    var sizeAllergies = 0
+
+                    if (viewModel.selectedDietsData.value?.isNotEmpty() == true) {
+                        sizeDiets = viewModel.selectedDietsData.value?.size!!
+                    }
+
+                    if (viewModel._selectedAllergiesData.value?.isNotEmpty() == true) {
+                        sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
+                    }
+
+                    val size = sizeDiets + sizeAllergies
+
+                    dietsButton.text =
+                        "DIETS ($size)"
+                    setOneButtonTextColor(dietsButton, R.color.white)
+                    if (isDarkTheme()) {
+                        setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                    } else {
+                        setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                    }
+
                 } else {
-                    if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
+                    if (searchString.isNotEmpty()) {
+                        closeImg.isVisible = true
+                        simpleSearchLay.isVisible = true
+                        advancedSearchScroll.isVisible = false
+                        dietsButton.text = "DIETS"
+                        if (isDarkTheme()) {
+                            setOneButtonTextColor(dietsButton, R.color.white)
+                            setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
+                        } else {
+                            setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                            setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                        }
                         viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
+                    } else {
+                        if (viewModel.isSearchWithIngredient.value == true) {
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
+                        }
                     }
+                }
+            }else {
+                    setAllFilterButtonsToDefault()
                 }
             }
         }
-
-
-    }
 
     @SuppressLint("SetTextI18n")
     private fun dietsSearch() {
@@ -346,50 +353,50 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun allergySearch() {
-        binding.apply {
-            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
-                if (viewModel.isCloseButtonPressed.value == false) {
-                    if (it) {
-                        closeImg.isVisible = true
-                        simpleSearchLay.isVisible = true
-                        advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                        loadRecentData()
-                        allergiesButton.text =
-                            "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
-                        setOneButtonTextColor(allergiesButton, R.color.white)
-                        if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
-                        } else {
-                            setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
-                        }
-                    } else {
-                        if (searchString.isNotEmpty()) {
-                            closeImg.isVisible = true
-                            simpleSearchLay.isVisible = true
-                            advancedSearchScroll.isVisible = false
-                            allergiesButton.text = "ALLERGIES"
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(allergiesButton, R.color.white)
-                                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
-                            }
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                                loadRecentData()
-                            }
-                        }
-                    }
-                } else {
-                    setAllFilterButtonsToDefault()
-                }
-            }
-        }
+//        binding.apply {
+//            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
+//                if (viewModel.isCloseButtonPressed.value == false) {
+//                    if (it) {
+//                        closeImg.isVisible = true
+//                        simpleSearchLay.isVisible = true
+//                        advancedSearchScroll.isVisible = false
+//                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+//                        loadRecentData()
+//                        allergiesButton.text =
+//                            "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
+//                        setOneButtonTextColor(allergiesButton, R.color.white)
+//                        if (isDarkTheme()) {
+//                            setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
+//                        } else {
+//                            setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
+//                        }
+//                    } else {
+//                        if (searchString.isNotEmpty()) {
+//                            closeImg.isVisible = true
+//                            simpleSearchLay.isVisible = true
+//                            advancedSearchScroll.isVisible = false
+//                            allergiesButton.text = "ALLERGIES"
+//                            if (isDarkTheme()) {
+//                                setOneButtonTextColor(allergiesButton, R.color.white)
+//                                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+//                            } else {
+//                                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+//                                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+//                            }
+//                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+//                            loadRecentData()
+//                        } else {
+//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
+//                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
+//                                loadRecentData()
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    setAllFilterButtonsToDefault()
+//                }
+//            }
+//        }
     }
 
 
@@ -506,21 +513,21 @@ class SearchFragment : Fragment() {
         binding.apply {
             ingredientsButton.text = "INGREDIENTS"
             dietsButton.text = "DIETS"
-            allergiesButton.text = "ALLERGIES"
+            filtersButton.text = "Filters"
             if (isDarkTheme()) {
                 setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
                 setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
-                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
+                setOneButtonBackgroundTint(filtersButton, R.color.eerie_black)
                 setOneButtonTextColor(ingredientsButton, R.color.white)
                 setOneButtonTextColor(dietsButton, R.color.white)
-                setOneButtonTextColor(allergiesButton, R.color.white)
+                setOneButtonTextColor(filtersButton, R.color.white)
             } else {
                 setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
                 setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
-                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
+                setOneButtonBackgroundTint(filtersButton, R.color.whiteSmoke)
                 setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
                 setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
+                setOneButtonTextColor(filtersButton, R.color.rose_ebony)
             }
         }
     }

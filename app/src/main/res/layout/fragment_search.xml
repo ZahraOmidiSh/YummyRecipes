@@ -76,7 +76,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
             <!--allergiesButton-->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/FiltersButton"
+                android:id="@+id/filtersButton"
                 style="@style/FilterButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
