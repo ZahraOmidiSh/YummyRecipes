@@ -59,6 +59,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                 notSureDiets = diets.toMutableList()
 //                setShowResultButtonColor()
                 setDietsButtonColor(notSureDiets)
+                setShowResultButtonColor()
             }
 
             //observe data - set showResultsButton color
@@ -66,9 +67,9 @@ class DietsFragment : BottomSheetDialogFragment() {
                 notSureAllergies = allergies.toMutableList()
 //                setShowResultButtonColor()
                 setAllergiesButtonColor(notSureAllergies)
+                setShowResultButtonColor()
             }
 
-            setShowResultButtonColor()
 
             //lifestyles
             ketogenicButton.setOnClickListener {
@@ -120,6 +121,9 @@ class DietsFragment : BottomSheetDialogFragment() {
                     viewModel.selectedAllergiesData.value?.isNotEmpty() == true
                 if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
                     viewModel.isCloseButtonPressed.value = false
+                    viewModel.isSearchWithDietsOrAllergies.value=true
+                }else{
+                    viewModel.isSearchWithDietsOrAllergies.value=false
                 }
                 notSureDiets.clear()
                 notSureAllergies.clear()
