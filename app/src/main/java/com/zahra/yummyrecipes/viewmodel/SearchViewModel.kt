@@ -32,6 +32,8 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
+    //search String
+    var searchString = MutableLiveData<String>()
 
     //meal selected
     var isMealSelected = MutableLiveData<Boolean>()

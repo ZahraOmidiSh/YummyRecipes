@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,7 +54,7 @@ class SearchFragment : Fragment() {
 
     //    private var isNetworkAvailable by Delegates.notNull<Boolean>()
     private var isNetworkAvailable: Boolean? = null
-    private var searchString = ""
+//    private var searchString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -158,7 +159,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.isCloseButtonPressed.value = true
             searchEdt.text.clear()
-            searchString = ""
+            viewModel.searchString.value = ""
             viewModel.expandedIngredientsList.value!!.forEach {
                 if (it.isSelected) {
                     it.isSelected = false
@@ -170,6 +171,7 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
+            viewModel.isSearchWithDietsOrAllergies.value = false
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
@@ -181,9 +183,10 @@ class SearchFragment : Fragment() {
             binding.closeImg.isVisible = true
             if (it.toString().length > 2 && isNetworkAvailable == true) {
                 viewModel.isCloseButtonPressed.value = false
-                searchString = it.toString()
-                viewModel.callSearchApi(viewModel.searchQueries(it.toString()))
+                viewModel.searchString.value = it.toString()
+                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                 loadRecentData()
+                Log.e("searchString", viewModel.searchString.value.toString())
             }
         }
     }
@@ -195,7 +198,7 @@ class SearchFragment : Fragment() {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                         loadRecentData()
                         ingredientsButton.text =
                             "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
@@ -206,7 +209,7 @@ class SearchFragment : Fragment() {
                             setOneButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                         }
                     } else {
-                        if (searchString.isNotEmpty()) {
+                        if (viewModel.searchString.value?.isNotEmpty() == true) {
                             closeImg.isVisible = true
                             ingredientsButton.text = "INGREDIENTS"
 
@@ -217,7 +220,7 @@ class SearchFragment : Fragment() {
                                 setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
                                 setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
                             }
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
                             if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
@@ -236,101 +239,35 @@ class SearchFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun dietsAndAllergiesSearch() {
-        viewModel.isSearchWithDietsOrAllergies.observe(viewLifecycleOwner){both->
-            if (both){
-                binding.apply {
-                    var dietSearch = false
-                    var allergiesSearch = false
-                    viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
-                        dietSearch = it
-                    }
-                    viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
-                        allergiesSearch = it
-                    }
-                    if (viewModel.isCloseButtonPressed.value == false) {
-                        if (dietSearch || allergiesSearch) {
-                            closeImg.isVisible = true
-                            simpleSearchLay.isVisible = true
-                            advancedSearchScroll.isVisible = false
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                            var sizeDiets = 0
-                            var sizeAllergies = 0
-
-                            if (viewModel.selectedDietsData.value?.isNotEmpty() == true) {
-                                sizeDiets = viewModel.selectedDietsData.value?.size!!
-                            }
-
-                            if (viewModel._selectedAllergiesData.value?.isNotEmpty() == true) {
-                                sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
-                            }
-
-                            val size = sizeDiets + sizeAllergies
-
-                            dietsButton.text =
-                                "DIETS ($size)"
-                            setOneButtonTextColor(dietsButton, R.color.white)
-                            if (isDarkTheme()) {
-                                setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
-                            } else {
-                                setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
-                            }
-
-                        } else {
-                            if (searchString.isNotEmpty()) {
-                                closeImg.isVisible = true
-                                simpleSearchLay.isVisible = true
-                                advancedSearchScroll.isVisible = false
-                                dietsButton.text = "DIETS"
-                                if (isDarkTheme()) {
-                                    setOneButtonTextColor(dietsButton, R.color.white)
-                                    setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
-                                } else {
-                                    setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                                    setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
-                                }
-                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                                loadRecentData()
-                            } else {
-                                if (viewModel.isSearchWithIngredient.value == true) {
-                                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                                    loadRecentData()
-                                }
-                            }
-                        }
-                    } else {
-                        setAllFilterButtonsToDefault()
-                    }
-                }
-            }else{
-                setAllFilterButtonsToDefault()
-            }
-
-        }
-
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun dietsSearch() {
         binding.apply {
-            viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+            viewModel.isSearchWithDietsOrAllergies.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                         loadRecentData()
+                        var sizeDiets = 0
+                        var sizeAllergies = 0
+                        if (viewModel.selectedDietsData.value?.isNotEmpty() == true) {
+                            sizeDiets = viewModel.selectedDietsData.value?.size!!
+                        }
+                        if (viewModel._selectedAllergiesData.value?.isNotEmpty() == true) {
+                            sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
+                        }
+                        val size = sizeDiets + sizeAllergies
                         dietsButton.text =
-                            "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
+                            "DIETS ($size)"
                         setOneButtonTextColor(dietsButton, R.color.white)
                         if (isDarkTheme()) {
                             setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
                         } else {
                             setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
                         }
+
                     } else {
-                        if (searchString.isNotEmpty()) {
+                        if (viewModel.searchString.value?.isNotEmpty() == true) {
                             closeImg.isVisible = true
                             simpleSearchLay.isVisible = true
                             advancedSearchScroll.isVisible = false
@@ -342,11 +279,59 @@ class SearchFragment : Fragment() {
                                 setOneButtonTextColor(dietsButton, R.color.rose_ebony)
                                 setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
                             }
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                            loadRecentData()
+                        } else {
+                            if (viewModel.isSearchWithIngredient.value == true) {
+                                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                                loadRecentData()
+                            }
+                        }
+                    }
+                } else {
+                    setAllFilterButtonsToDefault()
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun dietsSearch() {
+        binding.apply {
+            viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+                if (viewModel.isCloseButtonPressed.value == false) {
+                    if (it) {
+                        closeImg.isVisible = true
+                        simpleSearchLay.isVisible = true
+                        advancedSearchScroll.isVisible = false
+                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                        loadRecentData()
+                        dietsButton.text =
+                            "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
+                        setOneButtonTextColor(dietsButton, R.color.white)
+                        if (isDarkTheme()) {
+                            setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                        } else {
+                            setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                        }
+                    } else {
+                        if (viewModel.searchString.value?.isNotEmpty() == true) {
+                            closeImg.isVisible = true
+                            simpleSearchLay.isVisible = true
+                            advancedSearchScroll.isVisible = false
+                            dietsButton.text = "DIETS"
+                            if (isDarkTheme()) {
+                                setOneButtonTextColor(dietsButton, R.color.white)
+                                setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
+                            } else {
+                                setOneButtonTextColor(dietsButton, R.color.rose_ebony)
+                                setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                            }
+                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
                             if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                                 loadRecentData()
                             }
                         }
