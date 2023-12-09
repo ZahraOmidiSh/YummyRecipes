@@ -103,12 +103,12 @@
         tools:layout="@layout/fragment_diets">
     </dialog>
     <action
-        android:id="@+id/actionToAllergies"
+        android:id="@+id/actionToFilters"
         app:destination="@id/filtersFragment" />
     <dialog
         android:id="@+id/filtersFragment"
         android:name="com.zahra.yummyrecipes.ui.search.FiltersFragment"
-        android:label="fragment_allergies"
+        android:label="fragment_filters"
         tools:layout="@layout/fragment_filters" >
     </dialog>
 

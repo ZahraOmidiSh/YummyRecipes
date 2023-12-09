@@ -125,7 +125,7 @@ class SearchFragment : Fragment() {
 
             //dietsSearch
 //            allergySearch()
-            mealSearch()
+//            mealSearch()
 
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
