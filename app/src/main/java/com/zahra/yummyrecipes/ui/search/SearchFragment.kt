@@ -172,7 +172,9 @@ class SearchFragment : Fragment() {
             viewModel.updateSelectedIngredientsName()
             viewModel._selectedDietsData.value = emptyList()
             viewModel._selectedAllergiesData.value = emptyList()
+            viewModel._selectedMealsData.value= emptyList()
             viewModel.isSearchWithIngredient.value = false
+            viewModel.isSearchWithMeals.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
