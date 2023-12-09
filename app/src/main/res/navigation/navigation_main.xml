@@ -104,12 +104,12 @@
     </dialog>
     <action
         android:id="@+id/actionToAllergies"
-        app:destination="@id/allergiesFragment" />
+        app:destination="@id/filtersFragment" />
     <dialog
-        android:id="@+id/allergiesFragment"
-        android:name="com.zahra.yummyrecipes.ui.search.AllergiesFragment"
+        android:id="@+id/filtersFragment"
+        android:name="com.zahra.yummyrecipes.ui.search.FiltersFragment"
         android:label="fragment_allergies"
-        tools:layout="@layout/fragment_allergies" >
+        tools:layout="@layout/fragment_filters" >
     </dialog>
 
 

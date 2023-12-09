@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/_20mdp"
-    tools:context=".ui.search.AllergiesFragment">
+    tools:context=".ui.search.FiltersFragment">
 
     <!--Close-->
     <ImageView
