@@ -81,6 +81,9 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            if(viewModel.searchString.value==null){
+                viewModel.searchString.value=""
+            }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
             if (savedInstanceState != null) {
@@ -125,7 +128,7 @@ class SearchFragment : Fragment() {
 
             //dietsSearch
 //            allergySearch()
-//            mealSearch()
+            mealSearch()
 
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
@@ -138,13 +141,15 @@ class SearchFragment : Fragment() {
             }
 
             filtersButton.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToAllergies()
+                val direction = SearchFragmentDirections.actionToFilters()
                 findNavController().navigate(direction)
             }
 
             breakfastMeal.setOnClickListener {
-                val direction = SearchFragmentDirections.actionToAllergies()
-                findNavController().navigate(direction)
+                viewModel.isCloseButtonPressed.value=false
+                viewModel._selectedMealsData.value= listOf("breakfast")
+                viewModel.isSearchWithMeals.value=true
+                mealSearch()
             }
 
             //Close listener
