@@ -57,7 +57,6 @@ class DietsFragment : BottomSheetDialogFragment() {
             //observe data - set showResultsButton color
             viewModel.selectedDietsData.observe(viewLifecycleOwner) { diets ->
                 notSureDiets = diets.toMutableList()
-//                setShowResultButtonColor()
                 setDietsButtonColor(notSureDiets)
                 setShowResultButtonColor()
             }
@@ -65,7 +64,6 @@ class DietsFragment : BottomSheetDialogFragment() {
             //observe data - set showResultsButton color
             viewModel.selectedAllergiesData.observe(viewLifecycleOwner) { allergies ->
                 notSureAllergies = allergies.toMutableList()
-//                setShowResultButtonColor()
                 setAllergiesButtonColor(notSureAllergies)
                 setShowResultButtonColor()
             }
