@@ -16,115 +16,89 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Allergies-->
+    <!--Filters-->
     <TextView
-        android:id="@+id/allergiesTxt"
+        android:id="@+id/filtersTxt"
         style="@style/Search_Titles"
         android:layout_marginTop="@dimen/_20mdp"
-        android:text="@string/allergies"
+        android:text="@string/filters"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Dairy Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/dairyButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:layout_marginTop="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/dairy"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/eggButton"
-        app:layout_constraintHorizontal_bias="0.5"
+    <!--Meal Type-->
+    <TextView
+        android:id="@+id/mealTypeTxt"
+        style="@style/Search_Titles"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:text="@string/meal_type"
+        android:textSize="@dimen/_12mdp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/allergiesTxt" />
-    <!--Egg Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/eggButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/egg"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/grainButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/dairyButton"
-        app:layout_constraintTop_toTopOf="@id/dairyButton" />
-    <!--Grain Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/grainButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/grain"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/eggButton"
-        app:layout_constraintTop_toTopOf="@id/dairyButton" />
+        app:layout_constraintTop_toBottomOf="@id/filtersTxt" />
 
-    <!--Peanut Button-->
+    <!--Breakfast Button-->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/peanutButton"
+        android:id="@+id/breakfastButton"
         style="@style/FilterButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
         android:layout_marginTop="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
-        android:text="@string/peanut"
+        android:text="@string/breakfast"
         android:textSize="@dimen/_7font_mdp"
         app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/seafoodButton"
+        app:layout_constraintEnd_toStartOf="@+id/mainCourseButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dairyButton" />
-    <!--Seafood Button-->
+        app:layout_constraintTop_toBottomOf="@id/mealTypeTxt" />
+    <!--MainCourse Button-->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/seafoodButton"
+        android:id="@+id/mainCourseButton"
         style="@style/FilterButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
-        android:text="@string/seafood"
+        android:text="@string/main_course"
         android:textSize="@dimen/_7font_mdp"
         app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/soyButton"
+        app:layout_constraintEnd_toStartOf="@+id/snackButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/peanutButton"
-        app:layout_constraintTop_toTopOf="@id/peanutButton" />
-    <!--Soy Button-->
+        app:layout_constraintStart_toEndOf="@+id/breakfastButton"
+        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+    <!--Snack Button-->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/soyButton"
+        android:id="@+id/snackButton"
         style="@style/FilterButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
         android:insetTop="@dimen/_7mdp"
         android:insetBottom="@dimen/_7mdp"
-        android:text="@string/soy"
+        android:text="@string/snack"
+        android:textSize="@dimen/_7font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
+        app:layout_constraintEnd_toStartOf="@+id/dessertButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mainCourseButton"
+        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+
+    <!--Dessert Button-->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dessertButton"
+        style="@style/FilterButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:insetTop="@dimen/_7mdp"
+        android:insetBottom="@dimen/_7mdp"
+        android:text="@string/dessert"
         android:textSize="@dimen/_7font_mdp"
         app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/seafoodButton"
-        app:layout_constraintTop_toTopOf="@id/peanutButton" />
+        app:layout_constraintStart_toEndOf="@+id/snackButton"
+        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
 
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
@@ -133,7 +107,7 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="@dimen/_15mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
@@ -143,5 +117,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/peanutButton" />
+        app:layout_constraintTop_toBottomOf="@id/breakfastButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
