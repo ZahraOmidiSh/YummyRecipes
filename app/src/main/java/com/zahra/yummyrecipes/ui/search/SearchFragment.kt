@@ -81,8 +81,8 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            if(viewModel.searchString.value==null){
-                viewModel.searchString.value=""
+            if (viewModel.searchString.value == null) {
+                viewModel.searchString.value = ""
             }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
@@ -126,8 +126,7 @@ class SearchFragment : Fragment() {
             //diets and allergies search
             dietsAndAllergiesSearch()
 
-            //dietsSearch
-//            allergySearch()
+            //mealSearch
             mealSearch()
 
             ingredientsButton.setOnClickListener {
@@ -146,10 +145,16 @@ class SearchFragment : Fragment() {
             }
 
             breakfastMeal.setOnClickListener {
-                viewModel.isCloseButtonPressed.value=false
-                viewModel._selectedMealsData.value= listOf("breakfast")
-                viewModel.isSearchWithMeals.value=true
-                mealSearch()
+                mealClickListener("breakfast")
+            }
+            maincourseMeal.setOnClickListener {
+                mealClickListener("main course")
+            }
+            dessertMeal.setOnClickListener {
+                mealClickListener("dessert")
+            }
+            snackMeal.setOnClickListener {
+                mealClickListener("snack")
             }
 
             //Close listener
@@ -157,6 +162,13 @@ class SearchFragment : Fragment() {
                 searchClose()
             }
         }
+    }
+
+    private fun mealClickListener(meal: String) {
+        viewModel.isCloseButtonPressed.value = false
+        viewModel._selectedMealsData.value = listOf(meal)
+        viewModel.isSearchWithMeals.value = true
+        mealSearch()
     }
 
     private fun searchClose() {
@@ -172,7 +184,7 @@ class SearchFragment : Fragment() {
             viewModel.updateSelectedIngredientsName()
             viewModel._selectedDietsData.value = emptyList()
             viewModel._selectedAllergiesData.value = emptyList()
-            viewModel._selectedMealsData.value= emptyList()
+            viewModel._selectedMealsData.value = emptyList()
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithMeals.value = false
             viewModel.isSearchWithDiets.value = false
@@ -229,7 +241,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true || viewModel.isSearchWithMeals.value==true) {
+                            if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true || viewModel.isSearchWithMeals.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -288,7 +300,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMeals.value==true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMeals.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                                 loadRecentData()
                             }
@@ -349,55 +361,6 @@ class SearchFragment : Fragment() {
         }
 
     }
-
-    @SuppressLint("SetTextI18n")
-    private fun allergySearch() {
-//        binding.apply {
-//            viewModel.isSearchWithAllergies.observe(viewLifecycleOwner) {
-//                if (viewModel.isCloseButtonPressed.value == false) {
-//                    if (it) {
-//                        closeImg.isVisible = true
-//                        simpleSearchLay.isVisible = true
-//                        advancedSearchScroll.isVisible = false
-//                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-//                        loadRecentData()
-//                        allergiesButton.text =
-//                            "ALLERGIES " + "(" + viewModel.selectedAllergiesData.value?.size.toString() + ")"
-//                        setOneButtonTextColor(allergiesButton, R.color.white)
-//                        if (isDarkTheme()) {
-//                            setOneButtonBackgroundTint(allergiesButton, R.color.congo_pink)
-//                        } else {
-//                            setOneButtonBackgroundTint(allergiesButton, R.color.big_foot_feet)
-//                        }
-//                    } else {
-//                        if (searchString.isNotEmpty()) {
-//                            closeImg.isVisible = true
-//                            simpleSearchLay.isVisible = true
-//                            advancedSearchScroll.isVisible = false
-//                            allergiesButton.text = "ALLERGIES"
-//                            if (isDarkTheme()) {
-//                                setOneButtonTextColor(allergiesButton, R.color.white)
-//                                setOneButtonBackgroundTint(allergiesButton, R.color.eerie_black)
-//                            } else {
-//                                setOneButtonTextColor(allergiesButton, R.color.rose_ebony)
-//                                setOneButtonBackgroundTint(allergiesButton, R.color.whiteSmoke)
-//                            }
-//                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-//                            loadRecentData()
-//                        } else {
-//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDiets.value == true) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-//                                loadRecentData()
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    setAllFilterButtonsToDefault()
-//                }
-//            }
-//        }
-    }
-
 
     private fun checkInternet() {
         lifecycleScope.launch {
