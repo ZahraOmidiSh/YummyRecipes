@@ -187,6 +187,15 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         if (selectedIngredientsToString() != "NO") {
             queries[INCLUDE_INGREDIENTS] = selectedIngredientsToString()
         }
+        //Meals
+        if (isSearchWithMeals.value == true) {
+            var meals = ""
+            selectedMealsData.value?.forEach {
+                meals = "$meals|$it".trim()
+            }
+//            diets = diets.removeRange(0, 1)
+            queries[TYPE] = meals
+        }
         //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""

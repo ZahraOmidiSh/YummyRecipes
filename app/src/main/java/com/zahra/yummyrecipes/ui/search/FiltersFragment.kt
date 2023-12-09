@@ -66,9 +66,6 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 viewModel._selectedMealsData.value = notSureMeals
                 viewModel.isSearchWithMeals.value =
                     viewModel.selectedMealsData.value?.isNotEmpty() == true
-                viewModel._selectedMealsData.value = notSureMeals
-                viewModel.isSearchWithMeals.value =
-                    viewModel.selectedMealsData.value?.isNotEmpty() == true
                 if (viewModel.isSearchWithMeals.value == true ) {
                     viewModel.isCloseButtonPressed.value = false
                 }

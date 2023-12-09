@@ -125,6 +125,7 @@ class SearchFragment : Fragment() {
 
             //dietsSearch
 //            allergySearch()
+            mealSearch()
 
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
@@ -221,7 +222,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
+                            if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true || viewModel.isSearchWithMeals.value==true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -280,7 +281,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMeals.value==true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                                 loadRecentData()
                             }
@@ -294,9 +295,9 @@ class SearchFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun dietsSearch() {
+    private fun mealSearch() {
         binding.apply {
-            viewModel.isSearchWithDiets.observe(viewLifecycleOwner) {
+            viewModel.isSearchWithMeals.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
@@ -304,31 +305,31 @@ class SearchFragment : Fragment() {
                         advancedSearchScroll.isVisible = false
                         viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                         loadRecentData()
-                        dietsButton.text =
-                            "DIETS " + "(" + viewModel.selectedDietsData.value?.size.toString() + ")"
-                        setOneButtonTextColor(dietsButton, R.color.white)
+                        filtersButton.text =
+                            "FILTERS " + "(" + viewModel.selectedMealsData.value?.size.toString() + ")"
+                        setOneButtonTextColor(filtersButton, R.color.white)
                         if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
+                            setOneButtonBackgroundTint(filtersButton, R.color.congo_pink)
                         } else {
-                            setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
+                            setOneButtonBackgroundTint(filtersButton, R.color.big_foot_feet)
                         }
                     } else {
                         if (viewModel.searchString.value?.isNotEmpty() == true) {
                             closeImg.isVisible = true
                             simpleSearchLay.isVisible = true
                             advancedSearchScroll.isVisible = false
-                            dietsButton.text = "DIETS"
+                            filtersButton.text = "FILTERS"
                             if (isDarkTheme()) {
-                                setOneButtonTextColor(dietsButton, R.color.white)
-                                setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
+                                setOneButtonTextColor(filtersButton, R.color.white)
+                                setOneButtonBackgroundTint(filtersButton, R.color.eerie_black)
                             } else {
-                                setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
+                                setOneButtonTextColor(filtersButton, R.color.rose_ebony)
+                                setOneButtonBackgroundTint(filtersButton, R.color.whiteSmoke)
                             }
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithAllergies.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                                 loadRecentData()
                             }
