@@ -35,10 +35,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //search String
     var searchString = MutableLiveData<String>()
 
-    //meal selected
-    var isMealSelected = MutableLiveData<Boolean>()
-    var selectedMeal = MutableLiveData<String>()
-
     //Close Button is pressed
     var isCloseButtonPressed = MutableLiveData<Boolean>()
 
@@ -191,7 +187,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         if (isSearchWithMeals.value == true) {
             var meals = ""
             selectedMealsData.value?.forEach {
-                meals = "$meals|$it".trim()
+                meals = "$meals,$it".trim()
             }
 //            diets = diets.removeRange(0, 1)
             queries[TYPE] = meals
@@ -213,10 +209,6 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
 //            allergies = allergies.removeRange(0, 1)
             queries[INTOLERANCES] = allergies
-        }
-        //Meal
-        if (isMealSelected.value == true) {
-            queries[TYPE] = selectedMeal.value.toString()
         }
         queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = 8.toString()

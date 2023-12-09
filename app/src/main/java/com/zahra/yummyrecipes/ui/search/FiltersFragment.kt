@@ -52,13 +52,13 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setMealButtonClickListener(breakfastButton, "breakfast")
             }
             mainCourseButton.setOnClickListener {
-                setMealButtonClickListener(breakfastButton, "main course")
+                setMealButtonClickListener(mainCourseButton, "main course")
             }
             snackButton.setOnClickListener {
-                setMealButtonClickListener(breakfastButton, "snack")
+                setMealButtonClickListener(snackButton, "snack")
             }
             dessertButton.setOnClickListener {
-                setMealButtonClickListener(breakfastButton, "dessert")
+                setMealButtonClickListener(dessertButton, "dessert")
             }
 
             //Show results Button Listener
