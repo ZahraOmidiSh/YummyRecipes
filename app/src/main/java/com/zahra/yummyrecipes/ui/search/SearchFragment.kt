@@ -137,15 +137,13 @@ class SearchFragment : Fragment() {
             }
 
             filtersButton.setOnClickListener {
-//                val direction = SearchFragmentDirections.actionToAllergies()
-//                findNavController().navigate(direction)
+                val direction = SearchFragmentDirections.actionToAllergies()
+                findNavController().navigate(direction)
             }
 
             breakfastMeal.setOnClickListener {
-//                viewModel.isCloseButtonPressed.value = false
-//                closeImg.isVisible = true
-//                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-//                loadRecentData()
+                val direction = SearchFragmentDirections.actionToAllergies()
+                findNavController().navigate(direction)
             }
 
             //Close listener
