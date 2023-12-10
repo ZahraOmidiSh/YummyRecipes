@@ -14,6 +14,7 @@ import com.zahra.yummyrecipes.utils.Constants.API_KEY
 import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
+import com.zahra.yummyrecipes.utils.Constants.MAX_READY_TIME
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
@@ -210,6 +211,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 //            allergies = allergies.removeRange(0, 1)
             queries[INTOLERANCES] = allergies
         }
+        //Time
+        if(isSearchWithTime.value==true){
+            queries[MAX_READY_TIME] = selectedTimeData.value.toString()
+        }
         queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = 8.toString()
         queries[ADD_RECIPE_INFORMATION] = TRUE
@@ -237,9 +242,18 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Meal
     var isSearchWithMeals = MutableLiveData<Boolean>()
 
-    //Selected Allergies
+    //Selected Meals
     val _selectedMealsData = MutableLiveData<List<String>>()
     val selectedMealsData: LiveData<List<String>> get() = _selectedMealsData
+
+    //Time
+    var isSearchWithTime = MutableLiveData<Boolean>()
+
+    //Selected Time
+    val _selectedTimeData = MutableLiveData<Int>()
+    val selectedTimeData: LiveData<Int> get() = _selectedTimeData
+
+
     private fun selectedIngredientsToString(): String {
         var ingredients = ""
         if (isSearchWithIngredient.value == true) {
@@ -253,8 +267,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         }
     }
 
+    //Debounce
     val searchData = MutableLiveData<NetworkRequest<ResponseRecipes>>()
-
     private val searchQueryChannel = Channel<Map<String, String>>()
 
     init {
