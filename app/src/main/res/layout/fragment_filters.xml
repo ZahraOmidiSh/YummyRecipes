@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/filtersTxt"
         style="@style/Search_Titles"
-        android:layout_marginTop="@dimen/_150mdp"
+        android:layout_marginTop="@dimen/_130mdp"
         android:text="@string/filters"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/timeLay"
@@ -36,7 +36,7 @@
         <TextView
             android:id="@+id/timeTxt"
             style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_20mdp"
             android:text="@string/time"
             android:textSize="@dimen/_12mdp"
             android:textStyle="bold"
