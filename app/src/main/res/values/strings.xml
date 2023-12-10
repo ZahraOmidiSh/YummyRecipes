@@ -97,5 +97,10 @@
     <string name="under_2_usd">Under $2 USD</string>
     <string name="under_3_usd">Under $3 USD</string>
     <string name="under_4_usd">Under $4 USD</string>
+    <string name="calorie_per_serving">Calorie Per Serving</string>
+    <string name="under_200_cal">Under 200 Cal</string>
+    <string name="_200_400_cal">200-400 Cal</string>
+    <string name="_400_600_cal">400-600 Cal</string>
+    <string name="_600_800">600-800</string>
 
 </resources>

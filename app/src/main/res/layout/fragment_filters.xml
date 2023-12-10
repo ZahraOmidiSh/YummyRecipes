@@ -246,6 +246,84 @@
             app:layout_constraintTop_toBottomOf="@id/under$1USDButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--Calorie per Serving Layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/caloriePerServingLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/budgetPerServingLay">
+        <!--Calorie Per Serving Txt-->
+        <TextView
+            android:id="@+id/caloriePerServingTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:text="@string/calorie_per_serving"
+            android:textSize="@dimen/_12mdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Under 200 Cal Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/under200CalButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/under_200_cal"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/between200_400CalButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/caloriePerServingTxt" />
+        <!--200-400 Cal Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/between200_400CalButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/_200_400_cal"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/between400_600CalButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/under200CalButton"
+            app:layout_constraintTop_toTopOf="@id/under200CalButton" />
+        <!--400-600 Cal Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/between400_600CalButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/_400_600_cal"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/between200_400CalButton"
+            app:layout_constraintTop_toTopOf="@id/under200CalButton" />
+        <!--600-800 Cal Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/between600_800CalButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/_600_800"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/under200CalButton"
+            app:layout_constraintTop_toBottomOf="@id/under200CalButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
@@ -264,5 +342,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/budgetPerServingLay" />
+        app:layout_constraintTop_toBottomOf="@id/caloriePerServingLay" />
 </androidx.constraintlayout.widget.ConstraintLayout>
