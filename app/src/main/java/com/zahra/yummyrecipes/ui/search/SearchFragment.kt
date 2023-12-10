@@ -105,6 +105,11 @@ class SearchFragment : Fragment() {
                 advancedSearchAdapter.setData(expandedIngredients)
             }
 
+            //Close listener
+            closeImg.setOnClickListener {
+                searchClose()
+            }
+
             //view all ingredient button listener
             viewAllListener()
 
@@ -129,21 +134,21 @@ class SearchFragment : Fragment() {
             //mealSearch
             mealSearch()
 
+            //Filters Buttons Listener
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
                 findNavController().navigate(direction)
             }
-
             dietsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToDiets()
                 findNavController().navigate(direction)
             }
-
             filtersButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToFilters()
                 findNavController().navigate(direction)
             }
 
+            //Search by Meal Listener
             breakfastMeal.setOnClickListener {
                 mealClickListener("breakfast")
             }
@@ -157,10 +162,12 @@ class SearchFragment : Fragment() {
                 mealClickListener("snack")
             }
 
-            //Close listener
-            closeImg.setOnClickListener {
-                searchClose()
+            //Most popular categories Listener
+            lowCarb.setOnClickListener{
+
             }
+
+
         }
     }
 

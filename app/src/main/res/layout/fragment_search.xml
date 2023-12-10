@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 app:layout_constraintTop_toBottomOf="@id/IngredientsSearchLay">
-                <!--Search By Ingredients Txt-->
+                <!--Search By Meal Txt-->
                 <TextView
                     android:id="@+id/searchByMealTxt"
                     style="@style/Search_Titles"
@@ -185,7 +185,7 @@
                     android:id="@+id/breakfastMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_16mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toStartOf="@+id/maincourseMeal"
@@ -242,7 +242,7 @@
                     android:id="@+id/snackMeal"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toStartOf="@+id/dessertMeal"
@@ -308,116 +308,180 @@
                 <TextView
                     android:id="@+id/mostPopularCategoriesTxt"
                     style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_20mdp"
+                    android:layout_marginTop="@dimen/_25mdp"
                     android:text="@string/most_popular_categories"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--LowCarb-->
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/lowCarb"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toStartOf="@+id/AirFryer"
+                    android:layout_marginTop="@dimen/_16mdp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/airFryer"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/mostPopularCategoriesTxt" />
+                    app:layout_constraintTop_toBottomOf="@id/mostPopularCategoriesTxt">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defaultcategory" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/low_carb"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
                 <!--AirFryer-->
-                <ImageView
-                    android:id="@+id/AirFryer"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/airFryer"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/weight_loss"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/lowCarb"
-                    app:layout_constraintTop_toTopOf="@id/lowCarb" />
+                    app:layout_constraintStart_toEndOf="@id/lowCarb"
+                    app:layout_constraintTop_toTopOf="@id/lowCarb">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defaultcategory" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/airFryer"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
                 <!--Asian-->
-                <ImageView
-                    android:id="@+id/Asian"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/asian"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toStartOf="@+id/Mexican"
+                    android:layout_marginTop="@dimen/_12mdp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/mexican"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/lowCarb" />
-                <!--Mexican-->
+                    app:layout_constraintTop_toBottomOf="@id/lowCarb">
+                <!--Image-->
                 <ImageView
-                    android:id="@+id/Mexican"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/defaultcategory" />
+                <!--Title-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2mdp"
+                    android:layout_marginTop="@dimen/_3mdp"
+                    android:text="@string/asian"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13mdp" />
+                </com.google.android.material.card.MaterialCardView>
+                <!--Mexican-->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mexican"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/weight_loss"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/Asian"
-                    app:layout_constraintTop_toTopOf="@id/Asian" />
+                    app:layout_constraintStart_toEndOf="@id/asian"
+                    app:layout_constraintTop_toTopOf="@id/asian">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defaultcategory" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/mexican"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
                 <!--Vegetarian-->
-                <ImageView
-                    android:id="@+id/Vegetarian"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/vegetarian"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/weight_loss"
+                    android:layout_marginTop="@dimen/_12mdp"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toStartOf="@+id/bakedGoods"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/Asian" />
+                    app:layout_constraintTop_toBottomOf="@id/asian">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defaultcategory" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/vegetarian_cat"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13mdp" />
+                </com.google.android.material.card.MaterialCardView>
                 <!--baked Goods-->
-                <ImageView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/bakedGoods"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/weight_loss"
+                    android:backgroundTint="@color/white"
+                    android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/Vegetarian"
-                    app:layout_constraintTop_toTopOf="@id/Vegetarian" />
-                <!--A-->
-                <ImageView
-                    android:id="@+id/A"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toStartOf="@+id/B"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/Vegetarian" />
-                <!--B-->
-                <ImageView
-                    android:id="@+id/B"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/A"
-                    app:layout_constraintTop_toTopOf="@id/A" />
-                <!--C-->
-                <ImageView
-                    android:id="@+id/C"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toStartOf="@+id/D"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/A" />
-                <!--D-->
-                <ImageView
-                    android:id="@+id/D"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
-                    android:background="@drawable/weight_loss"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/C"
-                    app:layout_constraintTop_toTopOf="@id/C" />
+                    app:layout_constraintStart_toEndOf="@id/vegetarian"
+                    app:layout_constraintTop_toTopOf="@id/vegetarian">
+                    <!--Image-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/defaultcategory" />
+                    <!--Title-->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginTop="@dimen/_3mdp"
+                        android:text="@string/baked_goods"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13mdp" />
+
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

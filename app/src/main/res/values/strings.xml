@@ -84,5 +84,10 @@
     <string name="snack">Snack</string>
     <string name="dessert">Dessert</string>
     <string name="meal_type">Meal Type</string>
+    <string name="airFryer">airFryer</string>
+    <string name="asian">Asian</string>
+    <string name="mexican">Mexican</string>
+    <string name="vegetarian_cat">Vegeterian</string>
+    <string name="baked_goods">Baked Goods</string>
 
 </resources>
