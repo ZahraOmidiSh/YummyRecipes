@@ -324,6 +324,115 @@
             app:layout_constraintTop_toBottomOf="@id/under200CalButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--Region Layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/regionLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/caloriePerServingLay">
+        <!--Region Txt-->
+        <TextView
+            android:id="@+id/regionTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:text="@string/region"
+            android:textSize="@dimen/_12mdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Asian Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/asianButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/asian_filter"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/chineseButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/regionTxt" />
+        <!--Chinese Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chineseButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/chinese"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@id/frenchButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/asianButton"
+            app:layout_constraintTop_toTopOf="@id/asianButton" />
+        <!--French Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/frenchButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/french"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/chineseButton"
+            app:layout_constraintTop_toTopOf="@id/asianButton" />
+        <!--Indian Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/indianButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/indian"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="@id/asianButton"
+            app:layout_constraintStart_toStartOf="@id/asianButton"
+            app:layout_constraintTop_toBottomOf="@id/asianButton" />
+
+        <!--Italian Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/italianButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/italian"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintStart_toStartOf="@id/chineseButton"
+            app:layout_constraintEnd_toEndOf="@id/chineseButton"
+            app:layout_constraintTop_toTopOf="@id/indianButton" />
+
+        <!--Mediterranean Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mediterraneanButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/mediterranean"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="@id/frenchButton"
+            app:layout_constraintStart_toStartOf="@id/frenchButton"
+            app:layout_constraintTop_toTopOf="@id/indianButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
@@ -342,5 +451,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/caloriePerServingLay" />
+        app:layout_constraintTop_toBottomOf="@id/regionLay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

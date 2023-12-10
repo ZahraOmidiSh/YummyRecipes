@@ -102,5 +102,12 @@
     <string name="_200_400_cal">200-400 Cal</string>
     <string name="_400_600_cal">400-600 Cal</string>
     <string name="_600_800">600-800</string>
+    <string name="region">Region</string>
+    <string name="asian_filter">Asian</string>
+    <string name="chinese">Chinese</string>
+    <string name="french">French</string>
+    <string name="indian">Indian</string>
+    <string name="italian">Italian</string>
+    <string name="mediterranean">Mediterranean</string>
 
 </resources>
