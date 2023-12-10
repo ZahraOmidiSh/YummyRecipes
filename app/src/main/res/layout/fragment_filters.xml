@@ -25,80 +25,149 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <!--Time Layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/timeLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/filtersTxt">
+        <!--Time Txt-->
+        <TextView
+            android:id="@+id/timeTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:text="@string/time"
+            android:textSize="@dimen/_12mdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Under 15 Min Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/under15MinutesButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/under_15_min"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/under30MinutesButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/timeTxt" />
+        <!--Under 30 Min Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/under30MinutesButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/under_30_min"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/under60MinutesButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/under15MinutesButton"
+            app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
+        <!--Under 60 Min Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/under60MinutesButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="Under 60 Min"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/under30MinutesButton"
+            app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Meal Type-->
-    <TextView
-        android:id="@+id/mealTypeTxt"
-        style="@style/Search_Titles"
-        android:layout_marginTop="@dimen/_10mdp"
-        android:text="@string/meal_type"
-        android:textSize="@dimen/_12mdp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filtersTxt" />
+    <!--Meal Type Layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mealTypeLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/timeLay">
+        <!--Meal Type Txt-->
+        <TextView
+            android:id="@+id/mealTypeTxt"
+            style="@style/Search_Titles"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:text="@string/meal_type"
+            android:textSize="@dimen/_12mdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Breakfast Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/breakfastButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8mdp"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/breakfast"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/mainCourseButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mealTypeTxt" />
+        <!--MainCourse Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mainCourseButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/main_course"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/snackButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/breakfastButton"
+            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+        <!--Snack Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/snackButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/snack"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toStartOf="@+id/dessertButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/mainCourseButton"
+            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+        <!--Dessert Button-->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dessertButton"
+            style="@style/FilterButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetTop="@dimen/_7mdp"
+            android:insetBottom="@dimen/_7mdp"
+            android:text="@string/dessert"
+            android:textSize="@dimen/_7font_mdp"
+            app:cornerRadius="@dimen/_25mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/snackButton"
+            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Breakfast Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/breakfastButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8mdp"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/breakfast"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/mainCourseButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealTypeTxt" />
-    <!--MainCourse Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/mainCourseButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/main_course"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/snackButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/breakfastButton"
-        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
-    <!--Snack Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/snackButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/snack"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toStartOf="@+id/dessertButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/mainCourseButton"
-        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
-
-    <!--Dessert Button-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/dessertButton"
-        style="@style/FilterButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:insetTop="@dimen/_7mdp"
-        android:insetBottom="@dimen/_7mdp"
-        android:text="@string/dessert"
-        android:textSize="@dimen/_7font_mdp"
-        app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/snackButton"
-        app:layout_constraintTop_toTopOf="@id/breakfastButton" />
 
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
@@ -117,5 +186,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/breakfastButton" />
+        app:layout_constraintTop_toBottomOf="@id/mealTypeLay" />
 </androidx.constraintlayout.widget.ConstraintLayout>

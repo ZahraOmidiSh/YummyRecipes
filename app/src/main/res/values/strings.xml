@@ -89,5 +89,8 @@
     <string name="mexican">Mexican</string>
     <string name="vegetarian_cat">Vegeterian</string>
     <string name="baked_goods">Baked Goods</string>
+    <string name="time">Time</string>
+    <string name="under_15_min">Under 15 Min</string>
+    <string name="under_30_min">Under 30 Min</string>
 
 </resources>
