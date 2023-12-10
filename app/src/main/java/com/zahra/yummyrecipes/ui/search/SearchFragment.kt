@@ -162,11 +162,6 @@ class SearchFragment : Fragment() {
                 mealClickListener("snack")
             }
 
-            //Most popular categories Listener
-            lowCarb.setOnClickListener{
-
-            }
-
 
         }
     }
