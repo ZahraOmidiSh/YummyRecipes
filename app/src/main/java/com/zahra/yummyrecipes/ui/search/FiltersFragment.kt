@@ -26,6 +26,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
     //Others
     private lateinit var viewModel: SearchViewModel
     private var notSureMeals = mutableListOf<String>()
+    private var notSureTime = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -42,12 +43,19 @@ class FiltersFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            //observe data - set showResultsButton color
+            //observe Meal data - set showResultsButton color
             viewModel.selectedMealsData.observe(viewLifecycleOwner) { meals ->
                 notSureMeals = meals.toMutableList()
                 setMealsButtonColor(notSureMeals)
                 setShowResultButtonColor()
             }
+            //observe Time data - set showResultsButton color
+            viewModel.selectedTimeData.observe(viewLifecycleOwner) { time ->
+                notSureTime = time.toMutableList()
+                setTimeButtonColor(notSureTime)
+                setShowResultButtonColor()
+            }
+
             breakfastButton.setOnClickListener {
                 setMealButtonClickListener(breakfastButton, "breakfast")
             }
@@ -61,23 +69,38 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setMealButtonClickListener(dessertButton, "dessert")
             }
 
+            under15MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under15MinutesButton, "15")
+            }
+            under30MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under15MinutesButton, "30")
+            }
+            under60MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under15MinutesButton, "60")
+            }
+
             //Show results Button Listener
             showResultsButton.setOnClickListener {
+                //Meals
                 viewModel._selectedMealsData.value = notSureMeals
                 viewModel.isSearchWithMeals.value =
                     viewModel.selectedMealsData.value?.isNotEmpty() == true
-                if (viewModel.isSearchWithMeals.value == true ) {
+                //Time
+                viewModel._selectedTimeData.value = notSureTime
+                viewModel.isSearchWithTime.value =
+                    viewModel.selectedTimeData.value?.isNotEmpty() == true
+                //CloseButton
+                if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true) {
                     viewModel.isCloseButtonPressed.value = false
                 }
                 notSureMeals.clear()
+                notSureTime.clear()
                 findNavController().navigateUp()
             }
             closeImg.setOnClickListener {
                 findNavController().navigateUp()
             }
-
         }
-
     }
 
     private fun setMealButtonClickListener(button: Button, mealName: String) {
@@ -117,7 +140,31 @@ class FiltersFragment : BottomSheetDialogFragment() {
         setButtonBackgroundBasedOnTheme(
             binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
         )
+    }
 
+    private fun setTimeButtonClickListener(button: Button, time: String) {
+        if (notSureTime.contains(time)) {
+            notSureTime.remove(time)
+            setButtonBackgroundBasedOnTheme(button, R.color.eerie_black, R.color.whiteSmoke)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.rose_ebony)
+        } else {
+            setButtonToDefault(binding.under15MinutesButton)
+            setButtonToDefault(binding.under30MinutesButton)
+            setButtonToDefault(binding.under60MinutesButton)
+            notSureMeals.clear()
+            notSureMeals.add(time)
+            setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.white)
+        }
+        binding.showResultsButton.isEnabled = true
+        binding.showResultsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), R.color.white
+            )
+        )
+        setButtonBackgroundBasedOnTheme(
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
+        )
     }
 
     private fun setMealsButtonColor(notSureMeals: List<String>) {
@@ -142,6 +189,36 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 }
             }
         }
+    }
+
+    private fun setTimeButtonColor(notSureTime: List<String>) {
+        binding.apply {
+            setButtonToDefault(under15MinutesButton)
+            setButtonToDefault(under30MinutesButton)
+            setButtonToDefault(under60MinutesButton)
+            notSureTime.forEach { time ->
+                when (time) {
+                    "15" -> setButtonBackgroundBasedOnTheme(
+                        under15MinutesButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "30" -> setButtonBackgroundBasedOnTheme(
+                        under30MinutesButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+
+                    "60" -> setButtonBackgroundBasedOnTheme(
+                        under60MinutesButton, R.color.congo_pink, R.color.big_foot_feet
+                    )
+                }
+            }
+        }
+    }
+
+    private fun setButtonToDefault(button: Button) {
+        setButtonBackgroundBasedOnTheme(
+            button, R.color.eerie_black, R.color.whiteSmoke
+        )
+        setButtonTextColorBasedOnTheme(button, R.color.white, R.color.rose_ebony)
     }
 
     private fun setShowResultButtonColor() {
@@ -177,6 +254,24 @@ class FiltersFragment : BottomSheetDialogFragment() {
             setButtonBackgroundTint(button, darkThemeColor)
         } else {
             setButtonBackgroundTint(button, lightThemeColor)
+        }
+    }
+
+    private fun setButtonTextColorBasedOnTheme(
+        button: Button, darkThemeColor: Int, lightThemeColor: Int
+    ) {
+        if (isDarkTheme()) {
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), darkThemeColor
+                )
+            )
+        } else {
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), lightThemeColor
+                )
+            )
         }
     }
 

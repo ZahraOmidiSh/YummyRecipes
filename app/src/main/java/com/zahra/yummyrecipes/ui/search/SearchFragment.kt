@@ -134,6 +134,8 @@ class SearchFragment : Fragment() {
             //mealSearch
             mealSearch()
 
+            //
+
             //Filters Buttons Listener
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()

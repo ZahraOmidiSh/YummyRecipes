@@ -250,8 +250,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     var isSearchWithTime = MutableLiveData<Boolean>()
 
     //Selected Time
-    val _selectedTimeData = MutableLiveData<Int>()
-    val selectedTimeData: LiveData<Int> get() = _selectedTimeData
+    val _selectedTimeData = MutableLiveData<List<String>>()
+    val selectedTimeData: LiveData<List<String>> get() = _selectedTimeData
 
 
     private fun selectedIngredientsToString(): String {
