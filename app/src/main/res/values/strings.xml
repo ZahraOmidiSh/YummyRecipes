@@ -92,5 +92,10 @@
     <string name="time">Time</string>
     <string name="under_15_min">Under 15 Min</string>
     <string name="under_30_min">Under 30 Min</string>
+    <string name="budget_per_serving">Budget per Serving</string>
+    <string name="under_1_usd">Under $1 USD</string>
+    <string name="under_2_usd">Under $2 USD</string>
+    <string name="under_3_usd">Under $3 USD</string>
+    <string name="under_4_usd">Under $4 USD</string>
 
 </resources>
