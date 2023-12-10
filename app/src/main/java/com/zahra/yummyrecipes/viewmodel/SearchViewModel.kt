@@ -239,6 +239,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     val _selectedAllergiesData = MutableLiveData<List<String>>()
     val selectedAllergiesData: LiveData<List<String>> get() = _selectedAllergiesData
 
+    //Meal and Time
+    var isSearchWithMealOrTime = MutableLiveData<Boolean>()
+
     //Meal
     var isSearchWithMeals = MutableLiveData<Boolean>()
 
