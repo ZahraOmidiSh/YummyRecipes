@@ -109,5 +109,9 @@
     <string name="indian">Indian</string>
     <string name="italian">Italian</string>
     <string name="mediterranean">Mediterranean</string>
+    <string name="tools_and_appliances">Tools And Appliances</string>
+    <string name="oven">Oven</string>
+    <string name="blender">Blender</string>
+    <string name="food_processor">Food Processor</string>
 
 </resources>
