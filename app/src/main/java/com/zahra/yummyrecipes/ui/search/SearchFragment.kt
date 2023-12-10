@@ -172,6 +172,7 @@ class SearchFragment : Fragment() {
         viewModel.isCloseButtonPressed.value = false
         viewModel._selectedMealsData.value = listOf(meal)
         viewModel.isSearchWithMeals.value = true
+        viewModel.isSearchWithMealOrTime.value = true
         FilterSearch()
     }
 
