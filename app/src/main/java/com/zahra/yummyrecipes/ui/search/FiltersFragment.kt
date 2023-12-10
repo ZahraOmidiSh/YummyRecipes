@@ -92,6 +92,9 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 //CloseButton
                 if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true) {
                     viewModel.isCloseButtonPressed.value = false
+                    viewModel.isSearchWithMealOrTime.value = true
+                } else {
+                    viewModel.isSearchWithMealOrTime.value = false
                 }
                 notSureMeals.clear()
                 notSureTime.clear()
