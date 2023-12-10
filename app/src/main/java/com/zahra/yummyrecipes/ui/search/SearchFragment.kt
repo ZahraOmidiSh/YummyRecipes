@@ -131,7 +131,7 @@ class SearchFragment : Fragment() {
             //diets and allergies search
             dietsAndAllergiesSearch()
 
-            //mealSearch
+            //filterSearch
             FilterSearch()
 
             //
@@ -190,11 +190,14 @@ class SearchFragment : Fragment() {
             viewModel._selectedDietsData.value = emptyList()
             viewModel._selectedAllergiesData.value = emptyList()
             viewModel._selectedMealsData.value = emptyList()
+            viewModel._selectedTimeData.value = emptyList()
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithMeals.value = false
+            viewModel.isSearchWithTime.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
+            viewModel.isSearchWithMealOrTime.value = false
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
@@ -246,7 +249,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true || viewModel.isSearchWithMeals.value == true) {
+                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithMealOrTime.value == true || viewModel.isSearchWithMeals.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -305,7 +308,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMeals.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMealOrTime.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                                 loadRecentData()
                             }

@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/filtersTxt"
         style="@style/Search_Titles"
-        android:layout_marginTop="@dimen/_130mdp"
+        android:layout_marginTop="@dimen/_180mdp"
         android:text="@string/filters"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/timeLay"
@@ -513,7 +513,7 @@
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_15mdp"
-        android:layout_marginBottom="@dimen/_80mdp"
+        android:layout_marginBottom="@dimen/_160mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"

@@ -213,7 +213,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
         }
         //Time
         if(isSearchWithTime.value==true){
-            queries[MAX_READY_TIME] = selectedTimeData.value.toString()
+            selectedTimeData.value?.forEach {
+                queries[MAX_READY_TIME] =it
+            }
         }
         queries[API_KEY] = setAPIKEY()
         queries[NUMBER] = 8.toString()

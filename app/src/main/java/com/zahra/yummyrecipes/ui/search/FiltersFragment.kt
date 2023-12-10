@@ -73,10 +73,10 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setTimeButtonClickListener(under15MinutesButton, "15")
             }
             under30MinutesButton.setOnClickListener {
-                setTimeButtonClickListener(under15MinutesButton, "30")
+                setTimeButtonClickListener(under30MinutesButton, "30")
             }
             under60MinutesButton.setOnClickListener {
-                setTimeButtonClickListener(under15MinutesButton, "60")
+                setTimeButtonClickListener(under60MinutesButton, "60")
             }
 
             //Show results Button Listener
@@ -109,21 +109,10 @@ class FiltersFragment : BottomSheetDialogFragment() {
     private fun setMealButtonClickListener(button: Button, mealName: String) {
         if (notSureMeals.contains(mealName)) {
             notSureMeals.remove(mealName)
-            if (isDarkTheme()) {
-                setButtonBackgroundTint(button, R.color.eerie_black)
-                button.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.white
-                    )
-                )
-            } else {
-                setButtonBackgroundTint(button, R.color.whiteSmoke)
-                button.setTextColor(
-                    ContextCompat.getColor(
-                        requireContext(), R.color.rose_ebony
-                    )
-                )
-            }
+
+            setButtonBackgroundBasedOnTheme(button, R.color.eerie_black, R.color.whiteSmoke)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.rose_ebony)
+
         } else {
             notSureMeals.add(mealName)
             setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
@@ -154,8 +143,8 @@ class FiltersFragment : BottomSheetDialogFragment() {
             setButtonToDefault(binding.under15MinutesButton)
             setButtonToDefault(binding.under30MinutesButton)
             setButtonToDefault(binding.under60MinutesButton)
-            notSureMeals.clear()
-            notSureMeals.add(time)
+            notSureTime.clear()
+            notSureTime.add(time)
             setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
             setButtonTextColorBasedOnTheme(button, R.color.white, R.color.white)
         }
@@ -174,21 +163,26 @@ class FiltersFragment : BottomSheetDialogFragment() {
         binding.apply {
             notSureMeals.forEach { meal ->
                 when (meal) {
-                    "breakfast" -> setButtonBackgroundBasedOnTheme(
-                        breakfastButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "breakfast" ->{
+                        setButtonBackgroundBasedOnTheme(breakfastButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(breakfastButton, R.color.white, R.color.white)
+                    }
 
-                    "main course" -> setButtonBackgroundBasedOnTheme(
-                        mainCourseButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
 
-                    "dessert" -> setButtonBackgroundBasedOnTheme(
-                        dessertButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "main course" -> {
+                        setButtonBackgroundBasedOnTheme(mainCourseButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(mainCourseButton, R.color.white, R.color.white)
+                    }
 
-                    "snack" -> setButtonBackgroundBasedOnTheme(
-                        snackButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "dessert" -> {
+                        setButtonBackgroundBasedOnTheme(dessertButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(dessertButton, R.color.white, R.color.white)
+                    }
+
+                    "snack" -> {
+                        setButtonBackgroundBasedOnTheme(snackButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(snackButton, R.color.white, R.color.white)
+                    }
                 }
             }
         }
@@ -201,17 +195,20 @@ class FiltersFragment : BottomSheetDialogFragment() {
             setButtonToDefault(under60MinutesButton)
             notSureTime.forEach { time ->
                 when (time) {
-                    "15" -> setButtonBackgroundBasedOnTheme(
-                        under15MinutesButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "15" -> {
+                        setButtonBackgroundBasedOnTheme(under15MinutesButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(under15MinutesButton, R.color.white, R.color.white)
+                    }
 
-                    "30" -> setButtonBackgroundBasedOnTheme(
-                        under30MinutesButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "30" -> {
+                        setButtonBackgroundBasedOnTheme(under30MinutesButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(under30MinutesButton, R.color.white, R.color.white)
+                    }
 
-                    "60" -> setButtonBackgroundBasedOnTheme(
-                        under60MinutesButton, R.color.congo_pink, R.color.big_foot_feet
-                    )
+                    "60" ->{
+                        setButtonBackgroundBasedOnTheme(under60MinutesButton, R.color.congo_pink, R.color.big_foot_feet)
+                        setButtonTextColorBasedOnTheme(under60MinutesButton, R.color.white, R.color.white)
+                    }
                 }
             }
         }
