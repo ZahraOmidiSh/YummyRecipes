@@ -132,7 +132,7 @@ class SearchFragment : Fragment() {
             dietsAndAllergiesSearch()
 
             //mealSearch
-            mealSearch()
+            FilterSearch()
 
             //
 
@@ -172,7 +172,7 @@ class SearchFragment : Fragment() {
         viewModel.isCloseButtonPressed.value = false
         viewModel._selectedMealsData.value = listOf(meal)
         viewModel.isSearchWithMeals.value = true
-        mealSearch()
+        FilterSearch()
     }
 
     private fun searchClose() {
@@ -318,9 +318,9 @@ class SearchFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun mealSearch() {
+    private fun FilterSearch() {
         binding.apply {
-            viewModel.isSearchWithMeals.observe(viewLifecycleOwner) {
+            viewModel.isSearchWithMealOrTime.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
@@ -328,8 +328,20 @@ class SearchFragment : Fragment() {
                         advancedSearchScroll.isVisible = false
                         viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                         loadRecentData()
+                        var sizeMeal = 0
+                        var sizeTime = 0
+
+                        if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
+                            sizeMeal = viewModel.selectedMealsData.value?.size!!
+                        }
+                        if (viewModel.selectedTimeData.value?.isNotEmpty() == true) {
+                            sizeTime = viewModel.selectedTimeData.value?.size!!
+                        }
+                        val size = sizeMeal + sizeTime
+
+
                         filtersButton.text =
-                            "FILTERS " + "(" + viewModel.selectedMealsData.value?.size.toString() + ")"
+                            "FILTERS ($size)"
                         setOneButtonTextColor(filtersButton, R.color.white)
                         if (isDarkTheme()) {
                             setOneButtonBackgroundTint(filtersButton, R.color.congo_pink)
