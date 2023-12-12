@@ -6,6 +6,499 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.FiltersFragment">
 
+    <!--Scroll View-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/_5mdp"
+        android:paddingTop="@dimen/_25mdp"
+        android:paddingBottom="@dimen/_90mdp"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--All Filters Layout-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/allFiltersLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--Time Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/timeLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+                <!--Time Txt-->
+                <TextView
+                    android:id="@+id/timeTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_20mdp"
+                    android:text="@string/time"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Under 15 Min Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under15MinutesButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_15_min"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/under30MinutesButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/timeTxt" />
+                <!--Under 30 Min Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under30MinutesButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_30_min"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/under60MinutesButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/under15MinutesButton"
+                    app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
+                <!--Under 60 Min Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under60MinutesButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="Under 60 Min"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/under30MinutesButton"
+                    app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Meal Type Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mealTypeLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/timeLay">
+                <!--Meal Type Txt-->
+                <TextView
+                    android:id="@+id/mealTypeTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:text="@string/meal_type"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Breakfast Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/breakfastButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/breakfast"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/mainCourseButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mealTypeTxt" />
+                <!--MainCourse Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mainCourseButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/main_course"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/snackButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/breakfastButton"
+                    app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+                <!--Snack Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/snackButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/snack"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/dessertButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mainCourseButton"
+                    app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+                <!--Dessert Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/dessertButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/dessert"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/snackButton"
+                    app:layout_constraintTop_toTopOf="@id/breakfastButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Budget per Serving Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/budgetPerServingLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/mealTypeLay">
+                <!--Budget per Serving Txt-->
+                <TextView
+                    android:id="@+id/budgetPerServingTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:text="@string/budget_per_serving"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Under $1 USD Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under1USDButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_1_usd"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/under2USDButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/budgetPerServingTxt" />
+                <!--Under $2 USD Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under2USDButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_2_usd"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/under3USDButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/under1USDButton"
+                    app:layout_constraintTop_toTopOf="@id/under1USDButton" />
+                <!--Under $3 USD Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under3USDButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_3_usd"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/under2USDButton"
+                    app:layout_constraintTop_toTopOf="@id/under1USDButton" />
+                <!--Under $4 USD Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under4USDButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_4_usd"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/under1USDButton"
+                    app:layout_constraintTop_toBottomOf="@id/under1USDButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Calorie per Serving Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/caloriePerServingLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/budgetPerServingLay">
+                <!--Calorie Per Serving Txt-->
+                <TextView
+                    android:id="@+id/caloriePerServingTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:text="@string/calorie_per_serving"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Under 200 Cal Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/under200CalButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/under_200_cal"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/between200_400CalButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/caloriePerServingTxt" />
+                <!--200-400 Cal Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/between200_400CalButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/_200_400_cal"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/between400_600CalButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/under200CalButton"
+                    app:layout_constraintTop_toTopOf="@id/under200CalButton" />
+                <!--400-600 Cal Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/between400_600CalButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/_400_600_cal"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/between200_400CalButton"
+                    app:layout_constraintTop_toTopOf="@id/under200CalButton" />
+                <!--600-800 Cal Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/between600_800CalButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/_600_800_cal"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@id/under200CalButton"
+                    app:layout_constraintTop_toBottomOf="@id/under200CalButton" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Region Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/regionLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/caloriePerServingLay">
+                <!--Region Txt-->
+                <TextView
+                    android:id="@+id/regionTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:text="@string/region"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Asian Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/asianButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/asian_filter"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/chineseButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/regionTxt" />
+                <!--Chinese Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chineseButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/chinese"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@id/frenchButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/asianButton"
+                    app:layout_constraintTop_toTopOf="@id/asianButton" />
+                <!--French Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/frenchButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/french"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/chineseButton"
+                    app:layout_constraintTop_toTopOf="@id/asianButton" />
+                <!--Indian Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/indianButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/indian"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="@id/asianButton"
+                    app:layout_constraintStart_toStartOf="@id/asianButton"
+                    app:layout_constraintTop_toBottomOf="@id/asianButton" />
+
+                <!--Italian Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/italianButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/italian"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="@id/chineseButton"
+                    app:layout_constraintStart_toStartOf="@id/chineseButton"
+                    app:layout_constraintTop_toTopOf="@id/indianButton" />
+
+                <!--Mediterranean Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/mediterraneanButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/mediterranean"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="@id/frenchButton"
+                    app:layout_constraintStart_toStartOf="@id/frenchButton"
+                    app:layout_constraintTop_toTopOf="@id/indianButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Tools And Appliances Layout-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/toolsAndAppliancesLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/regionLay">
+                <!--Tools And Appliances Txt-->
+                <TextView
+                    android:id="@+id/toolsAndAppliancesTxt"
+                    style="@style/Search_Titles"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:text="@string/tools_and_appliances"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--Oven Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/ovenButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8mdp"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/oven"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@+id/blenderButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolsAndAppliancesTxt" />
+                <!--Blender Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/blenderButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/blender"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toStartOf="@id/food_processorButton"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/ovenButton"
+                    app:layout_constraintTop_toTopOf="@id/ovenButton" />
+                <!--Food Processor Button-->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/food_processorButton"
+                    style="@style/FilterButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:insetTop="@dimen/_7mdp"
+                    android:insetBottom="@dimen/_7mdp"
+                    android:text="@string/food_processor"
+                    android:textSize="@dimen/_7font_mdp"
+                    app:cornerRadius="@dimen/_25mdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/blenderButton"
+                    app:layout_constraintTop_toTopOf="@id/ovenButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
     <!--Close-->
     <ImageView
         android:id="@+id/closeImg"
@@ -15,496 +508,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--Filters-->
-    <TextView
-        android:id="@+id/filtersTxt"
-        style="@style/Search_Titles"
-        android:layout_marginTop="@dimen/_180mdp"
-        android:text="@string/filters"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/timeLay"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/closeImg" />
-    <!--Time Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/timeLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/mealTypeLay"
-        app:layout_constraintTop_toBottomOf="@id/filtersTxt">
-        <!--Time Txt-->
-        <TextView
-            android:id="@+id/timeTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_20mdp"
-            android:text="@string/time"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Under 15 Min Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under15MinutesButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_15_min"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/under30MinutesButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/timeTxt" />
-        <!--Under 30 Min Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under30MinutesButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_30_min"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/under60MinutesButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/under15MinutesButton"
-            app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
-        <!--Under 60 Min Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under60MinutesButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="Under 60 Min"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/under30MinutesButton"
-            app:layout_constraintTop_toTopOf="@id/under15MinutesButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--Meal Type Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mealTypeLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/budgetPerServingLay"
-        app:layout_constraintTop_toBottomOf="@id/timeLay">
-        <!--Meal Type Txt-->
-        <TextView
-            android:id="@+id/mealTypeTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:text="@string/meal_type"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Breakfast Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/breakfastButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/breakfast"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/mainCourseButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mealTypeTxt" />
-        <!--MainCourse Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mainCourseButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/main_course"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/snackButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/breakfastButton"
-            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
-        <!--Snack Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/snackButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/snack"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/dessertButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/mainCourseButton"
-            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
-        <!--Dessert Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dessertButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/dessert"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/snackButton"
-            app:layout_constraintTop_toTopOf="@id/breakfastButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--Budget per Serving Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/budgetPerServingLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/caloriePerServingLay"
-        app:layout_constraintTop_toBottomOf="@id/mealTypeLay">
-        <!--Budget per Serving Txt-->
-        <TextView
-            android:id="@+id/budgetPerServingTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:text="@string/budget_per_serving"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Under $1 USD Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under1USDButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_1_usd"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/under2USDButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/budgetPerServingTxt" />
-        <!--Under $2 USD Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under2USDButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_2_usd"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/under3USDButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/under1USDButton"
-            app:layout_constraintTop_toTopOf="@id/under1USDButton" />
-        <!--Under $3 USD Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under3USDButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_3_usd"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/under2USDButton"
-            app:layout_constraintTop_toTopOf="@id/under1USDButton" />
-        <!--Under $4 USD Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under4USDButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_4_usd"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/under1USDButton"
-            app:layout_constraintTop_toBottomOf="@id/under1USDButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--Calorie per Serving Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/caloriePerServingLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/regionLay"
-        app:layout_constraintTop_toBottomOf="@id/budgetPerServingLay">
-        <!--Calorie Per Serving Txt-->
-        <TextView
-            android:id="@+id/caloriePerServingTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:text="@string/calorie_per_serving"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Under 200 Cal Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/under200CalButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/under_200_cal"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/between200_400CalButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/caloriePerServingTxt" />
-        <!--200-400 Cal Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/between200_400CalButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/_200_400_cal"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/between400_600CalButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/under200CalButton"
-            app:layout_constraintTop_toTopOf="@id/under200CalButton" />
-        <!--400-600 Cal Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/between400_600CalButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/_400_600_cal"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/between200_400CalButton"
-            app:layout_constraintTop_toTopOf="@id/under200CalButton" />
-        <!--600-800 Cal Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/between600_800CalButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/_600_800_cal"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/under200CalButton"
-            app:layout_constraintTop_toBottomOf="@id/under200CalButton" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--Region Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/regionLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/toolsAndAppliancesLay"
-        app:layout_constraintTop_toBottomOf="@id/caloriePerServingLay">
-        <!--Region Txt-->
-        <TextView
-            android:id="@+id/regionTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:text="@string/region"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Asian Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/asianButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/asian_filter"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/chineseButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/regionTxt" />
-        <!--Chinese Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/chineseButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/chinese"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@id/frenchButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/asianButton"
-            app:layout_constraintTop_toTopOf="@id/asianButton" />
-        <!--French Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/frenchButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/french"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/chineseButton"
-            app:layout_constraintTop_toTopOf="@id/asianButton" />
-        <!--Indian Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/indianButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/indian"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="@id/asianButton"
-            app:layout_constraintStart_toStartOf="@id/asianButton"
-            app:layout_constraintTop_toBottomOf="@id/asianButton" />
-
-        <!--Italian Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/italianButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/italian"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="@id/chineseButton"
-            app:layout_constraintStart_toStartOf="@id/chineseButton"
-            app:layout_constraintTop_toTopOf="@id/indianButton" />
-
-        <!--Mediterranean Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mediterraneanButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/mediterranean"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="@id/frenchButton"
-            app:layout_constraintStart_toStartOf="@id/frenchButton"
-            app:layout_constraintTop_toTopOf="@id/indianButton" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--Tools And Appliances Layout-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolsAndAppliancesLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/showResultsButton"
-        app:layout_constraintTop_toBottomOf="@id/regionLay">
-        <!--Tools And Appliances Txt-->
-        <TextView
-            android:id="@+id/toolsAndAppliancesTxt"
-            style="@style/Search_Titles"
-            android:layout_marginTop="@dimen/_10mdp"
-            android:text="@string/tools_and_appliances"
-            android:textSize="@dimen/_12mdp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <!--Oven Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/ovenButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8mdp"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/oven"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@+id/blenderButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolsAndAppliancesTxt" />
-        <!--Blender Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/blenderButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/blender"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toStartOf="@id/food_processorButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ovenButton"
-            app:layout_constraintTop_toTopOf="@id/ovenButton" />
-        <!--Food Processor Button-->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/food_processorButton"
-            style="@style/FilterButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="@dimen/_7mdp"
-            android:insetBottom="@dimen/_7mdp"
-            android:text="@string/food_processor"
-            android:textSize="@dimen/_7font_mdp"
-            app:cornerRadius="@dimen/_25mdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/blenderButton"
-            app:layout_constraintTop_toTopOf="@id/ovenButton" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <!--showResultsButton-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/showResultsButton"
@@ -512,16 +515,13 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_40mdp"
         android:layout_marginHorizontal="@dimen/_20mdp"
-        android:layout_marginTop="@dimen/_15mdp"
-        android:layout_marginBottom="@dimen/_160mdp"
         android:enabled="false"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/show_results"
         android:textSize="@dimen/_10font_mdp"
         app:cornerRadius="@dimen/_25mdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolsAndAppliancesLay" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
