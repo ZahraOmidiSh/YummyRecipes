@@ -171,7 +171,7 @@ class SearchFragment : Fragment() {
         viewModel.isCloseButtonPressed.value = false
         viewModel._selectedMealsData.value = listOf(meal)
         viewModel.isSearchWithMeals.value = true
-        viewModel.isSearchWithMealOrTime.value = true
+        viewModel.isSearchWithFilters.value = true
         filterSearch()
     }
 
@@ -190,14 +190,16 @@ class SearchFragment : Fragment() {
             viewModel._selectedDietsData.value = emptyList()
             viewModel._selectedAllergiesData.value = emptyList()
             viewModel._selectedMealsData.value = emptyList()
+            viewModel._selectedRegionData.value = emptyList()
             viewModel._selectedTimeData.value = emptyList()
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithMeals.value = false
+            viewModel.isSearchWithRegion.value = false
             viewModel.isSearchWithTime.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
-            viewModel.isSearchWithMealOrTime.value = false
+            viewModel.isSearchWithFilters.value = false
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
@@ -248,7 +250,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithMealOrTime.value == true) {
+                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -306,7 +308,7 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMealOrTime.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
                             }
@@ -322,7 +324,7 @@ class SearchFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun filterSearch() {
         binding.apply {
-            viewModel.isSearchWithMealOrTime.observe(viewLifecycleOwner) {
+            viewModel.isSearchWithFilters.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
@@ -332,14 +334,18 @@ class SearchFragment : Fragment() {
                         loadRecentData()
                         var sizeMeal = 0
                         var sizeTime = 0
+                        var sizeRegion = 0
 
                         if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
                             sizeMeal = viewModel.selectedMealsData.value?.size!!
                         }
+                        if (viewModel.selectedRegionData.value?.isNotEmpty() == true) {
+                            sizeRegion = viewModel.selectedRegionData.value?.size!!
+                        }
                         if (viewModel.selectedTimeData.value?.isNotEmpty() == true) {
                             sizeTime = viewModel.selectedTimeData.value?.size!!
                         }
-                        val size = sizeMeal + sizeTime
+                        val size = sizeMeal + sizeTime+ sizeRegion
 
                         filtersButton.text =
                             "FILTERS ($size)"
