@@ -165,90 +165,12 @@
                     app:layout_constraintTop_toTopOf="@id/breakfastButton" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--Budget per Serving Layout-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/budgetPerServingLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/mealTypeLay">
-                <!--Budget per Serving Txt-->
-                <TextView
-                    android:id="@+id/budgetPerServingTxt"
-                    style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_10mdp"
-                    android:text="@string/budget_per_serving"
-                    android:textSize="@dimen/_12mdp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--Under $1 USD Button-->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/under1USDButton"
-                    style="@style/FilterButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
-                    android:insetTop="@dimen/_7mdp"
-                    android:insetBottom="@dimen/_7mdp"
-                    android:text="@string/under_1_usd"
-                    android:textSize="@dimen/_7font_mdp"
-                    app:cornerRadius="@dimen/_25mdp"
-                    app:layout_constraintEnd_toStartOf="@+id/under2USDButton"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/budgetPerServingTxt" />
-                <!--Under $2 USD Button-->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/under2USDButton"
-                    style="@style/FilterButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:insetTop="@dimen/_7mdp"
-                    android:insetBottom="@dimen/_7mdp"
-                    android:text="@string/under_2_usd"
-                    android:textSize="@dimen/_7font_mdp"
-                    app:cornerRadius="@dimen/_25mdp"
-                    app:layout_constraintEnd_toStartOf="@+id/under3USDButton"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/under1USDButton"
-                    app:layout_constraintTop_toTopOf="@id/under1USDButton" />
-                <!--Under $3 USD Button-->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/under3USDButton"
-                    style="@style/FilterButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:insetTop="@dimen/_7mdp"
-                    android:insetBottom="@dimen/_7mdp"
-                    android:text="@string/under_3_usd"
-                    android:textSize="@dimen/_7font_mdp"
-                    app:cornerRadius="@dimen/_25mdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/under2USDButton"
-                    app:layout_constraintTop_toTopOf="@id/under1USDButton" />
-                <!--Under $4 USD Button-->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/under4USDButton"
-                    style="@style/FilterButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:insetTop="@dimen/_7mdp"
-                    android:insetBottom="@dimen/_7mdp"
-                    android:text="@string/under_4_usd"
-                    android:textSize="@dimen/_7font_mdp"
-                    app:cornerRadius="@dimen/_25mdp"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@id/under1USDButton"
-                    app:layout_constraintTop_toBottomOf="@id/under1USDButton" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <!--Calorie per Serving Layout-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/caloriePerServingLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/budgetPerServingLay">
+                app:layout_constraintTop_toBottomOf="@id/mealTypeLay">
                 <!--Calorie Per Serving Txt-->
                 <TextView
                     android:id="@+id/caloriePerServingTxt"
