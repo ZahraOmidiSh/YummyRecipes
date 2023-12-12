@@ -11,6 +11,7 @@ import com.zahra.yummyrecipes.models.recipe.ResponseRecipes
 import com.zahra.yummyrecipes.models.search.IngredientsModel
 import com.zahra.yummyrecipes.utils.Constants.ADD_RECIPE_INFORMATION
 import com.zahra.yummyrecipes.utils.Constants.API_KEY
+import com.zahra.yummyrecipes.utils.Constants.CUISINE
 import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
@@ -196,7 +197,16 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
 //            diets = diets.removeRange(0, 1)
             queries[TYPE] = meals
         }
-        //Diet
+
+        //Region
+        if (isSearchWithRegion.value == true) {
+            var region = ""
+            selectedRegionData.value?.forEach {
+                region = "$region,$it".trim()
+            }
+            queries[CUISINE] = region
+        }
+            //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
@@ -245,7 +255,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     val selectedAllergiesData: LiveData<List<String>> get() = _selectedAllergiesData
 
     //Meal and Time
-    var isSearchWithMealOrTime = MutableLiveData<Boolean>()
+    var isSearchWithFilters = MutableLiveData<Boolean>()
 
     //Meal
     var isSearchWithMeals = MutableLiveData<Boolean>()
@@ -253,6 +263,13 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Selected Meals
     val _selectedMealsData = MutableLiveData<List<String>>()
     val selectedMealsData: LiveData<List<String>> get() = _selectedMealsData
+
+    //Region
+    var isSearchWithRegion = MutableLiveData<Boolean>()
+
+    //Selected Meals
+    val _selectedRegionData = MutableLiveData<List<String>>()
+    val selectedRegionData: LiveData<List<String>> get() = _selectedRegionData
 
     //Time
     var isSearchWithTime = MutableLiveData<Boolean>()
