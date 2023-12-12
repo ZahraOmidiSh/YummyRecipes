@@ -31,6 +31,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
     private var notSureMeals = mutableListOf<String>()
     private var notSureTime = mutableListOf<String>()
     private var notSureRegion = mutableListOf<String>()
+    private var notSureCalorie = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -65,6 +66,12 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setTimeButtonColor(notSureTime)
                 setShowResultButtonColor()
             }
+            //observe Calorie data - set showResultsButton color
+            viewModel.selectedCalorieData.observe(viewLifecycleOwner) { calorie ->
+                notSureCalorie = calorie.toMutableList()
+                setCalorieButtonColor(notSureCalorie)
+                setShowResultButtonColor()
+            }
 
             //set button first position
             setButtonFirstPosition()
@@ -78,6 +85,17 @@ class FiltersFragment : BottomSheetDialogFragment() {
             }
             under60MinutesButton.setOnClickListener {
                 setTimeButtonClickListener(under60MinutesButton, "60")
+            }
+
+            //Calorie
+            under200CalButton.setOnClickListener {
+                setCalorieButtonClickListener(under200CalButton, "0-200")
+            }
+            between200400CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between200400CalButton, "200-400")
+            }
+            between400600CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between400600CalButton, "400-600")
             }
 
             //Meals
@@ -124,12 +142,18 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 viewModel._selectedRegionData.value = notSureRegion
                 viewModel.isSearchWithRegion.value =
                     viewModel.selectedRegionData.value?.isNotEmpty() == true
+                //Calorie
+                viewModel._selectedCalorieData.value = notSureCalorie
+                viewModel.isSearchWithCalorie.value =
+                    viewModel.selectedCalorieData.value?.isNotEmpty() == true
                 //Time
                 viewModel._selectedTimeData.value = notSureTime
                 viewModel.isSearchWithTime.value =
                     viewModel.selectedTimeData.value?.isNotEmpty() == true
                 //CloseButton
-                if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true|| viewModel.isSearchWithRegion.value == true) {
+                if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true ||
+                    viewModel.isSearchWithRegion.value == true || viewModel.isSearchWithCalorie.value == true
+                ) {
                     viewModel.isCloseButtonPressed.value = false
                     viewModel.isSearchWithFilters.value = true
                 } else {
@@ -138,6 +162,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 notSureMeals.clear()
                 notSureTime.clear()
                 notSureRegion.clear()
+                notSureCalorie.clear()
                 findNavController().navigateUp()
             }
             closeImg.setOnClickListener {
@@ -270,51 +295,65 @@ class FiltersFragment : BottomSheetDialogFragment() {
             binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
         )
     }
+
+    private fun setCalorieButtonClickListener(button: Button, calorie: String) {
+        if (notSureCalorie.contains(calorie)) {
+            notSureCalorie.remove(calorie)
+            setButtonBackgroundBasedOnTheme(button, R.color.eerie_black, R.color.whiteSmoke)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.rose_ebony)
+        } else {
+            setButtonToDefault(binding.under200CalButton)
+            setButtonToDefault(binding.between200400CalButton)
+            setButtonToDefault(binding.between400600CalButton)
+            notSureCalorie.clear()
+            notSureCalorie.add(calorie)
+            setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.white)
+        }
+        binding.showResultsButton.isEnabled = true
+        binding.showResultsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), R.color.white
+            )
+        )
+        setButtonBackgroundBasedOnTheme(
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
+        )
+    }
+
     private fun setMealsButtonColor(notSureMeals: List<String>) {
         binding.apply {
             notSureMeals.forEach { meal ->
                 when (meal) {
                     "breakfast" -> {
                         setButtonBackgroundBasedOnTheme(
-                            breakfastButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            breakfastButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            breakfastButton,
-                            R.color.white,
-                            R.color.white
+                            breakfastButton, R.color.white, R.color.white
                         )
                     }
 
 
                     "main course" -> {
                         setButtonBackgroundBasedOnTheme(
-                            mainCourseButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            mainCourseButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            mainCourseButton,
-                            R.color.white,
-                            R.color.white
+                            mainCourseButton, R.color.white, R.color.white
                         )
                     }
 
                     "dessert" -> {
                         setButtonBackgroundBasedOnTheme(
-                            dessertButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            dessertButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(dessertButton, R.color.white, R.color.white)
                     }
 
                     "snack" -> {
                         setButtonBackgroundBasedOnTheme(
-                            snackButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            snackButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(snackButton, R.color.white, R.color.white)
                     }
@@ -329,65 +368,51 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 when (region) {
                     "Asian" -> {
                         setButtonBackgroundBasedOnTheme(
-                            asianButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            asianButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            asianButton,
-                            R.color.white,
-                            R.color.white
+                            asianButton, R.color.white, R.color.white
                         )
                     }
 
 
                     "Chinese" -> {
                         setButtonBackgroundBasedOnTheme(
-                            chineseButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            chineseButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            chineseButton,
-                            R.color.white,
-                            R.color.white
+                            chineseButton, R.color.white, R.color.white
                         )
                     }
 
                     "French" -> {
                         setButtonBackgroundBasedOnTheme(
-                            frenchButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            frenchButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(frenchButton, R.color.white, R.color.white)
                     }
 
                     "Indian" -> {
                         setButtonBackgroundBasedOnTheme(
-                            indianButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            indianButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(indianButton, R.color.white, R.color.white)
                     }
 
                     "Italian" -> {
                         setButtonBackgroundBasedOnTheme(
-                            italianButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            italianButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(italianButton, R.color.white, R.color.white)
                     }
 
                     "Mediterranean" -> {
                         setButtonBackgroundBasedOnTheme(
-                            mediterraneanButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            mediterraneanButton, R.color.congo_pink, R.color.big_foot_feet
                         )
-                        setButtonTextColorBasedOnTheme(mediterraneanButton, R.color.white, R.color.white)
+                        setButtonTextColorBasedOnTheme(
+                            mediterraneanButton, R.color.white, R.color.white
+                        )
                     }
                 }
             }
@@ -403,40 +428,66 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 when (time) {
                     "15" -> {
                         setButtonBackgroundBasedOnTheme(
-                            under15MinutesButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            under15MinutesButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            under15MinutesButton,
-                            R.color.white,
-                            R.color.white
+                            under15MinutesButton, R.color.white, R.color.white
                         )
                     }
 
                     "30" -> {
                         setButtonBackgroundBasedOnTheme(
-                            under30MinutesButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            under30MinutesButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            under30MinutesButton,
-                            R.color.white,
-                            R.color.white
+                            under30MinutesButton, R.color.white, R.color.white
                         )
                     }
 
                     "60" -> {
                         setButtonBackgroundBasedOnTheme(
-                            under60MinutesButton,
-                            R.color.congo_pink,
-                            R.color.big_foot_feet
+                            under60MinutesButton, R.color.congo_pink, R.color.big_foot_feet
                         )
                         setButtonTextColorBasedOnTheme(
-                            under60MinutesButton,
-                            R.color.white,
-                            R.color.white
+                            under60MinutesButton, R.color.white, R.color.white
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setCalorieButtonColor(notSureCalorie: List<String>) {
+        binding.apply {
+            setButtonToDefault(binding.under200CalButton)
+            setButtonToDefault(binding.between200400CalButton)
+            setButtonToDefault(binding.between400600CalButton)
+            notSureCalorie.forEach { calorie ->
+                when (calorie) {
+                    "0-200" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            under200CalButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            under200CalButton, R.color.white, R.color.white
+                        )
+                    }
+
+                    "200-400" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            between200400CalButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            between200400CalButton, R.color.white, R.color.white
+                        )
+                    }
+
+                    "400-600" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            between400600CalButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            between400600CalButton, R.color.white, R.color.white
                         )
                     }
                 }
@@ -453,7 +504,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
     private fun setShowResultButtonColor() {
         binding.apply {
-            if (notSureMeals.isEmpty()&& notSureTime.isEmpty()&& notSureRegion.isEmpty()) {
+            if (notSureMeals.isEmpty() && notSureTime.isEmpty() && notSureRegion.isEmpty()) {
                 showResultsButton.isEnabled = false
                 showResultsButton.setTextColor(
                     ContextCompat.getColor(
