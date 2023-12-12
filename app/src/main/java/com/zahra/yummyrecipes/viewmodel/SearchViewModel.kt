@@ -15,7 +15,9 @@ import com.zahra.yummyrecipes.utils.Constants.CUISINE
 import com.zahra.yummyrecipes.utils.Constants.DIET
 import com.zahra.yummyrecipes.utils.Constants.INCLUDE_INGREDIENTS
 import com.zahra.yummyrecipes.utils.Constants.INTOLERANCES
+import com.zahra.yummyrecipes.utils.Constants.MAX_CALORIES
 import com.zahra.yummyrecipes.utils.Constants.MAX_READY_TIME
+import com.zahra.yummyrecipes.utils.Constants.MIN_CALORIES
 import com.zahra.yummyrecipes.utils.Constants.NUMBER
 import com.zahra.yummyrecipes.utils.Constants.TRUE
 import com.zahra.yummyrecipes.utils.Constants.TYPE
@@ -206,7 +208,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
             queries[CUISINE] = region
         }
-            //Diet
+        //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
@@ -225,9 +227,19 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[INTOLERANCES] = allergies
         }
         //Time
-        if(isSearchWithTime.value==true){
+        if (isSearchWithTime.value == true) {
             selectedTimeData.value?.forEach {
-                queries[MAX_READY_TIME] =it
+                queries[MAX_READY_TIME] = it
+            }
+        }
+
+        //Calorie
+        if (isSearchWithCalorie.value == true) {
+            selectedMinCalorieData.value?.forEach {
+                queries[MIN_CALORIES] = it
+            }
+            selectedMaxCalorieData.value?.forEach {
+                queries[MAX_CALORIES] = it
             }
         }
         queries[API_KEY] = setAPIKEY()
@@ -254,7 +266,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     val _selectedAllergiesData = MutableLiveData<List<String>>()
     val selectedAllergiesData: LiveData<List<String>> get() = _selectedAllergiesData
 
-    //Meal and Time
+    //Meal and Time and Region and Calorie
     var isSearchWithFilters = MutableLiveData<Boolean>()
 
     //Meal
@@ -267,7 +279,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Region
     var isSearchWithRegion = MutableLiveData<Boolean>()
 
-    //Selected Meals
+    //Selected Region
     val _selectedRegionData = MutableLiveData<List<String>>()
     val selectedRegionData: LiveData<List<String>> get() = _selectedRegionData
 
@@ -277,6 +289,17 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Selected Time
     val _selectedTimeData = MutableLiveData<List<String>>()
     val selectedTimeData: LiveData<List<String>> get() = _selectedTimeData
+
+    //Calorie per Serving
+    var isSearchWithCalorie = MutableLiveData<Boolean>()
+
+    //Selected Min Calorie
+    val _selectedMinCalorieData = MutableLiveData<List<String>>()
+    val selectedMinCalorieData: LiveData<List<String>> get() = _selectedMinCalorieData
+
+    //Selected Max Calorie
+    val _selectedMaxCalorieData = MutableLiveData<List<String>>()
+    val selectedMaxCalorieData: LiveData<List<String>> get() = _selectedMaxCalorieData
 
 
     private fun selectedIngredientsToString(): String {
