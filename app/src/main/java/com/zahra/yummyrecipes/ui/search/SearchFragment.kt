@@ -137,8 +137,6 @@ class SearchFragment : Fragment() {
             //filterSearch
             filterSearch()
 
-            //
-
             //Filters Buttons Listener
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
@@ -166,8 +164,6 @@ class SearchFragment : Fragment() {
             snackMeal.setOnClickListener {
                 mealClickListener("snack")
             }
-
-
         }
     }
 
@@ -263,7 +259,6 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -346,7 +341,6 @@ class SearchFragment : Fragment() {
                         }
                         val size = sizeMeal + sizeTime
 
-
                         filtersButton.text =
                             "FILTERS ($size)"
                         setOneButtonTextColor(filtersButton, R.color.white)
@@ -382,7 +376,6 @@ class SearchFragment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun checkInternet() {
