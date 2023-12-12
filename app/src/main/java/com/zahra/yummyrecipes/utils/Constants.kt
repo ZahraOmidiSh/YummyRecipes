@@ -39,6 +39,8 @@ object Constants {
     const val INTOLERANCES = "intolerances"
     const val INCLUDE_INGREDIENTS = "includeIngredients"
     const val MAX_READY_TIME = "maxReadyTime"
+    const val MAX_CALORIES = "maxCalories"
+    const val MIN_CALORIES = "minCalories"
 
     //APIs value
     const val MAIN_COURSE = "main course"
