@@ -54,7 +54,7 @@ class SearchFragment : Fragment() {
 
     //    private var isNetworkAvailable by Delegates.notNull<Boolean>()
     private var isNetworkAvailable: Boolean? = null
-//    private var searchString = ""
+    private var searchString = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,8 +81,12 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+
             if (viewModel.searchString.value == null) {
                 viewModel.searchString.value = ""
+            }
+            viewModel.searchString.observe(viewLifecycleOwner) {
+                searchString = it
             }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
@@ -212,7 +216,6 @@ class SearchFragment : Fragment() {
                 viewModel.searchString.value = it.toString()
                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                 loadRecentData()
-                Log.e("searchString", viewModel.searchString.value.toString())
             }
         }
     }
