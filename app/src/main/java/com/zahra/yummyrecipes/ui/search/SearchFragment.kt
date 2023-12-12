@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -136,7 +135,7 @@ class SearchFragment : Fragment() {
             dietsAndAllergiesSearch()
 
             //filterSearch
-            FilterSearch()
+            filterSearch()
 
             //
 
@@ -177,7 +176,7 @@ class SearchFragment : Fragment() {
         viewModel._selectedMealsData.value = listOf(meal)
         viewModel.isSearchWithMeals.value = true
         viewModel.isSearchWithMealOrTime.value = true
-        FilterSearch()
+        filterSearch()
     }
 
     private fun searchClose() {
@@ -185,6 +184,7 @@ class SearchFragment : Fragment() {
             viewModel.isCloseButtonPressed.value = true
             searchEdt.text.clear()
             viewModel.searchString.value = ""
+            searchString = ""
             viewModel.expandedIngredientsList.value!!.forEach {
                 if (it.isSelected) {
                     it.isSelected = false
@@ -227,7 +227,7 @@ class SearchFragment : Fragment() {
                 if (viewModel.isCloseButtonPressed.value == false) {
                     if (it) {
                         closeImg.isVisible = true
-                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                         ingredientsButton.text =
                             "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
@@ -238,7 +238,7 @@ class SearchFragment : Fragment() {
                             setOneButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                         }
                     } else {
-                        if (viewModel.searchString.value?.isNotEmpty() == true) {
+                        if (searchString.isNotEmpty()) {
                             closeImg.isVisible = true
                             ingredientsButton.text = "INGREDIENTS"
 
@@ -249,10 +249,10 @@ class SearchFragment : Fragment() {
                                 setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
                                 setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
                             }
-                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithMealOrTime.value == true || viewModel.isSearchWithMeals.value == true) {
+                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithMealOrTime.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -275,7 +275,7 @@ class SearchFragment : Fragment() {
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                         var sizeDiets = 0
                         var sizeAllergies = 0
@@ -308,11 +308,11 @@ class SearchFragment : Fragment() {
                                 setOneButtonTextColor(dietsButton, R.color.rose_ebony)
                                 setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
                             }
-                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
                             if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithMealOrTime.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
                             }
                         }
@@ -325,7 +325,7 @@ class SearchFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun FilterSearch() {
+    private fun filterSearch() {
         binding.apply {
             viewModel.isSearchWithMealOrTime.observe(viewLifecycleOwner) {
                 if (viewModel.isCloseButtonPressed.value == false) {
@@ -333,7 +333,7 @@ class SearchFragment : Fragment() {
                         closeImg.isVisible = true
                         simpleSearchLay.isVisible = true
                         advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
                         loadRecentData()
                         var sizeMeal = 0
                         var sizeTime = 0
@@ -368,11 +368,11 @@ class SearchFragment : Fragment() {
                                 setOneButtonTextColor(filtersButton, R.color.rose_ebony)
                                 setOneButtonBackgroundTint(filtersButton, R.color.whiteSmoke)
                             }
-                            viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
                             if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
                             }
                         }
