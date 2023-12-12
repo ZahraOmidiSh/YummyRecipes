@@ -83,7 +83,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
             //Selected Ingredients Button Listener
             searchWithIngredientsButton.setOnClickListener {
-                viewModel.slideOffset = 0f
+                viewModel.ingredientSlideOffset = 0f
                 notSureItems.forEach {
                     viewModel.updateExpandedIngredientByName(
                         it, true
@@ -161,7 +161,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
             ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
-                setButtonPosition(viewModel.slideOffset)
+                setButtonPosition(viewModel.ingredientSlideOffset)
                 binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
             }
         })
@@ -236,7 +236,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun closeButton(closeImg: ImageView) {
         closeImg.setOnClickListener {
-            viewModel.slideOffset = 0f
+            viewModel.ingredientSlideOffset = 0f
             if (viewModel.isSearchWithIngredient.value == true) {
                 viewModel.updateExpandedIngredientBySelectedNames()
             } else {
@@ -254,7 +254,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
 
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
-            viewModel.slideOffset = 0f
+            viewModel.ingredientSlideOffset = 0f
             if (viewModel.isSearchWithIngredient.value == true) {
                 viewModel.updateExpandedIngredientBySelectedNames()
             } else {
@@ -269,7 +269,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                viewModel.slideOffset = slideOffset
+                viewModel.ingredientSlideOffset = slideOffset
                 setButtonPosition(slideOffset)
             }
 

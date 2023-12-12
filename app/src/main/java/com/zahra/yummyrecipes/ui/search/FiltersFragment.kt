@@ -7,10 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentFiltersBinding
@@ -55,6 +58,9 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setTimeButtonColor(notSureTime)
                 setShowResultButtonColor()
             }
+
+            //set button first position
+            setButtonFirstPosition()
 
             breakfastButton.setOnClickListener {
                 setMealButtonClickListener(breakfastButton, "breakfast")
@@ -101,9 +107,52 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 findNavController().navigateUp()
             }
             closeImg.setOnClickListener {
+                viewModel.filterSlideOffset = 0f
                 findNavController().navigateUp()
             }
         }
+        // Set up BottomSheetCallback
+        setBottomSheetCallback()
+    }
+
+    private fun setButtonFirstPosition() {
+        binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :
+            ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                setButtonPosition(viewModel.filterSlideOffset)
+                binding.root.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+    }
+
+    private fun setBottomSheetCallback() {
+        (dialog as? BottomSheetDialog)?.setOnDismissListener {
+            viewModel.filterSlideOffset = 0f
+        }
+        val behavior = (dialog as? BottomSheetDialog)?.behavior
+        behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                viewModel.filterSlideOffset = slideOffset
+                setButtonPosition(slideOffset)
+            }
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+            }
+        })
+    }
+
+    private fun setButtonPosition(slideOffset: Float) {
+        val parentHeight = binding.root.height
+        val parentWidth = binding.root.width
+        val fraction = parentHeight / parentWidth
+        var desiredPosition = 0.0
+        if (fraction >= 1.85) {
+            desiredPosition = 0.622 * parentHeight + (600 * slideOffset)
+        } else {
+            desiredPosition = 0.54 * parentHeight + (600 * slideOffset)
+        }
+        // Set the position of your view
+        binding.showResultsButton.y = desiredPosition.toFloat()
+
     }
 
     private fun setMealButtonClickListener(button: Button, mealName: String) {

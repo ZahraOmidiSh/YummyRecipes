@@ -42,8 +42,11 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Search With Ingredient
     var isSearchWithIngredient = MutableLiveData<Boolean>()
 
-    //SlideOffset for Button Position
-    var slideOffset = 0f
+    //SlideOffset for Button Position in Ingredient Bottom Sheet Fragment
+    var ingredientSlideOffset = 0f
+
+    //SlideOffset for Button Position in Filters Bottom Sheet Fragment
+    var filterSlideOffset = 0f
 
     //Selected Ingredient List
     val _selectedIngredientsNameData = MutableLiveData<List<String>>()
