@@ -208,7 +208,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
             queries[CUISINE] = region
         }
-        //Diet
+            //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
@@ -227,19 +227,29 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[INTOLERANCES] = allergies
         }
         //Time
-        if (isSearchWithTime.value == true) {
+        if(isSearchWithTime.value==true){
             selectedTimeData.value?.forEach {
-                queries[MAX_READY_TIME] = it
+                queries[MAX_READY_TIME] =it
             }
         }
 
         //Calorie
-        if (isSearchWithCalorie.value == true) {
-            selectedMinCalorieData.value?.forEach {
-                queries[MIN_CALORIES] = it
-            }
-            selectedMaxCalorieData.value?.forEach {
-                queries[MAX_CALORIES] = it
+        if(isSearchWithCalorie.value==true){
+            selectedCalorieData.value?.forEach {
+                when(it){
+                    "0-200"->{
+                        queries[MAX_CALORIES] =200.toString()
+                        queries[MIN_CALORIES] =0.toString()
+                    }
+                    "200-400"->{
+                        queries[MAX_CALORIES] =400.toString()
+                        queries[MIN_CALORIES] =200.toString()
+                    }
+                    "400-600"->{
+                        queries[MAX_CALORIES] =600.toString()
+                        queries[MIN_CALORIES] =400.toString()
+                    }
+                }
             }
         }
         queries[API_KEY] = setAPIKEY()
@@ -293,13 +303,9 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //Calorie per Serving
     var isSearchWithCalorie = MutableLiveData<Boolean>()
 
-    //Selected Min Calorie
-    val _selectedMinCalorieData = MutableLiveData<List<String>>()
-    val selectedMinCalorieData: LiveData<List<String>> get() = _selectedMinCalorieData
-
-    //Selected Max Calorie
-    val _selectedMaxCalorieData = MutableLiveData<List<String>>()
-    val selectedMaxCalorieData: LiveData<List<String>> get() = _selectedMaxCalorieData
+    //Selected Calorie
+    val _selectedCalorieData = MutableLiveData<List<String>>()
+    val selectedCalorieData: LiveData<List<String>> get() = _selectedCalorieData
 
 
     private fun selectedIngredientsToString(): String {
