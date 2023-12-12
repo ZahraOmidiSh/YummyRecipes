@@ -192,10 +192,12 @@ class SearchFragment : Fragment() {
             viewModel._selectedMealsData.value = emptyList()
             viewModel._selectedRegionData.value = emptyList()
             viewModel._selectedTimeData.value = emptyList()
+            viewModel._selectedCalorieData.value = emptyList()
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithMeals.value = false
             viewModel.isSearchWithRegion.value = false
             viewModel.isSearchWithTime.value = false
+            viewModel.isSearchWithCalorie.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
@@ -334,6 +336,7 @@ class SearchFragment : Fragment() {
                         loadRecentData()
                         var sizeMeal = 0
                         var sizeTime = 0
+                        var sizeCalorie = 0
                         var sizeRegion = 0
 
                         if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
@@ -345,7 +348,10 @@ class SearchFragment : Fragment() {
                         if (viewModel.selectedTimeData.value?.isNotEmpty() == true) {
                             sizeTime = viewModel.selectedTimeData.value?.size!!
                         }
-                        val size = sizeMeal + sizeTime+ sizeRegion
+                        if (viewModel.selectedCalorieData.value?.isNotEmpty() == true) {
+                            sizeCalorie = viewModel.selectedCalorieData.value?.size!!
+                        }
+                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie
 
                         filtersButton.text =
                             "FILTERS ($size)"
