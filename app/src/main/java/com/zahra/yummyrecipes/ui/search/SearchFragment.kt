@@ -357,7 +357,7 @@ class SearchFragment : Fragment() {
                         if (viewModel.selectedCalorieData.value?.isNotEmpty() == true) {
                             sizeCalorie = viewModel.selectedCalorieData.value?.size!!
                         }
-                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie+ sizeTools
+                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie + sizeTools
 
                         filtersButton.text =
                             "FILTERS ($size)"

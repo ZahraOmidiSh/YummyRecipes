@@ -85,14 +85,6 @@ class RecipeFragment : Fragment() {
         loadVeganData()
         loadHealthyData()
 
-
-        //
-//        binding.viewAllMealsOnABudget.setOnClickListener{
-//
-//        }
-        //
-
-
     }
 
     //Suggested
