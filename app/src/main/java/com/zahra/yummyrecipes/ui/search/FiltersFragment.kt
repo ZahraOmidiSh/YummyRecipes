@@ -32,6 +32,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
     private var notSureTime = mutableListOf<String>()
     private var notSureRegion = mutableListOf<String>()
     private var notSureCalorie = mutableListOf<String>()
+    private var notSureTools = mutableListOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[SearchViewModel::class.java]
@@ -52,6 +53,12 @@ class FiltersFragment : BottomSheetDialogFragment() {
             viewModel.selectedMealsData.observe(viewLifecycleOwner) { meals ->
                 notSureMeals = meals.toMutableList()
                 setMealsButtonColor(notSureMeals)
+                setShowResultButtonColor()
+            }
+            //observe Tools data - set showResultsButton color
+            viewModel.selectedToolsData.observe(viewLifecycleOwner) { tools ->
+                notSureTools = tools.toMutableList()
+                setToolsButtonColor(notSureTools)
                 setShowResultButtonColor()
             }
             //observe Region data - set showResultsButton color
@@ -115,6 +122,17 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 setMealButtonClickListener(dessertButton, "dessert")
             }
 
+            //Tools
+            ovenButton.setOnClickListener {
+                setToolsButtonClickListener(ovenButton, "oven")
+            }
+            blenderButton.setOnClickListener {
+                setToolsButtonClickListener(blenderButton, "blender")
+            }
+            foodProcessorButton.setOnClickListener {
+                setToolsButtonClickListener(foodProcessorButton, "food-processor")
+            }
+
             //Region
             asianButton.setOnClickListener {
                 setRegionButtonClickListener(asianButton, "Asian")
@@ -141,6 +159,10 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 viewModel._selectedMealsData.value = notSureMeals
                 viewModel.isSearchWithMeals.value =
                     viewModel.selectedMealsData.value?.isNotEmpty() == true
+                //Tools
+                viewModel._selectedToolsData.value = notSureTools
+                viewModel.isSearchWithTools.value =
+                    viewModel.selectedToolsData.value?.isNotEmpty() == true
                 //Region
                 viewModel._selectedRegionData.value = notSureRegion
                 viewModel.isSearchWithRegion.value =
@@ -155,7 +177,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
                     viewModel.selectedTimeData.value?.isNotEmpty() == true
                 //CloseButton
                 if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true ||
-                    viewModel.isSearchWithRegion.value == true || viewModel.isSearchWithCalorie.value == true
+                    viewModel.isSearchWithRegion.value == true || viewModel.isSearchWithCalorie.value == true || viewModel.isSearchWithTools.value == true
                 ) {
                     viewModel.isCloseButtonPressed.value = false
                     viewModel.isSearchWithFilters.value = true
@@ -166,6 +188,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
                 notSureTime.clear()
                 notSureRegion.clear()
                 notSureCalorie.clear()
+                notSureTools.clear()
                 findNavController().navigateUp()
             }
             closeImg.setOnClickListener {
@@ -227,6 +250,34 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
         } else {
             notSureMeals.add(mealName)
+            setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
+
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), R.color.white
+                )
+            )
+        }
+        binding.showResultsButton.isEnabled = true
+        binding.showResultsButton.setTextColor(
+            ContextCompat.getColor(
+                requireContext(), R.color.white
+            )
+        )
+        setButtonBackgroundBasedOnTheme(
+            binding.showResultsButton, R.color.congo_pink, R.color.big_foot_feet
+        )
+    }
+
+    private fun setToolsButtonClickListener(button: Button, toolName: String) {
+        if (notSureTools.contains(toolName)) {
+            notSureTools.remove(toolName)
+
+            setButtonBackgroundBasedOnTheme(button, R.color.eerie_black, R.color.whiteSmoke)
+            setButtonTextColorBasedOnTheme(button, R.color.white, R.color.rose_ebony)
+
+        } else {
+            notSureTools.add(toolName)
             setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
 
             button.setTextColor(
@@ -366,6 +417,44 @@ class FiltersFragment : BottomSheetDialogFragment() {
         }
     }
 
+    private fun setToolsButtonColor(notSureTools: List<String>) {
+        binding.apply {
+            notSureTools.forEach { tool ->
+                when (tool) {
+                    "oven" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            ovenButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            ovenButton, R.color.white, R.color.white
+                        )
+                    }
+
+                    "blender" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            blenderButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            blenderButton, R.color.white, R.color.white
+                        )
+                    }
+
+                    "food-processor" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            foodProcessorButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            foodProcessorButton,
+                            R.color.white,
+                            R.color.white
+                        )
+                    }
+
+                }
+            }
+        }
+    }
+
     private fun setRegionButtonColor(notSureRegions: List<String>) {
         binding.apply {
             notSureRegions.forEach { region ->
@@ -494,6 +583,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
                             between400600CalButton, R.color.white, R.color.white
                         )
                     }
+
                     "600-800" -> {
                         setButtonBackgroundBasedOnTheme(
                             between600800CalButton, R.color.congo_pink, R.color.big_foot_feet
@@ -516,7 +606,9 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
     private fun setShowResultButtonColor() {
         binding.apply {
-            if (notSureMeals.isEmpty() && notSureTime.isEmpty() && notSureRegion.isEmpty()) {
+            if (notSureMeals.isEmpty() && notSureTime.isEmpty() && notSureRegion.isEmpty()
+                && notSureCalorie.isEmpty() && notSureTools.isEmpty()
+            ) {
                 showResultsButton.isEnabled = false
                 showResultsButton.setTextColor(
                     ContextCompat.getColor(
