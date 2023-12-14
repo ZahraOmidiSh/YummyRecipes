@@ -193,11 +193,13 @@ class SearchFragment : Fragment() {
             viewModel._selectedRegionData.value = emptyList()
             viewModel._selectedTimeData.value = emptyList()
             viewModel._selectedCalorieData.value = emptyList()
+            viewModel._selectedToolsData.value = emptyList()
             viewModel.isSearchWithIngredient.value = false
             viewModel.isSearchWithMeals.value = false
             viewModel.isSearchWithRegion.value = false
             viewModel.isSearchWithTime.value = false
             viewModel.isSearchWithCalorie.value = false
+            viewModel.isSearchWithTools.value = false
             viewModel.isSearchWithDiets.value = false
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
@@ -338,9 +340,13 @@ class SearchFragment : Fragment() {
                         var sizeTime = 0
                         var sizeCalorie = 0
                         var sizeRegion = 0
+                        var sizeTools = 0
 
                         if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
                             sizeMeal = viewModel.selectedMealsData.value?.size!!
+                        }
+                        if (viewModel.selectedToolsData.value?.isNotEmpty() == true) {
+                            sizeTools = viewModel.selectedToolsData.value?.size!!
                         }
                         if (viewModel.selectedRegionData.value?.isNotEmpty() == true) {
                             sizeRegion = viewModel.selectedRegionData.value?.size!!
@@ -351,7 +357,7 @@ class SearchFragment : Fragment() {
                         if (viewModel.selectedCalorieData.value?.isNotEmpty() == true) {
                             sizeCalorie = viewModel.selectedCalorieData.value?.size!!
                         }
-                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie
+                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie+ sizeTools
 
                         filtersButton.text =
                             "FILTERS ($size)"
