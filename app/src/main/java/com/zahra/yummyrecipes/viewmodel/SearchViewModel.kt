@@ -249,6 +249,10 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
                         queries[MAX_CALORIES] =600.toString()
                         queries[MIN_CALORIES] =400.toString()
                     }
+                    "600-800"->{
+                        queries[MAX_CALORIES] =600.toString()
+                        queries[MIN_CALORIES] =400.toString()
+                    }
                 }
             }
         }

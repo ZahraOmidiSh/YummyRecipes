@@ -97,6 +97,9 @@ class FiltersFragment : BottomSheetDialogFragment() {
             between400600CalButton.setOnClickListener {
                 setCalorieButtonClickListener(between400600CalButton, "400-600")
             }
+            between600800CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between600800CalButton, "600-800")
+            }
 
             //Meals
             breakfastButton.setOnClickListener {
@@ -305,6 +308,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
             setButtonToDefault(binding.under200CalButton)
             setButtonToDefault(binding.between200400CalButton)
             setButtonToDefault(binding.between400600CalButton)
+            setButtonToDefault(binding.between600800CalButton)
             notSureCalorie.clear()
             notSureCalorie.add(calorie)
             setButtonBackgroundBasedOnTheme(button, R.color.congo_pink, R.color.big_foot_feet)
@@ -488,6 +492,14 @@ class FiltersFragment : BottomSheetDialogFragment() {
                         )
                         setButtonTextColorBasedOnTheme(
                             between400600CalButton, R.color.white, R.color.white
+                        )
+                    }
+                    "600-800" -> {
+                        setButtonBackgroundBasedOnTheme(
+                            between600800CalButton, R.color.congo_pink, R.color.big_foot_feet
+                        )
+                        setButtonTextColorBasedOnTheme(
+                            between600800CalButton, R.color.white, R.color.white
                         )
                     }
                 }
