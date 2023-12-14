@@ -30,6 +30,7 @@ object Constants {
     //APIs key
     const val API_KEY = "apiKey"
     const val TYPE = "type"
+    const val EQUIPMENT = "equipment"
     const val CUISINE = "cuisine"
     const val NUMBER = "number"
     const val ADD_RECIPE_INFORMATION = "addRecipeInformation"
