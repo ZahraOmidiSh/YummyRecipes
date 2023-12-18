@@ -297,18 +297,9 @@ class SearchFragment : Fragment() {
                         }
 
                     } else {
+                        setOneFilterButtonsToDefault(dietsButton)
+                        dietsButton.text = "DIETS"
                         if (viewModel.searchString.value?.isNotEmpty() == true) {
-                            closeImg.isVisible = true
-                            simpleSearchLay.isVisible = true
-                            advancedSearchScroll.isVisible = false
-                            dietsButton.text = "DIETS"
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(dietsButton, R.color.white)
-                                setOneButtonBackgroundTint(dietsButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(dietsButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(dietsButton, R.color.whiteSmoke)
-                            }
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
@@ -368,18 +359,9 @@ class SearchFragment : Fragment() {
                             setOneButtonBackgroundTint(filtersButton, R.color.big_foot_feet)
                         }
                     } else {
+                        setOneFilterButtonsToDefault(filtersButton)
+                        filtersButton.text = "FILTERS"
                         if (viewModel.searchString.value?.isNotEmpty() == true) {
-                            closeImg.isVisible = true
-                            simpleSearchLay.isVisible = true
-                            advancedSearchScroll.isVisible = false
-                            filtersButton.text = "FILTERS"
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(filtersButton, R.color.white)
-                                setOneButtonBackgroundTint(filtersButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(filtersButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(filtersButton, R.color.whiteSmoke)
-                            }
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
@@ -524,6 +506,19 @@ class SearchFragment : Fragment() {
                 setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
                 setOneButtonTextColor(dietsButton, R.color.rose_ebony)
                 setOneButtonTextColor(filtersButton, R.color.rose_ebony)
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setOneFilterButtonsToDefault(button: Button) {
+        binding.apply {
+            if (isDarkTheme()) {
+                setOneButtonBackgroundTint(button, R.color.eerie_black)
+                setOneButtonTextColor(button, R.color.white)
+            } else {
+                setOneButtonBackgroundTint(button, R.color.whiteSmoke)
+                setOneButtonTextColor(button, R.color.rose_ebony)
             }
         }
     }
