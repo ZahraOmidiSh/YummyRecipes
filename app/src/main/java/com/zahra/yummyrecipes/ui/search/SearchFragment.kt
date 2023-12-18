@@ -210,6 +210,15 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithDietsOrAllergies.value = true
                 filterSearch()
             }
+
+            //QuickAndEasy
+            quickAndEasy.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedTimeData.value = listOf("15")
+                viewModel.isSearchWithTime.value = true
+                viewModel.isSearchWithDietsOrAllergies.value = true
+                filterSearch()
+            }
         }
     }
 

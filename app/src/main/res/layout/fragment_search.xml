@@ -434,7 +434,7 @@
                     android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
-                    app:layout_constraintEnd_toStartOf="@+id/bakedGoods"
+                    app:layout_constraintEnd_toStartOf="@+id/quick_and_easy"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/asian">
@@ -456,7 +456,7 @@
                 </com.google.android.material.card.MaterialCardView>
                 <!--baked Goods-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/bakedGoods"
+                    android:id="@+id/quick_and_easy"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:backgroundTint="@color/white"
@@ -477,7 +477,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
-                        android:text="@string/baked_goods"
+                        android:text="@string/quick_and_easy"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13mdp" />
 
