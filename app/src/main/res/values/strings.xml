@@ -113,5 +113,6 @@
     <string name="oven">Oven</string>
     <string name="blender">Blender</string>
     <string name="food_processor">Food Processor</string>
+    <string name="oven_baked">Oven-Baked</string>
 
 </resources>

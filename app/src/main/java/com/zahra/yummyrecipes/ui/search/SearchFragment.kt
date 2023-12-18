@@ -166,10 +166,29 @@ class SearchFragment : Fragment() {
             }
 
             //Most popular categories
+            //lowCalorie
             lowCalorie.setOnClickListener {
                 viewModel.isCloseButtonPressed.value = false
                 viewModel._selectedCalorieData.value = listOf("0-200")
                 viewModel.isSearchWithCalorie.value = true
+                viewModel.isSearchWithFilters.value = true
+                filterSearch()
+            }
+
+            //ovenBaked
+            ovenBaked.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedToolsData.value = listOf("oven")
+                viewModel.isSearchWithTools.value = true
+                viewModel.isSearchWithFilters.value = true
+                filterSearch()
+            }
+
+            //Asian
+            asian.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedToolsData.value = listOf("oven")
+                viewModel.isSearchWithTools.value = true
                 viewModel.isSearchWithFilters.value = true
                 filterSearch()
             }
