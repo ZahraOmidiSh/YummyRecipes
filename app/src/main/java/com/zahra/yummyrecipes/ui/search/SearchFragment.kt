@@ -216,7 +216,7 @@ class SearchFragment : Fragment() {
                 viewModel.isCloseButtonPressed.value = false
                 viewModel._selectedTimeData.value = listOf("15")
                 viewModel.isSearchWithTime.value = true
-                viewModel.isSearchWithDietsOrAllergies.value = true
+                viewModel.isSearchWithFilters.value = true
                 filterSearch()
             }
         }
