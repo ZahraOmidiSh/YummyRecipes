@@ -378,7 +378,7 @@
                     android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
-                    app:layout_constraintEnd_toStartOf="@+id/mexican"
+                    app:layout_constraintEnd_toStartOf="@+id/mediterranean"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lowCalorie">
@@ -400,7 +400,7 @@
                 </com.google.android.material.card.MaterialCardView>
                 <!--Mexican-->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/mexican"
+                    android:id="@+id/mediterranean"
                     android:layout_width="@dimen/_120mdp"
                     android:layout_height="@dimen/_70mdp"
                     android:backgroundTint="@color/white"
@@ -421,7 +421,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
-                        android:text="@string/mexican"
+                        android:text="@string/mediterranean"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_13mdp" />
 

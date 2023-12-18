@@ -187,8 +187,17 @@ class SearchFragment : Fragment() {
             //Asian
             asian.setOnClickListener {
                 viewModel.isCloseButtonPressed.value = false
-                viewModel._selectedToolsData.value = listOf("oven")
-                viewModel.isSearchWithTools.value = true
+                viewModel._selectedRegionData.value = listOf("Asian")
+                viewModel.isSearchWithRegion.value = true
+                viewModel.isSearchWithFilters.value = true
+                filterSearch()
+            }
+
+            //Mediterranean
+            mediterranean.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedRegionData.value = listOf("Mediterranean")
+                viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
                 filterSearch()
             }
