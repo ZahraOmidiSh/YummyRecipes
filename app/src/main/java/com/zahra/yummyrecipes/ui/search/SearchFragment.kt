@@ -164,6 +164,15 @@ class SearchFragment : Fragment() {
             snackMeal.setOnClickListener {
                 mealClickListener("snack")
             }
+
+            //Most popular categories
+            lowCalorie.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedCalorieData.value = listOf("0-200")
+                viewModel.isSearchWithCalorie.value = true
+                viewModel.isSearchWithFilters.value = true
+                filterSearch()
+            }
         }
     }
 
@@ -174,6 +183,7 @@ class SearchFragment : Fragment() {
         viewModel.isSearchWithFilters.value = true
         filterSearch()
     }
+
 
     private fun searchClose() {
         binding.apply {
