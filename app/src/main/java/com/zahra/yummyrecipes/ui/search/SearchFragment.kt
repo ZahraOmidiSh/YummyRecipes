@@ -201,6 +201,15 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithFilters.value = true
                 filterSearch()
             }
+
+            //Vegetarian
+            vegetarian.setOnClickListener {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel._selectedDietsData.value = listOf("Vegetarian")
+                viewModel.isSearchWithDiets.value = true
+                viewModel.isSearchWithDietsOrAllergies.value = true
+                filterSearch()
+            }
         }
     }
 
