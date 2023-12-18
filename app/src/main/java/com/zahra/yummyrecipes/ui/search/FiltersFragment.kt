@@ -49,6 +49,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+
             //observe Meal data - set showResultsButton color
             viewModel.selectedMealsData.observe(viewLifecycleOwner) { meals ->
                 notSureMeals = meals.toMutableList()

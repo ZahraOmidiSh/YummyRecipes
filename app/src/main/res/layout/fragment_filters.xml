@@ -7,13 +7,14 @@
     tools:context=".ui.search.FiltersFragment">
 
     <!--Scroll View-->
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingHorizontal="@dimen/_5mdp"
         android:paddingTop="@dimen/_25mdp"
-        android:paddingBottom="@dimen/_90mdp"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/_115mdp"
         app:layout_constraintTop_toTopOf="parent">
         <!--All Filters Layout-->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +45,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/under_15_min"
@@ -96,7 +97,7 @@
                 <TextView
                     android:id="@+id/mealTypeTxt"
                     style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_20mdp"
                     android:text="@string/meal_type"
                     android:textSize="@dimen/_12mdp"
                     android:textStyle="bold"
@@ -108,7 +109,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/breakfast"
@@ -175,7 +176,7 @@
                 <TextView
                     android:id="@+id/caloriePerServingTxt"
                     style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_20mdp"
                     android:text="@string/calorie_per_serving"
                     android:textSize="@dimen/_12mdp"
                     android:textStyle="bold"
@@ -187,7 +188,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/under_200_cal"
@@ -233,6 +234,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/_600_800_cal"
@@ -253,7 +255,7 @@
                 <TextView
                     android:id="@+id/regionTxt"
                     style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_20mdp"
                     android:text="@string/region"
                     android:textSize="@dimen/_12mdp"
                     android:textStyle="bold"
@@ -265,7 +267,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/asian_filter"
@@ -312,6 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:insetTop="@dimen/_7mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/indian"
                     android:textSize="@dimen/_7font_mdp"
@@ -362,7 +365,7 @@
                 <TextView
                     android:id="@+id/toolsAndAppliancesTxt"
                     style="@style/Search_Titles"
-                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_20mdp"
                     android:text="@string/tools_and_appliances"
                     android:textSize="@dimen/_12mdp"
                     android:textStyle="bold"
@@ -374,7 +377,7 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_8mdp"
+                    android:layout_marginTop="@dimen/_12mdp"
                     android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/oven"
@@ -419,7 +422,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <!--Close-->
     <ImageView
