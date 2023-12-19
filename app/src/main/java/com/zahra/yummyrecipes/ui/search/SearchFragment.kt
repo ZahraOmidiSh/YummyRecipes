@@ -296,21 +296,16 @@ class SearchFragment : Fragment() {
                             setOneButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
                         }
                     } else {
-                        if (searchString.isNotEmpty()) {
-                            closeImg.isVisible = true
-                            ingredientsButton.text = "INGREDIENTS"
-
-                            if (isDarkTheme()) {
-                                setOneButtonTextColor(ingredientsButton, R.color.white)
-                                setOneButtonBackgroundTint(ingredientsButton, R.color.eerie_black)
-                            } else {
-                                setOneButtonTextColor(ingredientsButton, R.color.rose_ebony)
-                                setOneButtonBackgroundTint(ingredientsButton, R.color.whiteSmoke)
-                            }
+                        setOneFilterButtonsToDefault(ingredientsButton)
+                        ingredientsButton.text = "INGREDIENTS"
+                        if (viewModel.searchString.value?.isNotEmpty() == true) {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
                             if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
+                                viewModel.callSearchApi(viewModel.searchQueries(""))
+                                loadRecentData()
+                            }else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false){
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
@@ -361,6 +356,9 @@ class SearchFragment : Fragment() {
                         } else {
                             if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                                loadRecentData()
+                            }else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false){
+                                viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
                         }
@@ -423,6 +421,9 @@ class SearchFragment : Fragment() {
                         } else {
                             if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                                loadRecentData()
+                            }else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false){
+                                viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
                             }
                         }
