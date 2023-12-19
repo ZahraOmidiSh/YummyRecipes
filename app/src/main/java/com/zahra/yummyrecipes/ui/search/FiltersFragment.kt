@@ -101,41 +101,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
             //Show results Button Listener
             showResultsButton.setOnClickListener {
-                //Meals
-                viewModel._selectedMealsData.value = notSureMeals
-                viewModel.isSearchWithMeals.value =
-                    viewModel.selectedMealsData.value?.isNotEmpty() == true
-                //Tools
-                viewModel._selectedToolsData.value = notSureTools
-                viewModel.isSearchWithTools.value =
-                    viewModel.selectedToolsData.value?.isNotEmpty() == true
-                //Region
-                viewModel._selectedRegionData.value = notSureRegion
-                viewModel.isSearchWithRegion.value =
-                    viewModel.selectedRegionData.value?.isNotEmpty() == true
-                //Calorie
-                viewModel._selectedCalorieData.value = notSureCalorie
-                viewModel.isSearchWithCalorie.value =
-                    viewModel.selectedCalorieData.value?.isNotEmpty() == true
-                //Time
-                viewModel._selectedTimeData.value = notSureTime
-                viewModel.isSearchWithTime.value =
-                    viewModel.selectedTimeData.value?.isNotEmpty() == true
-                //CloseButton
-                if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true ||
-                    viewModel.isSearchWithRegion.value == true || viewModel.isSearchWithCalorie.value == true || viewModel.isSearchWithTools.value == true
-                ) {
-                    viewModel.isCloseButtonPressed.value = false
-                    viewModel.isSearchWithFilters.value = true
-                } else {
-                    viewModel.isSearchWithFilters.value = false
-                }
-                notSureMeals.clear()
-                notSureTime.clear()
-                notSureRegion.clear()
-                notSureCalorie.clear()
-                notSureTools.clear()
-                findNavController().navigateUp()
+                resultButton()
             }
             closeImg.setOnClickListener {
                 viewModel.filterSlideOffset = 0f
@@ -144,6 +110,46 @@ class FiltersFragment : BottomSheetDialogFragment() {
         }
         // Set up BottomSheetCallback
         setBottomSheetCallback()
+    }
+
+    private fun resultButton(){
+        binding.apply {
+            //Meals
+            viewModel._selectedMealsData.value = notSureMeals
+            viewModel.isSearchWithMeals.value =
+                viewModel.selectedMealsData.value?.isNotEmpty() == true
+            //Tools
+            viewModel._selectedToolsData.value = notSureTools
+            viewModel.isSearchWithTools.value =
+                viewModel.selectedToolsData.value?.isNotEmpty() == true
+            //Region
+            viewModel._selectedRegionData.value = notSureRegion
+            viewModel.isSearchWithRegion.value =
+                viewModel.selectedRegionData.value?.isNotEmpty() == true
+            //Calorie
+            viewModel._selectedCalorieData.value = notSureCalorie
+            viewModel.isSearchWithCalorie.value =
+                viewModel.selectedCalorieData.value?.isNotEmpty() == true
+            //Time
+            viewModel._selectedTimeData.value = notSureTime
+            viewModel.isSearchWithTime.value =
+                viewModel.selectedTimeData.value?.isNotEmpty() == true
+            //CloseButton
+            if (viewModel.isSearchWithMeals.value == true || viewModel.isSearchWithTime.value == true ||
+                viewModel.isSearchWithRegion.value == true || viewModel.isSearchWithCalorie.value == true || viewModel.isSearchWithTools.value == true
+            ) {
+                viewModel.isCloseButtonPressed.value = false
+                viewModel.isSearchWithFilters.value = true
+            } else {
+                viewModel.isSearchWithFilters.value = false
+            }
+            notSureMeals.clear()
+            notSureTime.clear()
+            notSureRegion.clear()
+            notSureCalorie.clear()
+            notSureTools.clear()
+            findNavController().navigateUp()
+        }
     }
 
     private fun timeFilters(){
