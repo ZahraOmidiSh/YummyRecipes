@@ -85,74 +85,19 @@ class FiltersFragment : BottomSheetDialogFragment() {
             setButtonFirstPosition()
 
             //Time
-            under15MinutesButton.setOnClickListener {
-                setTimeButtonClickListener(under15MinutesButton, "15")
-            }
-            under30MinutesButton.setOnClickListener {
-                setTimeButtonClickListener(under30MinutesButton, "30")
-            }
-            under60MinutesButton.setOnClickListener {
-                setTimeButtonClickListener(under60MinutesButton, "60")
-            }
+            timeFilters()
 
             //Calorie
-            under200CalButton.setOnClickListener {
-                setCalorieButtonClickListener(under200CalButton, "0-200")
-            }
-            between200400CalButton.setOnClickListener {
-                setCalorieButtonClickListener(between200400CalButton, "200-400")
-            }
-            between400600CalButton.setOnClickListener {
-                setCalorieButtonClickListener(between400600CalButton, "400-600")
-            }
-            between600800CalButton.setOnClickListener {
-                setCalorieButtonClickListener(between600800CalButton, "600-800")
-            }
+            calorieFilters()
 
             //Meals
-            breakfastButton.setOnClickListener {
-                setMealButtonClickListener(breakfastButton, "breakfast")
-            }
-            mainCourseButton.setOnClickListener {
-                setMealButtonClickListener(mainCourseButton, "main course")
-            }
-            snackButton.setOnClickListener {
-                setMealButtonClickListener(snackButton, "snack")
-            }
-            dessertButton.setOnClickListener {
-                setMealButtonClickListener(dessertButton, "dessert")
-            }
+            mealFilters()
 
             //Tools
-            ovenButton.setOnClickListener {
-                setToolsButtonClickListener(ovenButton, "oven")
-            }
-            blenderButton.setOnClickListener {
-                setToolsButtonClickListener(blenderButton, "blender")
-            }
-            foodProcessorButton.setOnClickListener {
-                setToolsButtonClickListener(foodProcessorButton, "food-processor")
-            }
+            toolFilters()
 
             //Region
-            asianButton.setOnClickListener {
-                setRegionButtonClickListener(asianButton, "Asian")
-            }
-            chineseButton.setOnClickListener {
-                setRegionButtonClickListener(chineseButton, "Chinese")
-            }
-            frenchButton.setOnClickListener {
-                setRegionButtonClickListener(frenchButton, "French")
-            }
-            indianButton.setOnClickListener {
-                setRegionButtonClickListener(indianButton, "Indian")
-            }
-            italianButton.setOnClickListener {
-                setRegionButtonClickListener(italianButton, "Italian")
-            }
-            mediterraneanButton.setOnClickListener {
-                setRegionButtonClickListener(mediterraneanButton, "Mediterranean")
-            }
+            regionFilters()
 
             //Show results Button Listener
             showResultsButton.setOnClickListener {
@@ -200,6 +145,96 @@ class FiltersFragment : BottomSheetDialogFragment() {
         // Set up BottomSheetCallback
         setBottomSheetCallback()
     }
+
+    private fun timeFilters(){
+        binding.apply {
+            under15MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under15MinutesButton, "15")
+            }
+            under30MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under30MinutesButton, "30")
+            }
+            under60MinutesButton.setOnClickListener {
+                setTimeButtonClickListener(under60MinutesButton, "60")
+            }
+        }
+
+    }
+    private fun calorieFilters(){
+        binding.apply {
+            under200CalButton.setOnClickListener {
+                setCalorieButtonClickListener(under200CalButton, "0-200")
+            }
+            between200400CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between200400CalButton, "200-400")
+            }
+            between400600CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between400600CalButton, "400-600")
+            }
+            between600800CalButton.setOnClickListener {
+                setCalorieButtonClickListener(between600800CalButton, "600-800")
+            }
+        }
+
+    }
+
+    private fun mealFilters(){
+        binding.apply {
+            breakfastButton.setOnClickListener {
+                setMealButtonClickListener(breakfastButton, "breakfast")
+            }
+            mainCourseButton.setOnClickListener {
+                setMealButtonClickListener(mainCourseButton, "main course")
+            }
+            snackButton.setOnClickListener {
+                setMealButtonClickListener(snackButton, "snack")
+            }
+            dessertButton.setOnClickListener {
+                setMealButtonClickListener(dessertButton, "dessert")
+            }
+        }
+
+    }
+
+    private fun toolFilters(){
+        binding.apply {
+            ovenButton.setOnClickListener {
+                setToolsButtonClickListener(ovenButton, "oven")
+            }
+            blenderButton.setOnClickListener {
+                setToolsButtonClickListener(blenderButton, "blender")
+            }
+            foodProcessorButton.setOnClickListener {
+                setToolsButtonClickListener(foodProcessorButton, "food-processor")
+            }
+        }
+
+    }
+
+    private fun regionFilters(){
+        binding.apply {
+            asianButton.setOnClickListener {
+                setRegionButtonClickListener(asianButton, "Asian")
+            }
+            chineseButton.setOnClickListener {
+                setRegionButtonClickListener(chineseButton, "Chinese")
+            }
+            frenchButton.setOnClickListener {
+                setRegionButtonClickListener(frenchButton, "French")
+            }
+            indianButton.setOnClickListener {
+                setRegionButtonClickListener(indianButton, "Indian")
+            }
+            italianButton.setOnClickListener {
+                setRegionButtonClickListener(italianButton, "Italian")
+            }
+            mediterraneanButton.setOnClickListener {
+                setRegionButtonClickListener(mediterraneanButton, "Mediterranean")
+            }
+        }
+
+    }
+
 
     private fun setButtonFirstPosition() {
         binding.root.viewTreeObserver.addOnGlobalLayoutListener(object :

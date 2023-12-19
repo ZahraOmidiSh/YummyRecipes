@@ -208,7 +208,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedDietsData.value = listOf("Vegetarian")
                 viewModel.isSearchWithDiets.value = true
                 viewModel.isSearchWithDietsOrAllergies.value = true
-                filterSearch()
+                dietsAndAllergiesSearch()
             }
 
             //QuickAndEasy
@@ -232,6 +232,10 @@ class SearchFragment : Fragment() {
 
 
     private fun searchClose() {
+        closeSearch()
+    }
+
+    private fun closeSearch(){
         binding.apply {
             viewModel.isCloseButtonPressed.value = true
             searchEdt.text.clear()
@@ -269,7 +273,7 @@ class SearchFragment : Fragment() {
     private fun textChangeListener() {
         binding.searchEdt.addTextChangedListener {
             binding.closeImg.isVisible = true
-            if (it.toString().length > 2 && isNetworkAvailable == true) {
+            if (isNetworkAvailable == true) {
                 viewModel.isCloseButtonPressed.value = false
                 viewModel.searchString.value = it.toString()
                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
@@ -302,13 +306,13 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
+//                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
-                            }else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false){
-                                viewModel.callSearchApi(viewModel.searchQueries(""))
-                                loadRecentData()
-                            }
+//                            } else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false) {
+//                                viewModel.callSearchApi(viewModel.searchQueries(""))
+//                                loadRecentData()
+//                            }
                         }
                     }
                 } else {
@@ -354,13 +358,13 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
+//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
-                            }else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false){
-                                viewModel.callSearchApi(viewModel.searchQueries(""))
-                                loadRecentData()
-                            }
+//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
+//                                viewModel.callSearchApi(viewModel.searchQueries(""))
+//                                loadRecentData()
+//                            }
                         }
                     }
                 } else {
@@ -419,13 +423,13 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
+//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
-                            }else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false){
-                                viewModel.callSearchApi(viewModel.searchQueries(""))
-                                loadRecentData()
-                            }
+//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false) {
+//                                viewModel.callSearchApi(viewModel.searchQueries(""))
+//                                loadRecentData()
+//                            }
                         }
                     }
                 } else {
