@@ -63,7 +63,6 @@ class MainActivity : BaseActivity() {
         //load data
 
         viewModel.expandedIngredientsList.observe(this) { expandedIngredients ->
-            Log.e("viewModel", expandedIngredients.toString())
         }
         //onBackPress
         onBackPressedDispatcher.addCallback(this, callback)
@@ -87,6 +86,22 @@ class MainActivity : BaseActivity() {
                 }
 
                 R.id.searchAllIngredientsFragment -> {
+                    visibilityBottomMenu(false)
+                    if (callback.isEnabled) {
+                        callback.isEnabled = false
+                    }
+
+                }
+
+                R.id.dietsFragment -> {
+                    visibilityBottomMenu(false)
+                    if (callback.isEnabled) {
+                        callback.isEnabled = false
+                    }
+
+                }
+
+                R.id.filtersFragment -> {
                     visibilityBottomMenu(false)
                     if (callback.isEnabled) {
                         callback.isEnabled = false
