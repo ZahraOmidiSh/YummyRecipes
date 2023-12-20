@@ -110,7 +110,7 @@ class SearchFragment : Fragment() {
 
             //Close listener
             closeImg.setOnClickListener {
-                searchClose()
+                closeSearch()
             }
 
             //view all ingredient button listener
@@ -228,11 +228,6 @@ class SearchFragment : Fragment() {
         viewModel.isSearchWithMeals.value = true
         viewModel.isSearchWithFilters.value = true
         filterSearch()
-    }
-
-
-    private fun searchClose() {
-        closeSearch()
     }
 
     private fun closeSearch(){
