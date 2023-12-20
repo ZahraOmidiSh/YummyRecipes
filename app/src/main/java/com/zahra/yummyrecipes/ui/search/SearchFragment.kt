@@ -67,9 +67,7 @@ class SearchFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(layoutInflater)
         return binding.root
@@ -81,9 +79,28 @@ class SearchFragment : Fragment() {
         //InitViews
         binding.apply {
 
+
             if (viewModel.searchString.value == null) {
                 viewModel.searchString.value = ""
             }
+            searchEdt.text.clear()
+            searchEdt.text.append(viewModel.searchString.value)
+
+//            if (viewModel.searchString.value != "" && viewModel.isCloseButtonPressed.value == false) {
+//                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+//                loadRecentData()
+//            }
+            if (viewModel.searchString.value == "" && viewModel.isSearchWithDietsOrAllergies.value == false
+                && viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
+                simpleSearchLay.isVisible = false
+                advancedSearchScroll.isVisible = true
+                closeImg.isVisible = false
+            }else{
+                simpleSearchLay.isVisible = true
+                advancedSearchScroll.isVisible = false
+                closeImg.isVisible = true
+            }
+
             viewModel.searchString.observe(viewLifecycleOwner) {
                 searchString = it
             }
@@ -230,11 +247,11 @@ class SearchFragment : Fragment() {
         filterSearch()
     }
 
-    private fun closeSearch(){
+    private fun closeSearch() {
         binding.apply {
             viewModel.isCloseButtonPressed.value = true
-            searchEdt.text.clear()
             viewModel.searchString.value = ""
+            searchEdt.text.clear()
             searchString = ""
             viewModel.expandedIngredientsList.value!!.forEach {
                 if (it.isSelected) {
@@ -301,12 +318,14 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-//                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
+                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(""))
                                 loadRecentData()
-//                            } else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
+                            }
+//                            else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false) {
+//                                simpleSearchLay.isVisible = false
+//                                advancedSearchScroll.isVisible = true
+//                                closeImg.isVisible = false
 //                            }
                         }
                     }
@@ -337,8 +356,7 @@ class SearchFragment : Fragment() {
                             sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
                         }
                         val size = sizeDiets + sizeAllergies
-                        dietsButton.text =
-                            "DIETS ($size)"
+                        dietsButton.text = "DIETS ($size)"
                         setOneButtonTextColor(dietsButton, R.color.white)
                         if (isDarkTheme()) {
                             setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
@@ -353,12 +371,14 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
-//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
+                            }
+//                            else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
+//                                simpleSearchLay.isVisible = false
+//                                advancedSearchScroll.isVisible = true
+//                                closeImg.isVisible = false
 //                            }
                         }
                     }
@@ -403,8 +423,7 @@ class SearchFragment : Fragment() {
                         }
                         val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie + sizeTools
 
-                        filtersButton.text =
-                            "FILTERS ($size)"
+                        filtersButton.text = "FILTERS ($size)"
                         setOneButtonTextColor(filtersButton, R.color.white)
                         if (isDarkTheme()) {
                             setOneButtonBackgroundTint(filtersButton, R.color.congo_pink)
@@ -418,12 +437,14 @@ class SearchFragment : Fragment() {
                             viewModel.callSearchApi(viewModel.searchQueries(searchString))
                             loadRecentData()
                         } else {
-//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
+                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
                                 viewModel.callSearchApi(viewModel.searchQueries(searchString))
                                 loadRecentData()
-//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
+                            }
+//                            else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false) {
+//                                simpleSearchLay.isVisible = false
+//                                advancedSearchScroll.isVisible = true
+//                                closeImg.isVisible = false
 //                            }
                         }
                     }
@@ -450,8 +471,7 @@ class SearchFragment : Fragment() {
                 it.isSelected = false
             }
             viewModel.updateExpandedIngredientByName(ingredientName, true)
-            val action =
-                SearchFragmentDirections.actionToSearchAllIngredients()
+            val action = SearchFragmentDirections.actionToSearchAllIngredients()
             viewModel.updateSelectedIngredientsName()
             findNavController().navigate(action)
         }
@@ -460,11 +480,8 @@ class SearchFragment : Fragment() {
     private fun setupRecyclerView(ingredientsList: RecyclerView) {
         ingredientsList.setupRecyclerview(
             LinearLayoutManager(
-                requireContext(),
-                LinearLayoutManager.HORIZONTAL,
-                false
-            ),
-            advancedSearchAdapter
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            ), advancedSearchAdapter
         )
     }
 
@@ -517,8 +534,7 @@ class SearchFragment : Fragment() {
 
     private fun initSearchListRecycler() {
         binding.simpleSearchList.apply {
-            layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = searchAdapter
         }
         //Click
