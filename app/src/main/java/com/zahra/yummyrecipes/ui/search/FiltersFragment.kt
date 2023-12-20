@@ -255,6 +255,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
     private fun setBottomSheetCallback() {
         (dialog as? BottomSheetDialog)?.setOnDismissListener {
             viewModel.filterSlideOffset = 0f
+            findNavController().navigateUp()
         }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
