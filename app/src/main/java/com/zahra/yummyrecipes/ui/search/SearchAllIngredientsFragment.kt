@@ -265,6 +265,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 }
                 viewModel.updateSelectedIngredientsName()
             }
+            findNavController().navigateUp()
         }
         val behavior = (dialog as? BottomSheetDialog)?.behavior
         behavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
