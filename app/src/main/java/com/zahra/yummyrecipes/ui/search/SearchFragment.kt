@@ -78,11 +78,17 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            searchEdt.setText(viewModel.searchString.value)
+//
+//            if (viewModel.searchString.value != null && viewModel.searchString.value != "") {
+//                searchEdt.text.clear()
+//                searchEdt.text.append(viewModel.searchString.value)
+//            }
 
 
-            if (viewModel.searchString.value == null) {
-                viewModel.searchString.value = ""
-            }
+//            if (viewModel.searchString.value == null) {
+//                viewModel.searchString.value = ""
+//            }
 //            searchEdt.text.clear()
 //            searchEdt.text.append(viewModel.searchString.value)
 
@@ -103,6 +109,7 @@ class SearchFragment : Fragment() {
 
             viewModel.searchString.observe(viewLifecycleOwner) {
                 searchString = it
+
             }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
@@ -319,8 +326,8 @@ class SearchFragment : Fragment() {
                             loadRecentData()
                         } else {
 //                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(""))
-                                loadRecentData()
+                            viewModel.callSearchApi(viewModel.searchQueries(""))
+                            loadRecentData()
 //                            } else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false) {
 //                                viewModel.callSearchApi(viewModel.searchQueries(""))
 //                                loadRecentData()
@@ -371,8 +378,8 @@ class SearchFragment : Fragment() {
                             loadRecentData()
                         } else {
 //                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                                loadRecentData()
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
 //                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
 //                                viewModel.callSearchApi(viewModel.searchQueries(""))
 //                                loadRecentData()
@@ -436,8 +443,8 @@ class SearchFragment : Fragment() {
                             loadRecentData()
                         } else {
 //                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
-                                viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                                loadRecentData()
+                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                            loadRecentData()
 //                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false) {
 //                                viewModel.callSearchApi(viewModel.searchQueries(""))
 //                                loadRecentData()
