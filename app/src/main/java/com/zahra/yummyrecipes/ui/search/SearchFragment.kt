@@ -79,7 +79,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            if(viewModel.searchString.value == null){
+            if (viewModel.searchString.value == null) {
                 viewModel.searchString.value = ""
             }
             searchEdt.text.clear()
@@ -286,7 +286,7 @@ class SearchFragment : Fragment() {
             viewModel.searchString.observe(viewLifecycleOwner) { string ->
                 searchString = string
             }
-            if (isNetworkAvailable == true && it.toString().length > 2) {
+            if (isNetworkAvailable == true && it.toString().isNotEmpty()) {
                 viewModel.isCloseButtonPressed.value = false
                 viewModel.totalSearch.value = true
             } else {
@@ -304,6 +304,7 @@ class SearchFragment : Fragment() {
                     closeImg.isVisible = true
                     viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                     loadRecentData()
+                    setAllFilterButtonsSizeAndColor()
                 } else {
                     setAllFilterButtonsToDefault()
                     simpleSearchLay.isVisible = false
@@ -352,6 +353,94 @@ class SearchFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setAllFilterButtonsSizeAndColor(){
+        setIngredientsSize()
+        setDietsSize()
+        setFiltersSize()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setIngredientsSize() {
+        binding.apply {
+            var sizeIngredients = 0
+            if (viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true) {
+                sizeIngredients = viewModel.selectedIngredientsNameData.value?.size!!
+            }
+            if(sizeIngredients==0){
+                ingredientsButton.text = "INGREDIENTS"
+                setButtonTextColorBasedOnTheme(ingredientsButton,R.color.white,R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(ingredientsButton,R.color.eerie_black,R.color.whiteSmoke)
+            }else{
+                ingredientsButton.text = "INGREDIENTS ($sizeIngredients)"
+                setButtonTextColorBasedOnTheme(ingredientsButton,R.color.white,R.color.white)
+                setButtonBackgroundBasedOnTheme(ingredientsButton,R.color.congo_pink,R.color.big_foot_feet)
+            }
+        }
+
+    }
+    @SuppressLint("SetTextI18n")
+    private fun setDietsSize() {
+        binding.apply {
+            var sizeDiets = 0
+            var sizeAllergies = 0
+            if (viewModel.selectedDietsData.value?.isNotEmpty() == true) {
+                sizeDiets = viewModel.selectedDietsData.value?.size!!
+            }
+            if (viewModel._selectedAllergiesData.value?.isNotEmpty() == true) {
+                sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
+            }
+            val size = sizeDiets + sizeAllergies
+            if(size==0){
+                dietsButton.text = "DIETS"
+                setButtonTextColorBasedOnTheme(dietsButton,R.color.white,R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(dietsButton,R.color.eerie_black,R.color.whiteSmoke)
+            }else{
+                dietsButton.text = "DIETS ($size)"
+                setButtonTextColorBasedOnTheme(dietsButton,R.color.white,R.color.white)
+                setButtonBackgroundBasedOnTheme(dietsButton,R.color.congo_pink,R.color.big_foot_feet)
+            }
+        }
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setFiltersSize() {
+        binding.apply {
+            var sizeMeal = 0
+            var sizeTime = 0
+            var sizeCalorie = 0
+            var sizeRegion = 0
+            var sizeTools = 0
+
+            if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
+                sizeMeal = viewModel.selectedMealsData.value?.size!!
+            }
+            if (viewModel.selectedToolsData.value?.isNotEmpty() == true) {
+                sizeTools = viewModel.selectedToolsData.value?.size!!
+            }
+            if (viewModel.selectedRegionData.value?.isNotEmpty() == true) {
+                sizeRegion = viewModel.selectedRegionData.value?.size!!
+            }
+            if (viewModel.selectedTimeData.value?.isNotEmpty() == true) {
+                sizeTime = viewModel.selectedTimeData.value?.size!!
+            }
+            if (viewModel.selectedCalorieData.value?.isNotEmpty() == true) {
+                sizeCalorie = viewModel.selectedCalorieData.value?.size!!
+            }
+            val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie + sizeTools
+            if(size==0){
+                filtersButton.text = "FILTERS"
+                setButtonTextColorBasedOnTheme(filtersButton,R.color.white,R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(filtersButton,R.color.eerie_black,R.color.whiteSmoke)
+            }else{
+                filtersButton.text = "FILTERS ($size)"
+                setButtonTextColorBasedOnTheme(filtersButton,R.color.white,R.color.white)
+                setButtonBackgroundBasedOnTheme(filtersButton,R.color.congo_pink,R.color.big_foot_feet)
+            }
+        }
+
     }
 
     @SuppressLint("SetTextI18n")
@@ -622,6 +711,29 @@ class SearchFragment : Fragment() {
                 requireContext(), color
             )
         )
+    }
+    private fun setButtonBackgroundBasedOnTheme(button: Button, darkThemeColor: Int, lightThemeColor: Int) {
+        if (isDarkTheme()) {
+            setOneButtonBackgroundTint(button, darkThemeColor)
+        } else {
+            setOneButtonBackgroundTint(button, lightThemeColor)
+        }
+    }
+
+    private fun setButtonTextColorBasedOnTheme(button: Button, darkThemeColor: Int, lightThemeColor: Int) {
+        if (isDarkTheme()) {
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), darkThemeColor
+                )
+            )
+        } else {
+            button.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(), lightThemeColor
+                )
+            )
+        }
     }
 
     private fun isDarkTheme(): Boolean {
