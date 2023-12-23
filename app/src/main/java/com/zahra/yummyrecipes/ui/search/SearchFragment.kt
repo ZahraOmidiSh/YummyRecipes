@@ -171,7 +171,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedCalorieData.value = listOf("0-200")
                 viewModel.isSearchWithCalorie.value = true
                 viewModel.isSearchWithFilters.value = true
-                filterSearch()
+                totalSearch()
             }
 
             //ovenBaked
@@ -180,7 +180,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedToolsData.value = listOf("oven")
                 viewModel.isSearchWithTools.value = true
                 viewModel.isSearchWithFilters.value = true
-                filterSearch()
+                totalSearch()
             }
 
             //Asian
@@ -189,7 +189,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedRegionData.value = listOf("Asian")
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
-                filterSearch()
+                totalSearch()
             }
 
             //Mediterranean
@@ -198,7 +198,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedRegionData.value = listOf("Mediterranean")
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
-                filterSearch()
+                totalSearch()
             }
 
             //Vegetarian
@@ -207,7 +207,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedDietsData.value = listOf("Vegetarian")
                 viewModel.isSearchWithDiets.value = true
                 viewModel.isSearchWithDietsOrAllergies.value = true
-                dietsAndAllergiesSearch()
+                totalSearch()
             }
 
             //QuickAndEasy
@@ -216,7 +216,7 @@ class SearchFragment : Fragment() {
                 viewModel._selectedTimeData.value = listOf("15")
                 viewModel.isSearchWithTime.value = true
                 viewModel.isSearchWithFilters.value = true
-                filterSearch()
+                totalSearch()
             }
         }
     }
@@ -226,7 +226,7 @@ class SearchFragment : Fragment() {
         viewModel._selectedMealsData.value = listOf(meal)
         viewModel.isSearchWithMeals.value = true
         viewModel.isSearchWithFilters.value = true
-        filterSearch()
+        totalSearch()
     }
 
     private fun closeSearch() {
