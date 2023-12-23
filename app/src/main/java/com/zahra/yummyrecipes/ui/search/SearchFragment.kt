@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -78,7 +79,13 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            viewModel.updateTotalSearchValue()
+            if(viewModel.searchString.value == null){
+                viewModel.searchString.value = ""
+            }
+            searchEdt.text.clear()
+            searchEdt.setText(viewModel.searchString.value.toString())
+
+//            viewModel.updateTotalSearchValue()
 //            searchEdt.setText(viewModel.searchString.value)
 //            viewModel.searchString.observe(viewLifecycleOwner) {
 //                searchString = it
@@ -275,12 +282,15 @@ class SearchFragment : Fragment() {
     private fun textChangeListener() {
         binding.searchEdt.addTextChangedListener {
             binding.closeImg.isVisible = true
-            if (isNetworkAvailable == true) {
+            viewModel.searchString.value = it.toString()
+            viewModel.searchString.observe(viewLifecycleOwner) { string ->
+                searchString = string
+            }
+            if (isNetworkAvailable == true && it.toString().length > 2) {
                 viewModel.isCloseButtonPressed.value = false
-                viewModel.searchString.value = it.toString()
-//                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
-//                loadRecentData()
-                viewModel.updateTotalSearchValue()
+                viewModel.totalSearch.value = true
+            } else {
+                viewModel.totalSearch.value = false
             }
         }
     }
@@ -292,11 +302,7 @@ class SearchFragment : Fragment() {
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
                     closeImg.isVisible = true
-                    searchEdt.setText(viewModel.searchString.value)
-                    viewModel.searchString.observe(viewLifecycleOwner) {string ->
-                        searchString = string
-                    }
-                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                     loadRecentData()
                 } else {
                     setAllFilterButtonsToDefault()
