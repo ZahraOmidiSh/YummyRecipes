@@ -143,6 +143,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
             } else {
                 viewModel.isSearchWithFilters.value = false
             }
+            viewModel.updateTotalSearchValue()
             notSureMeals.clear()
             notSureTime.clear()
             notSureRegion.clear()
