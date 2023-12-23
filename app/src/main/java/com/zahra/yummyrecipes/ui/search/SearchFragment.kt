@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -88,11 +87,6 @@ class SearchFragment : Fragment() {
             searchEdt.text.clear()
             searchEdt.setText(viewModel.searchString.value.toString())
 
-//            viewModel.updateTotalSearchValue()
-//            searchEdt.setText(viewModel.searchString.value)
-//            viewModel.searchString.observe(viewLifecycleOwner) {
-//                searchString = it
-//            }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
             if (savedInstanceState != null) {
@@ -137,15 +131,6 @@ class SearchFragment : Fragment() {
             //total search
             totalSearch()
 
-//            //ingredient search
-//            ingredientSearch()
-//
-//            //diets and allergies search
-//            dietsAndAllergiesSearch()
-//
-//            //filterSearch
-//            filterSearch()
-
             //Filters Buttons Listener
             ingredientsButton.setOnClickListener {
                 val direction = SearchFragmentDirections.actionToSearchAllIngredients()
@@ -182,7 +167,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithCalorie.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
 
             //ovenBaked
@@ -192,7 +176,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithTools.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
 
             //Asian
@@ -202,7 +185,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
 
             //Mediterranean
@@ -212,7 +194,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
 
             //Vegetarian
@@ -222,7 +203,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithDiets.value = true
                 viewModel.isSearchWithDietsOrAllergies.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
 
             //QuickAndEasy
@@ -232,7 +212,6 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithTime.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-//                totalSearch()
             }
         }
     }
@@ -243,7 +222,6 @@ class SearchFragment : Fragment() {
         viewModel.isSearchWithMeals.value = true
         viewModel.isSearchWithFilters.value = true
         viewModel.updateTotalSearchValue()
-//        totalSearch()
     }
 
     private fun closeSearch() {
@@ -294,9 +272,6 @@ class SearchFragment : Fragment() {
             } else {
                 viewModel.searchString.value = ""
                 viewModel.updateTotalSearchValue()
-//                binding.simpleSearchLay.isVisible = false
-//                binding.advancedSearchScroll.isVisible = true
-//                binding.closeImg.isVisible = false
             }
         }
     }
@@ -331,45 +306,6 @@ class SearchFragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun ingredientSearch() {
-        binding.apply {
-            viewModel.isSearchWithIngredient.observe(viewLifecycleOwner) {
-                if (viewModel.isCloseButtonPressed.value == false) {
-                    if (it) {
-                        closeImg.isVisible = true
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                        loadRecentData()
-                        ingredientsButton.text =
-                            "INGREDIENTS " + "(" + viewModel.selectedIngredientsNameData.value?.size.toString() + ")"
-                        setOneButtonTextColor(ingredientsButton, R.color.white)
-                        if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(ingredientsButton, R.color.congo_pink)
-                        } else {
-                            setOneButtonBackgroundTint(ingredientsButton, R.color.big_foot_feet)
-                        }
-                    } else {
-                        setOneFilterButtonsToDefault(ingredientsButton)
-                        ingredientsButton.text = "INGREDIENTS"
-                        if (viewModel.searchString.value?.isNotEmpty() == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        } else {
-//                            if (viewModel.isSearchWithDietsOrAllergies.value == true || viewModel.isSearchWithFilters.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(""))
-                            loadRecentData()
-//                            } else if (viewModel.isSearchWithDietsOrAllergies.value == false && viewModel.isSearchWithFilters.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
-//                            }
-                        }
-                    }
-                } else {
-                    setAllFilterButtonsToDefault()
-                }
-            }
-        }
-    }
 
     private fun setAllFilterButtonsSizeAndColor() {
         setIngredientsSize()
@@ -484,123 +420,6 @@ class SearchFragment : Fragment() {
 
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun dietsAndAllergiesSearch() {
-        binding.apply {
-            viewModel.isSearchWithDietsOrAllergies.observe(viewLifecycleOwner) {
-                if (viewModel.isCloseButtonPressed.value == false) {
-                    if (it) {
-                        closeImg.isVisible = true
-                        simpleSearchLay.isVisible = true
-                        advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                        loadRecentData()
-                        var sizeDiets = 0
-                        var sizeAllergies = 0
-                        if (viewModel.selectedDietsData.value?.isNotEmpty() == true) {
-                            sizeDiets = viewModel.selectedDietsData.value?.size!!
-                        }
-                        if (viewModel._selectedAllergiesData.value?.isNotEmpty() == true) {
-                            sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
-                        }
-                        val size = sizeDiets + sizeAllergies
-                        dietsButton.text =
-                            "DIETS ($size)"
-                        setOneButtonTextColor(dietsButton, R.color.white)
-                        if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(dietsButton, R.color.congo_pink)
-                        } else {
-                            setOneButtonBackgroundTint(dietsButton, R.color.big_foot_feet)
-                        }
-
-                    } else {
-                        setOneFilterButtonsToDefault(dietsButton)
-                        dietsButton.text = "DIETS"
-                        if (viewModel.searchString.value?.isNotEmpty() == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        } else {
-//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithFilters.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
-//                            }
-                        }
-                    }
-                } else {
-                    setAllFilterButtonsToDefault()
-                }
-            }
-        }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun filterSearch() {
-        binding.apply {
-            viewModel.isSearchWithFilters.observe(viewLifecycleOwner) {
-                if (viewModel.isCloseButtonPressed.value == false) {
-                    if (it) {
-                        closeImg.isVisible = true
-                        simpleSearchLay.isVisible = true
-                        advancedSearchScroll.isVisible = false
-                        viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                        loadRecentData()
-                        var sizeMeal = 0
-                        var sizeTime = 0
-                        var sizeCalorie = 0
-                        var sizeRegion = 0
-                        var sizeTools = 0
-
-                        if (viewModel.selectedMealsData.value?.isNotEmpty() == true) {
-                            sizeMeal = viewModel.selectedMealsData.value?.size!!
-                        }
-                        if (viewModel.selectedToolsData.value?.isNotEmpty() == true) {
-                            sizeTools = viewModel.selectedToolsData.value?.size!!
-                        }
-                        if (viewModel.selectedRegionData.value?.isNotEmpty() == true) {
-                            sizeRegion = viewModel.selectedRegionData.value?.size!!
-                        }
-                        if (viewModel.selectedTimeData.value?.isNotEmpty() == true) {
-                            sizeTime = viewModel.selectedTimeData.value?.size!!
-                        }
-                        if (viewModel.selectedCalorieData.value?.isNotEmpty() == true) {
-                            sizeCalorie = viewModel.selectedCalorieData.value?.size!!
-                        }
-                        val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie + sizeTools
-
-                        filtersButton.text =
-                            "FILTERS ($size)"
-                        setOneButtonTextColor(filtersButton, R.color.white)
-                        if (isDarkTheme()) {
-                            setOneButtonBackgroundTint(filtersButton, R.color.congo_pink)
-                        } else {
-                            setOneButtonBackgroundTint(filtersButton, R.color.big_foot_feet)
-                        }
-                    } else {
-                        setOneFilterButtonsToDefault(filtersButton)
-                        filtersButton.text = "FILTERS"
-                        if (viewModel.searchString.value?.isNotEmpty() == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-                        } else {
-//                            if (viewModel.isSearchWithIngredient.value == true || viewModel.isSearchWithDietsOrAllergies.value == true) {
-                            viewModel.callSearchApi(viewModel.searchQueries(searchString))
-                            loadRecentData()
-//                            } else if (viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithDietsOrAllergies.value == false) {
-//                                viewModel.callSearchApi(viewModel.searchQueries(""))
-//                                loadRecentData()
-//                            }
-                        }
-                    }
-                } else {
-                    setAllFilterButtonsToDefault()
-                }
-            }
-        }
-    }
-
     private fun checkInternet() {
         lifecycleScope.launch {
             withStarted { }
@@ -661,7 +480,7 @@ class SearchFragment : Fragment() {
                             if (data?.results!!.isNotEmpty()) {
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
-                            }else{
+                            } else {
                                 binding.root.showSnackBar("No matched results!!")
                             }
                         }
