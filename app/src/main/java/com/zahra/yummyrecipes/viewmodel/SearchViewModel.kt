@@ -44,7 +44,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     fun updateTotalSearchValue() {
         totalSearch.value =
             (isSearchWithFilters.value == true || isSearchWithIngredient.value == true
-                    || isSearchWithDietsOrAllergies.value == true || !searchString.value.isNullOrBlank())
+                    || isSearchWithDietsOrAllergies.value == true )
     }
 
     //search String
