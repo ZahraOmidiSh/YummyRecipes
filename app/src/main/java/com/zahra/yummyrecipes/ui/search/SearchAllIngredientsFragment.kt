@@ -95,6 +95,7 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
                 if (viewModel.isSearchWithIngredient.value == true) {
                     viewModel.isCloseButtonPressed.value = false
                 }
+                viewModel.updateTotalSearchValue()
                 notSureItems.clear()
                 findNavController().navigateUp()
             }
