@@ -30,6 +30,9 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -281,16 +284,19 @@ class SearchFragment : Fragment() {
 
     private fun textChangeListener() {
         binding.searchEdt.addTextChangedListener {
-            binding.closeImg.isVisible = true
-            viewModel.searchString.value = it.toString()
-            viewModel.searchString.observe(viewLifecycleOwner) { string ->
-                searchString = string
-            }
-            if (isNetworkAvailable == true && it.toString().isNotEmpty()) {
-                viewModel.isCloseButtonPressed.value = false
-                viewModel.totalSearch.value = true
+            if (it.toString().isNotEmpty()) {
+                binding.closeImg.isVisible = true
+                viewModel.searchString.value = it.toString()
+                if (isNetworkAvailable == true) {
+                    viewModel.isCloseButtonPressed.value = false
+                    viewModel.updateTotalSearchValue()
+                }
             } else {
-                viewModel.totalSearch.value = false
+                viewModel.searchString.value = ""
+                viewModel.updateTotalSearchValue()
+//                binding.simpleSearchLay.isVisible = false
+//                binding.advancedSearchScroll.isVisible = true
+//                binding.closeImg.isVisible = false
             }
         }
     }
@@ -306,10 +312,20 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     setAllFilterButtonsSizeAndColor()
                 } else {
-                    setAllFilterButtonsToDefault()
-                    simpleSearchLay.isVisible = false
-                    advancedSearchScroll.isVisible = true
-                    closeImg.isVisible = false
+
+                    val delayMillis = 600L // 600 milliseconds
+
+                    GlobalScope.launch(Dispatchers.Main) {
+                        delay(delayMillis)
+                        // Your code to be executed after the delay
+                        // This runs on the main thread
+                        setAllFilterButtonsToDefault()
+                        simpleSearchLay.isVisible = false
+                        advancedSearchScroll.isVisible = true
+                        closeImg.isVisible = false
+                    }
+
+
                 }
             }
         }
@@ -355,7 +371,7 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setAllFilterButtonsSizeAndColor(){
+    private fun setAllFilterButtonsSizeAndColor() {
         setIngredientsSize()
         setDietsSize()
         setFiltersSize()
@@ -368,18 +384,27 @@ class SearchFragment : Fragment() {
             if (viewModel.selectedIngredientsNameData.value?.isNotEmpty() == true) {
                 sizeIngredients = viewModel.selectedIngredientsNameData.value?.size!!
             }
-            if(sizeIngredients==0){
+            if (sizeIngredients == 0) {
                 ingredientsButton.text = "INGREDIENTS"
-                setButtonTextColorBasedOnTheme(ingredientsButton,R.color.white,R.color.rose_ebony)
-                setButtonBackgroundBasedOnTheme(ingredientsButton,R.color.eerie_black,R.color.whiteSmoke)
-            }else{
+                setButtonTextColorBasedOnTheme(ingredientsButton, R.color.white, R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(
+                    ingredientsButton,
+                    R.color.eerie_black,
+                    R.color.whiteSmoke
+                )
+            } else {
                 ingredientsButton.text = "INGREDIENTS ($sizeIngredients)"
-                setButtonTextColorBasedOnTheme(ingredientsButton,R.color.white,R.color.white)
-                setButtonBackgroundBasedOnTheme(ingredientsButton,R.color.congo_pink,R.color.big_foot_feet)
+                setButtonTextColorBasedOnTheme(ingredientsButton, R.color.white, R.color.white)
+                setButtonBackgroundBasedOnTheme(
+                    ingredientsButton,
+                    R.color.congo_pink,
+                    R.color.big_foot_feet
+                )
             }
         }
 
     }
+
     @SuppressLint("SetTextI18n")
     private fun setDietsSize() {
         binding.apply {
@@ -392,14 +417,22 @@ class SearchFragment : Fragment() {
                 sizeAllergies = viewModel.selectedAllergiesData.value?.size!!
             }
             val size = sizeDiets + sizeAllergies
-            if(size==0){
+            if (size == 0) {
                 dietsButton.text = "DIETS"
-                setButtonTextColorBasedOnTheme(dietsButton,R.color.white,R.color.rose_ebony)
-                setButtonBackgroundBasedOnTheme(dietsButton,R.color.eerie_black,R.color.whiteSmoke)
-            }else{
+                setButtonTextColorBasedOnTheme(dietsButton, R.color.white, R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(
+                    dietsButton,
+                    R.color.eerie_black,
+                    R.color.whiteSmoke
+                )
+            } else {
                 dietsButton.text = "DIETS ($size)"
-                setButtonTextColorBasedOnTheme(dietsButton,R.color.white,R.color.white)
-                setButtonBackgroundBasedOnTheme(dietsButton,R.color.congo_pink,R.color.big_foot_feet)
+                setButtonTextColorBasedOnTheme(dietsButton, R.color.white, R.color.white)
+                setButtonBackgroundBasedOnTheme(
+                    dietsButton,
+                    R.color.congo_pink,
+                    R.color.big_foot_feet
+                )
             }
         }
 
@@ -430,14 +463,22 @@ class SearchFragment : Fragment() {
                 sizeCalorie = viewModel.selectedCalorieData.value?.size!!
             }
             val size = sizeMeal + sizeTime + sizeRegion + sizeCalorie + sizeTools
-            if(size==0){
+            if (size == 0) {
                 filtersButton.text = "FILTERS"
-                setButtonTextColorBasedOnTheme(filtersButton,R.color.white,R.color.rose_ebony)
-                setButtonBackgroundBasedOnTheme(filtersButton,R.color.eerie_black,R.color.whiteSmoke)
-            }else{
+                setButtonTextColorBasedOnTheme(filtersButton, R.color.white, R.color.rose_ebony)
+                setButtonBackgroundBasedOnTheme(
+                    filtersButton,
+                    R.color.eerie_black,
+                    R.color.whiteSmoke
+                )
+            } else {
                 filtersButton.text = "FILTERS ($size)"
-                setButtonTextColorBasedOnTheme(filtersButton,R.color.white,R.color.white)
-                setButtonBackgroundBasedOnTheme(filtersButton,R.color.congo_pink,R.color.big_foot_feet)
+                setButtonTextColorBasedOnTheme(filtersButton, R.color.white, R.color.white)
+                setButtonBackgroundBasedOnTheme(
+                    filtersButton,
+                    R.color.congo_pink,
+                    R.color.big_foot_feet
+                )
             }
         }
 
@@ -611,14 +652,10 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        advancedSearchScroll.isVisible = false
-                        simpleSearchLay.isVisible = true
                         simpleSearchList.showShimmer()
                     }
 
                     is NetworkRequest.Success -> {
-                        advancedSearchScroll.isVisible = false
-                        simpleSearchLay.isVisible = true
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
@@ -712,7 +749,12 @@ class SearchFragment : Fragment() {
             )
         )
     }
-    private fun setButtonBackgroundBasedOnTheme(button: Button, darkThemeColor: Int, lightThemeColor: Int) {
+
+    private fun setButtonBackgroundBasedOnTheme(
+        button: Button,
+        darkThemeColor: Int,
+        lightThemeColor: Int
+    ) {
         if (isDarkTheme()) {
             setOneButtonBackgroundTint(button, darkThemeColor)
         } else {
@@ -720,7 +762,11 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setButtonTextColorBasedOnTheme(button: Button, darkThemeColor: Int, lightThemeColor: Int) {
+    private fun setButtonTextColorBasedOnTheme(
+        button: Button,
+        darkThemeColor: Int,
+        lightThemeColor: Int
+    ) {
         if (isDarkTheme()) {
             button.setTextColor(
                 ContextCompat.getColor(
