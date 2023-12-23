@@ -78,10 +78,10 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            viewModel.updateTotalSearchValue()
             searchEdt.setText(viewModel.searchString.value)
             viewModel.searchString.observe(viewLifecycleOwner) {
                 searchString = it
-
             }
             viewModel.isCloseButtonPressed.value = false
             isNetworkAvailable = networkChecker.checkNetworkAvailability().value
@@ -269,6 +269,25 @@ class SearchFragment : Fragment() {
                 viewModel.searchString.value = it.toString()
                 viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
                 loadRecentData()
+            }
+        }
+    }
+
+    private fun totalSearch() {
+        binding.apply {
+            viewModel.totalSearch.observe(viewLifecycleOwner) {
+                if (it) {
+                    simpleSearchLay.isVisible = true
+                    advancedSearchScroll.isVisible = false
+                    closeImg.isVisible = true
+                    viewModel.callSearchApi(viewModel.searchQueries(searchString))
+                    loadRecentData()
+                } else {
+                    setAllFilterButtonsToDefault()
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
+                }
             }
         }
     }
