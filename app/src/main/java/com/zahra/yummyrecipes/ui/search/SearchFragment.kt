@@ -661,6 +661,8 @@ class SearchFragment : Fragment() {
                             if (data?.results!!.isNotEmpty()) {
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
+                            }else{
+                                binding.root.showSnackBar("No matched results!!")
                             }
                         }
                     }
