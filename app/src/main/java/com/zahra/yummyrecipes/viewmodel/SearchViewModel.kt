@@ -43,8 +43,8 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
     //method for giving value to total search
     fun updateTotalSearchValue() {
         totalSearch.value =
-            !(isSearchWithFilters.value == false && isSearchWithIngredient.value == false
-                    && isSearchWithDietsOrAllergies.value == false && searchString.value.isNullOrBlank())
+            (isSearchWithFilters.value == true || isSearchWithIngredient.value == true
+                    || isSearchWithDietsOrAllergies.value == true || !searchString.value.isNullOrBlank())
     }
 
     //search String
