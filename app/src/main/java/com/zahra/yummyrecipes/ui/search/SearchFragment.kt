@@ -29,9 +29,6 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -287,10 +284,10 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     setAllFilterButtonsSizeAndColor()
                 } else {
-                        setAllFilterButtonsToDefault()
-                        simpleSearchLay.isVisible = false
-                        advancedSearchScroll.isVisible = true
-                        closeImg.isVisible = false
+                    setAllFilterButtonsToDefault()
+                    simpleSearchLay.isVisible = false
+                    advancedSearchScroll.isVisible = true
+                    closeImg.isVisible = false
                 }
             }
         }
@@ -481,6 +478,7 @@ class SearchFragment : Fragment() {
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
+
                     else -> {}
                 }
             }
