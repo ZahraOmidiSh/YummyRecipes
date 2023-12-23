@@ -124,14 +124,17 @@ class SearchFragment : Fragment() {
             //box Search
             textChangeListener()
 
-            //ingredient search
-            ingredientSearch()
+            //total search
+            totalSearch()
 
-            //diets and allergies search
-            dietsAndAllergiesSearch()
-
-            //filterSearch
-            filterSearch()
+//            //ingredient search
+//            ingredientSearch()
+//
+//            //diets and allergies search
+//            dietsAndAllergiesSearch()
+//
+//            //filterSearch
+//            filterSearch()
 
             //Filters Buttons Listener
             ingredientsButton.setOnClickListener {
@@ -255,6 +258,7 @@ class SearchFragment : Fragment() {
             viewModel.isSearchWithAllergies.value = false
             viewModel.isSearchWithDietsOrAllergies.value = false
             viewModel.isSearchWithFilters.value = false
+            viewModel.updateTotalSearchValue()
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
@@ -267,8 +271,9 @@ class SearchFragment : Fragment() {
             if (isNetworkAvailable == true) {
                 viewModel.isCloseButtonPressed.value = false
                 viewModel.searchString.value = it.toString()
-                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
-                loadRecentData()
+//                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
+//                loadRecentData()
+                viewModel.updateTotalSearchValue()
             }
         }
     }
