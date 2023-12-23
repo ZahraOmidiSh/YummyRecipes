@@ -287,25 +287,14 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     setAllFilterButtonsSizeAndColor()
                 } else {
-
-                    val delayMillis = 600L // 600 milliseconds
-
-                    GlobalScope.launch(Dispatchers.Main) {
-                        delay(delayMillis)
-                        // Your code to be executed after the delay
-                        // This runs on the main thread
                         setAllFilterButtonsToDefault()
                         simpleSearchLay.isVisible = false
                         advancedSearchScroll.isVisible = true
                         closeImg.isVisible = false
-                    }
-
-
                 }
             }
         }
     }
-
 
     private fun setAllFilterButtonsSizeAndColor() {
         setIngredientsSize()
@@ -492,7 +481,6 @@ class SearchFragment : Fragment() {
                         simpleSearchList.hideShimmer()
                         binding.root.showSnackBar(response.message!!)
                     }
-
                     else -> {}
                 }
             }
@@ -551,17 +539,6 @@ class SearchFragment : Fragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setOneFilterButtonsToDefault(button: Button) {
-        binding.apply {
-            if (isDarkTheme()) {
-                setOneButtonBackgroundTint(button, R.color.eerie_black)
-                setOneButtonTextColor(button, R.color.white)
-            } else {
-                setOneButtonBackgroundTint(button, R.color.whiteSmoke)
-                setOneButtonTextColor(button, R.color.rose_ebony)
-            }
-        }
-    }
 
     private fun setOneButtonTextColor(button: Button, color: Int) {
         button.setTextColor(
