@@ -123,6 +123,7 @@ class DietsFragment : BottomSheetDialogFragment() {
                 }else{
                     viewModel.isSearchWithDietsOrAllergies.value=false
                 }
+                viewModel.updateTotalSearchValue()
                 notSureDiets.clear()
                 notSureAllergies.clear()
                 findNavController().navigateUp()
