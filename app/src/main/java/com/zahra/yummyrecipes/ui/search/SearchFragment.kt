@@ -79,34 +79,6 @@ class SearchFragment : Fragment() {
         //InitViews
         binding.apply {
             searchEdt.setText(viewModel.searchString.value)
-//
-//            if (viewModel.searchString.value != null && viewModel.searchString.value != "") {
-//                searchEdt.text.clear()
-//                searchEdt.text.append(viewModel.searchString.value)
-//            }
-
-
-//            if (viewModel.searchString.value == null) {
-//                viewModel.searchString.value = ""
-//            }
-//            searchEdt.text.clear()
-//            searchEdt.text.append(viewModel.searchString.value)
-
-//            if (viewModel.searchString.value != "" && viewModel.isCloseButtonPressed.value == false) {
-//                viewModel.callSearchApi(viewModel.searchQueries(viewModel.searchString.value.toString()))
-//                loadRecentData()
-//            }
-//            if (viewModel.searchString.value == "" && viewModel.isSearchWithDietsOrAllergies.value == false
-//                && viewModel.isSearchWithIngredient.value == false && viewModel.isSearchWithFilters.value == false) {
-//                simpleSearchLay.isVisible = false
-//                advancedSearchScroll.isVisible = true
-//                closeImg.isVisible = false
-//            }else{
-//                simpleSearchLay.isVisible = true
-//                advancedSearchScroll.isVisible = false
-//                closeImg.isVisible = true
-//            }
-
             viewModel.searchString.observe(viewLifecycleOwner) {
                 searchString = it
 
