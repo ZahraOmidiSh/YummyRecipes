@@ -37,6 +37,16 @@ import javax.inject.Inject
 @HiltViewModel
 
 class SearchViewModel @Inject constructor(private val repository: SearchRepository) : ViewModel() {
+    //total search
+    var totalSearch = MutableLiveData<Boolean>()
+
+    //method for giving value to total search
+    fun updateTotalSearchValue() {
+        totalSearch.value =
+            !(isSearchWithFilters.value == false && isSearchWithIngredient.value == false
+                    && isSearchWithDietsOrAllergies.value == false && searchString.value.isNullOrBlank())
+    }
+
     //search String
     var searchString = MutableLiveData<String>()
 
@@ -217,7 +227,7 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             }
             queries[CUISINE] = region
         }
-            //Diet
+        //Diet
         if (isSearchWithDiets.value == true) {
             var diets = ""
             selectedDietsData.value?.forEach {
@@ -234,31 +244,34 @@ class SearchViewModel @Inject constructor(private val repository: SearchReposito
             queries[INTOLERANCES] = allergies
         }
         //Time
-        if(isSearchWithTime.value==true){
+        if (isSearchWithTime.value == true) {
             selectedTimeData.value?.forEach {
-                queries[MAX_READY_TIME] =it
+                queries[MAX_READY_TIME] = it
             }
         }
 
         //Calorie
-        if(isSearchWithCalorie.value==true){
+        if (isSearchWithCalorie.value == true) {
             selectedCalorieData.value?.forEach {
-                when(it){
-                    "0-200"->{
-                        queries[MAX_CALORIES] =200.toString()
-                        queries[MIN_CALORIES] =0.toString()
+                when (it) {
+                    "0-200" -> {
+                        queries[MAX_CALORIES] = 200.toString()
+                        queries[MIN_CALORIES] = 0.toString()
                     }
-                    "200-400"->{
-                        queries[MAX_CALORIES] =400.toString()
-                        queries[MIN_CALORIES] =200.toString()
+
+                    "200-400" -> {
+                        queries[MAX_CALORIES] = 400.toString()
+                        queries[MIN_CALORIES] = 200.toString()
                     }
-                    "400-600"->{
-                        queries[MAX_CALORIES] =600.toString()
-                        queries[MIN_CALORIES] =400.toString()
+
+                    "400-600" -> {
+                        queries[MAX_CALORIES] = 600.toString()
+                        queries[MIN_CALORIES] = 400.toString()
                     }
-                    "600-800"->{
-                        queries[MAX_CALORIES] =600.toString()
-                        queries[MIN_CALORIES] =400.toString()
+
+                    "600-800" -> {
+                        queries[MAX_CALORIES] = 600.toString()
+                        queries[MIN_CALORIES] = 400.toString()
                     }
                 }
             }
