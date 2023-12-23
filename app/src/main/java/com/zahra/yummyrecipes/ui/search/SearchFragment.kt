@@ -172,7 +172,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithCalorie.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
 
             //ovenBaked
@@ -182,7 +182,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithTools.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
 
             //Asian
@@ -192,7 +192,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
 
             //Mediterranean
@@ -202,7 +202,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithRegion.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
 
             //Vegetarian
@@ -212,7 +212,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithDiets.value = true
                 viewModel.isSearchWithDietsOrAllergies.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
 
             //QuickAndEasy
@@ -222,7 +222,7 @@ class SearchFragment : Fragment() {
                 viewModel.isSearchWithTime.value = true
                 viewModel.isSearchWithFilters.value = true
                 viewModel.updateTotalSearchValue()
-                totalSearch()
+//                totalSearch()
             }
         }
     }
@@ -233,7 +233,7 @@ class SearchFragment : Fragment() {
         viewModel.isSearchWithMeals.value = true
         viewModel.isSearchWithFilters.value = true
         viewModel.updateTotalSearchValue()
-        totalSearch()
+//        totalSearch()
     }
 
     private fun closeSearch() {
