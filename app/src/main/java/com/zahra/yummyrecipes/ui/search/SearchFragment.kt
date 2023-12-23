@@ -292,6 +292,10 @@ class SearchFragment : Fragment() {
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
                     closeImg.isVisible = true
+                    searchEdt.setText(viewModel.searchString.value)
+                    viewModel.searchString.observe(viewLifecycleOwner) {string ->
+                        searchString = string
+                    }
                     viewModel.callSearchApi(viewModel.searchQueries(searchString))
                     loadRecentData()
                 } else {
