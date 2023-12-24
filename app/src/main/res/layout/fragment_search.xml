@@ -256,7 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/mealsnack" />
+                        android:src="@drawable/snack" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -332,7 +332,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/defaultcategory" />
+                        android:src="@drawable/lowcalorie" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -360,7 +360,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/defaultcategory" />
+                        android:src="@drawable/ovenbaked" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -389,7 +389,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/defaultcategory" />
+                    android:src="@drawable/asianfood" />
                 <!--Title-->
                 <TextView
                     android:layout_width="match_parent"
@@ -416,7 +416,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/defaultcategory" />
+                        android:src="@drawable/mediteranianfood" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -445,7 +445,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/defaultcategory" />
+                        android:src="@drawable/vegeterianfood" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -472,7 +472,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/defaultcategory" />
+                        android:src="@drawable/quicheasyfood" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
