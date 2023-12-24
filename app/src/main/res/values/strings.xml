@@ -114,5 +114,6 @@
     <string name="blender">Blender</string>
     <string name="food_processor">Food Processor</string>
     <string name="oven_baked">Oven-Baked</string>
+    <string name="no_results">No Results</string>
 
 </resources>

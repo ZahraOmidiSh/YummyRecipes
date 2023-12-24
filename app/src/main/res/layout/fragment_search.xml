@@ -36,7 +36,7 @@
         android:id="@+id/simpleSearchLay"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchEdt">
 
@@ -111,11 +111,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--Advanced SearchScroll-->
     <ScrollView
         android:id="@+id/advancedSearchScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:visibility="visible"
         android:fillViewport="true"
         android:paddingBottom="@dimen/_95mdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -486,6 +488,22 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <!--Empty-->
+    <TextView
+        android:id="@+id/emptyTxt"
+        style="@style/FavoriteEmptyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_results"
+        android:textSize="@dimen/_16mdp"
+        android:visibility="invisible"
+        app:drawableTopCompat="@drawable/box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchEdt" />
+
 
 
     <!--Internet-->
