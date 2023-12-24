@@ -457,6 +457,8 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
+                        simpleSearchList.isVisible=true
+                        emptyTxt.isVisible=false
                         simpleSearchList.showShimmer()
                     }
 
@@ -464,19 +466,23 @@ class SearchFragment : Fragment() {
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
+                                binding.simpleSearchList.isVisible=true
+                                emptyTxt.isVisible=false
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
                             } else {
-                                binding.root.showSnackBar("No matched results!!")
+                                simpleSearchList.isVisible=false
+                                emptyTxt.isVisible=true
                             }
                         }
                     }
 
                     is NetworkRequest.Error -> {
                         advancedSearchScroll.isVisible = false
+                        emptyTxt.isVisible=false
                         simpleSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
-                        binding.root.showSnackBar(response.message!!)
+                        root.showSnackBar(response.message!!)
                     }
 
                     else -> {}
