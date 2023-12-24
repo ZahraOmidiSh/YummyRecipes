@@ -223,6 +223,7 @@ class SearchFragment : Fragment() {
 
     private fun closeSearch() {
         binding.apply {
+            emptyTxt.isVisible=false
             viewModel.isCloseButtonPressed.value = true
             searchEdt.text.clear()
             viewModel.searchString.value = ""
@@ -254,6 +255,7 @@ class SearchFragment : Fragment() {
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
+            emptyTxt.isVisible=false
         }
     }
 
@@ -277,6 +279,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.totalSearch.observe(viewLifecycleOwner) {
                 if (it) {
+                    emptyTxt.isVisible=false
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
                     closeImg.isVisible = true
@@ -284,6 +287,7 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     setAllFilterButtonsSizeAndColor()
                 } else {
+                    emptyTxt.isVisible=false
                     setAllFilterButtonsToDefault()
                     simpleSearchLay.isVisible = false
                     advancedSearchScroll.isVisible = true
