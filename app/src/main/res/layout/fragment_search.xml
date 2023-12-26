@@ -340,7 +340,7 @@
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/low_calorie"
-                        android:textColor="@color/black"
+                        android:textColor="@color/rose_ebony"
                         android:textSize="@dimen/_13mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -368,7 +368,7 @@
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/oven_baked"
-                        android:textColor="@color/black"
+                        android:textColor="@color/brown_coffee"
                         android:textSize="@dimen/_13mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -397,7 +397,7 @@
                     android:layout_marginStart="@dimen/_2mdp"
                     android:layout_marginTop="@dimen/_3mdp"
                     android:text="@string/asian"
-                    android:textColor="@color/black"
+                    android:textColor="#004D40"
                     android:textSize="@dimen/_13mdp" />
                 </com.google.android.material.card.MaterialCardView>
                 <!--Mexican-->
@@ -424,7 +424,7 @@
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/mediterranean"
-                        android:textColor="@color/black"
+                        android:textColor="@color/wet_asphalt"
                         android:textSize="@dimen/_13mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
@@ -453,7 +453,7 @@
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/vegetarian_cat"
-                        android:textColor="@color/black"
+                        android:textColor="@color/portland_orange"
                         android:textSize="@dimen/_13mdp" />
                 </com.google.android.material.card.MaterialCardView>
                 <!--baked Goods-->
@@ -480,7 +480,7 @@
                         android:layout_marginStart="@dimen/_2mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/quick_and_easy"
-                        android:textColor="@color/black"
+                        android:textColor="#7B1FA2"
                         android:textSize="@dimen/_13mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
