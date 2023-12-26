@@ -185,14 +185,14 @@
                 <!--Breakfast-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/breakfastMeal"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:layout_marginTop="@dimen/_16mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toStartOf="@+id/maincourseMeal"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/searchByMealTxt"
                     app:layout_constraintTop_toBottomOf="@id/searchByMealTxt">
                     <!--Image-->
                     <ImageView
@@ -208,14 +208,14 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/breakfast"
                         android:textColor="@color/tart_orange"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--MainCourse-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/maincourseMeal"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -236,14 +236,14 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/main_course"
                         android:textColor="@color/portland_orange"
-                        android:textSize="@dimen/_12mdp" />
+                        android:textSize="@dimen/_11mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--Snack-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/snackMeal"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
@@ -265,14 +265,14 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/snack"
                         android:textColor="@color/wet_asphalt"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--Dessert-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/dessertMeal"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -318,8 +318,8 @@
                 <!--LowCarb-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/lowCalorie"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:layout_marginTop="@dimen/_16mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
@@ -337,18 +337,18 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2mdp"
+                        android:layout_marginStart="@dimen/_1mdp"
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/low_calorie"
                         android:textColor="@color/rose_ebony"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--AirFryer-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/oven_Baked"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -369,14 +369,14 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/oven_baked"
                         android:textColor="@color/brown_coffee"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--Asian-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/asian"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
@@ -398,13 +398,13 @@
                     android:layout_marginTop="@dimen/_3mdp"
                     android:text="@string/asian"
                     android:textColor="#004D40"
-                    android:textSize="@dimen/_13mdp" />
+                    android:textSize="@dimen/_12mdp" />
                 </com.google.android.material.card.MaterialCardView>
                 <!--Mexican-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/mediterranean"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -425,14 +425,14 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/mediterranean"
                         android:textColor="@color/wet_asphalt"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
                 <!--Vegetarian-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/vegetarian"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:layout_marginTop="@dimen/_12mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
@@ -454,13 +454,13 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/vegetarian_cat"
                         android:textColor="@color/portland_orange"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
                 </com.google.android.material.card.MaterialCardView>
                 <!--baked Goods-->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/quick_and_easy"
-                    android:layout_width="@dimen/_120mdp"
-                    android:layout_height="@dimen/_70mdp"
+                    android:layout_width="@dimen/_130mdp"
+                    android:layout_height="@dimen/_80mdp"
                     android:backgroundTint="@color/white"
                     android:elevation="@dimen/_2mdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -481,7 +481,7 @@
                         android:layout_marginTop="@dimen/_3mdp"
                         android:text="@string/quick_and_easy"
                         android:textColor="#7B1FA2"
-                        android:textSize="@dimen/_13mdp" />
+                        android:textSize="@dimen/_12mdp" />
 
                 </com.google.android.material.card.MaterialCardView>
 
