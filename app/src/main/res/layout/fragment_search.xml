@@ -332,7 +332,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/lowcalorie" />
+                        android:src="@drawable/lowcaloriee" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -445,7 +445,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/vegeterianfood" />
+                        android:src="@drawable/vegetariann" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
@@ -472,7 +472,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/quicheasyfood" />
+                        android:src="@drawable/quickk" />
                     <!--Title-->
                     <TextView
                         android:layout_width="match_parent"
