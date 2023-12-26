@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.YummyRecipes" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
@@ -240,12 +240,12 @@
     </style>
 
     <!--Search With Button-->
-    <style name="SearchWithButtonStyle" >
+    <style name="SearchWithButtonStyle">
         <item name="backgroundTint">@color/search_with_button_dark</item>
     </style>
 
     <!--Filters Button-->
-    <style name="FilterButtonStyle" >
+    <style name="FilterButtonStyle">
         <item name="backgroundTint">@color/eerie_black</item>
         <item name="android:textColor">@color/white</item>
     </style>

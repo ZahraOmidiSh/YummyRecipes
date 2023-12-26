@@ -91,8 +91,7 @@
         android:id="@+id/searchAllIngredientsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.SearchAllIngredientsFragment"
         android:label="fragment_search_all_ingredients"
-        tools:layout="@layout/fragment_search_all_ingredients">
-    </dialog>
+        tools:layout="@layout/fragment_search_all_ingredients"></dialog>
     <action
         android:id="@+id/actionToDiets"
         app:destination="@id/dietsFragment" />
@@ -100,8 +99,7 @@
         android:id="@+id/dietsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.DietsFragment"
         android:label="DietsFragment"
-        tools:layout="@layout/fragment_diets">
-    </dialog>
+        tools:layout="@layout/fragment_diets"></dialog>
     <action
         android:id="@+id/actionToFilters"
         app:destination="@id/filtersFragment" />
@@ -109,8 +107,7 @@
         android:id="@+id/filtersFragment"
         android:name="com.zahra.yummyrecipes.ui.search.FiltersFragment"
         android:label="fragment_filters"
-        tools:layout="@layout/fragment_filters" >
-    </dialog>
+        tools:layout="@layout/fragment_filters"></dialog>
 
 
 </navigation>

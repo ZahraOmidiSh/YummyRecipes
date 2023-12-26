@@ -223,7 +223,7 @@ class SearchFragment : Fragment() {
 
     private fun closeSearch() {
         binding.apply {
-            emptyTxt.isVisible=false
+            emptyTxt.isVisible = false
             viewModel.isCloseButtonPressed.value = true
             searchEdt.text.clear()
             viewModel.searchString.value = ""
@@ -255,7 +255,7 @@ class SearchFragment : Fragment() {
             simpleSearchLay.isVisible = false
             advancedSearchScroll.isVisible = true
             closeImg.isVisible = false
-            emptyTxt.isVisible=false
+            emptyTxt.isVisible = false
         }
     }
 
@@ -279,7 +279,7 @@ class SearchFragment : Fragment() {
         binding.apply {
             viewModel.totalSearch.observe(viewLifecycleOwner) {
                 if (it) {
-                    emptyTxt.isVisible=false
+                    emptyTxt.isVisible = false
                     simpleSearchLay.isVisible = true
                     advancedSearchScroll.isVisible = false
                     closeImg.isVisible = true
@@ -287,7 +287,7 @@ class SearchFragment : Fragment() {
                     loadRecentData()
                     setAllFilterButtonsSizeAndColor()
                 } else {
-                    emptyTxt.isVisible=false
+                    emptyTxt.isVisible = false
                     setAllFilterButtonsToDefault()
                     simpleSearchLay.isVisible = false
                     advancedSearchScroll.isVisible = true
@@ -461,8 +461,8 @@ class SearchFragment : Fragment() {
             viewModel.searchData.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkRequest.Loading -> {
-                        simpleSearchList.isVisible=true
-                        emptyTxt.isVisible=false
+                        simpleSearchList.isVisible = true
+                        emptyTxt.isVisible = false
                         simpleSearchList.showShimmer()
                     }
 
@@ -470,20 +470,20 @@ class SearchFragment : Fragment() {
                         simpleSearchList.hideShimmer()
                         response.data.let { data ->
                             if (data?.results!!.isNotEmpty()) {
-                                binding.simpleSearchList.isVisible=true
-                                emptyTxt.isVisible=false
+                                binding.simpleSearchList.isVisible = true
+                                emptyTxt.isVisible = false
                                 searchAdapter.setData(data.results)
                                 initSearchListRecycler()
                             } else {
-                                simpleSearchList.isVisible=false
-                                emptyTxt.isVisible=true
+                                simpleSearchList.isVisible = false
+                                emptyTxt.isVisible = true
                             }
                         }
                     }
 
                     is NetworkRequest.Error -> {
                         advancedSearchScroll.isVisible = false
-                        emptyTxt.isVisible=false
+                        emptyTxt.isVisible = false
                         simpleSearchLay.isVisible = false
                         simpleSearchList.hideShimmer()
                         root.showSnackBar(response.message!!)

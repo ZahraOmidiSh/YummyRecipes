@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
         android:paddingHorizontal="@dimen/_5mdp"
         android:paddingTop="@dimen/_25mdp"
-        android:fillViewport="true"
         android:paddingBottom="@dimen/_115mdp"
         app:layout_constraintTop_toTopOf="parent">
         <!--All Filters Layout-->
@@ -313,8 +313,8 @@
                     style="@style/FilterButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:insetTop="@dimen/_7mdp"
                     android:layout_marginTop="@dimen/_12mdp"
+                    android:insetTop="@dimen/_7mdp"
                     android:insetBottom="@dimen/_7mdp"
                     android:text="@string/indian"
                     android:textSize="@dimen/_7font_mdp"

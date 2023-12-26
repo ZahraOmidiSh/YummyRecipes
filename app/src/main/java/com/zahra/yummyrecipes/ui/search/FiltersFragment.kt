@@ -112,7 +112,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
         setBottomSheetCallback()
     }
 
-    private fun resultButton(){
+    private fun resultButton() {
         binding.apply {
             //Meals
             viewModel._selectedMealsData.value = notSureMeals
@@ -153,7 +153,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun timeFilters(){
+    private fun timeFilters() {
         binding.apply {
             under15MinutesButton.setOnClickListener {
                 setTimeButtonClickListener(under15MinutesButton, "15")
@@ -167,7 +167,8 @@ class FiltersFragment : BottomSheetDialogFragment() {
         }
 
     }
-    private fun calorieFilters(){
+
+    private fun calorieFilters() {
         binding.apply {
             under200CalButton.setOnClickListener {
                 setCalorieButtonClickListener(under200CalButton, "0-200")
@@ -185,7 +186,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun mealFilters(){
+    private fun mealFilters() {
         binding.apply {
             breakfastButton.setOnClickListener {
                 setMealButtonClickListener(breakfastButton, "breakfast")
@@ -203,7 +204,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun toolFilters(){
+    private fun toolFilters() {
         binding.apply {
             ovenButton.setOnClickListener {
                 setToolsButtonClickListener(ovenButton, "oven")
@@ -218,7 +219,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
 
     }
 
-    private fun regionFilters(){
+    private fun regionFilters() {
         binding.apply {
             asianButton.setOnClickListener {
                 setRegionButtonClickListener(asianButton, "Asian")

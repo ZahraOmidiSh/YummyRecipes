@@ -3,20 +3,14 @@ package com.zahra.yummyrecipes.ui.search
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.Button
-import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.FragmentDietsBinding
@@ -119,9 +113,9 @@ class DietsFragment : BottomSheetDialogFragment() {
                     viewModel.selectedAllergiesData.value?.isNotEmpty() == true
                 if (viewModel.isSearchWithDiets.value == true || viewModel.isSearchWithAllergies.value == true) {
                     viewModel.isCloseButtonPressed.value = false
-                    viewModel.isSearchWithDietsOrAllergies.value=true
-                }else{
-                    viewModel.isSearchWithDietsOrAllergies.value=false
+                    viewModel.isSearchWithDietsOrAllergies.value = true
+                } else {
+                    viewModel.isSearchWithDietsOrAllergies.value = false
                 }
                 viewModel.updateTotalSearchValue()
                 notSureDiets.clear()

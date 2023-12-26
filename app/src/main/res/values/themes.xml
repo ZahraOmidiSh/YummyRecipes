@@ -26,7 +26,7 @@
     </style>
 
     <!--Bottom Nav Style-->
-    <style name="BottomNavMainStyle" >
+    <style name="BottomNavMainStyle">
         <item name="itemTextColor">@color/item_bottom_nav_tint_light</item>
         <item name="itemIconTint">@color/item_bottom_nav_tint_light</item>
     </style>
@@ -183,8 +183,7 @@
         <item name="android:textColor">@color/rose_ebony</item>
     </style>
     <!--RV Background-->
-    <style name="RVBackground">
-    </style>
+    <style name="RVBackground"></style>
 
     <!--STEP Background-->
     <style name="stepBackground">
@@ -242,12 +241,12 @@
     </style>
 
     <!--Search With Button-->
-    <style name="SearchWithButtonStyle" >
+    <style name="SearchWithButtonStyle">
         <item name="backgroundTint">@color/search_with_button_light</item>
     </style>
 
     <!--Filters Button-->
-    <style name="FilterButtonStyle" >
+    <style name="FilterButtonStyle">
         <item name="backgroundTint">@color/whiteSmoke</item>
         <item name="android:textColor">@color/rose_ebony</item>
     </style>

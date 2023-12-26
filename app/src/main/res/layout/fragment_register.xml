@@ -35,7 +35,7 @@
                 android:id="@+id/firstNameEdt"
                 style="@style/EditTextStyle"
                 android:drawableStart="@drawable/baseline_person_24"
-                android:hint="@string/first_name"/>
+                android:hint="@string/first_name" />
             <!--LastName-->
             <EditText
                 android:id="@+id/lastNameEdt"
@@ -47,7 +47,7 @@
                 android:id="@+id/userNameEdt"
                 style="@style/EditTextStyle"
                 android:drawableStart="@drawable/baseline_person_24"
-                android:hint="@string/username"/>
+                android:hint="@string/username" />
             <!--Email-->
             <EditText
                 android:id="@+id/e_mailEdt"
@@ -72,11 +72,10 @@
         android:insetBottom="0dp"
         android:text="@string/register"
         android:textSize="@dimen/_15font_mdp"
+        app:cornerRadius="@dimen/_25mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cornerRadius="@dimen/_25mdp"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
