@@ -251,5 +251,36 @@
         <item name="android:textColor">@color/rose_ebony</item>
     </style>
 
+    <!--MealPlanner Recycler View-->
+    <style name="MealPlanner_Recycler_View">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:paddingStart">@dimen/_5mdp</item>
+    <item name="android:paddingEnd">@dimen/_5mdp</item>
+    <item name="android:paddingTop">@dimen/_3mdp</item>
+    <item name="android:textSize">@dimen/_13font_mdp</item>
+    <item name="android:clipToPadding">false</item>
+    <item name="android:orientation">horizontal</item>
+    </style>
+
+    <!--Meal Planner Arrows style-->
+    <style name="Meal_Planner_Arrows_Style">
+        <item name="tint">@color/rose_ebony</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!--Meal Planner Day style-->
+    <style name="Meal_Planner_Day_Style">
+        <item name="android:textColor">@color/philippine_gray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_10mdp</item>
+        <item name="android:layout_marginTop">@dimen/_10mdp</item>
+        <item name="android:layout_marginBottom">@dimen/_26mdp</item>
+        <item name="android:textSize">@dimen/_14mdp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>
