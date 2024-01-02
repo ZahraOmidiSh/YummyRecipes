@@ -14,22 +14,20 @@
 
         <ImageView
             android:id="@+id/backward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Meal_Planner_Arrows_Style"
             android:layout_marginEnd="@dimen/_10mdp"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintBottom_toBottomOf="@id/weekTxt"
             app:layout_constraintEnd_toStartOf="@id/weekTxt"
-            app:layout_constraintTop_toTopOf="@id/weekTxt"
-            app:tint="@color/rose_ebony" />
+            app:layout_constraintTop_toTopOf="@id/weekTxt" />
 
         <TextView
             android:id="@+id/weekTxt"
+            style="@style/TextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_3mdp"
             android:text="THIS WEEK"
-            android:textColor="@color/rose_ebony"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,20 +36,18 @@
 
         <ImageView
             android:id="@+id/forward"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Meal_Planner_Arrows_Style"
             android:layout_marginStart="@dimen/_10mdp"
             android:rotation="180"
             android:src="@drawable/baseline_arrow_back_ios_24"
             app:layout_constraintBottom_toBottomOf="@id/weekTxt"
             app:layout_constraintStart_toEndOf="@id/weekTxt"
-            app:layout_constraintTop_toTopOf="@id/weekTxt"
-            app:tint="@color/rose_ebony" />
+            app:layout_constraintTop_toTopOf="@id/weekTxt" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!--Line 1-->
+    <!--Line-->
     <View
-        android:id="@+id/line1"
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_3mdp"
         android:alpha="0.4"
@@ -66,62 +62,53 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/_80mdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line1">
+        app:layout_constraintTop_toBottomOf="@id/line">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_6mdp">
+            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/mondayCardView"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/mondayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6mdp"
-                android:layout_marginVertical="@dimen/_9mdp"
-                android:background="@color/white"
                 android:elevation="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_5mdp"
-                app:cardCornerRadius="@dimen/_6mdp"
+                android:paddingHorizontal="@dimen/_5mdp"
+                android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/monday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10mdp"
-                    android:layout_marginTop="@dimen/_10mdp"
-                    android:layout_marginBottom="@dimen/_26mdp"
+                    style="@style/Meal_Planner_Day_Style"
                     android:text="Monday"
-                    android:textColor="@color/philippine_gray"
-                    android:textSize="@dimen/_14mdp"
-                    android:textStyle="bold" />
-            </androidx.cardview.widget.CardView>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--meals List-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mealsList"
+                    style="@style/MealPlanner_Recycler_View"
+                    android:layout_marginTop="@dimen/_12mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/monday"
+                    tools:listitem="@layout/item_recipe" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/tuesdayCardView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_6mdp"
-                android:layout_marginVertical="@dimen/_6mdp"
-                android:background="@color/white"
-                android:elevation="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_5mdp"
-                app:cardCornerRadius="@dimen/_6mdp"
-                app:layout_constraintTop_toBottomOf="@id/mondayCardView">
+                <!--Line 1-->
+                <View
+                    android:id="@+id/line1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1mdp"
+                    android:layout_marginTop="@dimen/_6mdp"
+                    android:alpha="0.2"
+                    android:background="@color/big_foot_feet"
+                    app:layout_constraintTop_toBottomOf="@id/mealsList" />
 
-                <TextView
-                    android:id="@+id/tuesday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10mdp"
-                    android:layout_marginTop="@dimen/_10mdp"
-                    android:layout_marginBottom="@dimen/_26mdp"
-                    android:text="Tuesday"
-                    android:textSize="@dimen/_14mdp" />
-            </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </ScrollView>
 
 
