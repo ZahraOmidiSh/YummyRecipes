@@ -70,7 +70,56 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_6mdp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/mondayCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_6mdp"
+                android:layout_marginVertical="@dimen/_9mdp"
+                android:background="@color/white"
+                android:elevation="@dimen/_5mdp"
+                android:paddingVertical="@dimen/_5mdp"
+                app:cardCornerRadius="@dimen/_6mdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/monday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginBottom="@dimen/_26mdp"
+                    android:text="Monday"
+                    android:textColor="@color/philippine_gray"
+                    android:textSize="@dimen/_14mdp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tuesdayCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_6mdp"
+                android:layout_marginVertical="@dimen/_6mdp"
+                android:background="@color/white"
+                android:elevation="@dimen/_5mdp"
+                android:paddingVertical="@dimen/_5mdp"
+                app:cardCornerRadius="@dimen/_6mdp"
+                app:layout_constraintTop_toBottomOf="@id/mondayCardView">
+
+                <TextView
+                    android:id="@+id/tuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10mdp"
+                    android:layout_marginTop="@dimen/_10mdp"
+                    android:layout_marginBottom="@dimen/_26mdp"
+                    android:text="Tuesday"
+                    android:textSize="@dimen/_14mdp" />
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
