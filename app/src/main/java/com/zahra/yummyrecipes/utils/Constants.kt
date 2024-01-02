@@ -78,6 +78,7 @@ object Constants {
     const val DATABASE_NAME = "database_name"
     const val DETAIL_TABLE_NAME = "detail_table_name"
     const val FAVORITE_TABLE_NAME = "favorite_table_name"
+    const val MEAL_PLANNER_TABLE_NAME = "meal_planner_table_name"
 
     //Other
     const val LIMITED_COUNT = 10
