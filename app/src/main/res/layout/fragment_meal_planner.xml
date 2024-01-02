@@ -7,6 +7,7 @@
     tools:context=".ui.mealplanner.MealPlannerFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weekLay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="THIS WEEK"
+            android:layout_marginTop="@dimen/_3mdp"
             android:textStyle="bold"
             android:textColor="@color/rose_ebony"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,6 +49,14 @@
             app:tint="@color/rose_ebony" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Line 1-->
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_3mdp"
+        android:alpha="0.2"
+        android:background="@color/big_foot_feet"
+        app:layout_constraintTop_toBottomOf="@id/weekLay" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
