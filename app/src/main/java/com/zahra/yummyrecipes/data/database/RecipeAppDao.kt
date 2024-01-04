@@ -11,6 +11,7 @@ import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
 import com.zahra.yummyrecipes.utils.Constants.DETAIL_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.FAVORITE_TABLE_NAME
+import com.zahra.yummyrecipes.utils.Constants.MEAL_PLANNER_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.RECIPE_TABLE_NAME
 import kotlinx.coroutines.flow.Flow
 
@@ -53,7 +54,7 @@ interface RecipeAppDao {
     @Delete
     suspend fun deleteMeal(entity: MealPlannerEntity)
 
-    @Query("SELECT * FROM $FAVORITE_TABLE_NAME WHERE id LIKE :date || '%'")
+    @Query("SELECT * FROM $MEAL_PLANNER_TABLE_NAME WHERE ID LIKE :date || '%'")
     fun loadMeal(date: String): Flow<List<MealPlannerEntity>>
 
 }
