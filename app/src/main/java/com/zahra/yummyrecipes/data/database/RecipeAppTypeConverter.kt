@@ -27,14 +27,4 @@ class RecipeAppTypeConverter {
     fun stringToDetail(data:String):ResponseDetail {
         return gson.fromJson(data,ResponseDetail::class.java)
     }
-
-    @TypeConverter
-    fun mealToJson(detail : ResponseRecipes):String{
-        return gson.toJson(detail)
-    }
-
-    @TypeConverter
-    fun stringToMeal(data:String):ResponseRecipes {
-        return gson.fromJson(data,ResponseRecipes::class.java)
-    }
 }
