@@ -276,7 +276,15 @@
         <item name="android:layout_marginStart">@dimen/_10mdp</item>
         <item name="android:layout_marginTop">@dimen/_10mdp</item>
         <item name="android:layout_marginBottom">@dimen/_26mdp</item>
+        <item name="android:textSize">@dimen/_16mdp</item>
+    </style>
+
+    <!--Meal Planner Day Date style-->
+    <style name="Meal_Planner_Day_Date_Style">
+        <item name="android:textColor">@color/philippine_gray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/_10mdp</item>
         <item name="android:textSize">@dimen/_14mdp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 </resources>
