@@ -8,6 +8,6 @@ import com.zahra.yummyrecipes.utils.Constants.RECIPE_TABLE_NAME
 @Entity(tableName = RECIPE_TABLE_NAME)
 data class RecipeEntity(
     @PrimaryKey(autoGenerate = false)
-    var id: String ,
+    var id: Int = 0,
     var response: ResponseRecipes
 )
