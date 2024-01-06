@@ -23,7 +23,7 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
         calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
     }
 
-    var startDateOfWeek = calendar.time
+    private var startDateOfWeek: Date = calendar.time
 
     private var endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
     private val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
