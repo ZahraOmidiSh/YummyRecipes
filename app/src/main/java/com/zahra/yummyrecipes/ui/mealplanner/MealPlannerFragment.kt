@@ -37,21 +37,37 @@ class MealPlannerFragment : Fragment() {
             //find the current week
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
-            val dateFormat = SimpleDateFormat("d MMM", Locale.getDefault())
+
+            val dateFormat = SimpleDateFormat("d", Locale.getDefault())
+
             val startDate = calendar.time
             val endDate = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+
             val dateList = getDatesBetween(startDate, endDate)
 
             //Display the dates in TextViews
-            sundayDate.text = dateFormat.format(startDate)
-            mondayDate.text = dateFormat.format(dateList[1])
-            tuesdayDate.text = dateFormat.format(dateList[2])
-            wednesdayDate.text = dateFormat.format(dateList[3])
-            thursdayDate.text = dateFormat.format(dateList[4])
-            fridayDate.text = dateFormat.format(dateList[5])
-            saturdayDate.text = dateFormat.format(endDate)
+            sundayDate.text = formatWithSuffix(startDate)
+            mondayDate.text = formatWithSuffix(dateList[1])
+            tuesdayDate.text = formatWithSuffix(dateList[2])
+            wednesdayDate.text = formatWithSuffix(dateList[3])
+            thursdayDate.text = formatWithSuffix(dateList[4])
+            fridayDate.text = formatWithSuffix(dateList[5])
+            saturdayDate.text = formatWithSuffix(endDate)
 
 
+        }
+    }
+
+    private fun formatWithSuffix(date: Date): String {
+        val dayFormatter = SimpleDateFormat("d", Locale.getDefault())
+        val day = dayFormatter.format(date).toInt()
+
+        return when {
+            day in 11..13 -> "${day}th"
+            day % 10 == 1 -> "${day}st"
+            day % 10 == 2 -> "${day}nd"
+            day % 10 == 3 -> "${day}rd"
+            else -> "${day}th"
         }
     }
 
