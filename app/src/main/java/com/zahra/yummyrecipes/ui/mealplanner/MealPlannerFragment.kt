@@ -55,6 +55,7 @@ class MealPlannerFragment : Fragment() {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
         calendar.add(Calendar.WEEK_OF_YEAR, 1)
 
+
         showWeek(calendar)
     }
 
@@ -68,15 +69,16 @@ class MealPlannerFragment : Fragment() {
             val endDate = startOfWeek.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
 
             val dateList = getDatesBetween(startDate, endDate)
+//            var previousMonth = -1  //Initialize to an invalid value
 
             //Display the dates in TextViews
             sundayDate.text = "${formatWithSuffix(startDate)} ${monthFormat.format(startDate)}"
-            mondayDate.text = "${formatWithSuffix(dateList[1])} ${monthFormat.format(startDate)}"
-            tuesdayDate.text = "${formatWithSuffix(dateList[2])} ${monthFormat.format(startDate)}"
-            wednesdayDate.text = "${formatWithSuffix(dateList[3])} ${monthFormat.format(startDate)}"
-            thursdayDate.text = "${formatWithSuffix(dateList[4])} ${monthFormat.format(startDate)}"
-            fridayDate.text = "${formatWithSuffix(dateList[5])} ${monthFormat.format(startDate)}"
-            saturdayDate.text = "${formatWithSuffix(endDate)} ${monthFormat.format(startDate)}"
+            mondayDate.text = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"
+            tuesdayDate.text = "${formatWithSuffix(dateList[2])} ${monthFormat.format(dateList[2])}"
+            wednesdayDate.text = "${formatWithSuffix(dateList[3])} ${monthFormat.format(dateList[3])}"
+            thursdayDate.text = "${formatWithSuffix(dateList[4])} ${monthFormat.format(dateList[4])}"
+            fridayDate.text = "${formatWithSuffix(dateList[5])} ${monthFormat.format(dateList[5])}"
+            saturdayDate.text = "${formatWithSuffix(endDate)} ${monthFormat.format(endDate)}"
         }
 
     }
