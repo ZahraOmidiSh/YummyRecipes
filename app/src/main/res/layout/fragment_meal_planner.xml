@@ -73,6 +73,45 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!--Sunday-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sundayLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_5mdp"
+                android:paddingHorizontal="@dimen/_5mdp"
+                android:paddingVertical="@dimen/_6mdp"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/sunday"
+                    style="@style/Meal_Planner_Day_Style"
+                    android:text="Sunday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--meals List-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sundayMealsList"
+                    style="@style/MealPlanner_Recycler_View"
+                    android:layout_marginTop="@dimen/_12mdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sunday"
+                    tools:listitem="@layout/item_recipe" />
+
+                <!--Line 1-->
+                <View
+                    android:id="@+id/line7"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1mdp"
+                    android:layout_marginTop="@dimen/_6mdp"
+                    android:alpha="0.2"
+                    android:background="@color/big_foot_feet"
+                    app:layout_constraintTop_toBottomOf="@id/sundayMealsList" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <!--Monday-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mondayLay"
@@ -81,7 +120,7 @@
                 android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
                 android:paddingVertical="@dimen/_6mdp"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/sundayLay">
 
                 <TextView
                     android:id="@+id/monday"
@@ -307,44 +346,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--Sunday-->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sundayLay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
-                android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
-                app:layout_constraintTop_toBottomOf="@id/sundayLay">
 
-                <TextView
-                    android:id="@+id/sunday"
-                    style="@style/Meal_Planner_Day_Style"
-                    android:text="Sunday"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--meals List-->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/sundayMealsList"
-                    style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sunday"
-                    tools:listitem="@layout/item_recipe" />
-
-                <!--Line 1-->
-                <View
-                    android:id="@+id/line7"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1mdp"
-                    android:layout_marginTop="@dimen/_6mdp"
-                    android:alpha="0.2"
-                    android:background="@color/big_foot_feet"
-                    app:layout_constraintTop_toBottomOf="@id/sundayMealsList" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
