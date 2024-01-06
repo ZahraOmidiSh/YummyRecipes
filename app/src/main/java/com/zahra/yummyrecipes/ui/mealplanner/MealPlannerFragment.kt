@@ -40,18 +40,16 @@ class MealPlannerFragment : Fragment() {
             val dateFormat = SimpleDateFormat("d MMM", Locale.getDefault())
             val startDate = calendar.time
             val endDate = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+            val dateList = getDatesBetween(startDate, endDate)
+
             //Display the dates in TextViews
-            sunday.text = "sunday: ${dateFormat.format(startDate)}"
-            saturday.text =  "saturday: ${dateFormat.format(endDate)}"
-            val dateList =getDatesBetween(startDate , endDate)
-
-            Log.e("dateList", dateList.toString() )
-
-            monday.text="monday: ${dateFormat.format(dateList[1])}"
-            tuesday.text="tuesday: ${dateFormat.format(dateList[2])}"
-            wednesday.text="wednesday: ${dateFormat.format(dateList[3])}"
-            thursday.text="thursday: ${dateFormat.format(dateList[4])}"
-            friday.text="friday: ${dateFormat.format(dateList[5])}"
+            sundayDate.text = dateFormat.format(startDate)
+            mondayDate.text = dateFormat.format(dateList[1])
+            tuesdayDate.text = dateFormat.format(dateList[2])
+            wednesdayDate.text = dateFormat.format(dateList[3])
+            thursdayDate.text = dateFormat.format(dateList[4])
+            fridayDate.text = dateFormat.format(dateList[5])
+            saturdayDate.text = dateFormat.format(endDate)
 
 
         }
