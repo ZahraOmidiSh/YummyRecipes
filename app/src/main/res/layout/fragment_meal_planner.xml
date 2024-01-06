@@ -89,6 +89,14 @@
                     android:text="Sunday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/sundayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/sunday"
+                    app:layout_constraintStart_toEndOf="@id/sunday"
+                    app:layout_constraintTop_toTopOf="@id/sunday" />
+
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sundayMealsList"
@@ -128,6 +136,12 @@
                     android:text="Monday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/mondayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/monday"
+                    app:layout_constraintStart_toEndOf="@id/monday"
+                    app:layout_constraintTop_toTopOf="@id/monday" />
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mondayMealsList"
@@ -167,6 +181,12 @@
                     android:text="Tuesday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tuesdayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/tuesday"
+                    app:layout_constraintStart_toEndOf="@id/tuesday"
+                    app:layout_constraintTop_toTopOf="@id/tuesday" />
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tuesdayMealsList"
@@ -206,6 +226,13 @@
                     android:text="Wednesday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/wednesdayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/wednesday"
+                    app:layout_constraintStart_toEndOf="@id/wednesday"
+                    app:layout_constraintTop_toTopOf="@id/wednesday" />
+
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/wednesdayMealsList"
@@ -245,6 +272,12 @@
                     android:text="thursday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/thursdayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/thursday"
+                    app:layout_constraintStart_toEndOf="@id/thursday"
+                    app:layout_constraintTop_toTopOf="@id/thursday" />
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/thursdayMealsList"
@@ -284,6 +317,12 @@
                     android:text="Friday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/fridayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/friday"
+                    app:layout_constraintStart_toEndOf="@id/friday"
+                    app:layout_constraintTop_toTopOf="@id/friday" />
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/fridayMealsList"
@@ -323,6 +362,12 @@
                     android:text="Saturday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/saturdayDate"
+                    style="@style/Meal_Planner_Day_Date_Style"
+                    app:layout_constraintBottom_toBottomOf="@id/saturday"
+                    app:layout_constraintStart_toEndOf="@id/saturday"
+                    app:layout_constraintTop_toTopOf="@id/saturday" />
                 <!--meals List-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/saturdayMealsList"
@@ -345,8 +390,6 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
