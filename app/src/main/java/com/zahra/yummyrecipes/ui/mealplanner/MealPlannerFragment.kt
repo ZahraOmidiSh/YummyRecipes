@@ -37,7 +37,7 @@ class MealPlannerFragment : Fragment() {
             //find the current week
             val calendar = Calendar.getInstance()
             calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            val dateFormat = SimpleDateFormat("d MMM", Locale.getDefault())
             val startDate = calendar.time
             val endDate = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
             //Display the dates in TextViews
