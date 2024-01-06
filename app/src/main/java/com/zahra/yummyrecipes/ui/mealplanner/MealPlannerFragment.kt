@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,18 +40,24 @@ class MealPlannerFragment : Fragment() {
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val startDate = calendar.time
             val endDate = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-
-            val dateList = getDatesBetween(startDate, endDate)
-
             //Display the dates in TextViews
-            monday.text = "monday:$startDate"
-            sunday.text = "sunday:$endDate"
+            sunday.text = "sunday: ${dateFormat.format(startDate)}"
+            saturday.text =  "saturday: ${dateFormat.format(endDate)}"
+            val dateList =getDatesBetween(startDate , endDate)
+
+            Log.e("dateList", dateList.toString() )
+
+            monday.text="monday: ${dateFormat.format(dateList[1])}"
+            tuesday.text="tuesday: ${dateFormat.format(dateList[2])}"
+            wednesday.text="wednesday: ${dateFormat.format(dateList[3])}"
+            thursday.text="thursday: ${dateFormat.format(dateList[4])}"
+            friday.text="friday: ${dateFormat.format(dateList[5])}"
 
 
         }
     }
 
-    private fun getDatesBetween(startDate: Date, endDate: Date): List<Calendar> {
+    private fun getDatesBetween(startDate: Date, endDate: Date): List<Date> {
         val dates = mutableListOf<Date>()
         val calendar = Calendar.getInstance()
         calendar.time = startDate
