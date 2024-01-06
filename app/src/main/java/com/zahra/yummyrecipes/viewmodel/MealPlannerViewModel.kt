@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.zahra.yummyrecipes.data.repository.MealRepository
@@ -23,18 +24,41 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     }
 
     var startDateOfWeek = calendar.time
+
     private var endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
     private val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
+    var sunday = ""
+    var monday = ""
+    var tuesday = ""
+    var wednesday = ""
+    var thursday = ""
+    var friday = ""
+    var saturday = ""
 
-    val dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
+    fun forwardWeek() {
+        calendar.time = startDateOfWeek
+        calendar.add(Calendar.DAY_OF_MONTH, 7)
+        startDateOfWeek = calendar.time
+        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+    }
 
-    var sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
-    var monday = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"
-    var tuesday = "${formatWithSuffix(dateList[2])} ${monthFormat.format(dateList[2])}"
-    var wednesday = "${formatWithSuffix(dateList[3])} ${monthFormat.format(dateList[3])}"
-    var thursday = "${formatWithSuffix(dateList[4])} ${monthFormat.format(dateList[4])}"
-    var friday = "${formatWithSuffix(dateList[5])} ${monthFormat.format(dateList[5])}"
-    var saturday = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
+    fun backwardWeek() {
+        calendar.time = startDateOfWeek
+        calendar.add(Calendar.DAY_OF_MONTH, -7)
+        startDateOfWeek = calendar.time
+        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+    }
+
+    fun updateDatesOfWeekDays() {
+        var dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
+        sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
+        monday = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"
+        tuesday = "${formatWithSuffix(dateList[2])} ${monthFormat.format(dateList[2])}"
+        wednesday = "${formatWithSuffix(dateList[3])} ${monthFormat.format(dateList[3])}"
+        thursday = "${formatWithSuffix(dateList[4])} ${monthFormat.format(dateList[4])}"
+        friday = "${formatWithSuffix(dateList[5])} ${monthFormat.format(dateList[5])}"
+        saturday = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
+    }
 
     private fun formatWithSuffix(date: Date): String {
         val dayFormatter = SimpleDateFormat("d", Locale.getDefault())
@@ -51,7 +75,6 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
 
     private fun getDatesBetween(startDate: Date, endDate: Date): List<Date> {
         val dates = mutableListOf<Date>()
-//        val calendar = Calendar.getInstance()
         makeAnInstanceOfCalendar()
         calendar.time = startDate
 

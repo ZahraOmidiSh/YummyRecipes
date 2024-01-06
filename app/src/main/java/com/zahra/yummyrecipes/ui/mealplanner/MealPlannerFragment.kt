@@ -35,10 +35,25 @@ class MealPlannerFragment : Fragment() {
         //InitViews
         binding.apply {
             //forward click listener
-//            forward.setOnClickListener {
-//                showNextWeek()
-//            }
+            forward.setOnClickListener {
+                viewModel.forwardWeek()
+                viewModel.updateDatesOfWeekDays()
+                showWeekDates()
+            }
+            //backward click listener
+            backward.setOnClickListener {
+                viewModel.backwardWeek()
+                viewModel.updateDatesOfWeekDays()
+                showWeekDates()
+            }
             //Show current week initially
+            viewModel.updateDatesOfWeekDays()
+            showWeekDates()
+        }
+    }
+
+    private fun showWeekDates() {
+        binding.apply {
             sundayDate.text = viewModel.sunday
             mondayDate.text = viewModel.monday
             tuesdayDate.text = viewModel.tuesday
@@ -47,6 +62,7 @@ class MealPlannerFragment : Fragment() {
             fridayDate.text = viewModel.friday
             saturdayDate.text = viewModel.saturday
         }
+
     }
 
 
