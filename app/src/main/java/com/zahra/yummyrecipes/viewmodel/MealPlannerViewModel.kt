@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +25,7 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     }
 
     private var startDateOfWeek: Date = calendar.time
+    private var currentWeekStartDate: Date = calendar.time
 
     private var endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
     private val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
@@ -34,6 +36,29 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     var thursday = ""
     var friday = ""
     var saturday = ""
+
+
+    fun setWeekTitle(): String {
+        val startDate =
+            "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
+        val endDate = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
+        val differenceInMilliseconds = currentWeekStartDate.time - startDateOfWeek.time
+        val differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMilliseconds)
+        var weekText = ""
+
+        if (differenceInDays.toInt()==0) {
+            weekText = "THIS WEEK"
+        } else if (differenceInDays.toInt()==7) {
+            weekText = "LAST WEEK"
+        } else if (differenceInDays > 7) {
+            weekText = "$startDate - $endDate"
+        } else if (differenceInDays.toInt()==-7) {
+            weekText = "NEXT WEEK"
+        } else if (differenceInDays < -7) {
+            weekText = "$startDate - $endDate"
+        }
+        return weekText
+    }
 
     fun forwardWeek() {
         calendar.time = startDateOfWeek

@@ -61,6 +61,7 @@ class MealPlannerFragment : Fragment() {
             thursdayDate.text = viewModel.thursday
             fridayDate.text = viewModel.friday
             saturdayDate.text = viewModel.saturday
+            weekTxt.text = viewModel.setWeekTitle()
         }
 
     }
