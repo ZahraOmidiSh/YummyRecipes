@@ -1,11 +1,23 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import android.content.SharedPreferences
 import android.util.Log
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.repository.MealRepository
+import com.zahra.yummyrecipes.utils.Constants
+import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel.StoreKeys.RECIPE_ID
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -14,9 +26,40 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
-class MealPlannerViewModel @Inject constructor(repository: MealRepository) : ViewModel() {
+class MealPlannerViewModel @Inject constructor(
+    repository: MealRepository,
+//    private val sharedPreferences: SharedPreferences
+    private val dataStore: DataStore<Preferences>
+) : ViewModel() {
     val data = 20230806
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
+
+
+    object StoreKeys {
+        val RECIPE_ID = intPreferencesKey("recipeId")
+    }
+    //saving recipeID
+    fun saveIntToDataStore(recipeId:Int){
+        viewModelScope.launch {
+            dataStore.edit {preferences ->
+            preferences[StoreKeys.RECIPE_ID]=recipeId
+
+            }
+        }
+    }
+//    fun saveToSharedPreferences(recipeId: Int) {
+//        sharedPreferences.edit().putInt("recipeId", recipeId).apply()
+//    }
+
+    //getting a value from shared preferences
+
+    val readIntFromDataStore: Flow<Int> = dataStore.data.map { preferences ->
+        preferences[StoreKeys.RECIPE_ID] ?: 0
+    }
+//    fun getFromSharedPreferences(): Int {
+//        return sharedPreferences.getInt("recipeId", 0)
+//    }
+
 
     private val calendar: Calendar = Calendar.getInstance()
 
@@ -24,6 +67,7 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     private fun makeAnInstanceOfCalendar() {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
     }
+
     val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
 
 
@@ -85,7 +129,7 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     }
 
     fun updateDatesOfWeekDays() {
-        Log.e("startDateOfWeek", dateFormat.format(startDateOfWeek) )
+        Log.e("startDateOfWeek", dateFormat.format(startDateOfWeek))
         var dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
         sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
         monday = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"

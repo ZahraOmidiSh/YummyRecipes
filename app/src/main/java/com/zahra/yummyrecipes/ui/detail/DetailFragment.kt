@@ -39,6 +39,7 @@ import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
+import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,6 +68,7 @@ class DetailFragment : Fragment() {
 
     //Other
     private val viewModel: DetailViewModel by viewModels()
+    private val mealViewModel: MealPlannerViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId = 0
     private val TAG = "Detail"
@@ -98,6 +100,7 @@ class DetailFragment : Fragment() {
 
             //Add To Meal Planner
             mealPlannerImg.setOnClickListener {
+                mealViewModel.saveIntToDataStore(recipeId)
                 val direction = DetailFragmentDirections.actionMealPlanner()
                 findNavController().navigate(direction)
             }

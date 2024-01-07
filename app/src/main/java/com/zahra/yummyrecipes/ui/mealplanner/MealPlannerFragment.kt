@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.navArgs
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MealPlannerFragment : Fragment() {
@@ -21,7 +26,8 @@ class MealPlannerFragment : Fragment() {
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
-//    private val args:MealPlannerFragmentArgs by navArgs()
+
+    //    private val args:MealPlannerFragmentArgs by navArgs()
     private var recipeId = 0
 
     override fun onCreateView(
@@ -36,17 +42,21 @@ class MealPlannerFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Args
-//        args.let {
-//            recipeId = args.recipeID
-//        }
 
-        //Call api
-//        if (recipeId > 0) {
-//            showAddHereButtons(true)
-//        } else {
-//            showAddHereButtons(false)
-//        }
+        lifecycleScope.launch {
+            withStarted {}
+//                delay(3000)
+            delay(50)
+            viewModel.readIntFromDataStore.asLiveData().observe(viewLifecycleOwner) {
+                recipeId = it
+            }
+        }
+        if (recipeId > 0) {
+            showAddHereButtons(true)
+//            recipeId=0
+        } else {
+            showAddHereButtons(false)
+        }
         //InitViews
         binding.apply {
             //forward click listener
