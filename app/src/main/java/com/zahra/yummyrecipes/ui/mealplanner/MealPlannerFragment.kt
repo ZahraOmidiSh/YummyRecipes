@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +21,8 @@ class MealPlannerFragment : Fragment() {
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
+//    private val args:MealPlannerFragmentArgs by navArgs()
+    private var recipeId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +36,17 @@ class MealPlannerFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Args
+//        args.let {
+//            recipeId = args.recipeID
+//        }
+
+        //Call api
+//        if (recipeId > 0) {
+//            showAddHereButtons(true)
+//        } else {
+//            showAddHereButtons(false)
+//        }
         //InitViews
         binding.apply {
             //forward click listener
@@ -70,6 +85,19 @@ class MealPlannerFragment : Fragment() {
             weekTxt.text = viewModel.setWeekTitle()
         }
 
+    }
+
+    private fun showAddHereButtons(visibility: Boolean) {
+        binding.apply {
+            addToSunday.isVisible = visibility
+            addToMonday.isVisible = visibility
+            addToTuesday.isVisible = visibility
+            addToWednesday.isVisible = visibility
+            addToThursday.isVisible = visibility
+            addToFriday.isVisible = visibility
+            addToSaturday.isVisible = visibility
+
+        }
     }
 
 

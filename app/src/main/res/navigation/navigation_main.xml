@@ -47,22 +47,18 @@
         android:name="com.zahra.yummyrecipes.ui.favorite.FavoriteFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_favorite" />
+
+
     <action
         android:id="@+id/actionMealPlanner"
-        app:destination="@id/mealPlannerFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        app:destination="@id/mealPlannerFragment" />
     <fragment
         android:id="@+id/mealPlannerFragment"
         android:name="com.zahra.yummyrecipes.ui.mealplanner.MealPlannerFragment"
         android:label="fragment_meal_planner"
-        tools:layout="@layout/fragment_meal_planner" >
-        <argument
-            android:name="recipeID"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_meal_planner" />
+
+
     <action
         android:id="@+id/actionToDetail"
         app:destination="@id/detailFragment"
@@ -79,6 +75,8 @@
             android:name="recipeID"
             app:argType="integer" />
     </fragment>
+
+
     <action
         android:id="@+id/actionToWebView"
         app:destination="@id/webViewFragment"
@@ -102,7 +100,7 @@
         android:id="@+id/searchAllIngredientsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.SearchAllIngredientsFragment"
         android:label="fragment_search_all_ingredients"
-        tools:layout="@layout/fragment_search_all_ingredients"></dialog>
+        tools:layout="@layout/fragment_search_all_ingredients"/>
     <action
         android:id="@+id/actionToDiets"
         app:destination="@id/dietsFragment" />
@@ -110,7 +108,7 @@
         android:id="@+id/dietsFragment"
         android:name="com.zahra.yummyrecipes.ui.search.DietsFragment"
         android:label="DietsFragment"
-        tools:layout="@layout/fragment_diets"></dialog>
+        tools:layout="@layout/fragment_diets"/>
     <action
         android:id="@+id/actionToFilters"
         app:destination="@id/filtersFragment" />
@@ -118,7 +116,7 @@
         android:id="@+id/filtersFragment"
         android:name="com.zahra.yummyrecipes.ui.search.FiltersFragment"
         android:label="fragment_filters"
-        tools:layout="@layout/fragment_filters"></dialog>
+        tools:layout="@layout/fragment_filters"/>
 
 
 </navigation>
