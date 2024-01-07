@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -23,6 +24,8 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
     private fun makeAnInstanceOfCalendar() {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
     }
+    val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+
 
     private var startDateOfWeek: Date = calendar.time
     private var currentWeekStartDate: Date = calendar.time
@@ -46,13 +49,13 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
         val differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMilliseconds)
         var weekText = ""
 
-        if (differenceInDays.toInt()==0) {
+        if (differenceInDays.toInt() == 0) {
             weekText = "THIS WEEK"
-        } else if (differenceInDays.toInt()==7) {
+        } else if (differenceInDays.toInt() == 7) {
             weekText = "LAST WEEK"
         } else if (differenceInDays > 7) {
             weekText = "$startDate - $endDate"
-        } else if (differenceInDays.toInt()==-7) {
+        } else if (differenceInDays.toInt() == -7) {
             weekText = "NEXT WEEK"
         } else if (differenceInDays < -7) {
             weekText = "$startDate - $endDate"
@@ -74,14 +77,15 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
         endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
     }
 
-    fun goToCurrentWeek(){
+    fun goToCurrentWeek() {
         calendar.time = currentWeekStartDate
-        startDateOfWeek= calendar.time
+        startDateOfWeek = calendar.time
         endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
         updateDatesOfWeekDays()
     }
 
     fun updateDatesOfWeekDays() {
+        Log.e("startDateOfWeek", dateFormat.format(startDateOfWeek) )
         var dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
         sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
         monday = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"
