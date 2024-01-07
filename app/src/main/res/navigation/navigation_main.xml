@@ -47,11 +47,22 @@
         android:name="com.zahra.yummyrecipes.ui.favorite.FavoriteFragment"
         android:label="fragment_collection"
         tools:layout="@layout/fragment_favorite" />
+    <action
+        android:id="@+id/actionMealPlanner"
+        app:destination="@id/mealPlannerFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     <fragment
         android:id="@+id/mealPlannerFragment"
         android:name="com.zahra.yummyrecipes.ui.mealplanner.MealPlannerFragment"
         android:label="fragment_meal_planner"
-        tools:layout="@layout/fragment_meal_planner" />
+        tools:layout="@layout/fragment_meal_planner" >
+        <argument
+            android:name="recipeID"
+            app:argType="integer" />
+    </fragment>
     <action
         android:id="@+id/actionToDetail"
         app:destination="@id/detailFragment"
