@@ -74,6 +74,13 @@ class MealPlannerViewModel @Inject constructor(repository: MealRepository) : Vie
         endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
     }
 
+    fun goToCurrentWeek(){
+        calendar.time = currentWeekStartDate
+        startDateOfWeek= calendar.time
+        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+        updateDatesOfWeekDays()
+    }
+
     fun updateDatesOfWeekDays() {
         var dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
         sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"

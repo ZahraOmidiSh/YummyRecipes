@@ -46,6 +46,12 @@ class MealPlannerFragment : Fragment() {
                 viewModel.updateDatesOfWeekDays()
                 showWeekDates()
             }
+            //Go To Current Week
+            weekTxt.setOnClickListener {
+                viewModel.goToCurrentWeek()
+//                viewModel.updateDatesOfWeekDays()
+                showWeekDates()
+            }
             //Show current week initially
             viewModel.updateDatesOfWeekDays()
             showWeekDates()
