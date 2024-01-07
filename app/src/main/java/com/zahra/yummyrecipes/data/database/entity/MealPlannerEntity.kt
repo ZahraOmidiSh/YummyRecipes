@@ -8,6 +8,6 @@ import com.zahra.yummyrecipes.utils.Constants
 @Entity(tableName = Constants.MEAL_PLANNER_TABLE_NAME)
 data class MealPlannerEntity(
     @PrimaryKey(autoGenerate = false)
-    var id: Int = 0,
-    var response: ResponseDetail
+    val id:Int,
+    val result:ResponseDetail
 )
