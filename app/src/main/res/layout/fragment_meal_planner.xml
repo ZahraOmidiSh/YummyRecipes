@@ -27,7 +27,8 @@
         <TextView
             android:id="@+id/weekTxt"
             style="@style/TextView2"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_130mdp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_3mdp"
             android:text="THIS WEEK"
