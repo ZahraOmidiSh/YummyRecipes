@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MealPlannerViewModel @Inject constructor(repository: MealRepository) : ViewModel() {
-    val data = "Monday"
+    val data = 20230806
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
 
     private val calendar: Calendar = Calendar.getInstance()
