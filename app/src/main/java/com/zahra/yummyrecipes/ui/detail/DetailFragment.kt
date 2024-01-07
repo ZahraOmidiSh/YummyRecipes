@@ -95,6 +95,12 @@ class DetailFragment : Fragment() {
             //Back
             backImg.setOnClickListener { findNavController().popBackStack() }
 
+            //Add To Meal Planner
+            mealPlannerImg.setOnClickListener {
+                val direction = DetailFragmentDirections.actionMealPlanner(recipeId)
+                findNavController().navigate(direction)
+            }
+
         }
         //Check Internet
         lifecycleScope.launch {

@@ -10,7 +10,7 @@ import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
 
 @Database(
     entities = [RecipeEntity::class, DetailEntity::class, FavoriteEntity::class, MealPlannerEntity::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(RecipeAppTypeConverter::class)
