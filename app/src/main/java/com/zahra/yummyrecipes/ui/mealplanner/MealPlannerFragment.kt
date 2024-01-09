@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +28,6 @@ class MealPlannerFragment : Fragment() {
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
 
-    //    private val args:MealPlannerFragmentArgs by navArgs()
-    private var recipeId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,20 +42,9 @@ class MealPlannerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
-            withStarted {}
-//                delay(3000)
-            delay(50)
-            viewModel.readIntFromDataStore.asLiveData().observe(viewLifecycleOwner) {
-                recipeId = it
-            }
-        }
-        if (recipeId > 0) {
-            showAddHereButtons(true)
-//            recipeId=0
-        } else {
-            showAddHereButtons(false)
-        }
+        val recipeId = arguments?.getInt("recipeId", 0)
+        Log.e("recipeId", recipeId.toString())
+
         //InitViews
         binding.apply {
             //forward click listener
