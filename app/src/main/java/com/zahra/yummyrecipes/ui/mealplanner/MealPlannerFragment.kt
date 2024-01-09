@@ -104,6 +104,7 @@ class MealPlannerFragment : Fragment() {
             addToThursday.isVisible = visibility
             addToFriday.isVisible = visibility
             addToSaturday.isVisible = visibility
+            chooseDayTxt.isVisible = visibility
 
         }
     }

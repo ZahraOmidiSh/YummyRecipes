@@ -59,6 +59,20 @@
         android:background="@color/big_foot_feet"
         app:layout_constraintTop_toBottomOf="@id/weekLay" />
 
+    <TextView
+        android:id="@+id/chooseDayTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_rounded_nutrient3"
+        android:padding="@dimen/_5mdp"
+        android:text="Choose the day to plan your meal"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:textColor="@color/rose_ebony"
+        android:textStyle="bold|italic"
+        app:layout_constraintTop_toTopOf="@id/line" />
+
+
     <!--Days of week scroll view-->
     <ScrollView
         android:layout_width="match_parent"
