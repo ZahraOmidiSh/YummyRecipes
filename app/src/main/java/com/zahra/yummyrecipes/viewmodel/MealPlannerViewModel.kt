@@ -38,11 +38,12 @@ class MealPlannerViewModel @Inject constructor(
     object StoreKeys {
         val RECIPE_ID = intPreferencesKey("recipeId")
     }
+
     //saving recipeID
-    fun saveIntToDataStore(recipeId:Int){
+    fun saveIntToDataStore(recipeId: Int) {
         viewModelScope.launch {
-            dataStore.edit {preferences ->
-            preferences[StoreKeys.RECIPE_ID]=recipeId
+            dataStore.edit { preferences ->
+                preferences[StoreKeys.RECIPE_ID] = recipeId
 
             }
         }
