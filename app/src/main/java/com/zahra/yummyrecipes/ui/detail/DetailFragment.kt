@@ -32,7 +32,6 @@ import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.S
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
-import com.zahra.yummyrecipes.ui.mealplanner.MealPlannerFragmentDirections
 import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.*
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
@@ -100,8 +99,7 @@ class DetailFragment : Fragment() {
 
             //Add To Meal Planner
             mealPlannerImg.setOnClickListener {
-                mealViewModel.saveIntToDataStore(recipeId)
-                val direction = DetailFragmentDirections.actionMealPlanner()
+                val direction = DetailFragmentDirections.actionDetailToMealPlanner(recipeId)
                 findNavController().navigate(direction)
             }
 
