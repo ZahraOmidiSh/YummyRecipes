@@ -59,12 +59,12 @@ class MealPlannerFragment : Fragment() {
 
             //forward click listener
             forward.setOnClickListener {
-                viewModel.forwardWeek()
+                viewModel.goForwardOneWeek()
                 showWeekDates()
             }
             //backward click listener
             backward.setOnClickListener {
-                viewModel.backwardWeek()
+                viewModel.goBackwardOneWeek()
                 showWeekDates()
             }
             //Go To Current Week

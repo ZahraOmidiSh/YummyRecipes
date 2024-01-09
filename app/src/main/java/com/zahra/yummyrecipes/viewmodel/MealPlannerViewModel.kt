@@ -34,10 +34,15 @@ class MealPlannerViewModel @Inject constructor(
         calendar.time = today
         // Find the current Sunday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        updateDatesOfWeekDays()
+    }
+
+    fun getDatesForCurrentWeek(): List<String> {
+        return dateList.toList()
     }
 
     // Function to get a list of dates for the current week (Sunday to Saturday)
-    fun getDatesForCurrentWeek() {
+    fun updateDatesOfWeekDays() {
         dateList.clear()
         dateStringList.clear()
         // Add dates for the current week to the list
@@ -83,15 +88,15 @@ class MealPlannerViewModel @Inject constructor(
 //    }
 
     //
-    fun forwardWeek() {
-        calendar.time = today
+    fun goForwardOneWeek() {
         calendar.add(Calendar.DAY_OF_MONTH, 7)
-        getDatesForCurrentWeek()
+        updateDatesOfWeekDays()
     }
-//
-    fun backwardWeek() {
-    calendar.add(Calendar.DAY_OF_MONTH, -7)
-    getDatesForCurrentWeek()
+
+    //
+    fun goBackwardOneWeek() {
+        calendar.add(Calendar.DAY_OF_MONTH, -7)
+        updateDatesOfWeekDays()
     }
 //
 //    fun goToCurrentWeek() {
@@ -101,8 +106,6 @@ class MealPlannerViewModel @Inject constructor(
 //        updateDatesOfWeekDays()
 //    }
 //
-
-
 
 
 }
