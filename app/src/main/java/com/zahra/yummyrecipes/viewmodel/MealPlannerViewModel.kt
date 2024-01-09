@@ -21,121 +21,130 @@ class MealPlannerViewModel @Inject constructor(
     val data = 20230806
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
 
-    private val calendar: Calendar = Calendar.getInstance()
-    lateinit var chooseDateList: MutableList<String>
+    //Get The current date
+    private val today = Date()
 
-    //setWeek calendar
-    private fun makeAnInstanceOfCalendar() {
-        calendar.firstDayOfWeek = Calendar.SUNDAY
-        calendar.set(Calendar.DAY_OF_WEEK, calendar.firstDayOfWeek)
+    //Create a Calendar instance
+    private val calendar = Calendar.getInstance()
+    private val dateList = mutableListOf<String>()
+
+    init {
+        // Set the calendar to the current date
+        calendar.time = today
+        // Find the current Sunday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
     }
 
-    val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-
-
-    private var startDateOfWeek: Date = calendar.time
-    private var currentWeekStartDate: Date = calendar.time
-
-    private var endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-    private val monthFormat = SimpleDateFormat("MMM", Locale.getDefault())
-    var sunday = ""
-    var monday = ""
-    var tuesday = ""
-    var wednesday = ""
-    var thursday = ""
-    var friday = ""
-    var saturday = ""
-
-
-    fun setWeekTitle(): String {
-        val startDate =
-            "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
-        val endDate = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
-        val differenceInMilliseconds = currentWeekStartDate.time - startDateOfWeek.time
-        val differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMilliseconds)
-        var weekText = ""
-
-        if (differenceInDays.toInt() == 0) {
-            weekText = "THIS WEEK"
-        } else if (differenceInDays.toInt() == 7) {
-            weekText = "LAST WEEK"
-        } else if (differenceInDays > 7) {
-            weekText = "$startDate - $endDate"
-        } else if (differenceInDays.toInt() == -7) {
-            weekText = "NEXT WEEK"
-        } else if (differenceInDays < -7) {
-            weekText = "$startDate - $endDate"
+    // Function to get a list of dates for the current week (Sunday to Saturday)
+    fun getDatesForCurrentWeek(){
+        // Add dates for the current week to the list
+        for (i in 0 until 7) {
+            dateList.add(formatDateWithDayOfWeek(calendar.time))
+            calendar.add(Calendar.DAY_OF_WEEK, 1)
         }
-        return weekText
-    }
-
-    fun forwardWeek() {
-        calendar.time = startDateOfWeek
-        calendar.add(Calendar.DAY_OF_MONTH, 7)
-        startDateOfWeek = calendar.time
-        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
         updateDatesOfWeekDays()
     }
 
-    fun backwardWeek() {
-        calendar.time = startDateOfWeek
-        calendar.add(Calendar.DAY_OF_MONTH, -7)
-        startDateOfWeek = calendar.time
-        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-        updateDatesOfWeekDays()
+    // Function to format a date with the day of the week
+    private fun formatDateWithDayOfWeek(date: Date): String {
+        val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
+        return dateFormat.format(date)
     }
 
-    fun goToCurrentWeek() {
-        calendar.time = currentWeekStartDate
-        startDateOfWeek = calendar.time
-        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-        updateDatesOfWeekDays()
-    }
+    var sunday =""
+    var monday =""
+    var tuesday =""
+    var wednesday=""
+    var thursday=""
+    var friday =""
+    var saturday=""
 
-    fun updateDatesOfWeekDays() {
-        Log.e("startDateOfWeek", dateFormat.format(startDateOfWeek))
-        var dateList = getDatesBetween(startDateOfWeek, endDateOfWeek)
-//        dateList.forEach {
-//            chooseDateList.add(dateFormat.format(it))
+
+
+    //    fun setWeekTitle(): String {
+//        val startDate =
+//            "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
+//        val endDate = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
+//        val differenceInMilliseconds = currentWeekStartDate.time - startDateOfWeek.time
+//        val differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMilliseconds)
+//        var weekText = ""
+//
+//        if (differenceInDays.toInt() == 0) {
+//            weekText = "THIS WEEK"
+//        } else if (differenceInDays.toInt() == 7) {
+//            weekText = "LAST WEEK"
+//        } else if (differenceInDays > 7) {
+//            weekText = "$startDate - $endDate"
+//        } else if (differenceInDays.toInt() == -7) {
+//            weekText = "NEXT WEEK"
+//        } else if (differenceInDays < -7) {
+//            weekText = "$startDate - $endDate"
 //        }
-//        Log.e("dateList", chooseDateList.toString())
-        sunday = "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
-        monday = "${formatWithSuffix(dateList[1])} ${monthFormat.format(dateList[1])}"
-        tuesday = "${formatWithSuffix(dateList[2])} ${monthFormat.format(dateList[2])}"
-        wednesday = "${formatWithSuffix(dateList[3])} ${monthFormat.format(dateList[3])}"
-        thursday = "${formatWithSuffix(dateList[4])} ${monthFormat.format(dateList[4])}"
-        friday = "${formatWithSuffix(dateList[5])} ${monthFormat.format(dateList[5])}"
-        saturday = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
+//        return weekText
+//    }
+//
+//    fun forwardWeek() {
+//        calendar.time = startDateOfWeek
+//        calendar.add(Calendar.DAY_OF_MONTH, 7)
+//        startDateOfWeek = calendar.time
+//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+//        updateDatesOfWeekDays()
+//    }
+//
+//    fun backwardWeek() {
+//        calendar.time = startDateOfWeek
+//        calendar.add(Calendar.DAY_OF_MONTH, -7)
+//        startDateOfWeek = calendar.time
+//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+//        updateDatesOfWeekDays()
+//    }
+//
+//    fun goToCurrentWeek() {
+//        calendar.time = currentWeekStartDate
+//        startDateOfWeek = calendar.time
+//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
+//        updateDatesOfWeekDays()
+//    }
+//
+    fun updateDatesOfWeekDays() {
+     sunday = dateList[0]
+     monday = dateList[1]
+     tuesday = dateList[2]
+     wednesday = dateList[3]
+     thursday = dateList[4]
+     friday = dateList[5]
+     saturday = dateList[6]
+
     }
-
-
-    private fun formatWithSuffix(date: Date): String {
-        val dayFormatter = SimpleDateFormat("d", Locale.getDefault())
-        val day = dayFormatter.format(date).toInt()
-
-        return when {
-            day in 11..13 -> "${day}th"
-            day % 10 == 1 -> "${day}st"
-            day % 10 == 2 -> "${day}nd"
-            day % 10 == 3 -> "${day}rd"
-            else -> "${day}th"
-        }
-    }
-
-    private fun getDatesBetween(startDate: Date, endDate: Date): List<Date> {
-        val dates = mutableListOf<Date>()
-        makeAnInstanceOfCalendar()
-        calendar.time = startDate
-
-        while (calendar.time.before(endDate) || calendar.time == endDate) {
-            dates.add(calendar.time)
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
-        }
-
-        Log.e("dates", dates.toString())
-
-        return dates
-    }
+//
+//
+//    private fun formatWithSuffix(date: Date): String {
+//        val dayFormatter = SimpleDateFormat("d", Locale.getDefault())
+//        val day = dayFormatter.format(date).toInt()
+//
+//        return when {
+//            day in 11..13 -> "${day}th"
+//            day % 10 == 1 -> "${day}st"
+//            day % 10 == 2 -> "${day}nd"
+//            day % 10 == 3 -> "${day}rd"
+//            else -> "${day}th"
+//        }
+//    }
+//
+//    private fun getDatesBetween(startDate: Date, endDate: Date): List<Date> {
+//        val dates = mutableListOf<Date>()
+//        makeAnInstanceOfCalendar()
+//        calendar.time = startDate
+//
+//        while (calendar.time.before(endDate) || calendar.time == endDate) {
+//            dates.add(calendar.time)
+//            calendar.add(Calendar.DAY_OF_MONTH, 1)
+//        }
+//
+//        Log.e("dates", dates.toString())
+//
+//        return dates
+//    }
 
 
 }

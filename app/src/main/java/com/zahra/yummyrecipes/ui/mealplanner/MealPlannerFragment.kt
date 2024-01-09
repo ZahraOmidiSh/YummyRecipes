@@ -58,23 +58,23 @@ class MealPlannerFragment : Fragment() {
             }
 
             //forward click listener
-            forward.setOnClickListener {
-                viewModel.forwardWeek()
-                showWeekDates()
-            }
-            //backward click listener
-            backward.setOnClickListener {
-                viewModel.backwardWeek()
-                showWeekDates()
-            }
+//            forward.setOnClickListener {
+//                viewModel.forwardWeek()
+//                showWeekDates()
+//            }
+//            //backward click listener
+//            backward.setOnClickListener {
+//                viewModel.backwardWeek()
+//                showWeekDates()
+//            }
             //Go To Current Week
-            weekTxt.setOnClickListener {
-                viewModel.goToCurrentWeek()
-//                viewModel.updateDatesOfWeekDays()
-                showWeekDates()
-            }
+//            weekTxt.setOnClickListener {
+//                viewModel.goToCurrentWeek()
+////                viewModel.updateDatesOfWeekDays()
+//                showWeekDates()
+//            }
             //Show current week initially
-            viewModel.updateDatesOfWeekDays()
+            viewModel.getDatesForCurrentWeek()
             showWeekDates()
         }
     }
@@ -88,7 +88,7 @@ class MealPlannerFragment : Fragment() {
             thursdayDate.text = viewModel.thursday
             fridayDate.text = viewModel.friday
             saturdayDate.text = viewModel.saturday
-            weekTxt.text = viewModel.setWeekTitle()
+//            weekTxt.text = viewModel.setWeekTitle()
         }
 
     }
