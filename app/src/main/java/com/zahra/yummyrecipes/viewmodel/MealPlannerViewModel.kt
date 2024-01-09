@@ -90,14 +90,13 @@ class MealPlannerViewModel @Inject constructor(
         updateDatesOfWeekDays()
     }
 
-//
-//    fun goToCurrentWeek() {
-//        calendar.time = currentWeekStartDate
-//        startDateOfWeek = calendar.time
-//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-//        updateDatesOfWeekDays()
-//    }
-//
+    fun goToCurrentWeek() {
+        calendar.time = Date()
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        theDay = calendar.time
+        updateDatesOfWeekDays()
+    }
+
 
 
 }
