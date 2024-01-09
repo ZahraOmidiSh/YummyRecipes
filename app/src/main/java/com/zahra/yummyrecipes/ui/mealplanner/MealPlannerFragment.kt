@@ -51,20 +51,20 @@ class MealPlannerFragment : Fragment() {
             if (recipeId != null) {
                 if (recipeId > 0) {
                     showAddHereButtons(true)
-        //            recipeId=0
                 } else {
                     showAddHereButtons(false)
                 }
             }
+            showWeekDates()
 
             //forward click listener
             forward.setOnClickListener {
-                viewModel.goForwardOneWeek()
+                viewModel.moveOneWeek(7)
                 showWeekDates()
             }
             //backward click listener
             backward.setOnClickListener {
-                viewModel.goBackwardOneWeek()
+                viewModel.moveOneWeek(-7)
                 showWeekDates()
             }
             //Go To Current Week
@@ -73,9 +73,7 @@ class MealPlannerFragment : Fragment() {
 ////                viewModel.updateDatesOfWeekDays()
 //                showWeekDates()
 //            }
-            //Show current week initially
-            viewModel.getDatesForCurrentWeek()
-            showWeekDates()
+
         }
     }
 

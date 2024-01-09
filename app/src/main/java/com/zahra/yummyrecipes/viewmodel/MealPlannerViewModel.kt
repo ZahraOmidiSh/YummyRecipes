@@ -22,7 +22,7 @@ class MealPlannerViewModel @Inject constructor(
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
 
     //Get The current date
-    private val today = Date()
+    private var theDay = Date()
 
     //Create a Calendar instance
     private val calendar = Calendar.getInstance()
@@ -31,17 +31,12 @@ class MealPlannerViewModel @Inject constructor(
 
     init {
         // Set the calendar to the current date
-        calendar.time = today
+        calendar.time = Date()
         // Find the current Sunday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         updateDatesOfWeekDays()
     }
 
-    fun getDatesForCurrentWeek(): List<String> {
-        return dateList.toList()
-    }
-
-    // Function to get a list of dates for the current week (Sunday to Saturday)
     fun updateDatesOfWeekDays() {
         dateList.clear()
         dateStringList.clear()
@@ -49,11 +44,10 @@ class MealPlannerViewModel @Inject constructor(
         for (i in 0 until 7) {
             dateList.add(formatDate(calendar.time))
             dateStringList.add(formatDateWithMonthDay(calendar.time))
-            calendar.add(Calendar.DAY_OF_WEEK, 1)
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
     }
 
-    // Function to format a date with the day of the week
     private fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
@@ -88,16 +82,14 @@ class MealPlannerViewModel @Inject constructor(
 //    }
 
     //
-    fun goForwardOneWeek() {
-        calendar.add(Calendar.DAY_OF_MONTH, 7)
+    fun moveOneWeek(direction: Int) {
+        calendar.time = theDay
+        calendar.add(Calendar.DAY_OF_YEAR, direction)
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        theDay = calendar.time
         updateDatesOfWeekDays()
     }
 
-    //
-    fun goBackwardOneWeek() {
-        calendar.add(Calendar.DAY_OF_MONTH, -7)
-        updateDatesOfWeekDays()
-    }
 //
 //    fun goToCurrentWeek() {
 //        calendar.time = currentWeekStartDate
