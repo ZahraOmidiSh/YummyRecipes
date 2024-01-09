@@ -99,7 +99,7 @@ class DetailFragment : Fragment() {
 
             //Add To Meal Planner
             mealPlannerImg.setOnClickListener {
-                val direction = DetailFragmentDirections.actionDetailToMealPlanner(recipeId)
+                val direction = DetailFragmentDirections.actionToMealPlanner(recipeId)
                 findNavController().navigate(direction)
             }
 

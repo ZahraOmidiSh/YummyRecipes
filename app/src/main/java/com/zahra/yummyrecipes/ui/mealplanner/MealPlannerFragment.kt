@@ -47,6 +47,16 @@ class MealPlannerFragment : Fragment() {
 
         //InitViews
         binding.apply {
+
+            if (recipeId != null) {
+                if (recipeId > 0) {
+                    showAddHereButtons(true)
+        //            recipeId=0
+                } else {
+                    showAddHereButtons(false)
+                }
+            }
+
             //forward click listener
             forward.setOnClickListener {
                 viewModel.forwardWeek()
