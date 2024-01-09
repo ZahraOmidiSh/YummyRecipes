@@ -26,7 +26,8 @@ class MealPlannerViewModel @Inject constructor(
 
     //Create a Calendar instance
     private val calendar = Calendar.getInstance()
-    private val dateList = mutableListOf<String>()
+    val dateList = mutableListOf<String>()
+    val dateStringList = mutableListOf<String>()
 
     init {
         // Set the calendar to the current date
@@ -36,32 +37,30 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     // Function to get a list of dates for the current week (Sunday to Saturday)
-    fun getDatesForCurrentWeek(){
+    fun getDatesForCurrentWeek() {
+        dateList.clear()
+        dateStringList.clear()
         // Add dates for the current week to the list
         for (i in 0 until 7) {
-            dateList.add(formatDateWithDayOfWeek(calendar.time))
+            dateList.add(formatDate(calendar.time))
+            dateStringList.add(formatDateWithMonthDay(calendar.time))
             calendar.add(Calendar.DAY_OF_WEEK, 1)
         }
-        updateDatesOfWeekDays()
     }
 
     // Function to format a date with the day of the week
-    private fun formatDateWithDayOfWeek(date: Date): String {
+    private fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
     }
 
-    var sunday =""
-    var monday =""
-    var tuesday =""
-    var wednesday=""
-    var thursday=""
-    var friday =""
-    var saturday=""
+    private fun formatDateWithMonthDay(date: Date): String {
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        return dateFormat.format(date)
+    }
 
 
-
-    //    fun setWeekTitle(): String {
+//    fun setWeekTitle(): String {
 //        val startDate =
 //            "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
 //        val endDate = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
@@ -82,22 +81,18 @@ class MealPlannerViewModel @Inject constructor(
 //        }
 //        return weekText
 //    }
+
+    //
+    fun forwardWeek() {
+        calendar.time = today
+        calendar.add(Calendar.DAY_OF_MONTH, 7)
+        getDatesForCurrentWeek()
+    }
 //
-//    fun forwardWeek() {
-//        calendar.time = startDateOfWeek
-//        calendar.add(Calendar.DAY_OF_MONTH, 7)
-//        startDateOfWeek = calendar.time
-//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-//        updateDatesOfWeekDays()
-//    }
-//
-//    fun backwardWeek() {
-//        calendar.time = startDateOfWeek
-//        calendar.add(Calendar.DAY_OF_MONTH, -7)
-//        startDateOfWeek = calendar.time
-//        endDateOfWeek = calendar.apply { add(Calendar.DAY_OF_WEEK, 6) }.time
-//        updateDatesOfWeekDays()
-//    }
+    fun backwardWeek() {
+    calendar.add(Calendar.DAY_OF_MONTH, -7)
+    getDatesForCurrentWeek()
+    }
 //
 //    fun goToCurrentWeek() {
 //        calendar.time = currentWeekStartDate
@@ -106,45 +101,8 @@ class MealPlannerViewModel @Inject constructor(
 //        updateDatesOfWeekDays()
 //    }
 //
-    fun updateDatesOfWeekDays() {
-     sunday = dateList[0]
-     monday = dateList[1]
-     tuesday = dateList[2]
-     wednesday = dateList[3]
-     thursday = dateList[4]
-     friday = dateList[5]
-     saturday = dateList[6]
 
-    }
-//
-//
-//    private fun formatWithSuffix(date: Date): String {
-//        val dayFormatter = SimpleDateFormat("d", Locale.getDefault())
-//        val day = dayFormatter.format(date).toInt()
-//
-//        return when {
-//            day in 11..13 -> "${day}th"
-//            day % 10 == 1 -> "${day}st"
-//            day % 10 == 2 -> "${day}nd"
-//            day % 10 == 3 -> "${day}rd"
-//            else -> "${day}th"
-//        }
-//    }
-//
-//    private fun getDatesBetween(startDate: Date, endDate: Date): List<Date> {
-//        val dates = mutableListOf<Date>()
-//        makeAnInstanceOfCalendar()
-//        calendar.time = startDate
-//
-//        while (calendar.time.before(endDate) || calendar.time == endDate) {
-//            dates.add(calendar.time)
-//            calendar.add(Calendar.DAY_OF_MONTH, 1)
-//        }
-//
-//        Log.e("dates", dates.toString())
-//
-//        return dates
-//    }
+
 
 
 }
