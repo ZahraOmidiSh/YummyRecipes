@@ -67,7 +67,6 @@ class DetailFragment : Fragment() {
 
     //Other
     private val viewModel: DetailViewModel by viewModels()
-    private val mealViewModel: MealPlannerViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId = 0
     private val TAG = "Detail"

@@ -21,6 +21,7 @@ import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
 import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.Constants
+import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.isVisible
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -63,14 +64,15 @@ class MealPlannerFragment : Fragment() {
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
+                loadMealDataFromApi()
             } else {
                 showAddHereButtons(false)
             }
 
-            loadMealsForEachDay()
+
 
             addToSunday.setOnClickListener {
-                loadMealDataFromApi()
+
                 showAddHereButtons(false)
             }
 
@@ -90,12 +92,13 @@ class MealPlannerFragment : Fragment() {
                 viewModel.goToCurrentWeek()
                 showWeekDates()
             }
+//            loadMealsForEachDay()
 
         }
     }
 
     private fun loadMealDataFromApi() {
-        viewModel.callMealApi(recipeId, Constants.setAPIKEY())
+        viewModel.callMealApi(recipeId, setAPIKEY())
         binding.apply {
             viewModel.mealData.observe(viewLifecycleOwner) { response ->
                 when (response) {
@@ -105,9 +108,10 @@ class MealPlannerFragment : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             //make an entity with this data
-                            val entity = MealPlannerEntity(recipeId,data)
-                            viewModel.saveMeal(entity)
-                            loadMealsForEachDay()
+//                            val entity = MealPlannerEntity(recipeId,data)
+//                            viewModel.saveMeal(entity)
+//                            loadMealsForEachDay()
+                            Log.e("data", data.title + data.id )
                         }
                     }
 
@@ -128,7 +132,7 @@ class MealPlannerFragment : Fragment() {
 
         viewModel.readPlannedMealData.observe(viewLifecycleOwner){
             mealsAdapter.setData(it)
-            initMealsRecycler()
+//            initMealsRecycler()
 
         }
     }
