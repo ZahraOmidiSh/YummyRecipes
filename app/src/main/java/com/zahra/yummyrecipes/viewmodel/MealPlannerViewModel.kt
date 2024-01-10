@@ -40,10 +40,9 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-//    fun saveMeal(entity: MealPlannerEntity) = viewModelScope.launch {
-//        entity.id = (dateStringList[0] + entity.id).toInt()
-//        repository.local.savePlannedMeal(entity)
-//    }
+    fun saveMeal(entity: MealPlannerEntity) = viewModelScope.launch {
+        repository.local.savePlannedMeal(entity)
+    }
 
     //Get The current date
     private var theDay = Date()

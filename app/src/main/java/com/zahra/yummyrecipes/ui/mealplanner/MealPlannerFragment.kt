@@ -65,7 +65,7 @@ class MealPlannerFragment : Fragment() {
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
-
+                loadMealDataFromApi()
             } else {
                 showAddHereButtons(false)
             }
@@ -73,7 +73,8 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-                loadMealDataFromApi()
+                viewModel.saveMeal(entity)
+                Log.e("data4", "saved")
                 showAddHereButtons(false)
             }
 
