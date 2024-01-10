@@ -9,27 +9,16 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.withStarted
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zahra.yummyrecipes.adapter.FavoriteAdapter
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
-import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
-import com.zahra.yummyrecipes.utils.Constants
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
-import com.zahra.yummyrecipes.utils.isVisible
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -65,7 +54,7 @@ class MealPlannerFragment : Fragment() {
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
-                loadMealDataFromApi()
+//                loadMealDataFromApi()
             } else {
                 showAddHereButtons(false)
             }
@@ -73,8 +62,7 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-                viewModel.saveMeal(entity)
-                Log.e("data4", "saved")
+                loadMealDataFromApi()
                 showAddHereButtons(false)
                 loadMealsForEachDay()
             }
@@ -116,6 +104,7 @@ class MealPlannerFragment : Fragment() {
                             Log.e("data2", newId.toString())
                             entity = MealPlannerEntity(newId, data)
                             Log.e("data3", entity.toString())
+                            viewModel.saveMeal(entity)
 //                            viewModel.saveMeal(entity)
 //                            loadMealsForEachDay()
                         }
@@ -134,10 +123,13 @@ class MealPlannerFragment : Fragment() {
     //Load Meals for each day
     private fun loadMealsForEachDay() {
         //Sunday
-        Log.e("data5", viewModel.data.toString())
+        viewModel.date="20240107"
+        Log.e("data5", viewModel.date)
         viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
+            Log.e("data6", it.toString())
             if (it.isNotEmpty()) {
-                Log.e("data6", it.toString())
+                Log.e("data6.1", it[0].id.toString())
+                Log.e("data6.2", it[1].id.toString())
                 mealsAdapter.setData(it)
                 Log.e("data6.5", "data set to adapter")
                 initMealsRecycler()
