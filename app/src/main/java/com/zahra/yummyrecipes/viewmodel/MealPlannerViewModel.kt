@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -7,6 +8,9 @@ import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.repository.MealRepository
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
+import com.zahra.yummyrecipes.models.detail.ResponseDetail
+import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -23,6 +27,13 @@ class MealPlannerViewModel @Inject constructor(
     var data = 20230806
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
 
+    val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
+
+    fun callMealApi(id:Int , apikey:String) = viewModelScope.launch {
+        mealData.value = NetworkRequest.Loading()
+        val response = repository.remote.getDetail(id,apikey,true)
+        mealData.value = NetworkResponse(response).generalNetworkResponse()
+    }
     fun saveMeal(entity: MealPlannerEntity)=viewModelScope.launch {
         entity.id=(dateStringList[0]+entity.id).toInt()
         repository.local.savePlannedMeal(entity)

@@ -20,7 +20,11 @@ import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
 import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
+import com.zahra.yummyrecipes.utils.Constants
+import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.isVisible
 import com.zahra.yummyrecipes.utils.setupRecyclerview
+import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -38,6 +42,7 @@ class MealPlannerFragment : Fragment() {
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
+    var recipeId=0
 
 
     override fun onCreateView(
@@ -54,22 +59,18 @@ class MealPlannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-            val recipeId = arguments?.getInt("recipeId", 0)
+             recipeId = arguments?.getInt("recipeId", 0)!!
 
-            if (recipeId != null) {
-                if (recipeId > 0) {
-                    showAddHereButtons(true)
-                } else {
-                    showAddHereButtons(false)
-                }
+            if (recipeId > 0) {
+                showAddHereButtons(true)
+            } else {
+                showAddHereButtons(false)
             }
 
             loadMealsForEachDay()
 
             addToSunday.setOnClickListener {
-                //Add to a list
-//                val entity = MealPlannerEntity(recipeId,)
-
+                loadMealDataFromApi()
                 showAddHereButtons(false)
             }
 
@@ -90,6 +91,33 @@ class MealPlannerFragment : Fragment() {
                 showWeekDates()
             }
 
+        }
+    }
+
+    private fun loadMealDataFromApi() {
+        viewModel.callMealApi(recipeId, Constants.setAPIKEY())
+        binding.apply {
+            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                    }
+
+                    is NetworkRequest.Success -> {
+                        response.data?.let { data ->
+                            //make an entity with this data
+                            val entity = MealPlannerEntity(recipeId,data)
+                            viewModel.saveMeal(entity)
+                            loadMealsForEachDay()
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        binding.root.showSnackBar(response.message!!)
+                    }
+
+                }
+
+            }
         }
     }
 
