@@ -1,8 +1,5 @@
 package com.zahra.yummyrecipes.viewmodel
 
-import android.util.Log
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import com.zahra.yummyrecipes.data.repository.MealRepository
@@ -11,7 +8,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,7 +33,7 @@ class MealPlannerViewModel @Inject constructor(
         updateDatesOfWeekDays()
     }
 
-    fun updateDatesOfWeekDays() {
+    private fun updateDatesOfWeekDays() {
         dateList.clear()
         dateStringList.clear()
         // Add dates for the current week to the list
@@ -46,6 +42,7 @@ class MealPlannerViewModel @Inject constructor(
             dateStringList.add(formatDateWithMonthDay(calendar.time))
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
+        setWeekTitle(Date(), theDay)
     }
 
     private fun formatDate(date: Date): String {
@@ -58,30 +55,38 @@ class MealPlannerViewModel @Inject constructor(
         return dateFormat.format(date)
     }
 
+    var weekText = "THIS WEEK"
+    private fun setWeekTitle(today: Date, currentDay: Date) {
+        val todayStartOfWeek = getStartOfWeek(today).toInt()
+        val currentStartOfWeek = getStartOfWeek(currentDay).toInt()
+        val differenceInDays = currentStartOfWeek - todayStartOfWeek
 
-//    fun setWeekTitle(): String {
-//        val startDate =
-//            "${formatWithSuffix(startDateOfWeek)} ${monthFormat.format(startDateOfWeek)}"
-//        val endDate = "${formatWithSuffix(endDateOfWeek)} ${monthFormat.format(endDateOfWeek)}"
-//        val differenceInMilliseconds = currentWeekStartDate.time - startDateOfWeek.time
-//        val differenceInDays = TimeUnit.MILLISECONDS.toDays(differenceInMilliseconds)
-//        var weekText = ""
-//
-//        if (differenceInDays.toInt() == 0) {
-//            weekText = "THIS WEEK"
-//        } else if (differenceInDays.toInt() == 7) {
-//            weekText = "LAST WEEK"
-//        } else if (differenceInDays > 7) {
-//            weekText = "$startDate - $endDate"
-//        } else if (differenceInDays.toInt() == -7) {
-//            weekText = "NEXT WEEK"
-//        } else if (differenceInDays < -7) {
-//            weekText = "$startDate - $endDate"
-//        }
-//        return weekText
-//    }
+        weekText = when (differenceInDays) {
+            0 -> "THIS WEEK"
+            -7 -> "LAST WEEK"
+            7 -> "NEXT WEEK"
+            in -8878..-8874 -> "LAST WEEK"
+            else -> "${dateList[0]} - ${dateList[6]}"
+        }
 
-    //
+    }
+
+    private fun getStartOfWeek(inputDate: Date): String {
+        val calendar = Calendar.getInstance()
+        calendar.time = inputDate
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+
+        // Optional: If you want to set the time to midnight (00:00:00)
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        return dateFormat.format(calendar.time)
+    }
+
     fun moveOneWeek(direction: Int) {
         calendar.time = theDay
         calendar.add(Calendar.DAY_OF_YEAR, direction)
@@ -96,7 +101,6 @@ class MealPlannerViewModel @Inject constructor(
         theDay = calendar.time
         updateDatesOfWeekDays()
     }
-
 
 
 }
