@@ -76,6 +76,7 @@ class MealPlannerFragment : Fragment() {
                 viewModel.saveMeal(entity)
                 Log.e("data4", "saved")
                 showAddHereButtons(false)
+                loadMealsForEachDay()
             }
 
             showWeekDates()
@@ -94,7 +95,7 @@ class MealPlannerFragment : Fragment() {
                 viewModel.goToCurrentWeek()
                 showWeekDates()
             }
-//            loadMealsForEachDay()
+            loadMealsForEachDay()
 
         }
     }
@@ -111,7 +112,7 @@ class MealPlannerFragment : Fragment() {
                         response.data?.let { data ->
                             Log.e("data1", data.title + data.id)
                             //make an entity with this data
-                            val newId=viewModel.makeMealId(data.id!!, 0)
+                            val newId = viewModel.makeMealId(data.id!!, 0)
                             Log.e("data2", newId.toString())
                             entity = MealPlannerEntity(newId, data)
                             Log.e("data3", entity.toString())
@@ -133,13 +134,20 @@ class MealPlannerFragment : Fragment() {
     //Load Meals for each day
     private fun loadMealsForEachDay() {
         //Sunday
-        viewModel.data = viewModel.dateStringList[0].toInt()
-
+        Log.e("data5", viewModel.data.toString())
         viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
-            mealsAdapter.setData(it)
+            if (it.isNotEmpty()) {
+                Log.e("data6", it.toString())
+                mealsAdapter.setData(it)
+                Log.e("data6.5", "data set to adapter")
+                initMealsRecycler()
+
+            }
+
 //            initMealsRecycler()
 
         }
+        Log.e("data8", "loadMealsForEachDay")
     }
 
     private fun initMealsRecycler() {
@@ -147,12 +155,12 @@ class MealPlannerFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             mealsAdapter
         )
-
+        Log.e("data7", "initMealsRecycler")
         //Click
-        mealsAdapter.setonItemClickListener {
-            val action = MealPlannerFragmentDirections.actionToDetail(it)
-            findNavController().navigate(action)
-        }
+//        mealsAdapter.setonItemClickListener {
+//            val action = MealPlannerFragmentDirections.actionToDetail(it)
+//            findNavController().navigate(action)
+//        }
 
     }
 

@@ -31,7 +31,7 @@ class MealPlannerViewModel @Inject constructor(
 
     fun makeMealId(id: Int, dayInWeek: Int): Long {
         val newId = (dateStringList[dayInWeek] + id).toLong()
-        data=newId
+        data = dateStringList[dayInWeek].toLong()
         return newId
     }
 
