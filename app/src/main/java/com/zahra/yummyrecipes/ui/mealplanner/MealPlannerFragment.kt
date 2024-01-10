@@ -12,18 +12,29 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.zahra.yummyrecipes.adapter.FavoriteAdapter
+import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
+import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
+import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MealPlannerFragment : Fragment() {
     //Binding
     private var _binding: FragmentMealPlannerBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var mealsAdapter: MealPlannerAdapter
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
@@ -41,12 +52,9 @@ class MealPlannerFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val recipeId = arguments?.getInt("recipeId", 0)
-        Log.e("recipeId", recipeId.toString())
-
         //InitViews
         binding.apply {
+            val recipeId = arguments?.getInt("recipeId", 0)
 
             if (recipeId != null) {
                 if (recipeId > 0) {
@@ -55,8 +63,17 @@ class MealPlannerFragment : Fragment() {
                     showAddHereButtons(false)
                 }
             }
-            showWeekDates()
 
+            loadMealsForEachDay()
+
+            addToSunday.setOnClickListener {
+                //Add to a list
+//                val entity = MealPlannerEntity(recipeId,)
+
+                showAddHereButtons(false)
+            }
+
+            showWeekDates()
             //forward click listener
             forward.setOnClickListener {
                 viewModel.moveOneWeek(7)
@@ -74,6 +91,32 @@ class MealPlannerFragment : Fragment() {
             }
 
         }
+    }
+
+    //Load Meals for each day
+    private fun loadMealsForEachDay(){
+        //Sunday
+        viewModel.data=viewModel.dateStringList[0].toInt()
+
+        viewModel.readPlannedMealData.observe(viewLifecycleOwner){
+            mealsAdapter.setData(it)
+            initMealsRecycler()
+
+        }
+    }
+
+    private fun initMealsRecycler() {
+        binding.sundayMealsList.setupRecyclerview(
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+            mealsAdapter
+        )
+
+        //Click
+        mealsAdapter.setonItemClickListener {
+            val action = MealPlannerFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun showWeekDates() {

@@ -2,8 +2,13 @@ package com.zahra.yummyrecipes.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
+import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.repository.MealRepository
+import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -12,10 +17,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MealPlannerViewModel @Inject constructor(
-    repository: MealRepository,
+    private val repository: MealRepository,
+    private val recipeRepository: RecipeRepository,
 ) : ViewModel() {
-    val data = 20230806
+    var data = 20230806
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
+
+    fun saveMeal(entity: MealPlannerEntity)=viewModelScope.launch {
+        entity.id=(dateStringList[0]+entity.id).toInt()
+        repository.local.savePlannedMeal(entity)
+    }
 
     //Get The current date
     private var theDay = Date()
@@ -101,6 +112,9 @@ class MealPlannerViewModel @Inject constructor(
         theDay = calendar.time
         updateDatesOfWeekDays()
     }
+
+    //List of dateMeals ID
+    val sundayMealsIDList = mutableListOf<Int>()
 
 
 }
