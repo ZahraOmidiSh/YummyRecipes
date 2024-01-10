@@ -68,7 +68,7 @@ class MealPlannerAdapter @Inject constructor() :
                     }
                     //Click
                     root.setOnClickListener {
-                        onItemClickListener?.let { it(item.id!!) }
+//                        onItemClickListener?.let { it(item.id!!) }
 
                     }
                 }

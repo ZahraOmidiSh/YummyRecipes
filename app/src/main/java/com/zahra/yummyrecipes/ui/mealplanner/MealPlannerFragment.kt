@@ -43,7 +43,8 @@ class MealPlannerFragment : Fragment() {
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
-    var recipeId=0
+    var recipeId = 0
+    lateinit var entity: MealPlannerEntity
 
 
     override fun onCreateView(
@@ -60,11 +61,11 @@ class MealPlannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
-             recipeId = arguments?.getInt("recipeId", 0)!!
+            recipeId = arguments?.getInt("recipeId", 0)!!
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
-                loadMealDataFromApi()
+
             } else {
                 showAddHereButtons(false)
             }
@@ -72,7 +73,7 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-
+                loadMealDataFromApi()
                 showAddHereButtons(false)
             }
 
@@ -107,11 +108,14 @@ class MealPlannerFragment : Fragment() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
+                            Log.e("data1", data.title + data.id)
                             //make an entity with this data
-//                            val entity = MealPlannerEntity(recipeId,data)
+                            val newId=viewModel.makeMealId(data.id!!, 0)
+                            Log.e("data2", newId.toString())
+                            entity = MealPlannerEntity(newId, data)
+                            Log.e("data3", entity.toString())
 //                            viewModel.saveMeal(entity)
 //                            loadMealsForEachDay()
-                            Log.e("data", data.title + data.id )
                         }
                     }
 
@@ -126,11 +130,11 @@ class MealPlannerFragment : Fragment() {
     }
 
     //Load Meals for each day
-    private fun loadMealsForEachDay(){
+    private fun loadMealsForEachDay() {
         //Sunday
-        viewModel.data=viewModel.dateStringList[0].toInt()
+        viewModel.data = viewModel.dateStringList[0].toInt()
 
-        viewModel.readPlannedMealData.observe(viewLifecycleOwner){
+        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
             mealsAdapter.setData(it)
 //            initMealsRecycler()
 

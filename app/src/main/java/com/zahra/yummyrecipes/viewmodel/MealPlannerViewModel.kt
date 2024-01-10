@@ -29,15 +29,21 @@ class MealPlannerViewModel @Inject constructor(
 
     val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
 
-    fun callMealApi(id:Int , apikey:String) = viewModelScope.launch {
+    fun makeMealId(id: Int, dayInWeek: Int): Long {
+        val newId = (dateStringList[dayInWeek] + id).toLong()
+        return newId
+    }
+
+    fun callMealApi(id: Int, apikey: String) = viewModelScope.launch {
         mealData.value = NetworkRequest.Loading()
-        val response = repository.remote.getDetail(id,apikey,true)
+        val response = repository.remote.getDetail(id, apikey, true)
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
-    fun saveMeal(entity: MealPlannerEntity)=viewModelScope.launch {
-        entity.id=(dateStringList[0]+entity.id).toInt()
-        repository.local.savePlannedMeal(entity)
-    }
+
+//    fun saveMeal(entity: MealPlannerEntity) = viewModelScope.launch {
+//        entity.id = (dateStringList[0] + entity.id).toInt()
+//        repository.local.savePlannedMeal(entity)
+//    }
 
     //Get The current date
     private var theDay = Date()
