@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.repository.MealRepository
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
@@ -24,14 +23,14 @@ class MealPlannerViewModel @Inject constructor(
     private val repository: MealRepository,
     private val recipeRepository: RecipeRepository,
 ) : ViewModel() {
-    var data = 0L
-    val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
+    var date = 0L
+    val readPlannedMealData = repository.local.loadPlannedMeals(date).asLiveData()
 
     val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
 
     fun makeMealId(id: Int, dayInWeek: Int): Long {
         val newId = (dateStringList[dayInWeek] + id).toLong()
-        data = dateStringList[dayInWeek].toLong()
+        date = dateStringList[dayInWeek].toLong()
         return newId
     }
 
