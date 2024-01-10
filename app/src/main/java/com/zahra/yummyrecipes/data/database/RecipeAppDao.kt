@@ -55,6 +55,6 @@ interface RecipeAppDao {
     suspend fun deleteMeal(entity: MealPlannerEntity)
 
     @Query("SELECT * FROM $MEAL_PLANNER_TABLE_NAME WHERE ID LIKE :date || '%'")
-    fun loadMeal(date: Int): Flow<List<MealPlannerEntity>>
+    fun loadMeal(date: Long): Flow<List<MealPlannerEntity>>
 
 }

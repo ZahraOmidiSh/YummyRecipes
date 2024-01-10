@@ -24,13 +24,14 @@ class MealPlannerViewModel @Inject constructor(
     private val repository: MealRepository,
     private val recipeRepository: RecipeRepository,
 ) : ViewModel() {
-    var data = 20230806
+    var data = 0L
     val readPlannedMealData = repository.local.loadPlannedMeals(data).asLiveData()
 
     val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
 
     fun makeMealId(id: Int, dayInWeek: Int): Long {
         val newId = (dateStringList[dayInWeek] + id).toLong()
+        data=newId
         return newId
     }
 
