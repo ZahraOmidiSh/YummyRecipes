@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
@@ -134,10 +135,10 @@ class MealPlannerFragment : Fragment() {
             mealsAdapter
         )
         //Click
-//        mealsAdapter.setonItemClickListener {
-//            val action = MealPlannerFragmentDirections.actionToDetail(it)
-//            findNavController().navigate(action)
-//        }
+        mealsAdapter.setonItemClickListener {
+            val action = MealPlannerFragmentDirections.actionToDetail(it)
+            findNavController().navigate(action)
+        }
 
     }
 
