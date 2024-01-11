@@ -98,15 +98,10 @@ class MealPlannerFragment : Fragment() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-                            Log.e("data1", data.title + data.id)
                             //make an entity with this data
-                            val newId = viewModel.makeMealId(data.id!!, 0)
-                            Log.e("data2", newId.toString())
-                            entity = MealPlannerEntity(newId, data)
-                            Log.e("data3", entity.toString())
-                            viewModel.saveMeal(entity)
+//                            val newId = viewModel.makeMealId(data.id!!, dadInWeek)
+                            entity = MealPlannerEntity(0L, data)
 //                            viewModel.saveMeal(entity)
-//                            loadMealsForEachDay()
                         }
                     }
 
@@ -123,23 +118,14 @@ class MealPlannerFragment : Fragment() {
     //Load Meals for each day
     private fun loadMealsForEachDay() {
         //Sunday
-        viewModel.date="20240107"
-        Log.e("data5", viewModel.date)
+        viewModel.date=viewModel.dateStringList[0]
         viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
-            Log.e("data6", it.toString())
             if (it.isNotEmpty()) {
-                Log.e("data6.1", it[0].id.toString())
-                Log.e("data6.2", it[1].id.toString())
                 mealsAdapter.setData(it)
-                Log.e("data6.5", "data set to adapter")
                 initMealsRecycler()
-
             }
-
-//            initMealsRecycler()
-
         }
-        Log.e("data8", "loadMealsForEachDay")
+
     }
 
     private fun initMealsRecycler() {
@@ -147,7 +133,6 @@ class MealPlannerFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
             mealsAdapter
         )
-        Log.e("data7", "initMealsRecycler")
         //Click
 //        mealsAdapter.setonItemClickListener {
 //            val action = MealPlannerFragmentDirections.actionToDetail(it)
