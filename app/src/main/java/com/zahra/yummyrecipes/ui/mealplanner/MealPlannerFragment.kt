@@ -2,7 +2,6 @@ package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -118,7 +117,7 @@ class MealPlannerFragment : Fragment() {
     //Load Meals for each day
     private fun loadMealsForEachDay() {
         //Sunday
-        viewModel.date=viewModel.dateStringList[0]
+        viewModel.date = viewModel.dateStringList[0]
         viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 mealsAdapter.setData(it)
