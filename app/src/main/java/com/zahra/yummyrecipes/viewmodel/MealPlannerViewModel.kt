@@ -1,5 +1,6 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -21,12 +22,56 @@ import javax.inject.Inject
 @HiltViewModel
 class MealPlannerViewModel @Inject constructor(
     private val repository: MealRepository,
-    private val recipeRepository: RecipeRepository,
 ) : ViewModel() {
+    val mealOriginalId = MutableLiveData<Int>()
     var date = ""
     val readPlannedMealData = repository.local.loadPlannedMeals(date).asLiveData()
 
     val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
+
+    var addedMealToDay = MutableLiveData<String>()
+    var dateOfSelected = MutableLiveData<String>()
+    var recipeId = MutableLiveData<Int>()
+
+    fun addMealToWhichDay(entity: MealPlannerEntity) {
+        val day = addedMealToDay.value
+        when (day) {
+            "sunday" -> {
+
+            }
+        }
+
+    }
+
+    //Day PlannedMeal List
+    //sunday
+    val _sundayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val sundayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _sundayPlannedMealData
+
+    //monday
+    val _mondayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val mondayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _mondayPlannedMealData
+
+    //tuesday
+    val _tuesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val tuesdayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _tuesdayPlannedMealData
+
+    //wednesday
+    val _wednesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val wednesdayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _wednesdayPlannedMealData
+
+    //thursday
+    val _thursdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val thursdayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _thursdayPlannedMealData
+
+    //friday
+    val _fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val fridayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _fridayPlannedMealData
+
+    //saturday
+    val _saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+    val saturdayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _saturdayPlannedMealData
+
 
     fun makeMealId(id: Int, dayInWeek: String): Long {
         val newId = (dayInWeek + id).toLong()

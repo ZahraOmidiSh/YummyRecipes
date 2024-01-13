@@ -32,7 +32,7 @@ class MealPlannerFragment : Fragment() {
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
-    lateinit var entity: MealPlannerEntity
+//    lateinit var entity: MealPlannerEntity
 
 
     override fun onCreateView(
@@ -53,7 +53,7 @@ class MealPlannerFragment : Fragment() {
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
-//                loadMealDataFromApi()
+                loadMealDataFromApi()
             } else {
                 showAddHereButtons(false)
             }
@@ -61,9 +61,8 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-                loadMealDataFromApi()
                 showAddHereButtons(false)
-                loadMealsForEachDay()
+//                loadMealsForEachDay()
             }
 
             showWeekDates()
@@ -97,10 +96,7 @@ class MealPlannerFragment : Fragment() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-                            //make an entity with this data
-//                            val newId = viewModel.makeMealId(data.id!!, dadInWeek)
-                            entity = MealPlannerEntity(0L, data)
-//                            viewModel.saveMeal(entity)
+                            viewModel.mealOriginalId.value=data.id
                         }
                     }
 
