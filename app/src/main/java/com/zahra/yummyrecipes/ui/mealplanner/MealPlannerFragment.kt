@@ -111,24 +111,25 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    //Load Meals for each day
-//    private fun loadMealsForEachDay(date: String) {
-//
-//        loadMealDataFromApi()
-////        //Sunday
-////        viewModel.date = viewModel.dateStringList[0]
-////        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
-////            if (it.isNotEmpty()) {
-////                mealsAdapter.setData(it)
-////                initMealsRecycler()
-////            }
-////        }
-//        val newId = viewModel.makeMealId(date)
-//        val entity = MealPlannerEntity()
-//
-//    }
 
-//}
+    //Load Meals for each day
+    private fun loadMealsForEachDay(date: String) {
+
+        loadMealDataFromApi()
+//        //Sunday
+//        viewModel.date = viewModel.dateStringList[0]
+//        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
+//            if (it.isNotEmpty()) {
+//                mealsAdapter.setData(it)
+//                initMealsRecycler()
+//            }
+//        }
+        val newId = viewModel.makeMealId(date)
+        val entity = MealPlannerEntity()
+
+    }
+
+
 
 private fun initMealsRecycler() {
     binding.sundayMealsList.setupRecyclerview(
