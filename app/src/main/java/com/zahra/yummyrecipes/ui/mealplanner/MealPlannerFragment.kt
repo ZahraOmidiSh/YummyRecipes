@@ -53,7 +53,6 @@ class MealPlannerFragment : Fragment() {
 
             if (recipeId > 0) {
                 showAddHereButtons(true)
-                loadMealDataFromApi()
             } else {
                 showAddHereButtons(false)
             }
@@ -61,11 +60,11 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-                showAddHereButtons(false)
-//                loadMealsForEachDay()
+                loadMealDataFromApi(viewModel.dateStringList[0])
             }
 
             showWeekDates()
+
             //forward click listener
             forward.setOnClickListener {
                 viewModel.moveOneWeek(7)
@@ -81,12 +80,13 @@ class MealPlannerFragment : Fragment() {
                 viewModel.goToCurrentWeek()
                 showWeekDates()
             }
-            loadMealsForEachDay()
+
+//            loadMealsForEachDay()
 
         }
     }
 
-    private fun loadMealDataFromApi() {
+    private fun loadMealDataFromApi(date: String) {
         viewModel.callMealApi(recipeId, setAPIKEY())
         binding.apply {
             viewModel.mealData.observe(viewLifecycleOwner) { response ->
@@ -96,7 +96,8 @@ class MealPlannerFragment : Fragment() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-                            viewModel.mealOriginalId.value=data.id
+                            viewModel.saveMeal(data, date)
+                            showAddHereButtons(false)
                         }
                     }
 
@@ -111,62 +112,68 @@ class MealPlannerFragment : Fragment() {
     }
 
     //Load Meals for each day
-    private fun loadMealsForEachDay() {
-        //Sunday
-        viewModel.date = viewModel.dateStringList[0]
-        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
-                mealsAdapter.setData(it)
-                initMealsRecycler()
-            }
-        }
+//    private fun loadMealsForEachDay(date: String) {
+//
+//        loadMealDataFromApi()
+////        //Sunday
+////        viewModel.date = viewModel.dateStringList[0]
+////        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
+////            if (it.isNotEmpty()) {
+////                mealsAdapter.setData(it)
+////                initMealsRecycler()
+////            }
+////        }
+//        val newId = viewModel.makeMealId(date)
+//        val entity = MealPlannerEntity()
+//
+//    }
 
-    }
+//}
 
-    private fun initMealsRecycler() {
-        binding.sundayMealsList.setupRecyclerview(
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-            mealsAdapter
-        )
-        //Click
+private fun initMealsRecycler() {
+    binding.sundayMealsList.setupRecyclerview(
+        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+        mealsAdapter
+    )
+    //Click
 //        mealsAdapter.setonItemClickListener {
 //            val action = MealPlannerFragmentDirections.actionToDetail(it)
 //            findNavController().navigate(action)
 //        }
 
+}
+
+private fun showWeekDates() {
+    binding.apply {
+        sundayDate.text = viewModel.dateList[0]
+        mondayDate.text = viewModel.dateList[1]
+        tuesdayDate.text = viewModel.dateList[2]
+        wednesdayDate.text = viewModel.dateList[3]
+        thursdayDate.text = viewModel.dateList[4]
+        fridayDate.text = viewModel.dateList[5]
+        saturdayDate.text = viewModel.dateList[6]
+        weekTxt.text = viewModel.weekText
     }
 
-    private fun showWeekDates() {
-        binding.apply {
-            sundayDate.text = viewModel.dateList[0]
-            mondayDate.text = viewModel.dateList[1]
-            tuesdayDate.text = viewModel.dateList[2]
-            wednesdayDate.text = viewModel.dateList[3]
-            thursdayDate.text = viewModel.dateList[4]
-            fridayDate.text = viewModel.dateList[5]
-            saturdayDate.text = viewModel.dateList[6]
-            weekTxt.text = viewModel.weekText
-        }
+}
+
+private fun showAddHereButtons(visibility: Boolean) {
+    binding.apply {
+        addToSunday.isVisible = visibility
+        addToMonday.isVisible = visibility
+        addToTuesday.isVisible = visibility
+        addToWednesday.isVisible = visibility
+        addToThursday.isVisible = visibility
+        addToFriday.isVisible = visibility
+        addToSaturday.isVisible = visibility
+        chooseDayTxt.isVisible = visibility
 
     }
-
-    private fun showAddHereButtons(visibility: Boolean) {
-        binding.apply {
-            addToSunday.isVisible = visibility
-            addToMonday.isVisible = visibility
-            addToTuesday.isVisible = visibility
-            addToWednesday.isVisible = visibility
-            addToThursday.isVisible = visibility
-            addToFriday.isVisible = visibility
-            addToSaturday.isVisible = visibility
-            chooseDayTxt.isVisible = visibility
-
-        }
-    }
+}
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+override fun onDestroy() {
+    super.onDestroy()
+    _binding = null
+}
 }

@@ -7,7 +7,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.repository.MealRepository
-import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
@@ -73,11 +72,6 @@ class MealPlannerViewModel @Inject constructor(
     val saturdayPlannedMealData: LiveData<List<MealPlannerEntity>> get() = _saturdayPlannedMealData
 
 
-    fun makeMealId(id: Int, dayInWeek: String): Long {
-        val newId = (dayInWeek + id).toLong()
-        date = dayInWeek
-        return newId
-    }
 
     fun callMealApi(id: Int, apikey: String) = viewModelScope.launch {
         mealData.value = NetworkRequest.Loading()
@@ -85,7 +79,9 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-    fun saveMeal(entity: MealPlannerEntity) = viewModelScope.launch {
+    fun saveMeal(data: ResponseDetail,date:String) = viewModelScope.launch {
+        val newId = (date+data.id).toLong()
+        val entity = MealPlannerEntity(newId,data)
         repository.local.savePlannedMeal(entity)
     }
 
