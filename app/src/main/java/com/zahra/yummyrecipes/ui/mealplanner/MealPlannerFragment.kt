@@ -122,6 +122,16 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
+    private fun loadMealsForEveryDay(){
+        loadMealsForEachDay("sunday")
+        loadMealsForEachDay("monday")
+        loadMealsForEachDay("tuesday")
+        loadMealsForEachDay("wednesday")
+        loadMealsForEachDay("thursday")
+        loadMealsForEachDay("friday")
+        loadMealsForEachDay("saturday")
+    }
+
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
         binding.apply {
