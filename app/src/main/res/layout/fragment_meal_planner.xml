@@ -67,9 +67,9 @@
         android:padding="@dimen/_5mdp"
         android:text="Choose the day to plan your meal"
         android:textAlignment="center"
-        android:visibility="gone"
         android:textColor="@color/rose_ebony"
         android:textStyle="bold|italic"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="@id/line" />
 
 
@@ -107,14 +107,9 @@
 
                 <TextView
                     android:id="@+id/addToSunday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/sunday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/sunday" />
@@ -168,14 +163,9 @@
 
                 <TextView
                     android:id="@+id/addToMonday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/monday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/monday" />
@@ -228,14 +218,9 @@
 
                 <TextView
                     android:id="@+id/addToTuesday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/tuesday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tuesday" />
@@ -295,14 +280,9 @@
 
                 <TextView
                     android:id="@+id/addToWednesday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/wednesday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/wednesday" />
@@ -349,14 +329,9 @@
 
                 <TextView
                     android:id="@+id/addToThursday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/thursday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/thursday" />
@@ -409,14 +384,9 @@
 
                 <TextView
                     android:id="@+id/addToFriday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/friday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/friday" />
@@ -462,14 +432,9 @@
 
                 <TextView
                     android:id="@+id/addToSaturday"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5mdp"
-                    android:background="@drawable/bg_rounded_nutrient3"
-                    android:padding="@dimen/_5mdp"
-                    android:text="ADD TO HERE"
-                    android:textSize="@dimen/_14mdp"
-                    android:visibility="invisible"
+                    style="@style/Meal_Planner_ADD_Button_Style"
+                    android:paddingHorizontal="@dimen/_13mdp"
+                    android:paddingVertical="@dimen/_3mdp"
                     app:layout_constraintBottom_toBottomOf="@id/saturday"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/saturday" />
