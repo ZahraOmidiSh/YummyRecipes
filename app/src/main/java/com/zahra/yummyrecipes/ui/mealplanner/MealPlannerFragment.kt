@@ -62,7 +62,7 @@ class MealPlannerFragment : Fragment() {
 
 
             addToSunday.setOnClickListener {
-                loadMealDataFromApi(viewModel.dateStringList[0])
+                loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
             }
 
             showWeekDates()
@@ -88,7 +88,7 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun loadMealDataFromApi(date: String) {
+    private fun loadMealDataFromApi(date: String, day: String) {
         viewModel.callMealApi(recipeId, setAPIKEY())
         binding.apply {
             viewModel.mealData.observe(viewLifecycleOwner) { response ->
@@ -99,7 +99,7 @@ class MealPlannerFragment : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             viewModel.saveMeal(data, date)
-                            loadMealsForSunday()
+                            loadMealsForEachDay(day)
                             showAddHereButtons(false)
                         }
                     }
@@ -116,20 +116,59 @@ class MealPlannerFragment : Fragment() {
 
 
     //Load Meals for each day
-    private fun loadMealsForSunday() {
-        viewModel.fillMealsForSunday().observe(viewLifecycleOwner){
-            initMealsRecycler(it)
+    private fun loadMealsForEachDay(day: String) {
+        viewModel.readMealsOfEachDay(day).observe(viewLifecycleOwner) {
+            initMealsRecycler(it, day)
         }
     }
 
 
-    private fun initMealsRecycler(list: List<MealPlannerEntity>) {
+    private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
         binding.apply {
             mealsAdapter.setData(list)
-            sundayMealsList.setupRecyclerview(
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                mealsAdapter
-            )
+            if (day == "sunday") {
+                sundayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "monday") {
+                mondayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "tuesday") {
+                tuesdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "wednesday") {
+                wednesdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "thursday") {
+                thursdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "friday") {
+                fridayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+            if (day == "saturday") {
+                saturdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                    mealsAdapter
+                )
+            }
+
 
         }
     }
