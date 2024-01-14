@@ -23,29 +23,22 @@ import javax.inject.Inject
 class MealPlannerViewModel @Inject constructor(
     private val repository: MealRepository,
 ) : ViewModel() {
-    val mealOriginalId = MutableLiveData<Int>()
-    var date = ""
-//    val readPlannedMealData = repository.local.loadPlannedMeals(date).asLiveData()
-
-    fun fillMealsForEachDay() {
-        sundayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[0])
-        mondayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[1])
-        tuesdayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[2])
-        wednesdayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[3])
-        thursdayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[4])
-        fridayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[5])
-        saturdayPlannedMealData= repository.local.loadPlannedMeals(dateStringList[6])
+    //Call meal api
+    val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
+    fun callMealApi(id: Int, apikey: String) = viewModelScope.launch {
+        mealData.value = NetworkRequest.Loading()
+        val response = repository.remote.getDetail(id, apikey, true)
+        mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-    val mealData = MutableLiveData<NetworkRequest<ResponseDetail>>()
-
-    var addedMealToDay = MutableLiveData<String>()
-    var dateOfSelected = MutableLiveData<String>()
-    var recipeId = MutableLiveData<Int>()
-
+    //save
+    fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
+        val newId = (date + data.id).toLong()
+        val entity = MealPlannerEntity(newId, data)
+        repository.local.savePlannedMeal(entity)
+    }
 
     //Day PlannedMeal List
-    //sunday
     var sundayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
     var mondayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
     var tuesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
@@ -54,25 +47,21 @@ class MealPlannerViewModel @Inject constructor(
     var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
     var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
 
-
-
-    fun callMealApi(id: Int, apikey: String) = viewModelScope.launch {
-        mealData.value = NetworkRequest.Loading()
-        val response = repository.remote.getDetail(id, apikey, true)
-        mealData.value = NetworkResponse(response).generalNetworkResponse()
+    fun fillMealsForEachDay() {
+        sundayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[0])
+        mondayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[1])
+        tuesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[2])
+        wednesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[3])
+        thursdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[4])
+        fridayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[5])
+        saturdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[6])
     }
 
-    fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
-        val newId = (date + data.id).toLong()
-        val entity = MealPlannerEntity(newId, data)
-        repository.local.savePlannedMeal(entity)
-    }
 
-    val loadedMealsList = MutableLiveData<List<ResponseDetail>>()
-    fun loadMeal(date: String) = viewModelScope.launch {
-        readPlannedMealData.value
+    var addedMealToDay = MutableLiveData<String>()
+    var dateOfSelected = MutableLiveData<String>()
+    var recipeId = MutableLiveData<Int>()
 
-    }
 
     //Get The current date
     private var theDay = Date()

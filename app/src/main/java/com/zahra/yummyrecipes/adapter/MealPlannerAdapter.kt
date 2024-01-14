@@ -10,17 +10,16 @@ import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.ItemSimilarBinding
-import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MealPlannerAdapter @Inject constructor() :
     RecyclerView.Adapter<MealPlannerAdapter.ViewHolder>() {
     private lateinit var binding: ItemSimilarBinding
-    private var items = emptyList<ResponseDetail>()
+    private var items = emptyList<MealPlannerEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding =
@@ -38,10 +37,10 @@ class MealPlannerAdapter @Inject constructor() :
 
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(item: ResponseDetail) {
+        fun bind(item: MealPlannerEntity) {
             binding.apply {
                 //Text
-                similarTitleTxt.text = item.title
+                similarTitleTxt.text = item.result.title
                 //Image
                 val image = "${Constants.BASE_URL_IMAGE_RECIPES}${item.id}-${NEW_IMAGE_SIZE}"
                 similarImg.load(image) {
@@ -67,7 +66,7 @@ class MealPlannerAdapter @Inject constructor() :
         onItemClickListener = listener
     }
 
-    fun setData(data: List<ResponseDetail>) {
+    fun setData(data: List<MealPlannerEntity>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
         items = data

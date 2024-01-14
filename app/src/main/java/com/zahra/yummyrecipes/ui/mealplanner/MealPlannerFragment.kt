@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
@@ -18,6 +19,7 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -113,68 +115,57 @@ class MealPlannerFragment : Fragment() {
 
 
     //Load Meals for each day
-    private fun loadMealsForEachDay(date: String) {
-
-        loadMealDataFromApi()
-//        //Sunday
-//        viewModel.date = viewModel.dateStringList[0]
-//        viewModel.readPlannedMealData.observe(viewLifecycleOwner) {
-//            if (it.isNotEmpty()) {
-//                mealsAdapter.setData(it)
-//                initMealsRecycler()
-//            }
-//        }
-        val newId = viewModel.makeMealId(date)
-        val entity = MealPlannerEntity()
+    private fun loadMealsForEachDay() {
+        viewModel.fillMealsForEachDay()
+        viewModel.sundayPlannedMealData.asLiveData().observe(viewLifecycleOwner){
+            initMealsRecycler(viewModel.sundayPlannedMealData)
+        }
 
     }
 
 
+    private fun initMealsRecycler(list: List<MealPlannerEntity>) {
+        binding.apply {
+            mealsAdapter.setData(list)
+            sundayMealsList.setupRecyclerview(
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
+                mealsAdapter
+            )
 
-private fun initMealsRecycler() {
-    binding.sundayMealsList.setupRecyclerview(
-        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-        mealsAdapter
-    )
-    //Click
-//        mealsAdapter.setonItemClickListener {
-//            val action = MealPlannerFragmentDirections.actionToDetail(it)
-//            findNavController().navigate(action)
-//        }
-
-}
-
-private fun showWeekDates() {
-    binding.apply {
-        sundayDate.text = viewModel.dateList[0]
-        mondayDate.text = viewModel.dateList[1]
-        tuesdayDate.text = viewModel.dateList[2]
-        wednesdayDate.text = viewModel.dateList[3]
-        thursdayDate.text = viewModel.dateList[4]
-        fridayDate.text = viewModel.dateList[5]
-        saturdayDate.text = viewModel.dateList[6]
-        weekTxt.text = viewModel.weekText
+        }
     }
 
-}
-
-private fun showAddHereButtons(visibility: Boolean) {
-    binding.apply {
-        addToSunday.isVisible = visibility
-        addToMonday.isVisible = visibility
-        addToTuesday.isVisible = visibility
-        addToWednesday.isVisible = visibility
-        addToThursday.isVisible = visibility
-        addToFriday.isVisible = visibility
-        addToSaturday.isVisible = visibility
-        chooseDayTxt.isVisible = visibility
+    private fun showWeekDates() {
+        binding.apply {
+            sundayDate.text = viewModel.dateList[0]
+            mondayDate.text = viewModel.dateList[1]
+            tuesdayDate.text = viewModel.dateList[2]
+            wednesdayDate.text = viewModel.dateList[3]
+            thursdayDate.text = viewModel.dateList[4]
+            fridayDate.text = viewModel.dateList[5]
+            saturdayDate.text = viewModel.dateList[6]
+            weekTxt.text = viewModel.weekText
+        }
 
     }
-}
+
+    private fun showAddHereButtons(visibility: Boolean) {
+        binding.apply {
+            addToSunday.isVisible = visibility
+            addToMonday.isVisible = visibility
+            addToTuesday.isVisible = visibility
+            addToWednesday.isVisible = visibility
+            addToThursday.isVisible = visibility
+            addToFriday.isVisible = visibility
+            addToSaturday.isVisible = visibility
+            chooseDayTxt.isVisible = visibility
+
+        }
+    }
 
 
-override fun onDestroy() {
-    super.onDestroy()
-    _binding = null
-}
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
