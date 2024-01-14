@@ -59,7 +59,7 @@ class MealPlannerFragment : Fragment() {
                 showAddHereButtons(false)
             }
 
-
+            loadMealsForEveryDay()
 
             addToSunday.setOnClickListener {
                 loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
@@ -71,19 +71,20 @@ class MealPlannerFragment : Fragment() {
             forward.setOnClickListener {
                 viewModel.moveOneWeek(7)
                 showWeekDates()
+                loadMealsForEveryDay()
             }
             //backward click listener
             backward.setOnClickListener {
                 viewModel.moveOneWeek(-7)
                 showWeekDates()
+                loadMealsForEveryDay()
             }
             //Go To Current Week
             weekTxt.setOnClickListener {
                 viewModel.goToCurrentWeek()
                 showWeekDates()
+                loadMealsForEveryDay()
             }
-
-//            loadMealsForEachDay()
 
         }
     }
