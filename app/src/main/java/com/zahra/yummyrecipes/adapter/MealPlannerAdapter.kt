@@ -9,6 +9,7 @@ import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
+import com.zahra.yummyrecipes.databinding.ItemPlannedMealsBinding
 import com.zahra.yummyrecipes.databinding.ItemSimilarBinding
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants
@@ -18,12 +19,12 @@ import javax.inject.Inject
 
 class MealPlannerAdapter @Inject constructor() :
     RecyclerView.Adapter<MealPlannerAdapter.ViewHolder>() {
-    private lateinit var binding: ItemSimilarBinding
+    private lateinit var binding: ItemPlannedMealsBinding
     private var items = emptyList<MealPlannerEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding =
-            ItemSimilarBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemPlannedMealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder()
     }
 
