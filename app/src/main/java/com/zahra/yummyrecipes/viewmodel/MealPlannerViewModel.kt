@@ -47,18 +47,34 @@ class MealPlannerViewModel @Inject constructor(
 //    var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
 //    var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
 
-    fun fillMealsForSunday(): LiveData<List<MealPlannerEntity>> {
-        return repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
-    }
+//    fun fillMealsForSunday(): LiveData<List<MealPlannerEntity>> {
+//        return repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+//    }
 
-    fun fillMealsForEachDay() {
-        var sundayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
-        var mondayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
-        var tuesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
-        var wednesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
-        var thursdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
-        var fridayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
-        var  saturdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
+    fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
+        var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+        if (day == "sunday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+        }
+        if (day == "monday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
+        }
+        if (day == "tuesday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
+        }
+        if (day == "wednesday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
+        }
+        if (day == "thursday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
+        }
+        if (day == "friday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
+        }
+        if (day == "saturday") {
+            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
+        }
+        return mealsForDayList
     }
 
 
