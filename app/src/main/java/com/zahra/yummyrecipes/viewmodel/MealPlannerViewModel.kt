@@ -47,6 +47,10 @@ class MealPlannerViewModel @Inject constructor(
 //    var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
 //    var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
 
+    fun fillMealsForSunday(): LiveData<List<MealPlannerEntity>> {
+        return repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+    }
+
     fun fillMealsForEachDay() {
         var sundayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
         var mondayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()

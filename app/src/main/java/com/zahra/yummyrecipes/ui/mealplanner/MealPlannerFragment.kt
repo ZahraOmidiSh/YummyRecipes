@@ -99,6 +99,7 @@ class MealPlannerFragment : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             viewModel.saveMeal(data, date)
+                            loadMealsForSunday()
                             showAddHereButtons(false)
                         }
                     }
@@ -115,12 +116,10 @@ class MealPlannerFragment : Fragment() {
 
 
     //Load Meals for each day
-    private fun loadMealsForEachDay() {
-        viewModel.fillMealsForEachDay()
-        viewModel.sundayPlannedMealData.asLiveData().observe(viewLifecycleOwner){
-            initMealsRecycler(viewModel.sundayPlannedMealData)
+    private fun loadMealsForSunday() {
+        viewModel.fillMealsForSunday().observe(viewLifecycleOwner){
+            initMealsRecycler(it)
         }
-
     }
 
 
