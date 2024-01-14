@@ -38,23 +38,23 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.savePlannedMeal(entity)
     }
 
-    //Day PlannedMeal List
-    var sundayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var mondayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var tuesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var wednesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var thursdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
-    var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>().asFlow()
+//    //Day PlannedMeal List
+//    var sundayPlannedMealData = LiveData<List<MealPlannerEntity>>()
+//    var mondayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+//    var tuesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+//    var wednesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+//    var thursdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+//    var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
+//    var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
 
     fun fillMealsForEachDay() {
-        sundayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[0])
-        mondayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[1])
-        tuesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[2])
-        wednesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[3])
-        thursdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[4])
-        fridayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[5])
-        saturdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[6])
+        var sundayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+        var mondayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
+        var tuesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
+        var wednesdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
+        var thursdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
+        var fridayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
+        var  saturdayPlannedMealData = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
     }
 
 
