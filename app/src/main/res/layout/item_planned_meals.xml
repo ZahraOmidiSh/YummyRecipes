@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/RVBackground"
+    android:layout_width="@dimen/_80mdp"
+    android:layout_height="@dimen/_100mdp"
+    android:layout_margin="@dimen/_3mdp">
+    <!--Card-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardLay"
+        android:layout_width="@dimen/_70mdp"
+        android:layout_height="@dimen/_90mdp"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:elevation="@dimen/_5mdp"
+        app:cardCornerRadius="@dimen/_5mdp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!--Image-->
+        <ImageView
+            android:id="@+id/similarImg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45mdp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+        <!--Title-->
+        <TextView
+            android:id="@+id/similarTitleTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_55mdp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textSize="@dimen/_8font_mdp"
+            tools:text="Show recipe name" />
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
