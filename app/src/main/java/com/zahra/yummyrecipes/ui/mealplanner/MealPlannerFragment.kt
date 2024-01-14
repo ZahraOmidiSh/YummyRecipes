@@ -172,47 +172,54 @@ class MealPlannerFragment : Fragment() {
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
         binding.apply {
-            mealsAdapter.setData(list)
+
             if (day == "sunday") {
+                sundayMealsAdapter.setData(list)
                 sundayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    sundayMealsAdapter
                 )
             }
             if (day == "monday") {
+                mondayMealsAdapter.setData(list)
                 mondayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    mondayMealsAdapter
                 )
             }
             if (day == "tuesday") {
+                tuesdayMealsAdapter.setData(list)
                 tuesdayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    tuesdayMealsAdapter
                 )
             }
             if (day == "wednesday") {
+                wednesdayMealsAdapter.setData(list)
                 wednesdayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    wednesdayMealsAdapter
                 )
             }
             if (day == "thursday") {
+                thursdayMealsAdapter.setData(list)
                 thursdayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    thursdayMealsAdapter
                 )
             }
             if (day == "friday") {
+                fridayMealsAdapter.setData(list)
                 fridayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    fridayMealsAdapter
                 )
             }
             if (day == "saturday") {
+                saturdayMealsAdapter.setData(list)
                 saturdayMealsList.setupRecyclerview(
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
-                    mealsAdapter
+                    saturdayMealsAdapter
                 )
             }
 
