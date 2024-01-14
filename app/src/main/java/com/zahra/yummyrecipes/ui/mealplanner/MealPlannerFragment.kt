@@ -9,10 +9,12 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
+import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
@@ -179,6 +181,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     sundayMealsAdapter
                 )
+                //click
+                sundayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "monday") {
                 mondayMealsAdapter.setData(list)
@@ -186,6 +193,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     mondayMealsAdapter
                 )
+                //click
+                mondayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "tuesday") {
                 tuesdayMealsAdapter.setData(list)
@@ -193,6 +205,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     tuesdayMealsAdapter
                 )
+                //click
+                tuesdayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "wednesday") {
                 wednesdayMealsAdapter.setData(list)
@@ -200,6 +217,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     wednesdayMealsAdapter
                 )
+                //click
+                wednesdayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "thursday") {
                 thursdayMealsAdapter.setData(list)
@@ -207,6 +229,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     thursdayMealsAdapter
                 )
+                //click
+                thursdayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "friday") {
                 fridayMealsAdapter.setData(list)
@@ -214,6 +241,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     fridayMealsAdapter
                 )
+                //click
+                fridayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
             if (day == "saturday") {
                 saturdayMealsAdapter.setData(list)
@@ -221,6 +253,11 @@ class MealPlannerFragment : Fragment() {
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                     saturdayMealsAdapter
                 )
+                //click
+                saturdayMealsAdapter.setonItemClickListener {
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
             }
 
 
