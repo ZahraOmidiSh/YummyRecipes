@@ -64,6 +64,24 @@ class MealPlannerFragment : Fragment() {
             addToSunday.setOnClickListener {
                 loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
             }
+            addToMonday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[1], "monday")
+            }
+            addToTuesday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
+            }
+            addToWednesday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
+            }
+            addToThursday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
+            }
+            addToFriday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[5], "friday")
+            }
+            addToSaturday.setOnClickListener {
+                loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
+            }
 
             showWeekDates()
 
@@ -123,7 +141,7 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun loadMealsForEveryDay(){
+    private fun loadMealsForEveryDay() {
         loadMealsForEachDay("sunday")
         loadMealsForEachDay("monday")
         loadMealsForEachDay("tuesday")
