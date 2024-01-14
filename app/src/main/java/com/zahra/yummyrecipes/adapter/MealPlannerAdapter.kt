@@ -53,7 +53,13 @@ class MealPlannerAdapter @Inject constructor() :
                     }
                     //Click
                     root.setOnClickListener {
-//                        onItemClickListener?.let { it(item.id!!) }
+                        var idString = item.id.toString()
+                        idString = idString.substring(8)
+                        val newId = idString.toInt()
+
+                        onItemClickListener?.let {
+                            it(newId)
+                        }
                     }
                 }
             }
