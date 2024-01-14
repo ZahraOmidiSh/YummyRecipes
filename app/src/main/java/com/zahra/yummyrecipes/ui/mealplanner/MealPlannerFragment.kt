@@ -29,7 +29,25 @@ class MealPlannerFragment : Fragment() {
     private val binding get() = _binding!!
 
     @Inject
-    lateinit var mealsAdapter: MealPlannerAdapter
+    lateinit var sundayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var mondayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var tuesdayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var wednesdayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var thursdayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var fridayMealsAdapter: MealPlannerAdapter
+
+    @Inject
+    lateinit var saturdayMealsAdapter: MealPlannerAdapter
 
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
