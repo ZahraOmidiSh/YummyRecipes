@@ -39,22 +39,22 @@ class MealPlannerAdapter @Inject constructor() :
         @SuppressLint("SetTextI18n")
         fun bind(item: MealPlannerEntity) {
             binding.apply {
-                //Text
-                similarTitleTxt.text = item.result.title
-                //Image
-                val image = "${Constants.BASE_URL_IMAGE_RECIPES}${item.id}-${NEW_IMAGE_SIZE}"
-                similarImg.load(image) {
-                    crossfade(true)
-                    crossfade(800)
-                    memoryCachePolicy(CachePolicy.ENABLED)
-                    error(R.drawable.salad)
+                item.result.let { result ->
+                    //Text
+                    similarTitleTxt.text = result.title
+                    //Image
+                    val imageSize = result.image!!.replace(Constants.OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
+                    similarImg.load(imageSize) {
+                        crossfade(true)
+                        crossfade(800)
+                        memoryCachePolicy(CachePolicy.ENABLED)
+                        error(R.drawable.salad)
+                    }
+                    //Click
+                    root.setOnClickListener {
+//                        onItemClickListener?.let { it(item.id!!) }
+                    }
                 }
-                //Click
-                root.setOnClickListener {
-//                        onItemClickListener?.let {
-//                            it(item.id!!) .
-                }
-
             }
         }
     }
