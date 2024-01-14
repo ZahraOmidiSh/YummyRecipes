@@ -38,19 +38,6 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.savePlannedMeal(entity)
     }
 
-//    //Day PlannedMeal List
-//    var sundayPlannedMealData = LiveData<List<MealPlannerEntity>>()
-//    var mondayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-//    var tuesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-//    var wednesdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-//    var thursdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-//    var fridayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-//    var saturdayPlannedMealData = MutableLiveData<List<MealPlannerEntity>>()
-
-//    fun fillMealsForSunday(): LiveData<List<MealPlannerEntity>> {
-//        return repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
-//    }
-
     fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
         var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
         if (day == "sunday") {
@@ -77,9 +64,6 @@ class MealPlannerViewModel @Inject constructor(
         return mealsForDayList
     }
 
-
-    var addedMealToDay = MutableLiveData<String>()
-    var dateOfSelected = MutableLiveData<String>()
     var recipeId = MutableLiveData<Int>()
 
 
