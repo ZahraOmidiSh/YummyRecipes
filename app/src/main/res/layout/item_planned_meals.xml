@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/RVBackground"
-    android:layout_width="@dimen/_70mdp"
-    android:layout_height="@dimen/_90mdp"
+    android:layout_width="@dimen/_80mdp"
+    android:layout_height="@dimen/_100mdp"
     android:layout_margin="@dimen/_3mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
-        android:layout_width="@dimen/_60mdp"
-        android:layout_height="@dimen/_80mdp"
-        android:layout_marginTop="@dimen/_5mdp"
+        android:layout_width="@dimen/_70mdp"
+        android:layout_height="@dimen/_90mdp"
+        android:layout_marginTop="@dimen/_8mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_5mdp"
         app:cardUseCompatPadding="true"
@@ -22,7 +22,7 @@
         <ImageView
             android:id="@+id/similarImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40mdp"
+            android:layout_height="@dimen/_45mdp"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop" />
         <!--Title-->
@@ -30,7 +30,7 @@
             android:id="@+id/similarTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_48mdp"
+            android:layout_marginTop="@dimen/_55mdp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
