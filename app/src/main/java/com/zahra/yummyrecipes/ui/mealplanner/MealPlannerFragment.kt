@@ -186,6 +186,11 @@ class MealPlannerFragment : Fragment() {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
+
+                sundayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                }
+
             }
             if (day == "monday") {
                 mondayMealsAdapter.setData(list)
@@ -197,6 +202,9 @@ class MealPlannerFragment : Fragment() {
                 mondayMealsAdapter.setonItemClickListener {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
+                }
+                mondayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
                 }
             }
             if (day == "tuesday") {
@@ -210,6 +218,9 @@ class MealPlannerFragment : Fragment() {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
+                tuesdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                }
             }
             if (day == "wednesday") {
                 wednesdayMealsAdapter.setData(list)
@@ -221,6 +232,9 @@ class MealPlannerFragment : Fragment() {
                 wednesdayMealsAdapter.setonItemClickListener {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
+                }
+                wednesdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
                 }
             }
             if (day == "thursday") {
@@ -234,6 +248,9 @@ class MealPlannerFragment : Fragment() {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
+                thursdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                }
             }
             if (day == "friday") {
                 fridayMealsAdapter.setData(list)
@@ -246,6 +263,9 @@ class MealPlannerFragment : Fragment() {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
+                fridayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                }
             }
             if (day == "saturday") {
                 saturdayMealsAdapter.setData(list)
@@ -257,6 +277,9 @@ class MealPlannerFragment : Fragment() {
                 saturdayMealsAdapter.setonItemClickListener {
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
+                }
+                saturdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
                 }
             }
 
