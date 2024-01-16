@@ -38,6 +38,10 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.savePlannedMeal(entity)
     }
 
+    fun deleteMeal(entity:MealPlannerEntity)=viewModelScope.launch {
+        repository.local.deletePlannedMeal(entity)
+    }
+
     fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
         var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
         if (day == "sunday") {
