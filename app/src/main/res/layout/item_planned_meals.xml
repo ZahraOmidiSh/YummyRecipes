@@ -36,8 +36,7 @@
             android:rotation="45"
             android:layout_margin="@dimen/_5mdp"
             android:src="@drawable/plus"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_gravity="end"
             app:tint="@color/gray" />
         <!--Title-->
         <TextView
