@@ -61,6 +61,11 @@ class MealPlannerAdapter @Inject constructor() :
                             it(newId)
                         }
                     }
+                    deleteImg.setOnClickListener {
+                        onItemClickListenerForDelete?.let {
+                            it(item.id)
+                        }
+                    }
                 }
             }
         }
@@ -71,6 +76,12 @@ class MealPlannerAdapter @Inject constructor() :
 
     fun setonItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
+    }
+
+    var onItemClickListenerForDelete: ((Long) -> Unit)? = null
+
+    fun setonItemClickListenerForDelete(listener: (Long) -> Unit) {
+        onItemClickListenerForDelete = listener
     }
 
     fun setData(data: List<MealPlannerEntity>) {
