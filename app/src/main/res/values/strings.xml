@@ -115,5 +115,6 @@
     <string name="food_processor">Food Processor</string>
     <string name="oven_baked">Oven-Baked</string>
     <string name="no_results">No Results</string>
+    <string name="choose_the_day_to_plan_your_meal">Choose the day to plan your meal!</string>
 
 </resources>
