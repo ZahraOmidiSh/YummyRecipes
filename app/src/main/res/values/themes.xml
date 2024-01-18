@@ -253,14 +253,14 @@
 
     <!--MealPlanner Recycler View-->
     <style name="MealPlanner_Recycler_View">
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:layout_height">wrap_content</item>
-    <item name="android:paddingStart">@dimen/_5mdp</item>
-    <item name="android:paddingEnd">@dimen/_5mdp</item>
-    <item name="android:paddingTop">@dimen/_3mdp</item>
-    <item name="android:textSize">@dimen/_13font_mdp</item>
-    <item name="android:clipToPadding">false</item>
-    <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/_5mdp</item>
+        <item name="android:paddingEnd">@dimen/_5mdp</item>
+        <item name="android:paddingTop">@dimen/_3mdp</item>
+        <item name="android:textSize">@dimen/_13font_mdp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <!--Meal Planner Arrows style-->
@@ -292,14 +292,17 @@
 
     <!--Meal Planner ADD Button style-->
     <style name="Meal_Planner_ADD_Button_Style">
-        <item name="android:textColor">@color/darkLava</item>
+        <item name="android:textColor">@color/big_foot_feet</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/_12mdp</item>
+        <item name="android:textSize">@dimen/_20mdp</item>
+        <item name="android:elevation">@dimen/_3mdp</item>
         <item name="android:layout_marginEnd">@dimen/_5mdp</item>
-        <item name="android:text">+ADD</item>
-        <item name="android:visibility">invisible</item>
-        <item name="android:background">@drawable/bg_very_rounded_big_foot_feet</item>
+        <item name="android:paddingStart">@dimen/_20mdp</item>
+        <item name="android:paddingEnd">@dimen/_20mdp</item>
+        <item name="android:text">+</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:background">@drawable/bg_rounded_linen_stroke_light</item>
     </style>
 
 
