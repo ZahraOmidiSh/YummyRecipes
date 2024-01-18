@@ -54,7 +54,6 @@ class MealPlannerFragment : Fragment() {
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
-//    lateinit var entity: MealPlannerEntity
 
 
     override fun onCreateView(
