@@ -158,9 +158,9 @@ class MealPlannerViewModel @Inject constructor(
 
     fun isTheDatePassed(date: String): Boolean {
         if (date >= formatDate(calendar.time)) {
-            return true
-        } else {
             return false
+        } else {
+            return true
         }
     }
 }
