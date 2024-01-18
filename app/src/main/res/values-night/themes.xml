@@ -299,7 +299,27 @@
         <item name="android:paddingStart">@dimen/_20mdp</item>
         <item name="android:paddingEnd">@dimen/_20mdp</item>
         <item name="android:text">+</item>
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">invisible</item>
         <item name="android:background">@drawable/bg_rounded_linen_stroke_dark</item>
+    </style>
+
+    <!--ChooseDayForMealStyle-->
+    <style name="ChooseDayForMealStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/_7mdp</item>
+        <item name="android:background">@drawable/bg_rounded_linen_stroke_dark</item>
+        <item name="android:paddingStart">@dimen/_20mdp</item>
+        <item name="android:paddingEnd">@dimen/_20mdp</item>
+        <item name="android:paddingTop">@dimen/_5mdp</item>
+        <item name="android:paddingBottom">@dimen/_5mdp</item>
+        <item name="android:text">@string/choose_the_day_to_plan_your_meal</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">@dimen/_12mdp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:elevation">@dimen/_3mdp</item>
+
     </style>
 </resources>
