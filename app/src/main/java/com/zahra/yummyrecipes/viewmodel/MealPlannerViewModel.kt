@@ -38,7 +38,7 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.savePlannedMeal(entity)
     }
 
-    fun deleteMeal(entity:MealPlannerEntity)=viewModelScope.launch {
+    fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
         repository.local.deletePlannedMeal(entity)
     }
 
@@ -156,8 +156,11 @@ class MealPlannerViewModel @Inject constructor(
         updateDatesOfWeekDays()
     }
 
-    //List of dateMeals ID
-    val sundayMealsIDList = mutableListOf<Int>()
-
-
+    fun isTheDatePassed(date: String): Boolean {
+        if (date >= formatDate(calendar.time)) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
