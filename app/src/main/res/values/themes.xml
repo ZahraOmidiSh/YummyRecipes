@@ -316,7 +316,7 @@
         <item name="android:paddingTop">@dimen/_5mdp</item>
         <item name="android:paddingBottom">@dimen/_5mdp</item>
         <item name="android:text">@string/choose_the_day_to_plan_your_meal</item>
-        <item name="android:visibility">visible</item>
+        <item name="android:visibility">invisible</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">@dimen/_12mdp</item>
         <item name="android:textColor">@color/big_foot_feet</item>
