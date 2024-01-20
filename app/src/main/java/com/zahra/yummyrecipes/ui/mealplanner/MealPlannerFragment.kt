@@ -76,87 +76,87 @@ class MealPlannerFragment : Fragment() {
             } else {
                 showAddHereButtons(false)
             }
-
+            viewModel.updateDatesOfWeekDays()
             loadMealsForEveryDay()
 
-            addToSunday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
-                }
-
-            }
-            addToMonday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[1])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[1], "monday")
-                }
-            }
-            addToTuesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[2])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
-                }
-            }
-            addToWednesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[3])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
-                }
-            }
-            addToThursday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[4])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
-                }
-            }
-            addToFriday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[5])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[5], "friday")
-                }
-            }
-            addToSaturday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[6])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
-                }
-            }
+//            addToSunday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
+//                }
+//
+//            }
+//            addToMonday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[1])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[1], "monday")
+//                }
+//            }
+//            addToTuesday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[2])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
+//                }
+//            }
+//            addToWednesday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[3])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
+//                }
+//            }
+//            addToThursday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[4])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
+//                }
+//            }
+//            addToFriday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[5])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[5], "friday")
+//                }
+//            }
+//            addToSaturday.setOnClickListener {
+//                if (viewModel.isTheDatePassed(viewModel.dateStringList[6])) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "The date is already passed!!!",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                } else {
+//                    loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
+//                }
+//            }
 
             showWeekDates()
 

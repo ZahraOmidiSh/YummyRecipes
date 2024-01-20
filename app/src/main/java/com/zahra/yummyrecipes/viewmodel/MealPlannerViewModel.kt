@@ -1,9 +1,9 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
@@ -75,27 +75,37 @@ class MealPlannerViewModel @Inject constructor(
     private var theDay = Date()
 
     //Create a Calendar instance
-    private val calendar = Calendar.getInstance()
+//    private val calendar = Calendar.getInstance()
     val dateList = mutableListOf<String>()
     val dateStringList = mutableListOf<String>()
 
-    init {
-        // Set the calendar to the current date
-        calendar.time = Date()
-        // Find the current Sunday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        updateDatesOfWeekDays()
-    }
+//    init {
+//        // Set the calendar to the current date
+//        calendar.time = Date()
+//        // Find the current Sunday
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+//        updateDatesOfWeekDays()
+//    }
 
-    private fun updateDatesOfWeekDays() {
+     fun updateDatesOfWeekDays() {
         dateList.clear()
         dateStringList.clear()
+        // Create a Calendar instance set to the current date
+        val calendar = Calendar.getInstance()
+
+        // Find the current Sunday
+        calendar.time = Date()
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        Log.e("Date", Date().toString() )
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         // Add dates for the current week to the list
         for (i in 0 until 7) {
             dateList.add(formatDate(calendar.time))
             dateStringList.add(formatDateWithMonthDay(calendar.time))
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
+        Log.e("dateList", dateList.toString())
+        Log.e("dateStringList", dateStringList.toString())
         setWeekTitle(Date(), theDay)
     }
 
@@ -142,6 +152,10 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun moveOneWeek(direction: Int) {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         calendar.time = theDay
         calendar.add(Calendar.DAY_OF_YEAR, direction)
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
@@ -150,14 +164,19 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun goToCurrentWeek() {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         calendar.time = Date()
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         theDay = calendar.time
         updateDatesOfWeekDays()
     }
 
-    fun isTheDatePassed(date: String): Boolean {
-         val today = Calendar.getInstance()
-        return date < formatDateWithMonthDay(today.time)
-    }
+//    fun isTheDatePassed(date: String): Boolean {
+//        val today = Calendar.getInstance()
+//        today.time = Date()
+//        return date < formatDateWithMonthDay(Date())
+//    }
 }
