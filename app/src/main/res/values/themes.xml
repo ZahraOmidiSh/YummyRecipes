@@ -300,6 +300,7 @@
         <item name="android:layout_marginEnd">@dimen/_5mdp</item>
         <item name="android:paddingStart">@dimen/_20mdp</item>
         <item name="android:paddingEnd">@dimen/_20mdp</item>
+        <item name="android:paddingBottom">@dimen/_4mdp</item>
         <item name="android:text">+</item>
         <item name="android:visibility">invisible</item>
         <item name="android:background">@drawable/bg_rounded_linen_stroke_light</item>

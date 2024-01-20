@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
@@ -22,7 +21,6 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @AndroidEntryPoint
