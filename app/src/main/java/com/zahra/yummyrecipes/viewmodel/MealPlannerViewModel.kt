@@ -174,9 +174,11 @@ class MealPlannerViewModel @Inject constructor(
         updateDatesOfWeekDays()
     }
 
-//    fun isTheDatePassed(date: String): Boolean {
-//        val today = Calendar.getInstance()
-//        today.time = Date()
-//        return date < formatDateWithMonthDay(Date())
-//    }
+    fun isTheDatePassed(date: String): Boolean {
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        return date < formatDateWithMonthDay(calendar.time)
+    }
 }
