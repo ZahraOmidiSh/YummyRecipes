@@ -179,6 +179,8 @@ class MealPlannerViewModel @Inject constructor(
         calendar.time = Date()
         calendar.firstDayOfWeek = Calendar.SUNDAY
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        Log.e("date", date.toString() )
+        Log.e("calendar.time", calendar.time.toString() )
         return date < formatDateWithMonthDay(calendar.time)
     }
 }
