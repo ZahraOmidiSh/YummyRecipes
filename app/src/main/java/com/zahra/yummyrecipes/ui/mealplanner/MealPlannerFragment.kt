@@ -82,7 +82,7 @@ class MealPlannerFragment : Fragment() {
             loadMealsForEveryDay()
 
             addToSunday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[0])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -94,7 +94,7 @@ class MealPlannerFragment : Fragment() {
 
             }
             addToMonday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[1])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[1])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -105,7 +105,7 @@ class MealPlannerFragment : Fragment() {
                 }
             }
             addToTuesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[2])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[2])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -116,7 +116,7 @@ class MealPlannerFragment : Fragment() {
                 }
             }
             addToWednesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[3])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[3])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -127,7 +127,7 @@ class MealPlannerFragment : Fragment() {
                 }
             }
             addToThursday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[4])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[4])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -138,7 +138,7 @@ class MealPlannerFragment : Fragment() {
                 }
             }
             addToFriday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[5])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[5])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -149,7 +149,7 @@ class MealPlannerFragment : Fragment() {
                 }
             }
             addToSaturday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateList[6])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[6])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",

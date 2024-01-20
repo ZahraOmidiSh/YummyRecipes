@@ -157,10 +157,7 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun isTheDatePassed(date: String): Boolean {
-        if (date >= formatDate(calendar.time)) {
-            return false
-        } else {
-            return true
-        }
+         val today = Calendar.getInstance()
+        return date < formatDateWithMonthDay(today.time)
     }
 }
