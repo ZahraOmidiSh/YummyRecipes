@@ -92,7 +92,7 @@ class MealPlannerViewModel @Inject constructor(
         dateList.clear()
         dateStringList.clear()
         // Add dates for the current week to the list
-        calendar.time=getStartOfWeekDate(theDay)
+        calendar.time = getStartOfWeekDate(theDay)
         for (i in 0 until 7) {
             dateList.add(formatDate(calendar.time))
             dateStringList.add(formatDateWithMonthDay(calendar.time))
@@ -101,7 +101,7 @@ class MealPlannerViewModel @Inject constructor(
         setWeekTitle(Date(), theDay)
     }
 
-     fun formatDate(date: Date): String {
+    fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
     }
@@ -174,7 +174,7 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun isTheDatePassed(date: String): Boolean {
-         val today = Calendar.getInstance()
+        val today = Calendar.getInstance()
         return date < formatDateWithMonthDay(today.time)
     }
 }

@@ -367,25 +367,25 @@ class MealPlannerFragment : Fragment() {
     private fun makeTodayBold() {
         binding.apply {
             val today = viewModel.formatDate(Date())
-            isItToday(sundayDate,today)
-            isItToday(mondayDate,today)
-            isItToday(tuesdayDate,today)
-            isItToday(wednesdayDate,today)
-            isItToday(thursdayDate,today)
-            isItToday(fridayDate,today)
-            isItToday(saturdayDate,today)
+            isItToday(sunday, sundayDate, today, sundayBg)
+            isItToday(monday, mondayDate, today, mondayBg)
+            isItToday(tuesday, tuesdayDate, today, tuesdayBg)
+            isItToday(wednesday, wednesdayDate, today, wednesdayBg)
+            isItToday(thursday, thursdayDate, today, thursdayBg)
+            isItToday(friday, fridayDate, today, fridayBg)
+            isItToday(saturday, saturdayDate, today, saturdayBg)
 
         }
     }
 
-    private fun isItToday(dayOfWeek: TextView, today: String) {
+    private fun isItToday(dayOfWeek: TextView, dateOfWeek: TextView, today: String, bg: View) {
         binding.apply {
-            if (dayOfWeek.text == today) {
-                dayOfWeek.setTextColor(ContextCompat.getColor(requireContext(), R.color.big_foot_feet))
+            if (dateOfWeek.text == today) {
                 dayOfWeek.textSize = 18F
+                bg.isVisible = true
             } else {
-                dayOfWeek.setTextColor(ContextCompat.getColor(requireContext(), R.color.rose_ebony))
                 dayOfWeek.textSize = 16F
+                bg.isVisible = false
             }
         }
 
