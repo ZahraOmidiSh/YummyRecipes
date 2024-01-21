@@ -92,6 +92,7 @@ class MealPlannerViewModel @Inject constructor(
         dateList.clear()
         dateStringList.clear()
         // Add dates for the current week to the list
+        calendar.time=getStartOfWeekDate(theDay)
         for (i in 0 until 7) {
             dateList.add(formatDate(calendar.time))
             dateStringList.add(formatDateWithMonthDay(calendar.time))
@@ -140,6 +141,21 @@ class MealPlannerViewModel @Inject constructor(
 
         val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         return dateFormat.format(calendar.time)
+    }
+
+    private fun getStartOfWeekDate(inputDate: Date): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time = inputDate
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+
+        // Optional: If you want to set the time to midnight (00:00:00)
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+
+        return calendar.time
     }
 
     fun moveOneWeek(direction: Int) {
