@@ -31,16 +31,21 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
+    var theEntity = MutableLiveData<MealPlannerEntity>()
+
     //save
     fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
         val newId = (date + data.id).toLong()
         val entity = MealPlannerEntity(newId, data)
+        theEntity.value=entity
         repository.local.savePlannedMeal(entity)
     }
 
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
+        theEntity.value=entity
         repository.local.deletePlannedMeal(entity)
     }
+
     var meals = emptyList<MealPlannerEntity>()
 
     fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
@@ -66,7 +71,7 @@ class MealPlannerViewModel @Inject constructor(
         if (day == "saturday") {
             mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
         }
-        Log.e("duplicate1", mealsForDayList.value.toString() )
+        Log.e("duplicate1", mealsForDayList.value.toString())
         return mealsForDayList
     }
 
