@@ -106,13 +106,9 @@
 
                 <View
                     android:id="@+id/sundayBg"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="@dimen/_100mdp"
-                    android:alpha="0.3"
-                    android:visibility="visible"
-                    android:background="@drawable/bg_shadow_meal_planner_light"
+                    style="@style/MealPlannerTodayGradiantStyle"
                     app:layout_constraintBottom_toBottomOf="@id/sunday"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/sunday" />
 
                 <TextView
@@ -170,6 +166,13 @@
                 android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/sundayLay">
 
+                <View
+                    android:id="@+id/mondayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/monday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/monday" />
+
                 <TextView
                     android:id="@+id/monday"
                     style="@style/Meal_Planner_Day_Style"
@@ -223,6 +226,13 @@
                 android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/mondayLay">
 
+                <View
+                    android:id="@+id/tuesdayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/tuesday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tuesday" />
+
                 <TextView
                     android:id="@+id/tuesday"
                     style="@style/Meal_Planner_Day_Style"
@@ -275,6 +285,14 @@
                 android:paddingHorizontal="@dimen/_5mdp"
                 android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/tuesdayLay">
+
+
+                <View
+                    android:id="@+id/wednesdayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/wednesday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/wednesday" />
 
                 <TextView
                     android:id="@+id/wednesday"
@@ -330,6 +348,13 @@
                 android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/wednesdayLay">
 
+                <View
+                    android:id="@+id/thursdayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/thursday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/thursday" />
+
                 <TextView
                     android:id="@+id/thursday"
                     style="@style/Meal_Planner_Day_Style"
@@ -382,6 +407,13 @@
                 android:paddingHorizontal="@dimen/_5mdp"
                 android:paddingVertical="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/thursdayLay">
+
+                <View
+                    android:id="@+id/fridayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/friday"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/friday" />
 
                 <TextView
                     android:id="@+id/friday"
@@ -441,6 +473,13 @@
                     style="@style/Meal_Planner_ADD_Button_Style"
                     app:layout_constraintBottom_toBottomOf="@id/saturday"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/saturday" />
+
+                <View
+                    android:id="@+id/saturdayBg"
+                    style="@style/MealPlannerTodayGradiantStyle"
+                    app:layout_constraintBottom_toBottomOf="@id/saturday"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/saturday" />
 
                 <TextView
