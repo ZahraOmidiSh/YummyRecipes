@@ -161,6 +161,7 @@ class MealPlannerViewModel @Inject constructor(
     fun moveOneWeek(direction: Int) {
         calendar.time = theDay
         calendar.add(Calendar.DAY_OF_YEAR, direction)
+        calendar.firstDayOfWeek = Calendar.SUNDAY
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         theDay = calendar.time
         updateDatesOfWeekDays()
