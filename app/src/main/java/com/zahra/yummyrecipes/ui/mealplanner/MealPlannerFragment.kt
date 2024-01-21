@@ -77,7 +77,7 @@ class MealPlannerFragment : Fragment() {
             } else {
                 showAddHereButtons(false)
             }
-            viewModel.updateDatesOfWeekDays()
+
             loadMealsForEveryDay()
 
             addToSunday.setOnClickListener {
@@ -87,10 +87,8 @@ class MealPlannerFragment : Fragment() {
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.e("test","yes" )
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
-                    Log.e("test","no")
                 }
 
             }
