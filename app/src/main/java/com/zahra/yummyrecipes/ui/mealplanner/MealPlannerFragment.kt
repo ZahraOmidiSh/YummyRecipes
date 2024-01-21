@@ -251,6 +251,7 @@ class MealPlannerFragment : Fragment() {
 
                 sundayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
 
             }
@@ -267,6 +268,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 mondayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
             if (day == "tuesday") {
@@ -282,6 +284,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 tuesdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
             if (day == "wednesday") {
@@ -297,6 +300,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 wednesdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
             if (day == "thursday") {
@@ -312,6 +316,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 thursdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
             if (day == "friday") {
@@ -327,6 +332,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 fridayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
             if (day == "saturday") {
@@ -342,6 +348,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 saturdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    loadMealsForEveryDay()
                 }
             }
 
