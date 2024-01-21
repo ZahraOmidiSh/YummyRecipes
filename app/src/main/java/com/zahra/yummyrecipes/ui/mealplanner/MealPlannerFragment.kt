@@ -194,7 +194,8 @@ class MealPlannerFragment : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             viewModel.saveMeal(data, date)
-                            loadMealsForEachDay(day)
+//                            loadMealsForEachDay(day)
+                            loadMealsForEveryDay()
                             showAddHereButtons(false)
                         }
                     }
