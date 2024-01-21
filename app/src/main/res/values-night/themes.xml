@@ -328,7 +328,7 @@
     <!--meal planner today gradiant style-->
     <style name="MealPlannerTodayGradiantStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginEnd">@dimen/_100mdp</item>
         <item name="android:alpha">0.3</item>
         <item name="android:visibility">invisible</item>
