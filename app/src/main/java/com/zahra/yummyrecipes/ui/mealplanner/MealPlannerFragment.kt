@@ -26,6 +26,10 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
@@ -94,7 +98,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
-                    loadMealsForEachDay("sunday")
+//                    loadMealsForEachDay("sunday")
                 }
 
             }
@@ -107,7 +111,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[1], "monday")
-                    loadMealsForEachDay("monday")
+//                    loadMealsForEachDay("monday")
                 }
             }
             addToTuesday.setOnClickListener {
@@ -119,7 +123,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
-                    loadMealsForEachDay("tuesday")
+//                    loadMealsForEachDay("tuesday")
                 }
             }
             addToWednesday.setOnClickListener {
@@ -131,7 +135,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
-                    loadMealsForEachDay("wednesday")
+//                    loadMealsForEachDay("wednesday")
                 }
             }
             addToThursday.setOnClickListener {
@@ -143,7 +147,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
-                    loadMealsForEachDay("thursday")
+//                    loadMealsForEachDay("thursday")
                 }
             }
             addToFriday.setOnClickListener {
@@ -155,7 +159,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[5], "friday")
-                    loadMealsForEachDay("friday")
+//                    loadMealsForEachDay("friday")
                 }
             }
             addToSaturday.setOnClickListener {
@@ -167,7 +171,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
-                    loadMealsForEachDay("saturday")
+//                    loadMealsForEachDay("saturday")
                 }
             }
 
@@ -206,9 +210,45 @@ class MealPlannerFragment : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             viewModel.saveMeal(data, date)
+                            if (day == "sunday") {
+                                viewModel.theEntity.value?.let {
+                                    sundayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "monday") {
+                                viewModel.theEntity.value?.let {
+                                    mondayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "tuesday") {
+                                viewModel.theEntity.value?.let {
+                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "wednesday") {
+                                viewModel.theEntity.value?.let {
+                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "thursday") {
+                                viewModel.theEntity.value?.let {
+                                    thursdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "friday") {
+                                viewModel.theEntity.value?.let {
+                                    fridayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "saturday") {
+                                viewModel.theEntity.value?.let {
+                                    saturdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+
 //                            loadMealsForEachDay(day)
-//                            loadMealsForEveryDay()
                             showAddHereButtons(false)
+
                         }
                     }
 
@@ -220,6 +260,7 @@ class MealPlannerFragment : Fragment() {
 
             }
         }
+        loadMealsForEveryDay()
     }
 
 
@@ -231,13 +272,18 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun loadMealsForEveryDay() {
-        loadMealsForEachDay("sunday")
-        loadMealsForEachDay("monday")
-        loadMealsForEachDay("tuesday")
-        loadMealsForEachDay("wednesday")
-        loadMealsForEachDay("thursday")
-        loadMealsForEachDay("friday")
-        loadMealsForEachDay("saturday")
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(50)
+
+            //  load meals for each day
+            loadMealsForEachDay("sunday")
+            loadMealsForEachDay("monday")
+            loadMealsForEachDay("tuesday")
+            loadMealsForEachDay("wednesday")
+            loadMealsForEachDay("thursday")
+            loadMealsForEachDay("friday")
+            loadMealsForEachDay("saturday")
+        }
     }
 
 
@@ -257,6 +303,7 @@ class MealPlannerFragment : Fragment() {
 
                 sundayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    sundayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
 
@@ -274,6 +321,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 mondayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    mondayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }
@@ -290,6 +338,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 tuesdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    tuesdayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }
@@ -306,6 +355,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 wednesdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    wednesdayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }
@@ -322,6 +372,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 thursdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    thursdayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }
@@ -338,6 +389,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 fridayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    fridayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }
@@ -354,6 +406,7 @@ class MealPlannerFragment : Fragment() {
                 }
                 saturdayMealsAdapter.setonItemClickListenerForDelete {
                     viewModel.deleteMeal(it)
+                    saturdayMealsAdapter.removeMealPlannerEntity(it)
                     loadMealsForEveryDay()
                 }
             }

@@ -42,7 +42,7 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
-        theEntity.value=entity
+//        theEntity.value=entity
         repository.local.deletePlannedMeal(entity)
     }
 
