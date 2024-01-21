@@ -82,6 +82,7 @@ class MealPlannerViewModel @Inject constructor(
     init {
         // Set the calendar to the current date
         calendar.time = Date()
+        theDay = Date()
         // Find the current Sunday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         updateDatesOfWeekDays()
