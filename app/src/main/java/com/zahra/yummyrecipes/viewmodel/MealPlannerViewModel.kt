@@ -96,7 +96,7 @@ class MealPlannerViewModel @Inject constructor(
         // Find the current Sunday
         calendar.time = Date()
         calendar.firstDayOfWeek = Calendar.SUNDAY
-        Log.e("Date", Date().toString() )
+        Log.e("problem1", Date().toString() )
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         // Add dates for the current week to the list
         for (i in 0 until 7) {
@@ -104,8 +104,8 @@ class MealPlannerViewModel @Inject constructor(
             dateStringList.add(formatDateWithMonthDay(calendar.time))
             calendar.add(Calendar.DAY_OF_YEAR, 1)
         }
-        Log.e("dateList", dateList.toString())
-        Log.e("dateStringList", dateStringList.toString())
+        Log.e("problem2", dateList.toString())
+        Log.e("problem3", dateStringList.toString())
         setWeekTitle(Date(), theDay)
     }
 
@@ -153,14 +153,23 @@ class MealPlannerViewModel @Inject constructor(
 
     fun moveOneWeek(direction: Int) {
         val calendar = Calendar.getInstance()
-        calendar.time = Date()
+//        calendar.time = Date()
         calendar.firstDayOfWeek = Calendar.SUNDAY
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         calendar.time = theDay
         calendar.add(Calendar.DAY_OF_YEAR, direction)
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         theDay = calendar.time
-        updateDatesOfWeekDays()
+//        updateDatesOfWeekDays()
+
+        dateList.clear()
+        dateStringList.clear()
+        for (i in 0 until 7) {
+            dateList.add(formatDate(calendar.time))
+            dateStringList.add(formatDateWithMonthDay(calendar.time))
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+        }
+        setWeekTitle(Date(), theDay)
     }
 
     fun goToCurrentWeek() {
