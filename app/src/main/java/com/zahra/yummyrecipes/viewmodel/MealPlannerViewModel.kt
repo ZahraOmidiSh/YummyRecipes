@@ -41,9 +41,10 @@ class MealPlannerViewModel @Inject constructor(
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
         repository.local.deletePlannedMeal(entity)
     }
+    var meals = emptyList<MealPlannerEntity>()
 
     fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
-        var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+        var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
         if (day == "sunday") {
             mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
         }
@@ -65,6 +66,7 @@ class MealPlannerViewModel @Inject constructor(
         if (day == "saturday") {
             mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
         }
+        Log.e("duplicate1", mealsForDayList.value.toString() )
         return mealsForDayList
     }
 

@@ -94,6 +94,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
+                    loadMealsForEachDay("sunday")
                 }
 
             }
@@ -106,6 +107,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[1], "monday")
+                    loadMealsForEachDay("monday")
                 }
             }
             addToTuesday.setOnClickListener {
@@ -117,6 +119,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
+                    loadMealsForEachDay("tuesday")
                 }
             }
             addToWednesday.setOnClickListener {
@@ -128,6 +131,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
+                    loadMealsForEachDay("wednesday")
                 }
             }
             addToThursday.setOnClickListener {
@@ -139,6 +143,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
+                    loadMealsForEachDay("thursday")
                 }
             }
             addToFriday.setOnClickListener {
@@ -150,6 +155,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[5], "friday")
+                    loadMealsForEachDay("friday")
                 }
             }
             addToSaturday.setOnClickListener {
@@ -161,6 +167,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
+                    loadMealsForEachDay("saturday")
                 }
             }
 
@@ -200,7 +207,7 @@ class MealPlannerFragment : Fragment() {
                         response.data?.let { data ->
                             viewModel.saveMeal(data, date)
 //                            loadMealsForEachDay(day)
-                            loadMealsForEveryDay()
+//                            loadMealsForEveryDay()
                             showAddHereButtons(false)
                         }
                     }
@@ -236,7 +243,6 @@ class MealPlannerFragment : Fragment() {
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
         binding.apply {
-
             if (day == "sunday") {
                 sundayMealsAdapter.setData(list)
                 sundayMealsList.setupRecyclerview(
