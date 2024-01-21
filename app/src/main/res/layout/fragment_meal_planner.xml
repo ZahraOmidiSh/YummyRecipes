@@ -84,7 +84,6 @@
 
             <!--Sunday-->
 
-            <!--Monday-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/sundayLay"
                 android:layout_width="match_parent"
@@ -95,12 +94,34 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="16dp">
 
+                <!--<androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="@id/sunday"
+                    app:layout_constraintBottom_toBottomOf="@id/sunday"
+                    android:background="@color/back_nutrient3"
+                    tools:ignore="NotSibling" />-->
+
+                <View
+                    android:id="@+id/sundayBg"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_100mdp"
+                    android:alpha="0.3"
+                    android:visibility="visible"
+                    android:background="@drawable/bg_shadow_meal_planner_light"
+                    app:layout_constraintBottom_toBottomOf="@id/sunday"
+                    app:layout_constraintTop_toTopOf="@id/sunday" />
+
                 <TextView
                     android:id="@+id/sunday"
                     style="@style/Meal_Planner_Day_Style"
                     android:text="Sunday"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
 
                 <TextView
                     android:id="@+id/addToSunday"
@@ -139,6 +160,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--Monday-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/mondayLay"
                 android:layout_width="match_parent"
