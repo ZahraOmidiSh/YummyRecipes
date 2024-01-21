@@ -19,24 +19,23 @@ import javax.inject.Inject
 
 class MealPlannerAdapter @Inject constructor() :
     RecyclerView.Adapter<MealPlannerAdapter.ViewHolder>() {
-    private lateinit var binding: ItemPlannedMealsBinding
-    private var items = emptyList<MealPlannerEntity>()
+    private var items = mutableListOf<MealPlannerEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding =
-            ItemPlannedMealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder()
+        val binding = ItemPlannedMealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
 
-    inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder (private val binding: ItemPlannedMealsBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: MealPlannerEntity) {
             binding.apply {
@@ -57,14 +56,10 @@ class MealPlannerAdapter @Inject constructor() :
                         idString = idString.substring(8)
                         val newId = idString.toInt()
 
-                        onItemClickListener?.let {
-                            it(newId)
-                        }
+                        onItemClickListener?.invoke(newId)
                     }
                     deleteImg.setOnClickListener {
-                        onItemClickListenerForDelete?.let {
-                            it(item)
-                        }
+                        onItemClickListenerForDelete?.invoke(item)
                     }
                 }
             }
@@ -84,10 +79,25 @@ class MealPlannerAdapter @Inject constructor() :
         onItemClickListenerForDelete = listener
     }
 
+    fun addMealPlannerEntity(item: MealPlannerEntity) {
+        items.add(item)
+        notifyItemInserted(items.size - 1)
+    }
+
+    fun removeMealPlannerEntity(item: MealPlannerEntity) {
+        val position = items.indexOf(item)
+        if (position != -1) {
+            items.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
     fun setData(data: List<MealPlannerEntity>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)
-        items = data
+        items.clear()
+        items.addAll(data)
+        notifyDataSetChanged()
         diffUtils.dispatchUpdatesTo(this)
     }
 }
