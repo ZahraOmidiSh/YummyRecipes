@@ -1,17 +1,21 @@
 package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
@@ -22,6 +26,7 @@ import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Date
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -353,7 +358,35 @@ class MealPlannerFragment : Fragment() {
             thursdayDate.text = viewModel.dateList[4]
             fridayDate.text = viewModel.dateList[5]
             saturdayDate.text = viewModel.dateList[6]
+            makeTodayBold()
             weekTxt.text = viewModel.weekText
+        }
+
+    }
+
+    private fun makeTodayBold() {
+        binding.apply {
+            val today = viewModel.formatDate(Date())
+            isItToday(sundayDate,today)
+            isItToday(mondayDate,today)
+            isItToday(tuesdayDate,today)
+            isItToday(wednesdayDate,today)
+            isItToday(thursdayDate,today)
+            isItToday(fridayDate,today)
+            isItToday(saturdayDate,today)
+
+        }
+    }
+
+    private fun isItToday(dayOfWeek: TextView, today: String) {
+        binding.apply {
+            if (dayOfWeek.text == today) {
+                dayOfWeek.setTextColor(ContextCompat.getColor(requireContext(), R.color.big_foot_feet))
+                dayOfWeek.textSize = 18F
+            } else {
+                dayOfWeek.setTextColor(ContextCompat.getColor(requireContext(), R.color.rose_ebony))
+                dayOfWeek.textSize = 16F
+            }
         }
 
     }

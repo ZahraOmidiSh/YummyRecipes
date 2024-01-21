@@ -101,7 +101,7 @@ class MealPlannerViewModel @Inject constructor(
         setWeekTitle(Date(), theDay)
     }
 
-    private fun formatDate(date: Date): String {
+     fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
     }
