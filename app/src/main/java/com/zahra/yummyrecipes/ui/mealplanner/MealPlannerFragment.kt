@@ -87,7 +87,7 @@ class MealPlannerFragment : Fragment() {
                 showAddHereButtons(false)
             }
 
-            loadMealsForEveryDay()
+
 
             addToSunday.setOnClickListener {
                 if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
@@ -176,6 +176,7 @@ class MealPlannerFragment : Fragment() {
             }
 
             showWeekDates()
+            loadMealsForEveryDay()
 
             //forward click listener
             forward.setOnClickListener {
@@ -267,23 +268,20 @@ class MealPlannerFragment : Fragment() {
     //Load Meals for each day
     private fun loadMealsForEachDay(day: String) {
         viewModel.readMealsOfEachDay(day).observe(viewLifecycleOwner) {
+            Log.e("duplicate2$day", "${it.size}/n")
             initMealsRecycler(it, day)
         }
     }
 
     private fun loadMealsForEveryDay() {
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(50)
-
-            //  load meals for each day
-            loadMealsForEachDay("sunday")
-            loadMealsForEachDay("monday")
-            loadMealsForEachDay("tuesday")
-            loadMealsForEachDay("wednesday")
-            loadMealsForEachDay("thursday")
-            loadMealsForEachDay("friday")
-            loadMealsForEachDay("saturday")
-        }
+        //  load meals for each day
+        loadMealsForEachDay("sunday")
+        loadMealsForEachDay("monday")
+        loadMealsForEachDay("tuesday")
+        loadMealsForEachDay("wednesday")
+        loadMealsForEachDay("thursday")
+        loadMealsForEachDay("friday")
+        loadMealsForEachDay("saturday")
     }
 
 

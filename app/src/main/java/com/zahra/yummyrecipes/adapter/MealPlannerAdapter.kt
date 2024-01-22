@@ -22,20 +22,23 @@ class MealPlannerAdapter @Inject constructor() :
     private var items = mutableListOf<MealPlannerEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemPlannedMealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemPlannedMealsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
     }
+
     override fun getItemCount() = items.size
 
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
 
-    inner class ViewHolder (private val binding: ItemPlannedMealsBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemPlannedMealsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: MealPlannerEntity) {
             binding.apply {
