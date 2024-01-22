@@ -63,6 +63,7 @@ class MealPlannerFragment : Fragment() {
     //Other
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
+    var showAdd = 0
 
 
     override fun onCreateView(
@@ -80,11 +81,16 @@ class MealPlannerFragment : Fragment() {
         //InitViews
         binding.apply {
             recipeId = arguments?.getInt("recipeId", 0)!!
+            showAdd = arguments?.getInt("showAdd", 0) ?: 0
+            Log.e("showAdd", showAdd.toString() )
 
-            if (recipeId > 0) {
+            if (recipeId > 0 && showAdd==1) {
                 showAddHereButtons(true)
+                chooseDayTxt.isVisible=true
             } else {
                 showAddHereButtons(false)
+                chooseDayTxt.isVisible=false
+                showAdd=0
             }
 
 
@@ -98,6 +104,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("sunday")
                 }
 
@@ -111,6 +119,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[1], "monday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("monday")
                 }
             }
@@ -123,6 +133,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("tuesday")
                 }
             }
@@ -135,6 +147,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("wednesday")
                 }
             }
@@ -147,6 +161,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("thursday")
                 }
             }
@@ -159,6 +175,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[5], "friday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("friday")
                 }
             }
@@ -171,6 +189,8 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
+                    recipeId = 0
+                    showAdd=0
 //                    loadMealsForEachDay("saturday")
                 }
             }
@@ -262,6 +282,7 @@ class MealPlannerFragment : Fragment() {
             }
         }
         loadMealsForEveryDay()
+        showAdd=0
     }
 
 
@@ -295,6 +316,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 sundayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -314,6 +338,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 mondayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -331,6 +358,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 tuesdayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -348,6 +378,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 wednesdayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -365,6 +398,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 thursdayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -382,6 +418,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 fridayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -399,6 +438,9 @@ class MealPlannerFragment : Fragment() {
                 )
                 //click
                 saturdayMealsAdapter.setonItemClickListener {
+                    showAddHereButtons(false)
+                    chooseDayTxt.isVisible = false
+                    showAdd=0
                     val action = RecipeFragmentDirections.actionToDetail(it)
                     findNavController().navigate(action)
                 }
@@ -472,6 +514,7 @@ class MealPlannerFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        showAdd=0
         _binding = null
     }
 }

@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.ui.detail
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,7 +99,8 @@ class DetailFragment : Fragment() {
 
             //Add To Meal Planner
             mealPlannerImg.setOnClickListener {
-                val direction = DetailFragmentDirections.actionToMealPlanner(recipeId)
+                val direction = DetailFragmentDirections.actionToMealPlanner(recipeId,1)
+                Log.e("showAdd2", "ooo" )
                 findNavController().navigate(direction)
             }
 
