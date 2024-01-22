@@ -63,9 +63,6 @@
         <argument
             android:name="recipeId"
             app:argType="integer" />
-        <argument
-            android:name="showAdd"
-            app:argType="integer"/>
     </fragment>
 
 

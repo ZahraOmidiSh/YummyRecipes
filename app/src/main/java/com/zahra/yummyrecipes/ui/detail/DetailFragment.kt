@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withStarted
 import androidx.navigation.fragment.findNavController
@@ -40,6 +41,8 @@ import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
+import com.zahra.yummyrecipes.viewmodel.SearchViewModel
+import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,6 +70,7 @@ class DetailFragment : Fragment() {
     lateinit var networkChecker: NetworkChecker
 
     //Other
+    private lateinit var showAddViewModel: ShowAddViewModel
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
     private var recipeId = 0
@@ -74,6 +78,10 @@ class DetailFragment : Fragment() {
     private var isExistsCache = false
     private var isExistsFavorite = false
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        showAddViewModel = ViewModelProvider(requireActivity())[ShowAddViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -99,8 +107,8 @@ class DetailFragment : Fragment() {
 
             //Add To Meal Planner
             mealPlannerImg.setOnClickListener {
-                val direction = DetailFragmentDirections.actionToMealPlanner(recipeId,1)
-                Log.e("showAdd2", "ooo" )
+                showAddViewModel.setShowAddFlag(1)
+                val direction = DetailFragmentDirections.actionToMealPlanner(recipeId)
                 findNavController().navigate(direction)
             }
 
