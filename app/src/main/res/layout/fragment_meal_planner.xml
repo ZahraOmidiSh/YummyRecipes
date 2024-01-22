@@ -88,21 +88,9 @@
                 android:id="@+id/sundayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp">
-
-                <!--<androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="0dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="@id/sunday"
-                    app:layout_constraintBottom_toBottomOf="@id/sunday"
-                    android:background="@color/back_nutrient3"
-                    tools:ignore="NotSibling" />-->
+                android:paddingTop="@dimen/_6mdp"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <View
                     android:id="@+id/sundayBg"
@@ -137,7 +125,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/sundayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sunday"
@@ -148,7 +135,6 @@
                     android:id="@+id/line7"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
-                    android:layout_marginTop="@dimen/_6mdp"
                     android:alpha="0.2"
                     android:background="@color/big_foot_feet"
                     app:layout_constraintTop_toBottomOf="@id/sundayMealsList" />
@@ -161,9 +147,8 @@
                 android:id="@+id/mondayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/sundayLay">
 
                 <View
@@ -197,7 +182,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mondayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/monday"
@@ -208,7 +192,6 @@
                     android:id="@+id/line1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
-                    android:layout_marginTop="@dimen/_6mdp"
                     android:alpha="0.2"
                     android:background="@color/big_foot_feet"
                     app:layout_constraintTop_toBottomOf="@id/mondayMealsList" />
@@ -221,9 +204,8 @@
                 android:id="@+id/tuesdayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/mondayLay">
 
                 <View
@@ -257,7 +239,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/tuesdayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tuesday"
@@ -281,9 +262,8 @@
                 android:id="@+id/wednesdayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/tuesdayLay">
 
 
@@ -319,7 +299,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/wednesdayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/wednesday"
@@ -343,9 +322,8 @@
                 android:id="@+id/thursdayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/wednesdayLay">
 
                 <View
@@ -379,7 +357,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/thursdayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/thursday"
@@ -403,9 +380,8 @@
                 android:id="@+id/fridayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/thursdayLay">
 
                 <View
@@ -439,7 +415,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/fridayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/friday"
@@ -463,9 +438,8 @@
                 android:id="@+id/saturdayLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_5mdp"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingVertical="@dimen/_6mdp"
+                android:paddingTop="@dimen/_6mdp"
                 app:layout_constraintTop_toBottomOf="@id/fridayLay">
 
                 <TextView
@@ -499,7 +473,6 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/saturdayMealsList"
                     style="@style/MealPlanner_Recycler_View"
-                    android:layout_marginTop="@dimen/_12mdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/saturday"

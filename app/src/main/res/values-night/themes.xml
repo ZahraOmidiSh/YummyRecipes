@@ -255,6 +255,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingStart">@dimen/_5mdp</item>
         <item name="android:paddingEnd">@dimen/_5mdp</item>
+        <item name="android:layout_marginTop">@dimen/_3mdp</item>
         <item name="android:paddingTop">@dimen/_3mdp</item>
         <item name="android:textSize">@dimen/_13font_mdp</item>
         <item name="android:clipToPadding">false</item>

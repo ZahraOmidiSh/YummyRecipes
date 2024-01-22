@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/_110mdp"
-    android:layout_margin="@dimen/_3mdp"
     style="@style/RVBackground"
     android:layout_height="@dimen/_130mdp">
     <!--Card-->
@@ -11,7 +10,7 @@
         android:id="@+id/cardLay"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_120mdp"
-        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_3mdp"
         android:elevation="@dimen/_5mdp"
         app:cardCornerRadius="@dimen/_5mdp"
         app:cardUseCompatPadding="true"
@@ -29,12 +28,12 @@
         <!--Delete-->
         <ImageView
             android:id="@+id/deleteImg"
-            android:layout_width="@dimen/_25mdp"
-            android:layout_height="@dimen/_25mdp"
+            android:layout_width="@dimen/_20mdp"
+            android:layout_height="@dimen/_20mdp"
             android:padding="@dimen/_5mdp"
             android:background="@drawable/bg_rounded_linen"
             android:rotation="45"
-            android:layout_margin="@dimen/_5mdp"
+            android:layout_margin="@dimen/_3mdp"
             android:src="@drawable/plus"
             android:layout_gravity="end"
             app:tint="@color/gray" />
