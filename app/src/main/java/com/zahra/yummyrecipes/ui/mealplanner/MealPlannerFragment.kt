@@ -328,9 +328,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         sundayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -354,9 +352,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         mondayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -378,9 +374,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         tuesdayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -402,9 +396,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         wednesdayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -426,9 +418,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         thursdayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -450,9 +440,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         fridayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
@@ -474,9 +462,7 @@ class MealPlannerFragment : Fragment() {
                         )
                         //click
                         saturdayMealsAdapter.setonItemClickListener {
-                            showAddHereButtons(false)
-                            chooseDayTxt.isVisible = false
-                            showAdd = 0
+                            showAddViewModel.setShowAddFlag(0)
                             val action = RecipeFragmentDirections.actionToDetail(it)
                             findNavController().navigate(action)
                         }
