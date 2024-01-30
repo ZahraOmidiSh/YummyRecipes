@@ -178,23 +178,38 @@ class MealPlannerFragment : Fragment() {
             calendar.time = today
             Log.e("today2", calendar.time.toString())
 
-            calendar.firstDayOfWeek = Calendar.SUNDAY
-            Log.e("today3", calendar.firstDayOfWeek.toString() )
+            calendar.firstDayOfWeek = 1
+            Log.e("today3", calendar.firstDayOfWeek.toString())
+
 
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-            Log.e("today4", calendar.time.toString())
+            val sunday = calendar.time
+            Log.e("today4", sunday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-            Log.e("today5", calendar.time.toString())
+            val monday = calendar.time
+            Log.e("today5", monday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
-            Log.e("today6", calendar.time.toString())
+            val tuesday = calendar.time
+            Log.e("today6", tuesday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
-            Log.e("today7", calendar.time.toString())
+            val wednesday = calendar.time
+            Log.e("today7", wednesday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
-            Log.e("today8", calendar.time.toString())
+            val thursday = calendar.time
+            Log.e("today8", thursday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
-            Log.e("today9", calendar.time.toString())
+            val friday = calendar.time
+            Log.e("today9", friday.toString())
+
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
-            Log.e("today10", calendar.time.toString())
+            val saturday = calendar.time
+            Log.e("today10", saturday.toString())
+
 
 //            showWeekDates()
 //            loadMealsForEveryDay()
