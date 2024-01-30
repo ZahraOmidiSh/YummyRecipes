@@ -181,6 +181,10 @@ class MealPlannerFragment : Fragment() {
             calendar.firstDayOfWeek = 1
             Log.e("today3", calendar.firstDayOfWeek.toString())
 
+            calendar.set(Calendar.HOUR_OF_DAY, 0)
+            calendar.set(Calendar.MINUTE, 0)
+            calendar.set(Calendar.SECOND, 0)
+            calendar.set(Calendar.MILLISECOND, 0)
 
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
             val sunday = calendar.time
