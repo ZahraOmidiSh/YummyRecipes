@@ -46,72 +46,127 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.deletePlannedMeal(entity)
     }
 
-    var meals = emptyList<MealPlannerEntity>()
-/*
+    //Dates Of Week
+    var datesOfWeek = MutableLiveData<List<Date>>()
+    fun setDatesOfWeek(day: Date) {
+        //make a list od dates
+        val dates = mutableListOf<Date>()
+        //make an instance of Calendar
+        val calendar = Calendar.getInstance()
+        calendar.time = day
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
 
-    fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
-        var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
-        if (day == "sunday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
-        }
-        if (day == "monday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
-        }
-        if (day == "tuesday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
-        }
-        if (day == "wednesday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
-        }
-        if (day == "thursday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
-        }
-        if (day == "friday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
-        }
-        if (day == "saturday") {
-            mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
-        }
-        Log.e("duplicate1", mealsForDayList.value.toString())
-        return mealsForDayList
+        //set first day of week
+        calendar.firstDayOfWeek = Calendar.SUNDAY
+
+        //sunday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        val sunday = calendar.time
+        dates.add(sunday)
+
+        //monday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        val monday = calendar.time
+        dates.add(monday)
+
+        //tuesday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
+        val tuesday = calendar.time
+        dates.add(tuesday)
+
+        //wednesday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
+        val wednesday = calendar.time
+        dates.add(wednesday)
+
+        //thursday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
+        val thursday = calendar.time
+        dates.add(thursday)
+
+        //friday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+        val friday = calendar.time
+        dates.add(friday)
+
+        //saturday
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
+        val saturday = calendar.time
+        dates.add(saturday)
+
+        datesOfWeek.postValue(dates)
     }
-*/
+
+    val dateList = mutableListOf<String>()
+    fun updateDateList(datesOfWeek: List<Date>){
+        dateList.clear()
+        datesOfWeek.forEach {
+            dateList.add(formatDate(it))
+        }
+    }
+
+    val dateStringList = mutableListOf<String>()
+    fun updateDateStringList(datesOfWeek: List<Date>){
+        dateStringList.clear()
+        datesOfWeek.forEach {
+            dateStringList.add(formatDateWithMonthDay(it))
+        }
+    }
+
+
+    var meals = emptyList<MealPlannerEntity>()
+    /*
+
+        fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
+            var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
+            if (day == "sunday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
+            }
+            if (day == "monday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
+            }
+            if (day == "tuesday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
+            }
+            if (day == "wednesday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
+            }
+            if (day == "thursday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
+            }
+            if (day == "friday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
+            }
+            if (day == "saturday") {
+                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
+            }
+            Log.e("duplicate1", mealsForDayList.value.toString())
+            return mealsForDayList
+        }
+    */
 
     var recipeId = MutableLiveData<Int>()
 
-/*
-
-    //Get The current date
-    private var theDay = Date()
-
-    //Create a Calendar instance
-    private val calendar = Calendar.getInstance()
-    val dateList = mutableListOf<String>()
-    val dateStringList = mutableListOf<String>()
-
-    init {
-        // Set the calendar to the current date
-        calendar.time = Date()
-        theDay = Date()
-        // Find the current Sunday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        updateDatesOfWeekDays()
-    }
 
 
-    private fun updateDatesOfWeekDays() {
-        dateList.clear()
-        dateStringList.clear()
-        // Add dates for the current week to the list
-        calendar.time = getStartOfWeekDate(theDay)
-        for (i in 0 until 7) {
-            dateList.add(formatDate(calendar.time))
-            dateStringList.add(formatDateWithMonthDay(calendar.time))
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
+    /*
+
+        private fun updateDatesOfWeekDays() {
+            dateList.clear()
+            dateStringList.clear()
+            // Add dates for the current week to the list
+            calendar.time = getStartOfWeekDate(theDay)
+            for (i in 0 until 7) {
+                dateList.add(formatDate(calendar.time))
+                dateStringList.add(formatDateWithMonthDay(calendar.time))
+                calendar.add(Calendar.DAY_OF_YEAR, 1)
+            }
+            setWeekTitle(Date(), theDay)
         }
-        setWeekTitle(Date(), theDay)
-    }
-    */
+        */
     fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)

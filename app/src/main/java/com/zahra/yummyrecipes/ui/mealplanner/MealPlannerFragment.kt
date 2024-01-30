@@ -90,6 +90,37 @@ class MealPlannerFragment : Fragment() {
                     showAddHereButtons(false)
                 }
             }
+
+            //Show Current Week
+            val today = Date()
+            viewModel.setDatesOfWeek(today)
+            viewModel.datesOfWeek.observe(viewLifecycleOwner){
+                it.forEach {date ->
+                    Log.e("dayOfWeek", date.toString() )
+                }
+                viewModel.updateDateList(it)
+                viewModel.updateDateStringList(it)
+                viewModel.dateList.forEach {
+                    Log.e("dayOfWeek_dateList", "$it\n" )
+                }
+                viewModel.dateStringList.forEach {
+                    Log.e("dayOfWeek_dateStringList","$it\n" )
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             //clickListeners
             /*
             addToSunday.setOnClickListener {
@@ -172,74 +203,6 @@ class MealPlannerFragment : Fragment() {
             }
 */
 
-            val calendar = Calendar.getInstance()
-            calendar.time = Date()
-
-            calendar.set(Calendar.HOUR_OF_DAY, 0)
-            calendar.set(Calendar.MINUTE, 0)
-            calendar.set(Calendar.SECOND, 0)
-            calendar.set(Calendar.MILLISECOND, 0)
-            Log.e("today2", calendar.time.toString())
-
-            calendar.firstDayOfWeek = Calendar.SUNDAY
-            Log.e("today3", calendar.firstDayOfWeek.toString())
-
-            //find the first day of week
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-            val firstDayOfWeek = calendar.time
-            Log.e("today4", "firstDayOfWeek: $firstDayOfWeek")
-
-            //find the other days
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today5", "otherDaysOfWeek: ${calendar.time}")
-
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today6", "otherDaysOfWeek: ${calendar.time}")
-
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today7", "otherDaysOfWeek: ${calendar.time}")
-
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today8", "otherDaysOfWeek: ${calendar.time}")
-
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today9", "otherDaysOfWeek: ${calendar.time}")
-
-            calendar.add(Calendar.DAY_OF_YEAR, 1)
-            Log.e("today10", "otherDaysOfWeek: ${calendar.time}")
-
-
-
-
-
-//            val sunday = calendar.time
-//
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-//            val monday = calendar.time
-//            Log.e("today5", monday.toString())
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
-//            val tuesday = calendar.time
-//            Log.e("today6", tuesday.toString())
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
-//            val wednesday = calendar.time
-//            Log.e("today7", wednesday.toString())
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
-//            val thursday = calendar.time
-//            Log.e("today8", thursday.toString())
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
-//            val friday = calendar.time
-//            Log.e("today9", friday.toString())
-//
-//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
-//            val saturday = calendar.time
-//            Log.e("today10", saturday.toString())
-//
-//            Log.e("today11", calendar.time.toString())
 
 
 //            showWeekDates()
