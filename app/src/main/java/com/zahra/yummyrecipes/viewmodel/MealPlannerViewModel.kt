@@ -1,6 +1,8 @@
 package com.zahra.yummyrecipes.viewmodel
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +16,9 @@ import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -44,6 +49,17 @@ class MealPlannerViewModel @Inject constructor(
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
 //        theEntity.value=entity
         repository.local.deletePlannedMeal(entity)
+    }
+
+
+    //format dates
+    fun formatDate(date: Date): String {
+        val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
+        return dateFormat.format(date)
+    }
+    private fun formatDateWithMonthDay(date: Date): String {
+        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
+        return dateFormat.format(date)
     }
 
     //Dates Of Week
@@ -98,6 +114,7 @@ class MealPlannerViewModel @Inject constructor(
         dates.add(saturday)
 
         datesOfWeek.postValue(dates)
+        setWeekTitle()
     }
 
     val dateList = mutableListOf<String>()
@@ -116,6 +133,7 @@ class MealPlannerViewModel @Inject constructor(
         }
     }
 
+    //move week
     var currentDate = Date()
     fun moveWeek(direction: Int) {
         Log.e("dayOfWeek_currentDate1", currentDate.toString() )
@@ -125,6 +143,22 @@ class MealPlannerViewModel @Inject constructor(
         currentDate=calendar.time
         Log.e("dayOfWeek_currentDate2", currentDate.toString() )
         setDatesOfWeek(currentDate)
+    }
+
+    //set week title
+    val today=Date()
+    var weekText = "THIS WEEK"
+    fun setWeekTitle(){
+        val differenceInDays =
+            formatDateWithMonthDay(currentDate).toInt() - formatDateWithMonthDay(today).toInt()
+        Log.e("dayOfWeek_differenceInDays_1", differenceInDays.toString() )
+
+
+    }
+
+    fun getLocalDate(dateString: String): LocalDate {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return LocalDate.parse(dateString, formatter)
     }
 
 
@@ -162,32 +196,7 @@ class MealPlannerViewModel @Inject constructor(
     var recipeId = MutableLiveData<Int>()
 
 
-    /*
 
-        private fun updateDatesOfWeekDays() {
-            dateList.clear()
-            dateStringList.clear()
-            // Add dates for the current week to the list
-            calendar.time = getStartOfWeekDate(theDay)
-            for (i in 0 until 7) {
-                dateList.add(formatDate(calendar.time))
-                dateStringList.add(formatDateWithMonthDay(calendar.time))
-                calendar.add(Calendar.DAY_OF_YEAR, 1)
-            }
-            setWeekTitle(Date(), theDay)
-        }
-        */
-    fun formatDate(date: Date): String {
-        val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
-        return dateFormat.format(date)
-    }
-
-    private fun formatDateWithMonthDay(date: Date): String {
-        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-        return dateFormat.format(date)
-    }
-
-    var weekText = "THIS WEEK"
 //    private fun setWeekTitle(today: Date, currentDay: Date) {
 //        val todayStartOfWeek = getStartOfWeek(today).toInt()
 //        val currentStartOfWeek = getStartOfWeek(currentDay).toInt()
