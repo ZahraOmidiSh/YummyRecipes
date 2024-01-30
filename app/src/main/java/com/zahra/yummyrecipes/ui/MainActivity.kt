@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.databinding.ActivityMainBinding
 import com.zahra.yummyrecipes.utils.BaseActivity
@@ -40,6 +41,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidThreeTen.init(this)
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
