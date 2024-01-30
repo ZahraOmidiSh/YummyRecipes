@@ -107,6 +107,17 @@ class MealPlannerFragment : Fragment() {
                     Log.e("dayOfWeek_dateStringList","$it\n" )
                 }
             }
+            //forward click listener
+            forward.setOnClickListener {
+                viewModel.moveWeek(7)
+            }
+
+            //backward click listener
+            backward.setOnClickListener {
+                viewModel.moveWeek(-7)
+            }
+
+
 
 
 

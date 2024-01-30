@@ -101,7 +101,7 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     val dateList = mutableListOf<String>()
-    fun updateDateList(datesOfWeek: List<Date>){
+    fun updateDateList(datesOfWeek: List<Date>) {
         dateList.clear()
         datesOfWeek.forEach {
             dateList.add(formatDate(it))
@@ -109,11 +109,22 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     val dateStringList = mutableListOf<String>()
-    fun updateDateStringList(datesOfWeek: List<Date>){
+    fun updateDateStringList(datesOfWeek: List<Date>) {
         dateStringList.clear()
         datesOfWeek.forEach {
             dateStringList.add(formatDateWithMonthDay(it))
         }
+    }
+
+    var currentDate = Date()
+    fun moveWeek(direction: Int) {
+        Log.e("dayOfWeek_currentDate1", currentDate.toString() )
+        val calendar = Calendar.getInstance()
+        calendar.time = currentDate
+        calendar.add(Calendar.DAY_OF_YEAR, direction)
+        currentDate=calendar.time
+        Log.e("dayOfWeek_currentDate2", currentDate.toString() )
+        setDatesOfWeek(currentDate)
     }
 
 
@@ -149,7 +160,6 @@ class MealPlannerViewModel @Inject constructor(
     */
 
     var recipeId = MutableLiveData<Int>()
-
 
 
     /*
