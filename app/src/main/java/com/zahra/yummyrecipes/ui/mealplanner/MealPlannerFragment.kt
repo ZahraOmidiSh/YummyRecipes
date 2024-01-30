@@ -244,6 +244,7 @@ class MealPlannerFragment : Fragment() {
 
 //            showWeekDates()
 //            loadMealsForEveryDay()
+/*
 
             //forward click listener
             forward.setOnClickListener {
@@ -263,264 +264,265 @@ class MealPlannerFragment : Fragment() {
                 showWeekDates()
                 loadMealsForEveryDay()
             }
+*/
 
         }
     }
 
-    private fun loadMealDataFromApi(date: String, day: String) {
-        viewModel.callMealApi(recipeId, setAPIKEY())
-        binding.apply {
-            viewModel.mealData.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is NetworkRequest.Loading -> {
-                    }
-
-                    is NetworkRequest.Success -> {
-                        response.data?.let { data ->
-                            viewModel.saveMeal(data, date)
-                            if (day == "sunday") {
-                                viewModel.theEntity.value?.let {
-                                    sundayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "monday") {
-                                viewModel.theEntity.value?.let {
-                                    mondayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "tuesday") {
-                                viewModel.theEntity.value?.let {
-                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "wednesday") {
-                                viewModel.theEntity.value?.let {
-                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "thursday") {
-                                viewModel.theEntity.value?.let {
-                                    thursdayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "friday") {
-                                viewModel.theEntity.value?.let {
-                                    fridayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                            if (day == "saturday") {
-                                viewModel.theEntity.value?.let {
-                                    saturdayMealsAdapter.addMealPlannerEntity(it)
-                                }
-                            }
-                        }
-                    }
-
-                    is NetworkRequest.Error -> {
-                        binding.root.showSnackBar(response.message!!)
-                    }
-                }
-            }
-        }
-        loadMealsForEveryDay()
-        showAddViewModel.setShowAddFlag(0)
-    }
+//    private fun loadMealDataFromApi(date: String, day: String) {
+//        viewModel.callMealApi(recipeId, setAPIKEY())
+//        binding.apply {
+//            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+//                when (response) {
+//                    is NetworkRequest.Loading -> {
+//                    }
+//
+//                    is NetworkRequest.Success -> {
+//                        response.data?.let { data ->
+//                            viewModel.saveMeal(data, date)
+//                            if (day == "sunday") {
+//                                viewModel.theEntity.value?.let {
+//                                    sundayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "monday") {
+//                                viewModel.theEntity.value?.let {
+//                                    mondayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "tuesday") {
+//                                viewModel.theEntity.value?.let {
+//                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "wednesday") {
+//                                viewModel.theEntity.value?.let {
+//                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "thursday") {
+//                                viewModel.theEntity.value?.let {
+//                                    thursdayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "friday") {
+//                                viewModel.theEntity.value?.let {
+//                                    fridayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                            if (day == "saturday") {
+//                                viewModel.theEntity.value?.let {
+//                                    saturdayMealsAdapter.addMealPlannerEntity(it)
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//                    is NetworkRequest.Error -> {
+//                        binding.root.showSnackBar(response.message!!)
+//                    }
+//                }
+//            }
+//        }
+//        loadMealsForEveryDay()
+//        showAddViewModel.setShowAddFlag(0)
+//    }
 
 
     //Load Meals for each day
-    private fun loadMealsForEachDay(day: String) {
-        viewModel.readMealsOfEachDay(day).observe(viewLifecycleOwner) {
-            initMealsRecycler(it, day)
-        }
-    }
+//    private fun loadMealsForEachDay(day: String) {
+//        viewModel.readMealsOfEachDay(day).observe(viewLifecycleOwner) {
+//            initMealsRecycler(it, day)
+//        }
+//    }
 
-    private fun loadMealsForEveryDay() {
-        //  load meals for each day
-        loadMealsForEachDay("sunday")
-        loadMealsForEachDay("monday")
-        loadMealsForEachDay("tuesday")
-        loadMealsForEachDay("wednesday")
-        loadMealsForEachDay("thursday")
-        loadMealsForEachDay("friday")
-        loadMealsForEachDay("saturday")
-    }
+//    private fun loadMealsForEveryDay() {
+//        //  load meals for each day
+//        loadMealsForEachDay("sunday")
+//        loadMealsForEachDay("monday")
+//        loadMealsForEachDay("tuesday")
+//        loadMealsForEachDay("wednesday")
+//        loadMealsForEachDay("thursday")
+//        loadMealsForEachDay("friday")
+//        loadMealsForEachDay("saturday")
+//    }
 
 
-    private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
-        binding.apply {
-            if (day == "sunday") {
-                sundayMealsAdapter.setData(list)
-                sundayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    sundayMealsAdapter
-                )
-                //click
-                sundayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
+//    private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
+//        binding.apply {
+//            if (day == "sunday") {
+//                sundayMealsAdapter.setData(list)
+//                sundayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    sundayMealsAdapter
+//                )
+//                //click
+//                sundayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//
+//                sundayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    sundayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//
+//            }
+//            if (day == "monday") {
+//                mondayMealsAdapter.setData(list)
+//                mondayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    mondayMealsAdapter
+//                )
+//                //click
+//                mondayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                mondayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    mondayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//            if (day == "tuesday") {
+//                tuesdayMealsAdapter.setData(list)
+//                tuesdayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    tuesdayMealsAdapter
+//                )
+//                //click
+//                tuesdayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                tuesdayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    tuesdayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//            if (day == "wednesday") {
+//                wednesdayMealsAdapter.setData(list)
+//                wednesdayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    wednesdayMealsAdapter
+//                )
+//                //click
+//                wednesdayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                wednesdayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    wednesdayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//            if (day == "thursday") {
+//                thursdayMealsAdapter.setData(list)
+//                thursdayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    thursdayMealsAdapter
+//                )
+//                //click
+//                thursdayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                thursdayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    thursdayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//            if (day == "friday") {
+//                fridayMealsAdapter.setData(list)
+//                fridayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    fridayMealsAdapter
+//                )
+//                //click
+//                fridayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                fridayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    fridayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//            if (day == "saturday") {
+//                saturdayMealsAdapter.setData(list)
+//                saturdayMealsList.setupRecyclerview(
+//                    LinearLayoutManager(
+//                        requireContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false
+//                    ),
+//                    saturdayMealsAdapter
+//                )
+//                //click
+//                saturdayMealsAdapter.setonItemClickListener {
+//                    showAddViewModel.setShowAddFlag(0)
+//                    val action = RecipeFragmentDirections.actionToDetail(it)
+//                    findNavController().navigate(action)
+//                }
+//                saturdayMealsAdapter.setonItemClickListenerForDelete {
+//                    viewModel.deleteMeal(it)
+//                    saturdayMealsAdapter.removeMealPlannerEntity(it)
+//                    loadMealsForEveryDay()
+//                }
+//            }
+//        }
+//    }
 
-                sundayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    sundayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-
-            }
-            if (day == "monday") {
-                mondayMealsAdapter.setData(list)
-                mondayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    mondayMealsAdapter
-                )
-                //click
-                mondayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                mondayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    mondayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-            if (day == "tuesday") {
-                tuesdayMealsAdapter.setData(list)
-                tuesdayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    tuesdayMealsAdapter
-                )
-                //click
-                tuesdayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                tuesdayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    tuesdayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-            if (day == "wednesday") {
-                wednesdayMealsAdapter.setData(list)
-                wednesdayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    wednesdayMealsAdapter
-                )
-                //click
-                wednesdayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                wednesdayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    wednesdayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-            if (day == "thursday") {
-                thursdayMealsAdapter.setData(list)
-                thursdayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    thursdayMealsAdapter
-                )
-                //click
-                thursdayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                thursdayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    thursdayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-            if (day == "friday") {
-                fridayMealsAdapter.setData(list)
-                fridayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    fridayMealsAdapter
-                )
-                //click
-                fridayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                fridayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    fridayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-            if (day == "saturday") {
-                saturdayMealsAdapter.setData(list)
-                saturdayMealsList.setupRecyclerview(
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    ),
-                    saturdayMealsAdapter
-                )
-                //click
-                saturdayMealsAdapter.setonItemClickListener {
-                    showAddViewModel.setShowAddFlag(0)
-                    val action = RecipeFragmentDirections.actionToDetail(it)
-                    findNavController().navigate(action)
-                }
-                saturdayMealsAdapter.setonItemClickListenerForDelete {
-                    viewModel.deleteMeal(it)
-                    saturdayMealsAdapter.removeMealPlannerEntity(it)
-                    loadMealsForEveryDay()
-                }
-            }
-        }
-    }
-
-    private fun showWeekDates() {
-        binding.apply {
-            sundayDate.text = viewModel.dateList[0]
-            mondayDate.text = viewModel.dateList[1]
-            tuesdayDate.text = viewModel.dateList[2]
-            wednesdayDate.text = viewModel.dateList[3]
-            thursdayDate.text = viewModel.dateList[4]
-            fridayDate.text = viewModel.dateList[5]
-            saturdayDate.text = viewModel.dateList[6]
-            makeTodayBold()
-            weekTxt.text = viewModel.weekText
-        }
-
-    }
+//    private fun showWeekDates() {
+//        binding.apply {
+//            sundayDate.text = viewModel.dateList[0]
+//            mondayDate.text = viewModel.dateList[1]
+//            tuesdayDate.text = viewModel.dateList[2]
+//            wednesdayDate.text = viewModel.dateList[3]
+//            thursdayDate.text = viewModel.dateList[4]
+//            fridayDate.text = viewModel.dateList[5]
+//            saturdayDate.text = viewModel.dateList[6]
+//            makeTodayBold()
+//            weekTxt.text = viewModel.weekText
+//        }
+//
+//    }
 
     private fun makeTodayBold() {
         binding.apply {

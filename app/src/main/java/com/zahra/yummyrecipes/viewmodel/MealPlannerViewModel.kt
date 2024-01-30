@@ -47,6 +47,7 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     var meals = emptyList<MealPlannerEntity>()
+/*
 
     fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
         var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
@@ -74,9 +75,11 @@ class MealPlannerViewModel @Inject constructor(
         Log.e("duplicate1", mealsForDayList.value.toString())
         return mealsForDayList
     }
+*/
 
     var recipeId = MutableLiveData<Int>()
 
+/*
 
     //Get The current date
     private var theDay = Date()
@@ -95,6 +98,7 @@ class MealPlannerViewModel @Inject constructor(
         updateDatesOfWeekDays()
     }
 
+
     private fun updateDatesOfWeekDays() {
         dateList.clear()
         dateStringList.clear()
@@ -107,7 +111,7 @@ class MealPlannerViewModel @Inject constructor(
         }
         setWeekTitle(Date(), theDay)
     }
-
+    */
     fun formatDate(date: Date): String {
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
@@ -119,20 +123,20 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     var weekText = "THIS WEEK"
-    private fun setWeekTitle(today: Date, currentDay: Date) {
-        val todayStartOfWeek = getStartOfWeek(today).toInt()
-        val currentStartOfWeek = getStartOfWeek(currentDay).toInt()
-        val differenceInDays = currentStartOfWeek - todayStartOfWeek
-
-        weekText = when (differenceInDays) {
-            0 -> "THIS WEEK"
-            -7 -> "LAST WEEK"
-            7 -> "NEXT WEEK"
-            in -8878..-8874 -> "LAST WEEK"
-            else -> "${dateList[0]} - ${dateList[6]}"
-        }
-
-    }
+//    private fun setWeekTitle(today: Date, currentDay: Date) {
+//        val todayStartOfWeek = getStartOfWeek(today).toInt()
+//        val currentStartOfWeek = getStartOfWeek(currentDay).toInt()
+//        val differenceInDays = currentStartOfWeek - todayStartOfWeek
+//
+//        weekText = when (differenceInDays) {
+//            0 -> "THIS WEEK"
+//            -7 -> "LAST WEEK"
+//            7 -> "NEXT WEEK"
+//            in -8878..-8874 -> "LAST WEEK"
+////            else -> "${dateList[0]} - ${dateList[6]}"
+//        }
+//
+//    }
 
     private fun getStartOfWeek(inputDate: Date): String {
         val calendar = Calendar.getInstance()
@@ -165,21 +169,21 @@ class MealPlannerViewModel @Inject constructor(
         return calendar.time
     }
 
-    fun moveOneWeek(direction: Int) {
-        calendar.time = theDay
-        calendar.add(Calendar.DAY_OF_YEAR, direction)
-        calendar.firstDayOfWeek = Calendar.SUNDAY
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        theDay = calendar.time
-        updateDatesOfWeekDays()
-    }
+//    fun moveOneWeek(direction: Int) {
+//        calendar.time = theDay
+//        calendar.add(Calendar.DAY_OF_YEAR, direction)
+//        calendar.firstDayOfWeek = Calendar.SUNDAY
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+//        theDay = calendar.time
+//        updateDatesOfWeekDays()
+//    }
 
-    fun goToCurrentWeek() {
-        calendar.time = Date()
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        theDay = calendar.time
-        updateDatesOfWeekDays()
-    }
+//    fun goToCurrentWeek() {
+//        calendar.time = Date()
+//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+//        theDay = calendar.time
+//        updateDatesOfWeekDays()
+//    }
 
     fun isTheDatePassed(date: String): Boolean {
         val today = Calendar.getInstance()
