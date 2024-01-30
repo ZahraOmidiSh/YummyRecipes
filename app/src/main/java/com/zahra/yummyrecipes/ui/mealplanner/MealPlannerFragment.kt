@@ -171,48 +171,75 @@ class MealPlannerFragment : Fragment() {
                 }
             }
 */
-            val today = Date()
-            Log.e("today", today.toString())
 
             val calendar = Calendar.getInstance()
-            calendar.time = today
-            Log.e("today2", calendar.time.toString())
-
-            calendar.firstDayOfWeek = 1
-            Log.e("today3", calendar.firstDayOfWeek.toString())
+            calendar.time = Date()
 
             calendar.set(Calendar.HOUR_OF_DAY, 0)
             calendar.set(Calendar.MINUTE, 0)
             calendar.set(Calendar.SECOND, 0)
             calendar.set(Calendar.MILLISECOND, 0)
+            Log.e("today2", calendar.time.toString())
 
+            calendar.firstDayOfWeek = Calendar.SUNDAY
+            Log.e("today3", calendar.firstDayOfWeek.toString())
+
+            //find the first day of week
             calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-            val sunday = calendar.time
-            Log.e("today4", sunday.toString())
+            val firstDayOfWeek = calendar.time
+            Log.e("today4", "firstDayOfWeek: $firstDayOfWeek")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-            val monday = calendar.time
-            Log.e("today5", monday.toString())
+            //find the other days
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today5", "otherDaysOfWeek: ${calendar.time}")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
-            val tuesday = calendar.time
-            Log.e("today6", tuesday.toString())
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today6", "otherDaysOfWeek: ${calendar.time}")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
-            val wednesday = calendar.time
-            Log.e("today7", wednesday.toString())
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today7", "otherDaysOfWeek: ${calendar.time}")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
-            val thursday = calendar.time
-            Log.e("today8", thursday.toString())
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today8", "otherDaysOfWeek: ${calendar.time}")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
-            val friday = calendar.time
-            Log.e("today9", friday.toString())
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today9", "otherDaysOfWeek: ${calendar.time}")
 
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
-            val saturday = calendar.time
-            Log.e("today10", saturday.toString())
+            calendar.add(Calendar.DAY_OF_YEAR, 1)
+            Log.e("today10", "otherDaysOfWeek: ${calendar.time}")
+
+
+
+
+
+//            val sunday = calendar.time
+//
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+//            val monday = calendar.time
+//            Log.e("today5", monday.toString())
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
+//            val tuesday = calendar.time
+//            Log.e("today6", tuesday.toString())
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
+//            val wednesday = calendar.time
+//            Log.e("today7", wednesday.toString())
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
+//            val thursday = calendar.time
+//            Log.e("today8", thursday.toString())
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+//            val friday = calendar.time
+//            Log.e("today9", friday.toString())
+//
+//            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
+//            val saturday = calendar.time
+//            Log.e("today10", saturday.toString())
+//
+//            Log.e("today11", calendar.time.toString())
 
 
 //            showWeekDates()
