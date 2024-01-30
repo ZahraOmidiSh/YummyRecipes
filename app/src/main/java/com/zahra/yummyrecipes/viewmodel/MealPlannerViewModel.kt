@@ -156,6 +156,7 @@ class MealPlannerViewModel @Inject constructor(
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getLocalDate(dateString: String): LocalDate {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         return LocalDate.parse(dateString, formatter)
