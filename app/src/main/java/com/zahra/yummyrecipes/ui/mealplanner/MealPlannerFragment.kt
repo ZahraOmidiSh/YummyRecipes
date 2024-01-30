@@ -27,6 +27,7 @@ import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
@@ -83,12 +84,14 @@ class MealPlannerFragment : Fragment() {
         binding.apply {
             recipeId = arguments?.getInt("recipeId", 0)!!
             showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
-                if(showAddFlag==1){
+                if (showAddFlag == 1) {
                     showAddHereButtons(true)
-                }else{
+                } else {
                     showAddHereButtons(false)
                 }
             }
+            //clickListeners
+            /*
             addToSunday.setOnClickListener {
                 if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
                     Toast.makeText(
@@ -167,9 +170,34 @@ class MealPlannerFragment : Fragment() {
                     loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
                 }
             }
+*/
+            val today = Date()
+            Log.e("today", today.toString())
 
-            showWeekDates()
-            loadMealsForEveryDay()
+            val calendar = Calendar.getInstance()
+            calendar.time = today
+            Log.e("today2", calendar.time.toString())
+
+            calendar.firstDayOfWeek = Calendar.SUNDAY
+            Log.e("today3", calendar.firstDayOfWeek.toString() )
+
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+            Log.e("today4", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+            Log.e("today5", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
+            Log.e("today6", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
+            Log.e("today7", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
+            Log.e("today8", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
+            Log.e("today9", calendar.time.toString())
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
+            Log.e("today10", calendar.time.toString())
+
+//            showWeekDates()
+//            loadMealsForEveryDay()
 
             //forward click listener
             forward.setOnClickListener {
@@ -241,6 +269,7 @@ class MealPlannerFragment : Fragment() {
                             }
                         }
                     }
+
                     is NetworkRequest.Error -> {
                         binding.root.showSnackBar(response.message!!)
                     }
