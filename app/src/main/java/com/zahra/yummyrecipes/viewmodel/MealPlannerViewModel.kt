@@ -57,6 +57,7 @@ class MealPlannerViewModel @Inject constructor(
         val dateFormat = SimpleDateFormat("MMM d", Locale.getDefault())
         return dateFormat.format(date)
     }
+
     private fun formatDateWithMonthDay(date: Date): String {
         val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         return dateFormat.format(date)
@@ -78,47 +79,10 @@ class MealPlannerViewModel @Inject constructor(
         //set first day of week
         calendar.firstDayOfWeek = Calendar.SUNDAY
 
-        for (i in 1..7){
+        for (i in 1..7) {
             calendar.set(Calendar.DAY_OF_WEEK, i)
-            dates.add( calendar.time)
+            dates.add(calendar.time)
         }
-
-        /*
-        //sunday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-        val sunday = calendar.time
-        dates.add(sunday)
-
-        //monday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
-        val monday = calendar.time
-        dates.add(monday)
-
-        //tuesday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY)
-        val tuesday = calendar.time
-        dates.add(tuesday)
-
-        //wednesday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY)
-        val wednesday = calendar.time
-        dates.add(wednesday)
-
-        //thursday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY)
-        val thursday = calendar.time
-        dates.add(thursday)
-
-        //friday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY)
-        val friday = calendar.time
-        dates.add(friday)
-
-        //saturday
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
-        val saturday = calendar.time
-        dates.add(saturday)
-*/
 
         datesOfWeek.postValue(dates)
         setWeekTitle()
@@ -143,22 +107,22 @@ class MealPlannerViewModel @Inject constructor(
     //move week
     var currentDate = Date()
     fun moveWeek(direction: Int) {
-        Log.e("dayOfWeek_currentDate1", currentDate.toString() )
+        Log.e("dayOfWeek_currentDate1", currentDate.toString())
         val calendar = Calendar.getInstance()
         calendar.time = currentDate
         calendar.add(Calendar.DAY_OF_YEAR, direction)
-        currentDate=calendar.time
-        Log.e("dayOfWeek_currentDate2", currentDate.toString() )
+        currentDate = calendar.time
+        Log.e("dayOfWeek_currentDate2", currentDate.toString())
         setDatesOfWeek(currentDate)
     }
 
     //set week title
-    val today=Date()
+    val today = Date()
     var weekText = "THIS WEEK"
-    fun setWeekTitle(){
+    fun setWeekTitle() {
         val differenceInDays =
             formatDateWithMonthDay(currentDate).toInt() - formatDateWithMonthDay(today).toInt()
-        Log.e("dayOfWeek_differenceInDays_1", differenceInDays.toString() )
+        Log.e("dayOfWeek_differenceInDays_1", differenceInDays.toString())
 
 
     }
@@ -171,38 +135,8 @@ class MealPlannerViewModel @Inject constructor(
 
 
     var meals = emptyList<MealPlannerEntity>()
-    /*
-
-        fun readMealsOfEachDay(day: String): LiveData<List<MealPlannerEntity>> {
-            var mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
-            if (day == "sunday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[0]).asLiveData()
-            }
-            if (day == "monday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[1]).asLiveData()
-            }
-            if (day == "tuesday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[2]).asLiveData()
-            }
-            if (day == "wednesday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[3]).asLiveData()
-            }
-            if (day == "thursday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[4]).asLiveData()
-            }
-            if (day == "friday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[5]).asLiveData()
-            }
-            if (day == "saturday") {
-                mealsForDayList = repository.local.loadPlannedMeals(dateStringList[6]).asLiveData()
-            }
-            Log.e("duplicate1", mealsForDayList.value.toString())
-            return mealsForDayList
-        }
-    */
 
     var recipeId = MutableLiveData<Int>()
-
 
 
 //    private fun setWeekTitle(today: Date, currentDay: Date) {
