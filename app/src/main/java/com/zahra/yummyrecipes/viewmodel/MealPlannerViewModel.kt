@@ -107,32 +107,25 @@ class MealPlannerViewModel @Inject constructor(
     //move week
     var currentDate = Date()
     fun moveWeek(direction: Int) {
-        Log.e("dayOfWeek_currentDate1", currentDate.toString())
         val calendar = Calendar.getInstance()
         calendar.time = currentDate
         calendar.add(Calendar.DAY_OF_YEAR, direction)
         currentDate = calendar.time
-        Log.e("dayOfWeek_currentDate2", currentDate.toString())
         setDatesOfWeek(currentDate)
     }
 
     //set week title
     val today = Date()
-    var weekText = "THIS WEEK"
-    fun setWeekTitle() {
-        val differenceInDays =
-            formatDateWithMonthDay(currentDate).toInt() - formatDateWithMonthDay(today).toInt()
-        Log.e("dayOfWeek_differenceInDays_1", differenceInDays.toString())
-
-
+    var weekText = MutableLiveData<String>()
+    private fun setWeekTitle() {
+        val differenceInMillis = currentDate.time - today.time
+        when ((differenceInMillis / (24 * 60 * 60 * 1000)).toInt()) {
+            0 -> weekText.value ="THIS WEEK"
+            -7 ->  weekText.value ="LAST WEEK"
+            7 ->  weekText.value ="NEXT WEEK"
+            else ->  weekText.value ="${dateList[0]} - ${dateList[6]}"
+        }
     }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getLocalDate(dateString: String): LocalDate {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        return LocalDate.parse(dateString, formatter)
-    }
-
 
     var meals = emptyList<MealPlannerEntity>()
 

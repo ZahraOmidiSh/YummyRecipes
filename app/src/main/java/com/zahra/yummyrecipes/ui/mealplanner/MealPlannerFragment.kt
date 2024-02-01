@@ -95,18 +95,15 @@ class MealPlannerFragment : Fragment() {
             val today = Date()
             viewModel.setDatesOfWeek(today)
             viewModel.datesOfWeek.observe(viewLifecycleOwner){
-                it.forEach {date ->
-                    Log.e("dayOfWeek", date.toString() )
-                }
                 viewModel.updateDateList(it)
                 viewModel.updateDateStringList(it)
-                viewModel.dateList.forEach {
-                    Log.e("dayOfWeek_dateList", "$it\n" )
-                }
-                viewModel.dateStringList.forEach {
-                    Log.e("dayOfWeek_dateStringList","$it\n" )
-                }
+//                Log.e("weekText", viewModel.weekText.value.toString() )
+//                weekTxt.text=viewModel.weekText.value
             }
+            viewModel.weekText.observe(viewLifecycleOwner){
+                weekTxt.text=it
+            }
+
             //forward click listener
             forward.setOnClickListener {
                 viewModel.moveWeek(7)
