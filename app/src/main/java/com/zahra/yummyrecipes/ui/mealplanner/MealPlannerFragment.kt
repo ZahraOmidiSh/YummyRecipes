@@ -228,6 +228,10 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
+    private fun loadMealsForEachDay(){
+
+    }
+
     private fun updateDates() {
         viewModel.datesOfWeek.observe(viewLifecycleOwner) {
             viewModel.updateDateList(it)
