@@ -78,6 +78,12 @@ class MealPlannerViewModel @Inject constructor(
         //set first day of week
         calendar.firstDayOfWeek = Calendar.SUNDAY
 
+        for (i in 1..7){
+            calendar.set(Calendar.DAY_OF_WEEK, i)
+            dates.add( calendar.time)
+        }
+
+        /*
         //sunday
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
         val sunday = calendar.time
@@ -112,6 +118,7 @@ class MealPlannerViewModel @Inject constructor(
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY)
         val saturday = calendar.time
         dates.add(saturday)
+*/
 
         datesOfWeek.postValue(dates)
         setWeekTitle()
