@@ -55,12 +55,9 @@ class MealPlannerViewModel @Inject constructor(
     private var _mealsForEachDayList = MutableLiveData<List<MealPlannerEntity>>()
     val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
 
-    fun readMealsOfEachDay(day:Int)=viewModelScope.launch(IO){
-        when (day) {
-            0-> repository.local.loadPlannedMeals(dateStringList[day]).collect{mealsList ->
-                _mealsForEachDayList.postValue(mealsList)
-
-            }
+    fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
+        repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
+            _mealsForEachDayList.postValue(mealsList)
         }
     }
 
@@ -129,13 +126,13 @@ class MealPlannerViewModel @Inject constructor(
     //set week title
     val today = Date()
     var weekText = MutableLiveData<String>()
-     fun setWeekTitle() {
+    fun setWeekTitle() {
         val differenceInMillis = currentDate.time - today.time
         when ((differenceInMillis / (24 * 60 * 60 * 1000)).toInt()) {
-            0 -> weekText.value ="THIS WEEK"
-            -7 ->  weekText.value ="LAST WEEK"
-            7 ->  weekText.value ="NEXT WEEK"
-            else ->  weekText.value ="${dateList[0]} - ${dateList[6]}"
+            0 -> weekText.value = "THIS WEEK"
+            -7 -> weekText.value = "LAST WEEK"
+            7 -> weekText.value = "NEXT WEEK"
+            else -> weekText.value = "${dateList[0]} - ${dateList[6]}"
         }
     }
 
