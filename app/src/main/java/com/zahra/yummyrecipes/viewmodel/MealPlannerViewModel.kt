@@ -130,68 +130,12 @@ class MealPlannerViewModel @Inject constructor(
 
     var recipeId = MutableLiveData<Int>()
 
-
-//    private fun setWeekTitle(today: Date, currentDay: Date) {
-//        val todayStartOfWeek = getStartOfWeek(today).toInt()
-//        val currentStartOfWeek = getStartOfWeek(currentDay).toInt()
-//        val differenceInDays = currentStartOfWeek - todayStartOfWeek
-//
-//        weekText = when (differenceInDays) {
-//            0 -> "THIS WEEK"
-//            -7 -> "LAST WEEK"
-//            7 -> "NEXT WEEK"
-//            in -8878..-8874 -> "LAST WEEK"
-////            else -> "${dateList[0]} - ${dateList[6]}"
-//        }
-//
-//    }
-
-    private fun getStartOfWeek(inputDate: Date): String {
+    fun goToCurrentWeek() {
         val calendar = Calendar.getInstance()
-        calendar.time = inputDate
-        calendar.firstDayOfWeek = Calendar.SUNDAY
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-
-        // Optional: If you want to set the time to midnight (00:00:00)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-
-        val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
-        return dateFormat.format(calendar.time)
+        calendar.time = today
+        currentDate = calendar.time
+        setDatesOfWeek(currentDate)
     }
-
-    private fun getStartOfWeekDate(inputDate: Date): Date {
-        val calendar = Calendar.getInstance()
-        calendar.time = inputDate
-        calendar.firstDayOfWeek = Calendar.SUNDAY
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-
-        // Optional: If you want to set the time to midnight (00:00:00)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-
-        return calendar.time
-    }
-
-//    fun moveOneWeek(direction: Int) {
-//        calendar.time = theDay
-//        calendar.add(Calendar.DAY_OF_YEAR, direction)
-//        calendar.firstDayOfWeek = Calendar.SUNDAY
-//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-//        theDay = calendar.time
-//        updateDatesOfWeekDays()
-//    }
-
-//    fun goToCurrentWeek() {
-//        calendar.time = Date()
-//        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-//        theDay = calendar.time
-//        updateDatesOfWeekDays()
-//    }
 
     fun isTheDatePassed(date: String): Boolean {
         val today = Calendar.getInstance()

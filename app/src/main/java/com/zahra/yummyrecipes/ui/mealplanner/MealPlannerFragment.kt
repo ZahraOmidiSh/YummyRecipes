@@ -106,6 +106,11 @@ class MealPlannerFragment : Fragment() {
                 viewModel.moveWeek(-7)
             }
 
+            //current week
+            weekTxt.setOnClickListener {
+                viewModel.goToCurrentWeek()
+            }
+
 
 
 
@@ -203,9 +208,6 @@ class MealPlannerFragment : Fragment() {
             }
 */
 
-
-
-//            showWeekDates()
 //            loadMealsForEveryDay()
 /*
 
