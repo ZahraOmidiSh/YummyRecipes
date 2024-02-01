@@ -85,6 +85,7 @@ class MealPlannerFragment : Fragment() {
             recipeId = arguments?.getInt("recipeId", 0)!!
             showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
                 if (showAddFlag == 1) {
+                    loadMealDataFromApi()
                     showAddHereButtons(true)
                 } else {
                     showAddHereButtons(false)
@@ -112,24 +113,9 @@ class MealPlannerFragment : Fragment() {
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             //clickListeners
-            /*
             addToSunday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![0])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
@@ -206,92 +192,114 @@ class MealPlannerFragment : Fragment() {
                     loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
                 }
             }
-*/
+
 
 //            loadMealsForEveryDay()
-/*
+            /*
 
-            //forward click listener
-            forward.setOnClickListener {
-                viewModel.moveOneWeek(7)
-                showWeekDates()
-                loadMealsForEveryDay()
-            }
-            //backward click listener
-            backward.setOnClickListener {
-                viewModel.moveOneWeek(-7)
-                showWeekDates()
-                loadMealsForEveryDay()
-            }
-            //Go To Current Week
-            weekTxt.setOnClickListener {
-                viewModel.goToCurrentWeek()
-                showWeekDates()
-                loadMealsForEveryDay()
-            }
-*/
+                        //forward click listener
+                        forward.setOnClickListener {
+                            viewModel.moveOneWeek(7)
+                            showWeekDates()
+                            loadMealsForEveryDay()
+                        }
+                        //backward click listener
+                        backward.setOnClickListener {
+                            viewModel.moveOneWeek(-7)
+                            showWeekDates()
+                            loadMealsForEveryDay()
+                        }
+                        //Go To Current Week
+                        weekTxt.setOnClickListener {
+                            viewModel.goToCurrentWeek()
+                            showWeekDates()
+                            loadMealsForEveryDay()
+                        }
+            */
 
         }
     }
 
-//    private fun loadMealDataFromApi(date: String, day: String) {
-//        viewModel.callMealApi(recipeId, setAPIKEY())
-//        binding.apply {
-//            viewModel.mealData.observe(viewLifecycleOwner) { response ->
-//                when (response) {
-//                    is NetworkRequest.Loading -> {
-//                    }
-//
-//                    is NetworkRequest.Success -> {
-//                        response.data?.let { data ->
-//                            viewModel.saveMeal(data, date)
-//                            if (day == "sunday") {
-//                                viewModel.theEntity.value?.let {
-//                                    sundayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "monday") {
-//                                viewModel.theEntity.value?.let {
-//                                    mondayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "tuesday") {
-//                                viewModel.theEntity.value?.let {
-//                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "wednesday") {
-//                                viewModel.theEntity.value?.let {
-//                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "thursday") {
-//                                viewModel.theEntity.value?.let {
-//                                    thursdayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "friday") {
-//                                viewModel.theEntity.value?.let {
-//                                    fridayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                            if (day == "saturday") {
-//                                viewModel.theEntity.value?.let {
-//                                    saturdayMealsAdapter.addMealPlannerEntity(it)
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                    is NetworkRequest.Error -> {
-//                        binding.root.showSnackBar(response.message!!)
-//                    }
-//                }
-//            }
-//        }
-//        loadMealsForEveryDay()
-//        showAddViewModel.setShowAddFlag(0)
-//    }
+
+    private fun loadMealDataFromApi() {
+        viewModel.callMealApi(recipeId, setAPIKEY())
+        binding.apply {
+            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                    }
+
+                    is NetworkRequest.Success -> {
+                        response.data?.let { data ->
+                            viewModel.data.postValue(data)
+                        }
+                    }
+                    is NetworkRequest.Error -> {
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadMealDataFromApi(date: String, day: String) {
+        viewModel.callMealApi(recipeId, setAPIKEY())
+        binding.apply {
+            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                    }
+
+                    is NetworkRequest.Success -> {
+                        response.data?.let { data ->
+                            viewModel.saveMeal(data, date)
+                            if (day == "sunday") {
+                                viewModel.theEntity.value?.let {
+                                    sundayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "monday") {
+                                viewModel.theEntity.value?.let {
+                                    mondayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "tuesday") {
+                                viewModel.theEntity.value?.let {
+                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "wednesday") {
+                                viewModel.theEntity.value?.let {
+                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "thursday") {
+                                viewModel.theEntity.value?.let {
+                                    thursdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "friday") {
+                                viewModel.theEntity.value?.let {
+                                    fridayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "saturday") {
+                                viewModel.theEntity.value?.let {
+                                    saturdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                        }
+                    }
+
+                    is NetworkRequest.Error -> {
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
+        loadMealsForEveryDay()
+        showAddViewModel.setShowAddFlag(0)
+    }
 
 
     //Load Meals for each day
@@ -474,15 +482,16 @@ class MealPlannerFragment : Fragment() {
 //        }
 //    }
 
-    private fun updateDates(){
-        viewModel.datesOfWeek.observe(viewLifecycleOwner){
+    private fun updateDates() {
+        viewModel.datesOfWeek.observe(viewLifecycleOwner) {
             viewModel.updateDateList(it)
             viewModel.updateDateStringList(it)
             viewModel.setWeekTitle()
-            binding.weekTxt.text=viewModel.weekText.value
+            binding.weekTxt.text = viewModel.weekText.value
             showWeekDates()
         }
     }
+
     private fun showWeekDates() {
         binding.apply {
             sundayDate.text = viewModel.dateList[0]

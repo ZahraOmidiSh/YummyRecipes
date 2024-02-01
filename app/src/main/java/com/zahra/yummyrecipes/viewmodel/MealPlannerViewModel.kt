@@ -36,7 +36,7 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-    var theEntity = MutableLiveData<MealPlannerEntity>()
+    var data = MutableLiveData<ResponseDetail>()
 
     //save
     fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
@@ -137,8 +137,7 @@ class MealPlannerViewModel @Inject constructor(
         setDatesOfWeek(currentDate)
     }
 
-    fun isTheDatePassed(date: String): Boolean {
-        val today = Calendar.getInstance()
-        return date < formatDateWithMonthDay(today.time)
+    fun isTheDatePassed(date: Date): Boolean {
+        return date < today
     }
 }
