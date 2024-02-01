@@ -134,7 +134,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(1)
+                    saveMeal(0)
+                    loadMealsForSunday()
                 }
 
             }
@@ -146,7 +147,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(2)
+                    saveMeal(1)
+                    loadMealsForMonday()
                 }
             }
             addToTuesday.setOnClickListener {
@@ -157,7 +159,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(3)
+                    saveMeal(2)
+                    loadMealsForTuesday()
                 }
             }
             addToWednesday.setOnClickListener {
@@ -168,7 +171,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(4)
+                    saveMeal(3)
+                    loadMealsForWednesday()
                 }
             }
             addToThursday.setOnClickListener {
@@ -179,7 +183,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(5)
+                    saveMeal(4)
+                    loadMealsForThursday()
                 }
             }
             addToFriday.setOnClickListener {
@@ -190,7 +195,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(6)
+                    saveMeal(5)
+                    loadMealsForFriday()
                 }
             }
             addToSaturday.setOnClickListener {
@@ -201,7 +207,8 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(7)
+                    saveMeal(6)
+                    loadMealsForSaturday()
                 }
             }
 
@@ -234,12 +241,12 @@ class MealPlannerFragment : Fragment() {
     private fun saveMeal(weekday: Int) {
         viewModel.data.value?.let {
             when (weekday) {
-                1 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
-                2 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
-                3 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
-                4 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
-                5 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
-                6 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
+                0 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
+                1 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
+                2 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
+                3 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
+                4 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
+                5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
                 else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
             }
         }
