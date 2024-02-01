@@ -27,6 +27,7 @@ import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
 import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
@@ -62,6 +63,7 @@ class MealPlannerFragment : Fragment() {
     private lateinit var showAddViewModel: ShowAddViewModel
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
+    private var sundayJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -228,7 +230,12 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun loadMealsForEachDay(){
+    private fun loadMealsForSunday(){
+        sundayJob = viewModel.readMealsOfEachDay(0)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner){
+            initMealsRecycler(it, 0)
+            sundayJob?.cancel()
+        }
 
     }
 
