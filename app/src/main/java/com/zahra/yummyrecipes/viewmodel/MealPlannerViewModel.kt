@@ -50,6 +50,8 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.deletePlannedMeal(entity)
     }
 
+    var anythingSaved = MutableLiveData<Boolean>()
+
     private var _mealsForEachDayList = MutableLiveData<List<MealPlannerEntity>>()
     val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
 
