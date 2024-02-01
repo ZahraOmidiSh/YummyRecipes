@@ -15,6 +15,7 @@ import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -56,6 +57,7 @@ class MealPlannerViewModel @Inject constructor(
     val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
 
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
+        delay(20)
         repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
             _mealsForEachDayList.postValue(mealsList)
         }
