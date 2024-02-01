@@ -28,6 +28,8 @@ import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
@@ -64,6 +66,12 @@ class MealPlannerFragment : Fragment() {
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
     private var sundayJob: Job? = null
+    private var mondayJob: Job? = null
+    private var tuesdayJob: Job? = null
+    private var wednesdayJob: Job? = null
+    private var thursdayJob: Job? = null
+    private var fridayJob: Job? = null
+    private var saturdayJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -98,6 +106,8 @@ class MealPlannerFragment : Fragment() {
             val today = Date()
             viewModel.setDatesOfWeek(today)
             updateDates()
+
+            loadMealsForEveryDay()
 
             //forward click listener
             forward.setOnClickListener {
@@ -235,6 +245,16 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
+    private  fun loadMealsForEveryDay(){
+        loadMealsForSunday()
+        loadMealsForMonday()
+        loadMealsForTuesday()
+        loadMealsForWednesday()
+        loadMealsForThursday()
+        loadMealsForFriday()
+        loadMealsForSaturday()
+    }
+
     private fun loadMealsForSunday() {
         sundayJob = viewModel.readMealsOfEachDay(0)
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
@@ -242,6 +262,49 @@ class MealPlannerFragment : Fragment() {
             sundayJob?.cancel()
         }
     }
+    private fun loadMealsForMonday() {
+        mondayJob = viewModel.readMealsOfEachDay(1)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 1)
+            mondayJob?.cancel()
+        }
+    }
+    private fun loadMealsForTuesday() {
+        tuesdayJob = viewModel.readMealsOfEachDay(2)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 2)
+            tuesdayJob?.cancel()
+        }
+    }
+    private fun loadMealsForWednesday() {
+        wednesdayJob = viewModel.readMealsOfEachDay(3)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 3)
+            wednesdayJob?.cancel()
+        }
+    }
+    private fun loadMealsForThursday() {
+        thursdayJob = viewModel.readMealsOfEachDay(4)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 4)
+            thursdayJob?.cancel()
+        }
+    }
+    private fun loadMealsForFriday() {
+        fridayJob = viewModel.readMealsOfEachDay(5)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 5)
+            fridayJob?.cancel()
+        }
+    }
+    private fun loadMealsForSaturday() {
+        saturdayJob = viewModel.readMealsOfEachDay(6)
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, 6)
+            saturdayJob?.cancel()
+        }
+    }
+
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: Int) {
         binding.apply {
