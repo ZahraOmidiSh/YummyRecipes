@@ -42,7 +42,6 @@ class MealPlannerViewModel @Inject constructor(
     fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
         val newId = (date + data.id).toLong()
         val entity = MealPlannerEntity(newId, data)
-        theEntity.value = entity
         repository.local.savePlannedMeal(entity)
     }
 

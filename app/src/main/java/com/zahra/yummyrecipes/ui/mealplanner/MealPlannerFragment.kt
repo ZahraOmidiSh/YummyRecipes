@@ -122,75 +122,70 @@ class MealPlannerFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
+                    saveMeal(1)
                 }
 
             }
             addToMonday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[1])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![1])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[1], "monday")
+                    saveMeal(2)
                 }
             }
             addToTuesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[2])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![2])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
-                }
+                    saveMeal(3)                }
             }
             addToWednesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[3])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![3])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
-                }
+                    saveMeal(4)                }
             }
             addToThursday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[4])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![4])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
-                }
+                    saveMeal(5)                }
             }
             addToFriday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[5])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![5])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[5], "friday")
-                }
+                    saveMeal(6)                }
             }
             addToSaturday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.dateStringList[6])) {
+                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![6])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
-                }
+                    saveMeal(7)                }
             }
 
 
@@ -234,6 +229,7 @@ class MealPlannerFragment : Fragment() {
                             viewModel.data.postValue(data)
                         }
                     }
+
                     is NetworkRequest.Error -> {
                         binding.root.showSnackBar(response.message!!)
                     }
@@ -241,6 +237,23 @@ class MealPlannerFragment : Fragment() {
             }
         }
     }
+
+    private fun saveMeal(weekday: Int) {
+        viewModel.data.value?.let {
+            when (weekday) {
+                1 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
+                2 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
+                3 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
+                4 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
+                5 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
+                6 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
+                else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
+            }
+        }
+
+
+    }
+/*
 
     private fun loadMealDataFromApi(date: String, day: String) {
         viewModel.callMealApi(recipeId, setAPIKEY())
@@ -300,6 +313,7 @@ class MealPlannerFragment : Fragment() {
         loadMealsForEveryDay()
         showAddViewModel.setShowAddFlag(0)
     }
+*/
 
 
     //Load Meals for each day
