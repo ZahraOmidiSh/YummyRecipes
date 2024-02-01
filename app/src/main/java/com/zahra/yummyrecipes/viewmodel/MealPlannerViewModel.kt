@@ -85,7 +85,6 @@ class MealPlannerViewModel @Inject constructor(
         }
 
         datesOfWeek.postValue(dates)
-        setWeekTitle()
     }
 
     val dateList = mutableListOf<String>()
@@ -117,7 +116,7 @@ class MealPlannerViewModel @Inject constructor(
     //set week title
     val today = Date()
     var weekText = MutableLiveData<String>()
-    private fun setWeekTitle() {
+     fun setWeekTitle() {
         val differenceInMillis = currentDate.time - today.time
         when ((differenceInMillis / (24 * 60 * 60 * 1000)).toInt()) {
             0 -> weekText.value ="THIS WEEK"

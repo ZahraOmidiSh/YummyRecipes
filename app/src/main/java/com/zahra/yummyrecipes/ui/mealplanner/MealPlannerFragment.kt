@@ -94,15 +94,7 @@ class MealPlannerFragment : Fragment() {
             //Show Current Week
             val today = Date()
             viewModel.setDatesOfWeek(today)
-            viewModel.datesOfWeek.observe(viewLifecycleOwner){
-                viewModel.updateDateList(it)
-                viewModel.updateDateStringList(it)
-//                Log.e("weekText", viewModel.weekText.value.toString() )
-//                weekTxt.text=viewModel.weekText.value
-            }
-            viewModel.weekText.observe(viewLifecycleOwner){
-                weekTxt.text=it
-            }
+            updateDates()
 
             //forward click listener
             forward.setOnClickListener {
@@ -480,20 +472,27 @@ class MealPlannerFragment : Fragment() {
 //        }
 //    }
 
-//    private fun showWeekDates() {
-//        binding.apply {
-//            sundayDate.text = viewModel.dateList[0]
-//            mondayDate.text = viewModel.dateList[1]
-//            tuesdayDate.text = viewModel.dateList[2]
-//            wednesdayDate.text = viewModel.dateList[3]
-//            thursdayDate.text = viewModel.dateList[4]
-//            fridayDate.text = viewModel.dateList[5]
-//            saturdayDate.text = viewModel.dateList[6]
-//            makeTodayBold()
-//            weekTxt.text = viewModel.weekText
-//        }
-//
-//    }
+    private fun updateDates(){
+        viewModel.datesOfWeek.observe(viewLifecycleOwner){
+            viewModel.updateDateList(it)
+            viewModel.updateDateStringList(it)
+            viewModel.setWeekTitle()
+            binding.weekTxt.text=viewModel.weekText.value
+            showWeekDates()
+        }
+    }
+    private fun showWeekDates() {
+        binding.apply {
+            sundayDate.text = viewModel.dateList[0]
+            mondayDate.text = viewModel.dateList[1]
+            tuesdayDate.text = viewModel.dateList[2]
+            wednesdayDate.text = viewModel.dateList[3]
+            thursdayDate.text = viewModel.dateList[4]
+            fridayDate.text = viewModel.dateList[5]
+            saturdayDate.text = viewModel.dateList[6]
+            makeTodayBold()
+        }
+    }
 
     private fun makeTodayBold() {
         binding.apply {
