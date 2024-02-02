@@ -12,6 +12,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
@@ -107,7 +109,10 @@ class MealPlannerFragment : Fragment() {
             viewModel.setDatesOfWeek(today)
             updateDates()
 
-            loadMealsForEveryDay()
+            lifecycleScope.launch {
+                loadMealsForEveryDay()
+            }
+
 
             //forward click listener
             forward.setOnClickListener {
@@ -249,16 +254,24 @@ class MealPlannerFragment : Fragment() {
                 5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
                 else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
             }
+            showAddViewModel.setShowAddFlag(0)
         }
     }
 
-    private  fun loadMealsForEveryDay(){
+    private suspend fun loadMealsForEveryDay(){
+        delay(20)
         loadMealsForSunday()
+        delay(50)
         loadMealsForMonday()
+        delay(50)
         loadMealsForTuesday()
+        delay(50)
         loadMealsForWednesday()
+        delay(50)
         loadMealsForThursday()
+        delay(50)
         loadMealsForFriday()
+        delay(50)
         loadMealsForSaturday()
     }
 
