@@ -112,23 +112,21 @@ class MealPlannerFragment : Fragment() {
             lifecycleScope.launch {
                 loadMealsForEveryDay()
             }
+            readMealsForEveryDay()
 
 
             //forward click listener
             forward.setOnClickListener {
                 viewModel.moveWeek(7)
             }
-
             //backward click listener
             backward.setOnClickListener {
                 viewModel.moveWeek(-7)
             }
-
             //current week
             weekTxt.setOnClickListener {
                 viewModel.goToCurrentWeek()
             }
-
 
             //clickListeners
             addToSunday.setOnClickListener {
@@ -275,8 +273,21 @@ class MealPlannerFragment : Fragment() {
         loadMealsForSaturday()
     }
 
+    private fun readMealsForEveryDay(){
+        readMealsForSunday()
+        readMealsForMonday()
+        readMealsForTuesday()
+        readMealsForWednesday()
+        readMealsForThursday()
+        readMealsForFriday()
+        readMealsForSaturday()
+    }
+
     private fun loadMealsForSunday() {
         sundayJob = viewModel.readMealsOfEachDay(0)
+    }
+
+    private fun readMealsForSunday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 0)
             sundayJob?.cancel()
@@ -284,6 +295,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForMonday() {
         mondayJob = viewModel.readMealsOfEachDay(1)
+    }
+
+    private fun readMealsForMonday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 1)
             mondayJob?.cancel()
@@ -291,6 +305,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForTuesday() {
         tuesdayJob = viewModel.readMealsOfEachDay(2)
+    }
+
+    private fun readMealsForTuesday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 2)
             tuesdayJob?.cancel()
@@ -298,6 +315,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForWednesday() {
         wednesdayJob = viewModel.readMealsOfEachDay(3)
+    }
+
+    private fun readMealsForWednesday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 3)
             wednesdayJob?.cancel()
@@ -305,6 +325,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForThursday() {
         thursdayJob = viewModel.readMealsOfEachDay(4)
+    }
+
+    private fun readMealsForThursday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 4)
             thursdayJob?.cancel()
@@ -312,6 +335,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForFriday() {
         fridayJob = viewModel.readMealsOfEachDay(5)
+    }
+
+    private fun readMealsForFriday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 5)
             fridayJob?.cancel()
@@ -319,6 +345,9 @@ class MealPlannerFragment : Fragment() {
     }
     private fun loadMealsForSaturday() {
         saturdayJob = viewModel.readMealsOfEachDay(6)
+    }
+
+    private fun readMealsForSaturday(){
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
             initMealsRecycler(it, 6)
             saturdayJob?.cancel()
@@ -502,12 +531,7 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun isItToday(
-        dayOfWeek: TextView,
-        dateOfWeek: TextView,
-        today: String,
-        bg: View
-    ) {
+    private fun isItToday(dayOfWeek: TextView, dateOfWeek: TextView, today: String, bg: View) {
         binding.apply {
             if (dateOfWeek.text == today) {
                 dayOfWeek.textSize = 20F
