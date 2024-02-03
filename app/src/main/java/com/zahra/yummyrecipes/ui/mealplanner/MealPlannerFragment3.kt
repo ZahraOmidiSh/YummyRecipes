@@ -2,6 +2,7 @@ package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -260,6 +261,7 @@ class MealPlannerFragment3 : Fragment() {
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
                             viewModel.data.postValue(data)
+                            Log.e("problem", viewModel.data.value?.title.toString() )
                         }
                     }
 
@@ -308,6 +310,11 @@ class MealPlannerFragment3 : Fragment() {
                         showAddViewModel.setShowAddFlag(0)
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
+                    }
+                    sundayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        sundayMealsAdapter.removeMealPlannerEntity(it)
+                        loadMealsForEveryDay()
                     }
                 }
 
