@@ -2,7 +2,6 @@ package com.zahra.yummyrecipes.ui.mealplanner
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zahra.yummyrecipes.adapter.MealPlannerAdapter
@@ -25,17 +21,10 @@ import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
-import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
-import com.zahra.yummyrecipes.viewmodel.SearchViewModel
+import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel2
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
-import kotlinx.coroutines.cancelAndJoin
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.util.Calendar
 import java.util.Date
 import javax.inject.Inject
 
@@ -68,20 +57,15 @@ class MealPlannerFragment : Fragment() {
 
     //Other
     private lateinit var showAddViewModel: ShowAddViewModel
-    private val viewModel: MealPlannerViewModel by viewModels()
+    private val viewModel: MealPlannerViewModel2 by viewModels()
     var recipeId = 0
-    private val jobs = mutableMapOf<Int, Job>()
-
-    //    private var sundayJob: Job? = null
-//    private var mondayJob: Job? = null
-//    private var tuesdayJob: Job? = null
-//    private var wednesdayJob: Job? = null
-//    private var thursdayJob: Job? = null
-//    private var fridayJob: Job? = null
-//    private var saturdayJob: Job? = null
-//    private var job: Job? = null
-
-
+    private var sundayJob: Job? = null
+    private var mondayJob: Job? = null
+    private var tuesdayJob: Job? = null
+    private var wednesdayJob: Job? = null
+    private var thursdayJob: Job? = null
+    private var fridayJob: Job? = null
+    private var saturdayJob: Job? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         showAddViewModel = ViewModelProvider(requireActivity())[ShowAddViewModel::class.java]
@@ -104,128 +88,117 @@ class MealPlannerFragment : Fragment() {
             recipeId = arguments?.getInt("recipeId", 0)!!
             showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
                 if (showAddFlag == 1) {
-                    loadMealDataFromApi()
                     showAddHereButtons(true)
                 } else {
                     showAddHereButtons(false)
                 }
             }
-
-            //Show Current Week
-            val today = Date()
-            viewModel.setDatesOfWeek(today)
-            updateDates()
-
-//            lifecycleScope.launch {
-//                loadMealsForEveryDay()
-//            }
-
-
-            //forward click listener
-            forward.setOnClickListener {
-                viewModel.moveWeek(7)
-            }
-            //backward click listener
-            backward.setOnClickListener {
-                viewModel.moveWeek(-7)
-            }
-            //current week
-            weekTxt.setOnClickListener {
-                viewModel.goToCurrentWeek()
-            }
-
-            //clickListeners
+            loadMealsForEachDay()
             addToSunday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![0])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[0])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(0)
-//                    loadMealsForSunday()
+                    loadMealDataFromApi(viewModel.dateStringList[0], "sunday")
                 }
 
             }
             addToMonday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![1])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[1])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(1)
-//                    loadMealsForMonday()
+                    loadMealDataFromApi(viewModel.dateStringList[1], "monday")
                 }
             }
             addToTuesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![2])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[2])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(2)
-//                    loadMealsForTuesday()
+                    loadMealDataFromApi(viewModel.dateStringList[2], "tuesday")
                 }
             }
             addToWednesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![3])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[3])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(3)
-//                    loadMealsForWednesday()
+                    loadMealDataFromApi(viewModel.dateStringList[3], "wednesday")
                 }
             }
             addToThursday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![4])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[4])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(4)
-//                    loadMealsForThursday()
+                    loadMealDataFromApi(viewModel.dateStringList[4], "thursday")
                 }
             }
             addToFriday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![5])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[5])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(5)
-//                    loadMealsForFriday()
+                    loadMealDataFromApi(viewModel.dateStringList[5], "friday")
                 }
             }
             addToSaturday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![6])) {
+                if (viewModel.isTheDatePassed(viewModel.dateStringList[6])) {
                     Toast.makeText(
                         requireContext(),
                         "The date is already passed!!!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    saveMeal(6)
-//                    loadMealsForSaturday()
+                    loadMealDataFromApi(viewModel.dateStringList[6], "saturday")
                 }
+            }
+
+            showWeekDates()
+            loadMealsForEveryDay()
+
+            //forward click listener
+            forward.setOnClickListener {
+                viewModel.moveOneWeek(7)
+                showWeekDates()
+                loadMealsForEveryDay()
+            }
+            //backward click listener
+            backward.setOnClickListener {
+                viewModel.moveOneWeek(-7)
+                showWeekDates()
+                loadMealsForEveryDay()
+            }
+            //Go To Current Week
+            weekTxt.setOnClickListener {
+                viewModel.goToCurrentWeek()
+                showWeekDates()
+                loadMealsForEveryDay()
             }
 
         }
     }
 
-
-    private fun loadMealDataFromApi() {
+    private fun loadMealDataFromApi(date: String, day: String) {
         viewModel.callMealApi(recipeId, setAPIKEY())
         binding.apply {
             viewModel.mealData.observe(viewLifecycleOwner) { response ->
@@ -235,7 +208,43 @@ class MealPlannerFragment : Fragment() {
 
                     is NetworkRequest.Success -> {
                         response.data?.let { data ->
-                            viewModel.data.postValue(data)
+                            viewModel.saveMeal(data, date)
+                            showAddViewModel.setShowAddFlag(0)
+                            if (day == "sunday") {
+                                viewModel.theEntity.value?.let {
+                                    sundayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "monday") {
+                                viewModel.theEntity.value?.let {
+                                    mondayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "tuesday") {
+                                viewModel.theEntity.value?.let {
+                                    tuesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "wednesday") {
+                                viewModel.theEntity.value?.let {
+                                    wednesdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "thursday") {
+                                viewModel.theEntity.value?.let {
+                                    thursdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "friday") {
+                                viewModel.theEntity.value?.let {
+                                    fridayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
+                            if (day == "saturday") {
+                                viewModel.theEntity.value?.let {
+                                    saturdayMealsAdapter.addMealPlannerEntity(it)
+                                }
+                            }
                         }
                     }
 
@@ -245,260 +254,215 @@ class MealPlannerFragment : Fragment() {
                 }
             }
         }
+//        recreateFragment()
+        loadMealsForEveryDay()
+        showAddViewModel.setShowAddFlag(0)
     }
 
-    private fun saveMeal(weekday: Int) {
-        viewModel.data.value?.let {
-            when (weekday) {
-                0 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
-                1 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
-                2 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
-                3 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
-                4 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
-                5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
-                else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
-            }
-            showAddViewModel.setShowAddFlag(0)
+
+    //Load Meals for each day
+    private fun loadMealsForEachDay() {
+        viewModel.mealsForSundayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "sunday")
+            sundayJob?.cancel()
+        }
+        viewModel.mealsForMondayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "monday")
+            mondayJob?.cancel()
+        }
+        viewModel.mealsForTuesdayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "tuesday")
+            tuesdayJob?.cancel()
+        }
+        viewModel.mealsForWednesdayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "wednesday")
+            wednesdayJob?.cancel()
+        }
+        viewModel.mealsForThursdayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "thursday")
+            thursdayJob?.cancel()
+        }
+        viewModel.mealsForFridayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "friday")
+            fridayJob?.cancel()
+
+        }
+        viewModel.mealsForSaturdayList.observe(viewLifecycleOwner) {
+            initMealsRecycler(it, "saturday")
+            saturdayJob?.cancel()
         }
     }
 
-    /*
-
-        private suspend fun loadMealsForEveryDay(){
-            delay(20)
-            loadMealsForSunday()
-            delay(50)
-            loadMealsForMonday()
-            delay(50)
-            loadMealsForTuesday()
-            delay(50)
-            loadMealsForWednesday()
-            delay(50)
-            loadMealsForThursday()
-            delay(50)
-            loadMealsForFriday()
-            delay(50)
-            loadMealsForSaturday()
-        }
-
-        private fun loadMealsForSunday() {
-            sundayJob = viewModel.readMealsOfEachDay(0)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 0)
-                sundayJob?.cancel()
-            }
-        }
-        private fun loadMealsForMonday() {
-            mondayJob = viewModel.readMealsOfEachDay(1)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 1)
-                mondayJob?.cancel()
-            }
-        }
-        private fun loadMealsForTuesday() {
-            tuesdayJob = viewModel.readMealsOfEachDay(2)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 2)
-                tuesdayJob?.cancel()
-            }
-        }
-        private fun loadMealsForWednesday() {
-            wednesdayJob = viewModel.readMealsOfEachDay(3)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 3)
-                wednesdayJob?.cancel()
-            }
-        }
-        private fun loadMealsForThursday() {
-            thursdayJob = viewModel.readMealsOfEachDay(4)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 4)
-                thursdayJob?.cancel()
-            }
-        }
-        private fun loadMealsForFriday() {
-            fridayJob = viewModel.readMealsOfEachDay(5)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 5)
-                fridayJob?.cancel()
-            }
-        }
-        private fun loadMealsForSaturday() {
-            saturdayJob = viewModel.readMealsOfEachDay(6)
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-                initMealsRecycler(it, 6)
-                saturdayJob?.cancel()
-            }
-        }
-    */
+    private fun loadMealsForEveryDay() {
+        //  load meals for each day
+        sundayJob = viewModel.readMealsOfEachDay("sunday")
+        mondayJob = viewModel.readMealsOfEachDay("monday")
+        tuesdayJob = viewModel.readMealsOfEachDay("tuesday")
+        wednesdayJob = viewModel.readMealsOfEachDay("wednesday")
+        thursdayJob = viewModel.readMealsOfEachDay("thursday")
+        fridayJob = viewModel.readMealsOfEachDay("friday")
+        saturdayJob = viewModel.readMealsOfEachDay("saturday")
+    }
 
 
-    private fun initMealsRecycler(list: List<MealPlannerEntity>, day: Int) {
+    private fun initMealsRecycler(list: List<MealPlannerEntity>, day: String) {
         binding.apply {
-            when (day) {
-                //sunday
-                0 -> {
-                    sundayMealsAdapter.setData(list)
-                    sundayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        sundayMealsAdapter
-                    )
-                    //click
-                    sundayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
+            if (day == "sunday") {
+                sundayMealsAdapter.setData(list)
+                sundayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    sundayMealsAdapter
+                )
+                //click
+                sundayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
                 }
 
-                //monday
-                1 -> {
-                    mondayMealsAdapter.setData(list)
-                    mondayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        mondayMealsAdapter
-                    )
-                    //click
-                    mondayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
+                sundayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    sundayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
                 }
 
-                //tuesday
-                2 -> {
-                    tuesdayMealsAdapter.setData(list)
-                    tuesdayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        tuesdayMealsAdapter
-                    )
-                    //click
-                    tuesdayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
+            }
+            if (day == "monday") {
+                mondayMealsAdapter.setData(list)
+                mondayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    mondayMealsAdapter
+                )
+                //click
+                mondayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
                 }
-
-                //wednesday
-                3 -> {
-                    wednesdayMealsAdapter.setData(list)
-                    wednesdayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        wednesdayMealsAdapter
-                    )
-                    //click
-                    wednesdayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
-                }
-
-                //thursday
-                4 -> {
-                    thursdayMealsAdapter.setData(list)
-                    thursdayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        thursdayMealsAdapter
-                    )
-                    //click
-                    thursdayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
-                }
-
-                //friday
-                5 -> {
-                    fridayMealsAdapter.setData(list)
-                    fridayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        fridayMealsAdapter
-                    )
-                    //click
-                    fridayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
-                }
-
-                //saturday
-                6 -> {
-                    saturdayMealsAdapter.setData(list)
-                    saturdayMealsList.setupRecyclerview(
-                        LinearLayoutManager(
-                            requireContext(),
-                            LinearLayoutManager.HORIZONTAL,
-                            false
-                        ),
-                        saturdayMealsAdapter
-                    )
-                    //click
-                    saturdayMealsAdapter.setonItemClickListener {
-                        showAddViewModel.setShowAddFlag(0)
-                        val action = RecipeFragmentDirections.actionToDetail(it)
-                        findNavController().navigate(action)
-                    }
+                mondayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    mondayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
                 }
             }
-        }
-    }
-
-    private fun updateDates() {
-        viewModel.datesOfWeek.observe(viewLifecycleOwner) {
-            viewModel.updateDateList(it)
-            viewModel.updateDateStringList(it)
-            viewModel.setWeekTitle()
-            binding.weekTxt.text = viewModel.weekText.value
-            showWeekDates()
-            for (day in 0 until 7) {
-                viewModel.setCurrentDay(day)
-
-                // Start the job for the current day
-                val job = startJobForDay(day)
-
-                // Save the job reference in the map
-                jobs[day] = job
-                jobs[day] ?.cancel()
+            if (day == "tuesday") {
+                tuesdayMealsAdapter.setData(list)
+                tuesdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    tuesdayMealsAdapter
+                )
+                //click
+                tuesdayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
+                tuesdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    tuesdayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
+                }
             }
-        }
-    }
-    private fun startJobForDay(day: Int): Job {
-        return lifecycleScope.launch {
-            // Fill the LiveData
-            viewModel.readMealsOfEachDay(day).join()
-
-            // Read the LiveData to fill the RecyclerView
-            val mealsList = viewModel.mealsForEachDayList.value ?: emptyList()
-            initMealsRecycler(mealsList,day)
+            if (day == "wednesday") {
+                wednesdayMealsAdapter.setData(list)
+                wednesdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    wednesdayMealsAdapter
+                )
+                //click
+                wednesdayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
+                wednesdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    wednesdayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
+                }
+            }
+            if (day == "thursday") {
+                thursdayMealsAdapter.setData(list)
+                thursdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    thursdayMealsAdapter
+                )
+                //click
+                thursdayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
+                thursdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    thursdayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
+                }
+            }
+            if (day == "friday") {
+                fridayMealsAdapter.setData(list)
+                fridayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    fridayMealsAdapter
+                )
+                //click
+                fridayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
+                fridayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    fridayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
+                }
+            }
+            if (day == "saturday") {
+                saturdayMealsAdapter.setData(list)
+                saturdayMealsList.setupRecyclerview(
+                    LinearLayoutManager(
+                        requireContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                    ),
+                    saturdayMealsAdapter
+                )
+                //click
+                saturdayMealsAdapter.setonItemClickListener {
+                    showAddViewModel.setShowAddFlag(0)
+                    val action = RecipeFragmentDirections.actionToDetail(it)
+                    findNavController().navigate(action)
+                }
+                saturdayMealsAdapter.setonItemClickListenerForDelete {
+                    viewModel.deleteMeal(it)
+                    saturdayMealsAdapter.removeMealPlannerEntity(it)
+                    loadMealsForEveryDay()
+                }
+            }
         }
     }
 
@@ -512,7 +476,9 @@ class MealPlannerFragment : Fragment() {
             fridayDate.text = viewModel.dateList[5]
             saturdayDate.text = viewModel.dateList[6]
             makeTodayBold()
+            weekTxt.text = viewModel.weekText
         }
+
     }
 
     private fun makeTodayBold() {
@@ -529,7 +495,12 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun isItToday(dayOfWeek: TextView, dateOfWeek: TextView, today: String, bg: View) {
+    private fun isItToday(
+        dayOfWeek: TextView,
+        dateOfWeek: TextView,
+        today: String,
+        bg: View
+    ) {
         binding.apply {
             if (dateOfWeek.text == today) {
                 dayOfWeek.textSize = 20F
@@ -555,13 +526,18 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-//    private fun cancelJobChain() {
-//        job?.cancel()
-//    }
-
     override fun onDestroy() {
         super.onDestroy()
-        jobs.values.forEach { it.cancel() }
         _binding = null
     }
+//
+//    private fun recreateFragment() {
+//        val fragmentManager = childFragmentManager
+//        val fragmentTransaction = fragmentManager.beginTransaction()
+//
+//        fragmentTransaction.remove(this)
+//        fragmentTransaction.add(R.id.mealPlannerFragment, MealPlannerFragment(), "mealPlannerFragmentTag")
+//
+//        fragmentTransaction.commit()
+//    }
 }

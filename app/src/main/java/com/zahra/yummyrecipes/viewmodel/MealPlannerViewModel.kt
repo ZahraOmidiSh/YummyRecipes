@@ -75,7 +75,7 @@ class MealPlannerViewModel @Inject constructor(
 
 
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
-        repository.local.loadPlannedMeals(dateStringList[0]).collect { mealsList ->
+        repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
             _mealsForSundayList.postValue(mealsList)
         }
     }
