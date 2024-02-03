@@ -482,7 +482,7 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun startJobChain(day:Int) {
-         viewModel.viewModelScope.launch {
+        val coroutine = viewModel.viewModelScope.launch {
             // Fetch data for the current day
             viewModel.readMealsOfEachDay(day)
 
@@ -490,12 +490,16 @@ class MealPlannerFragment : Fragment() {
             viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
                 initMealsRecycler(mealsList, day)
             }
-        }.cancelAndJoin() {
-            if (day<6){
-                startJobChain(day+1)
-            }
         }
 
+        coroutine.invokeOnCompletion {
+            if (day < 6) {
+                // Cancel the coroutine and wait for its completion before starting the next job
+                coroutine.cancel()
+                coroutine.join()
+                startJobChain(day + 1)
+            }
+        }
     }
 
     private fun showWeekDates() {
