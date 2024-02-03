@@ -477,11 +477,13 @@ class MealPlannerFragment : Fragment() {
             viewModel.setWeekTitle()
             binding.weekTxt.text = viewModel.weekText.value
             showWeekDates()
-            startJobChain(0)
+            lifecycleScope.launch {
+                startJobChain(0)
+            }
         }
     }
 
-    private fun startJobChain(day:Int) {
+    private suspend fun startJobChain(day:Int) {
         val coroutine = viewModel.viewModelScope.launch {
             // Fetch data for the current day
             viewModel.readMealsOfEachDay(day)
