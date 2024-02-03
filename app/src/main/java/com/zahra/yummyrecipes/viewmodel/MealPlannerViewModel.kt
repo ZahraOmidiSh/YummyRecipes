@@ -52,33 +52,31 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.deletePlannedMeal(entity)
     }
 
-    var anythingSaved = MutableLiveData<Boolean>()
+    private var _mealsForSundayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForSundayList: LiveData<List<MealPlannerEntity>> get() = _mealsForSundayList
 
-//    private var _mealsForEachDayList = MutableLiveData<List<MealPlannerEntity>>()
-    private val _mealsForDaysList = mutableMapOf<Int, MutableLiveData<List<MealPlannerEntity>>>()
-//    val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
-    val mealsForEachDayList: LiveData<List<MealPlannerEntity>>
-        get() = _mealsForDaysList[currentDay] ?: MutableLiveData()
+    private var _mealsForMondayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForMondayList: LiveData<List<MealPlannerEntity>> get() = _mealsForMondayList
 
-    private var currentDay: Int = 0
+    private var _mealsForTuesdayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForTuesdayList: LiveData<List<MealPlannerEntity>> get() = _mealsForTuesdayList
 
-    fun setCurrentDay(day: Int) {
-        currentDay = day
-    }
+    private var _mealsForWednesdayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForWednesdayList: LiveData<List<MealPlannerEntity>> get() = _mealsForWednesdayList
 
-//    fun readMealsOfEachDay(day: Int) = viewModelScope.launch(Main) {
-//        repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
-//            _mealsForEachDayList.postValue(mealsList)
-//        }
-//    }
+    private var _mealsForThursdayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForThursdayList: LiveData<List<MealPlannerEntity>> get() = _mealsForThursdayList
 
-    fun readMealsOfEachDay(day: Int) = viewModelScope.launch(Main) {
-        if (!_mealsForDaysList.containsKey(day)) {
-            _mealsForDaysList[day] = MutableLiveData()
-        }
+    private var _mealsForFridayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForFridayList: LiveData<List<MealPlannerEntity>> get() = _mealsForFridayList
 
-        repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
-            _mealsForDaysList[day]?.value = mealsList
+    private var _mealsForSaturdayList = MutableLiveData<List<MealPlannerEntity>>()
+    val mealsForSaturdayList: LiveData<List<MealPlannerEntity>> get() = _mealsForSaturdayList
+
+
+    fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
+        repository.local.loadPlannedMeals(dateStringList[0]).collect { mealsList ->
+            _mealsForSundayList.postValue(mealsList)
         }
     }
 
@@ -89,7 +87,7 @@ class MealPlannerViewModel @Inject constructor(
         return dateFormat.format(date)
     }
 
-    private fun formatDateWithMonthDay(date: Date): String {
+     private fun formatDateWithMonthDay(date: Date): String {
         val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         return dateFormat.format(date)
     }
