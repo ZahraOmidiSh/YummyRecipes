@@ -487,7 +487,6 @@ class MealPlannerFragment : Fragment() {
             }
         }
     }
-
     private fun observeMealsForDay(day: Int) {
         // Observe the LiveData and update the UI
         viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
