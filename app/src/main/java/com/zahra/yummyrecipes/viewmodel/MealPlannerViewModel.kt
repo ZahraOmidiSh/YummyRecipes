@@ -54,12 +54,31 @@ class MealPlannerViewModel @Inject constructor(
 
     var anythingSaved = MutableLiveData<Boolean>()
 
-    private var _mealsForEachDayList = MutableLiveData<List<MealPlannerEntity>>()
-    val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
+//    private var _mealsForEachDayList = MutableLiveData<List<MealPlannerEntity>>()
+    private val _mealsForDaysList = mutableMapOf<Int, MutableLiveData<List<MealPlannerEntity>>>()
+//    val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
+    val mealsForEachDayList: LiveData<List<MealPlannerEntity>>
+        get() = _mealsForDaysList[currentDay] ?: MutableLiveData()
+
+    private var currentDay: Int = 0
+
+    fun setCurrentDay(day: Int) {
+        currentDay = day
+    }
+
+//    fun readMealsOfEachDay(day: Int) = viewModelScope.launch(Main) {
+//        repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
+//            _mealsForEachDayList.postValue(mealsList)
+//        }
+//    }
 
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(Main) {
+        if (!_mealsForDaysList.containsKey(day)) {
+            _mealsForDaysList[day] = MutableLiveData()
+        }
+
         repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
-            _mealsForEachDayList.postValue(mealsList)
+            _mealsForDaysList[day]?.value = mealsList
         }
     }
 
