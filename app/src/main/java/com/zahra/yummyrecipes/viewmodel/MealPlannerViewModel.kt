@@ -57,7 +57,6 @@ class MealPlannerViewModel @Inject constructor(
     val mealsForEachDayList: LiveData<List<MealPlannerEntity>> get() = _mealsForEachDayList
 
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
-//        delay(20)
         repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
             _mealsForEachDayList.postValue(mealsList)
         }

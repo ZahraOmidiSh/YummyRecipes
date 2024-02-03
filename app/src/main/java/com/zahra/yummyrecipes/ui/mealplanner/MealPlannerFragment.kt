@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +30,7 @@ import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,13 +69,15 @@ class MealPlannerFragment : Fragment() {
     private lateinit var showAddViewModel: ShowAddViewModel
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
-    private var sundayJob: Job? = null
-    private var mondayJob: Job? = null
-    private var tuesdayJob: Job? = null
-    private var wednesdayJob: Job? = null
-    private var thursdayJob: Job? = null
-    private var fridayJob: Job? = null
-    private var saturdayJob: Job? = null
+//    private var sundayJob: Job? = null
+//    private var mondayJob: Job? = null
+//    private var tuesdayJob: Job? = null
+//    private var wednesdayJob: Job? = null
+//    private var thursdayJob: Job? = null
+//    private var fridayJob: Job? = null
+//    private var saturdayJob: Job? = null
+    private var job: Job? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,9 +113,9 @@ class MealPlannerFragment : Fragment() {
             viewModel.setDatesOfWeek(today)
             updateDates()
 
-            lifecycleScope.launch {
-                loadMealsForEveryDay()
-            }
+//            lifecycleScope.launch {
+//                loadMealsForEveryDay()
+//            }
 
 
             //forward click listener
@@ -137,7 +141,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(0)
-                    loadMealsForSunday()
+//                    loadMealsForSunday()
                 }
 
             }
@@ -150,7 +154,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(1)
-                    loadMealsForMonday()
+//                    loadMealsForMonday()
                 }
             }
             addToTuesday.setOnClickListener {
@@ -162,7 +166,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(2)
-                    loadMealsForTuesday()
+//                    loadMealsForTuesday()
                 }
             }
             addToWednesday.setOnClickListener {
@@ -174,7 +178,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(3)
-                    loadMealsForWednesday()
+//                    loadMealsForWednesday()
                 }
             }
             addToThursday.setOnClickListener {
@@ -186,7 +190,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(4)
-                    loadMealsForThursday()
+//                    loadMealsForThursday()
                 }
             }
             addToFriday.setOnClickListener {
@@ -198,7 +202,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(5)
-                    loadMealsForFriday()
+//                    loadMealsForFriday()
                 }
             }
             addToSaturday.setOnClickListener {
@@ -210,7 +214,7 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(6)
-                    loadMealsForSaturday()
+//                    loadMealsForSaturday()
                 }
             }
 
@@ -254,6 +258,8 @@ class MealPlannerFragment : Fragment() {
             showAddViewModel.setShowAddFlag(0)
         }
     }
+
+/*
 
     private suspend fun loadMealsForEveryDay(){
         delay(20)
@@ -321,6 +327,7 @@ class MealPlannerFragment : Fragment() {
             saturdayJob?.cancel()
         }
     }
+*/
 
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: Int) {
@@ -469,7 +476,27 @@ class MealPlannerFragment : Fragment() {
             viewModel.setWeekTitle()
             binding.weekTxt.text = viewModel.weekText.value
             showWeekDates()
+            startJobChain(0)
         }
+    }
+
+    private fun startJobChain(day:Int) {
+        job = viewModel.viewModelScope.launch {
+            // Fetch data for the current day
+            viewModel.readMealsOfEachDay(day)
+
+            // Observe the LiveData and update the UI
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
+                initMealsRecycler(mealsList, day)
+            }
+        }
+
+        job?.invokeOnCompletion {
+            if (day<6){
+                startJobChain(day+1)
+            }
+        }
+
     }
 
     private fun showWeekDates() {
@@ -525,8 +552,13 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
+    private fun cancelJobChain() {
+        job?.cancel()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        cancelJobChain()
         _binding = null
     }
 }
