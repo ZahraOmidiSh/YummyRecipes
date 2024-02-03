@@ -70,7 +70,8 @@ class MealPlannerFragment : Fragment() {
     private lateinit var showAddViewModel: ShowAddViewModel
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
-//    private var sundayJob: Job? = null
+
+    //    private var sundayJob: Job? = null
 //    private var mondayJob: Job? = null
 //    private var tuesdayJob: Job? = null
 //    private var wednesdayJob: Job? = null
@@ -260,75 +261,75 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-/*
+    /*
 
-    private suspend fun loadMealsForEveryDay(){
-        delay(20)
-        loadMealsForSunday()
-        delay(50)
-        loadMealsForMonday()
-        delay(50)
-        loadMealsForTuesday()
-        delay(50)
-        loadMealsForWednesday()
-        delay(50)
-        loadMealsForThursday()
-        delay(50)
-        loadMealsForFriday()
-        delay(50)
-        loadMealsForSaturday()
-    }
+        private suspend fun loadMealsForEveryDay(){
+            delay(20)
+            loadMealsForSunday()
+            delay(50)
+            loadMealsForMonday()
+            delay(50)
+            loadMealsForTuesday()
+            delay(50)
+            loadMealsForWednesday()
+            delay(50)
+            loadMealsForThursday()
+            delay(50)
+            loadMealsForFriday()
+            delay(50)
+            loadMealsForSaturday()
+        }
 
-    private fun loadMealsForSunday() {
-        sundayJob = viewModel.readMealsOfEachDay(0)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 0)
-            sundayJob?.cancel()
+        private fun loadMealsForSunday() {
+            sundayJob = viewModel.readMealsOfEachDay(0)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 0)
+                sundayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForMonday() {
-        mondayJob = viewModel.readMealsOfEachDay(1)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 1)
-            mondayJob?.cancel()
+        private fun loadMealsForMonday() {
+            mondayJob = viewModel.readMealsOfEachDay(1)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 1)
+                mondayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForTuesday() {
-        tuesdayJob = viewModel.readMealsOfEachDay(2)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 2)
-            tuesdayJob?.cancel()
+        private fun loadMealsForTuesday() {
+            tuesdayJob = viewModel.readMealsOfEachDay(2)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 2)
+                tuesdayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForWednesday() {
-        wednesdayJob = viewModel.readMealsOfEachDay(3)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 3)
-            wednesdayJob?.cancel()
+        private fun loadMealsForWednesday() {
+            wednesdayJob = viewModel.readMealsOfEachDay(3)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 3)
+                wednesdayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForThursday() {
-        thursdayJob = viewModel.readMealsOfEachDay(4)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 4)
-            thursdayJob?.cancel()
+        private fun loadMealsForThursday() {
+            thursdayJob = viewModel.readMealsOfEachDay(4)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 4)
+                thursdayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForFriday() {
-        fridayJob = viewModel.readMealsOfEachDay(5)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 5)
-            fridayJob?.cancel()
+        private fun loadMealsForFriday() {
+            fridayJob = viewModel.readMealsOfEachDay(5)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 5)
+                fridayJob?.cancel()
+            }
         }
-    }
-    private fun loadMealsForSaturday() {
-        saturdayJob = viewModel.readMealsOfEachDay(6)
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
-            initMealsRecycler(it, 6)
-            saturdayJob?.cancel()
+        private fun loadMealsForSaturday() {
+            saturdayJob = viewModel.readMealsOfEachDay(6)
+            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) {
+                initMealsRecycler(it, 6)
+                saturdayJob?.cancel()
+            }
         }
-    }
-*/
+    */
 
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: Int) {
@@ -477,31 +478,22 @@ class MealPlannerFragment : Fragment() {
             viewModel.setWeekTitle()
             binding.weekTxt.text = viewModel.weekText.value
             showWeekDates()
-            lifecycleScope.launch {
-                startJobChain(0)
+            for (day in 0 until 7) {
+                observeMealsForDay(day)
+                lifecycleScope.launch {
+                    delay(200)
+                }
+
             }
         }
     }
 
-    private suspend fun startJobChain(day:Int) {
-        val coroutine = viewModel.viewModelScope.launch {
-            // Fetch data for the current day
-            viewModel.readMealsOfEachDay(day)
-
-            // Observe the LiveData and update the UI
-            viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
-                initMealsRecycler(mealsList, day)
-            }
+    private fun observeMealsForDay(day: Int) {
+        // Observe the LiveData and update the UI
+        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
+            initMealsRecycler(mealsList, day)
         }
-
-        coroutine.invokeOnCompletion {
-            if (day < 6) {
-                // Cancel the coroutine and wait for its completion before starting the next job
-                coroutine.cancel()
-                coroutine.join()
-                startJobChain(day + 1)
-            }
-        }
+        viewModel.readMealsOfEachDay(day)
     }
 
     private fun showWeekDates() {
