@@ -31,6 +31,7 @@ import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -481,7 +482,7 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun startJobChain(day:Int) {
-        job = viewModel.viewModelScope.launch {
+         viewModel.viewModelScope.launch {
             // Fetch data for the current day
             viewModel.readMealsOfEachDay(day)
 
@@ -489,9 +490,7 @@ class MealPlannerFragment : Fragment() {
             viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
                 initMealsRecycler(mealsList, day)
             }
-        }
-
-        job?.invokeOnCompletion {
+        }.cancelAndJoin() {
             if (day<6){
                 startJobChain(day+1)
             }
