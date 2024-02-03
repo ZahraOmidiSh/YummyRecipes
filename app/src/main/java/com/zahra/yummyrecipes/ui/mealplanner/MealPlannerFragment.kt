@@ -70,6 +70,7 @@ class MealPlannerFragment : Fragment() {
     private lateinit var showAddViewModel: ShowAddViewModel
     private val viewModel: MealPlannerViewModel by viewModels()
     var recipeId = 0
+    private val jobs = mutableMapOf<Int, Job>()
 
     //    private var sundayJob: Job? = null
 //    private var mondayJob: Job? = null
@@ -78,7 +79,7 @@ class MealPlannerFragment : Fragment() {
 //    private var thursdayJob: Job? = null
 //    private var fridayJob: Job? = null
 //    private var saturdayJob: Job? = null
-    private var job: Job? = null
+//    private var job: Job? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -479,20 +480,26 @@ class MealPlannerFragment : Fragment() {
             binding.weekTxt.text = viewModel.weekText.value
             showWeekDates()
             for (day in 0 until 7) {
-                observeMealsForDay(day)
-                lifecycleScope.launch {
-                    delay(200)
-                }
+                viewModel.setCurrentDay(day)
 
+                // Start the job for the current day
+                val job = startJobForDay(day)
+
+                // Save the job reference in the map
+                jobs[day] = job
+                jobs[day] ?.cancel()
             }
         }
     }
-    private fun observeMealsForDay(day: Int) {
-        // Observe the LiveData and update the UI
-        viewModel.mealsForEachDayList.observe(viewLifecycleOwner) { mealsList ->
-            initMealsRecycler(mealsList, day)
+    private fun startJobForDay(day: Int): Job {
+        return lifecycleScope.launch {
+            // Fill the LiveData
+            viewModel.readMealsOfEachDay(day).join()
+
+            // Read the LiveData to fill the RecyclerView
+            val mealsList = viewModel.mealsForEachDayList.value ?: emptyList()
+            initMealsRecycler(mealsList,day)
         }
-        viewModel.readMealsOfEachDay(day)
     }
 
     private fun showWeekDates() {
@@ -548,13 +555,13 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun cancelJobChain() {
-        job?.cancel()
-    }
+//    private fun cancelJobChain() {
+//        job?.cancel()
+//    }
 
     override fun onDestroy() {
         super.onDestroy()
-        cancelJobChain()
+        jobs.values.forEach { it.cancel() }
         _binding = null
     }
 }
