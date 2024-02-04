@@ -20,6 +20,7 @@ import com.zahra.yummyrecipes.databinding.FragmentMealPlannerBinding
 import com.zahra.yummyrecipes.ui.recipe.RecipeFragmentDirections
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.utils.NetworkRequest
+import com.zahra.yummyrecipes.utils.isVisible
 import com.zahra.yummyrecipes.utils.setupRecyclerview
 import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
@@ -211,6 +212,22 @@ class MealPlannerFragment : Fragment() {
 
     private fun loadMealDataFromApi() {
         viewModel.callMealApi(recipeId, setAPIKEY())
+        binding.apply {
+            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkRequest.Loading -> {
+                        loading.isVisible(true, contentLay)
+                    }
+                    is NetworkRequest.Success -> {
+                        loading.isVisible(false, contentLay)
+                    }
+                    is NetworkRequest.Error -> {
+                        loading.isVisible(false, contentLay)
+                        binding.root.showSnackBar(response.message!!)
+                    }
+                }
+            }
+        }
     }
 
     private fun saveMeal(weekday: Int) {
