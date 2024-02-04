@@ -59,29 +59,29 @@
         android:background="@color/big_foot_feet"
         app:layout_constraintTop_toBottomOf="@id/weekLay" />
 
-    <TextView
-        android:id="@+id/chooseDayTxt"
-        style="@style/ChooseDayForMealStyle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/line" />
+
 
 
     <!--Days of week scroll view-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_20mdp"
+        android:layout_marginTop="@dimen/_2mdp"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/_80mdp"
+        android:paddingBottom="@dimen/_90mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
+            <TextView
+                android:id="@+id/chooseDayTxt"
+                style="@style/ChooseDayForMealStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <!--Sunday-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -89,8 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/_5mdp"
-                android:paddingTop="@dimen/_6mdp"
-                app:layout_constraintTop_toTopOf="parent">
+                android:paddingTop="@dimen/_5mdp"
+                app:layout_constraintTop_toBottomOf="@id/chooseDayTxt">
 
                 <View
                     android:id="@+id/sundayBg"
@@ -132,7 +132,8 @@
 
                 <!--Line 1-->
                 <View
-                    android:id="@+id/line7"
+                    android:id="@+id/line1"
+                    android:layout_marginTop="@dimen/_6mdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:alpha="0.2"
@@ -187,12 +188,13 @@
                     app:layout_constraintTop_toBottomOf="@id/monday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 2-->
                 <View
-                    android:id="@+id/line1"
+                    android:id="@+id/line2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:alpha="0.2"
+                    android:layout_marginTop="@dimen/_6mdp"
                     android:background="@color/big_foot_feet"
                     app:layout_constraintTop_toBottomOf="@id/mondayMealsList" />
 
@@ -244,9 +246,9 @@
                     app:layout_constraintTop_toBottomOf="@id/tuesday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 3-->
                 <View
-                    android:id="@+id/line2"
+                    android:id="@+id/line3"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginTop="@dimen/_6mdp"
@@ -304,9 +306,9 @@
                     app:layout_constraintTop_toBottomOf="@id/wednesday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 4-->
                 <View
-                    android:id="@+id/line3"
+                    android:id="@+id/line4"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginTop="@dimen/_6mdp"
@@ -362,9 +364,9 @@
                     app:layout_constraintTop_toBottomOf="@id/thursday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 5-->
                 <View
-                    android:id="@+id/line4"
+                    android:id="@+id/line5"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginTop="@dimen/_6mdp"
@@ -420,9 +422,9 @@
                     app:layout_constraintTop_toBottomOf="@id/friday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 6-->
                 <View
-                    android:id="@+id/line5"
+                    android:id="@+id/line6"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginTop="@dimen/_6mdp"
@@ -478,9 +480,9 @@
                     app:layout_constraintTop_toBottomOf="@id/saturday"
                     tools:listitem="@layout/item_recipe" />
 
-                <!--Line 1-->
+                <!--Line 7-->
                 <View
-                    android:id="@+id/line6"
+                    android:id="@+id/line7"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1mdp"
                     android:layout_marginTop="@dimen/_6mdp"

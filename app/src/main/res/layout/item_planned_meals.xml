@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_110mdp"
+    android:layout_width="@dimen/_100mdp"
+    android:layout_marginHorizontal="@dimen/_3mdp"
     style="@style/RVBackground"
-    android:layout_height="@dimen/_130mdp">
+    android:layout_height="@dimen/_120mdp">
     <!--Card-->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardLay"
         android:layout_width="@dimen/_100mdp"
         android:layout_height="@dimen/_120mdp"
-        android:layout_marginTop="@dimen/_3mdp"
-        android:elevation="@dimen/_5mdp"
-        app:cardCornerRadius="@dimen/_5mdp"
+        android:elevation="@dimen/_3mdp"
+        app:cardCornerRadius="@dimen/_15mdp"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

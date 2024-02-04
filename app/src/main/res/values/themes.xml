@@ -258,7 +258,7 @@
         <item name="android:paddingStart">@dimen/_5mdp</item>
         <item name="android:paddingEnd">@dimen/_5mdp</item>
         <item name="android:paddingTop">@dimen/_3mdp</item>
-        <item name="android:layout_marginTop">@dimen/_3mdp</item>
+        <item name="android:layout_marginTop">@dimen/_9mdp</item>
         <item name="android:textSize">@dimen/_13font_mdp</item>
         <item name="android:clipToPadding">false</item>
         <item name="android:orientation">horizontal</item>
@@ -319,7 +319,7 @@
         <item name="android:paddingTop">@dimen/_5mdp</item>
         <item name="android:paddingBottom">@dimen/_5mdp</item>
         <item name="android:text">@string/choose_the_day_to_plan_your_meal</item>
-        <item name="android:visibility">invisible</item>
+        <item name="android:visibility">gone</item>
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">@dimen/_12mdp</item>
         <item name="android:textColor">@color/big_foot_feet</item>
