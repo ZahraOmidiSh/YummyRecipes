@@ -88,6 +88,7 @@ class MealPlannerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            viewModel.setIsSaved(false)
             recipeId = arguments?.getInt("recipeId", 0)!!
             showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
                 if (showAddFlag == 1) {
@@ -100,11 +101,16 @@ class MealPlannerFragment : Fragment() {
             }
 
             //Show Current Week
-//            viewModel.currentDate=Date()
             val today = viewModel.currentDate
             viewModel.setDatesOfWeek(today)
             updateDates()
             loadMealsForEachDay()
+
+            viewModel.isSaved.observe(viewLifecycleOwner){
+                if(it){
+                    loadMealsForEveryDay()
+                }
+            }
 
             //forward click listener
             forward.setOnClickListener {
@@ -268,7 +274,7 @@ class MealPlannerFragment : Fragment() {
                     5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
                     else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
                 }
-                loadMealsForEveryDay()
+//                loadMealsForEveryDay()
                 showAddViewModel.setShowAddFlag(0)
             }
 
@@ -299,7 +305,6 @@ class MealPlannerFragment : Fragment() {
                     }
                     sundayMealsAdapter.setonItemClickListenerForDelete {
                         viewModel.deleteMeal(it)
-                        sundayMealsAdapter.removeMealPlannerEntity(it)
                         loadMealsForEveryDay()
                     }
                 }
@@ -321,6 +326,10 @@ class MealPlannerFragment : Fragment() {
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
                     }
+                    mondayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
+                    }
                 }
 
                 //tuesday
@@ -339,6 +348,10 @@ class MealPlannerFragment : Fragment() {
                         showAddViewModel.setShowAddFlag(0)
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
+                    }
+                    tuesdayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
                     }
                 }
 
@@ -359,6 +372,10 @@ class MealPlannerFragment : Fragment() {
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
                     }
+                    wednesdayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
+                    }
                 }
 
                 //thursday
@@ -377,6 +394,10 @@ class MealPlannerFragment : Fragment() {
                         showAddViewModel.setShowAddFlag(0)
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
+                    }
+                    thursdayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
                     }
                 }
 
@@ -397,6 +418,10 @@ class MealPlannerFragment : Fragment() {
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
                     }
+                    fridayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
+                    }
                 }
 
                 //saturday
@@ -415,6 +440,10 @@ class MealPlannerFragment : Fragment() {
                         showAddViewModel.setShowAddFlag(0)
                         val action = RecipeFragmentDirections.actionToDetail(it)
                         findNavController().navigate(action)
+                    }
+                    saturdayMealsAdapter.setonItemClickListenerForDelete {
+                        viewModel.deleteMeal(it)
+                        loadMealsForEveryDay()
                     }
                 }
             }

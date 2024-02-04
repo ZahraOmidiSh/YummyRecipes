@@ -47,6 +47,11 @@ class MealPlannerViewModel @Inject constructor(
         val newId = (date + data.id).toLong()
         val entity = MealPlannerEntity(newId, data)
         repository.local.savePlannedMeal(entity)
+        setIsSaved(true)
+    }
+    var isSaved = MutableLiveData<Boolean>()
+    fun setIsSaved(saved:Boolean){
+        isSaved.postValue(saved)
     }
 
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
