@@ -252,42 +252,50 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun loadMealDataFromApi() {
+        // Check if the fragment is in a valid state
+//        if (!isAdded || view == null) {
+//            // Fragment is not attached or view is not created, handle accordingly
+//            return
+//        }
         viewModel.callMealApi(recipeId, setAPIKEY())
-        binding.apply {
-            viewModel.mealData.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is NetworkRequest.Loading -> {
-                    }
-
-                    is NetworkRequest.Success -> {
-                        response.data?.let { data ->
-                            Log.e("problem1", data.title.toString() )
-                            viewModel.data.value=data
-                            Log.e("problem2", viewModel.data.value?.title.toString() )
-                        }
-                    }
-
-                    is NetworkRequest.Error -> {
-                        binding.root.showSnackBar(response.message!!)
-                    }
-                }
-            }
-        }
+//        binding.apply {
+//            viewModel.mealData.observe(viewLifecycleOwner) { response ->
+//                when (response) {
+//                    is NetworkRequest.Loading -> {
+//                    }
+//
+//                    is NetworkRequest.Success -> {
+//                        response.data?.let { data ->
+//                            Log.e("problem1", data.title.toString() )
+//                            viewModel.data.value=data
+//                            Log.e("problem2", viewModel.data.value?.title.toString() )
+//                        }
+//                    }
+//
+//                    is NetworkRequest.Error -> {
+//                        binding.root.showSnackBar(response.message!!)
+//                    }
+//                }
+//            }
+//        }
     }
 
     private fun saveMeal(weekday: Int) {
-        viewModel.data.value?.let {
-            when (weekday) {
-                0 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
-                1 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
-                2 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
-                3 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
-                4 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
-                5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
-                else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
+        viewModel.mealData.value?.let {mealData ->
+            mealData.data?.let {
+                when (weekday) {
+                    0 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
+                    1 -> viewModel.saveMeal(it, viewModel.dateStringList[1])
+                    2 -> viewModel.saveMeal(it, viewModel.dateStringList[2])
+                    3 -> viewModel.saveMeal(it, viewModel.dateStringList[3])
+                    4 -> viewModel.saveMeal(it, viewModel.dateStringList[4])
+                    5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
+                    else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
+                }
+                loadMealsForEveryDay()
+                showAddViewModel.setShowAddFlag(0)
             }
-            loadMealsForEveryDay()
-            showAddViewModel.setShowAddFlag(0)
+
         }
     }
 

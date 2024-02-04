@@ -37,6 +37,7 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkRequest.Loading()
         val response = repository.remote.getDetail(id, apikey, true)
         mealData.value = NetworkResponse(response).generalNetworkResponse()
+//        Log.e("problem3", mealData.value!!.data!!.title.toString() )
     }
 
     var data = MutableLiveData<ResponseDetail>()
@@ -76,7 +77,16 @@ class MealPlannerViewModel @Inject constructor(
 
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
         repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
-            _mealsForSundayList.postValue(mealsList)
+            when(day){
+                0 -> _mealsForSundayList.postValue(mealsList)
+                1 -> _mealsForMondayList.postValue(mealsList)
+                2 -> _mealsForTuesdayList.postValue(mealsList)
+                3 -> _mealsForWednesdayList.postValue(mealsList)
+                4 -> _mealsForThursdayList.postValue(mealsList)
+                5 -> _mealsForFridayList.postValue(mealsList)
+                6 -> _mealsForSaturdayList.postValue(mealsList)
+            }
+
         }
     }
 
