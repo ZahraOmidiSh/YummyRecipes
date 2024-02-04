@@ -37,7 +37,6 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkRequest.Loading()
         val response = repository.remote.getDetail(id, apikey, true)
         mealData.value = NetworkResponse(response).generalNetworkResponse()
-//        Log.e("problem3", mealData.value!!.data!!.title.toString() )
     }
 
     var data = MutableLiveData<ResponseDetail>()

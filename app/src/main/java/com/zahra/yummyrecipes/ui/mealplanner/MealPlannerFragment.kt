@@ -212,22 +212,6 @@ class MealPlannerFragment : Fragment() {
 
     private fun loadMealDataFromApi() {
         viewModel.callMealApi(recipeId, setAPIKEY())
-        binding.apply {
-            viewModel.mealData.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is NetworkRequest.Loading -> {
-                        loading.isVisible(true, contentLay)
-                    }
-                    is NetworkRequest.Success -> {
-                        loading.isVisible(false, contentLay)
-                    }
-                    is NetworkRequest.Error -> {
-                        loading.isVisible(false, contentLay)
-                        binding.root.showSnackBar(response.message!!)
-                    }
-                }
-            }
-        }
     }
 
     private fun saveMeal(weekday: Int) {
