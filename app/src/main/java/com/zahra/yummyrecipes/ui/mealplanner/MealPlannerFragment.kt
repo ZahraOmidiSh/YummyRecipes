@@ -90,15 +90,7 @@ class MealPlannerFragment : Fragment() {
         binding.apply {
             viewModel.setIsSaved(false)
             recipeId = arguments?.getInt("recipeId", 0)!!
-            showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
-                if (showAddFlag == 1) {
-                    Log.e("problem", recipeId.toString() )
-                    loadMealDataFromApi()
-                    showAddHereButtons(true)
-                } else {
-                    showAddHereButtons(false)
-                }
-            }
+            showAddFlagObserver()
 
             //Show Current Week
             val today = viewModel.currentDate
@@ -127,84 +119,50 @@ class MealPlannerFragment : Fragment() {
 
             //clickListeners
             addToSunday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![0])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(0)
-                }
-
+                checkAndSaveMeal(0)
             }
             addToMonday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![1])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(1)
-                }
+                checkAndSaveMeal(1)
             }
             addToTuesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![2])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(2)
-                }
+                checkAndSaveMeal(2)
             }
             addToWednesday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![3])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(3)
-                }
+                checkAndSaveMeal(3)
             }
             addToThursday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![4])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(4)
-                }
+                checkAndSaveMeal(4)
             }
             addToFriday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![5])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(5)
-                }
+                checkAndSaveMeal(5)
             }
             addToSaturday.setOnClickListener {
-                if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![6])) {
-                    Toast.makeText(
-                        requireContext(),
-                        "The date is already passed!!!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    saveMeal(6)
-                }
+                checkAndSaveMeal(6)
             }
 
+        }
+    }
+
+    private fun checkAndSaveMeal(weekday: Int){
+        if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![weekday])) {
+            Toast.makeText(
+                requireContext(),
+                "The date is already passed!!!",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            saveMeal(weekday)
+        }
+    }
+
+    private fun showAddFlagObserver(){
+        showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
+            if (showAddFlag == 1) {
+                loadMealDataFromApi()
+                showAddHereButtons(true)
+            } else {
+                showAddHereButtons(false)
+            }
         }
     }
 
