@@ -457,13 +457,13 @@ class MealPlannerFragment : Fragment() {
             addToThursday.isVisible = visibility
             addToFriday.isVisible = visibility
             addToSaturday.isVisible = visibility
-        if(visibility){
-            chooseDayTxt.isVisible = true
-        }else{
-            chooseDayTxt.visibility=View.GONE
+            if (visibility) {
+                chooseDayTxt.isVisible = true
+            } else {
+                chooseDayTxt.visibility = View.GONE
+            }
         }
     }
-}
 
     override fun onDestroy() {
         super.onDestroy()
