@@ -82,19 +82,6 @@ class MealPlannerAdapter @Inject constructor() :
         onItemClickListenerForDelete = listener
     }
 
-    fun addMealPlannerEntity(item: MealPlannerEntity) {
-        items.add(item)
-        notifyItemInserted(items.size - 1)
-    }
-
-    fun removeMealPlannerEntity(item: MealPlannerEntity) {
-        val position = items.indexOf(item)
-        if (position != -1) {
-            items.removeAt(position)
-            notifyItemRemoved(position)
-        }
-    }
-
     fun setData(data: List<MealPlannerEntity>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)
         val diffUtils = DiffUtil.calculateDiff(adapterDiffUtils)

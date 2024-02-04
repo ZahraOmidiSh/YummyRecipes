@@ -1,12 +1,8 @@
 package com.zahra.yummyrecipes.viewmodel
 
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.repository.MealRepository
@@ -15,13 +11,8 @@ import com.zahra.yummyrecipes.utils.NetworkRequest
 import com.zahra.yummyrecipes.utils.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.Period
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -39,7 +30,10 @@ class MealPlannerViewModel @Inject constructor(
         mealData.value = NetworkResponse(response).generalNetworkResponse()
     }
 
-    var data = MutableLiveData<ResponseDetail>()
+    var isSaved = MutableLiveData<Boolean>()
+    fun setIsSaved(saved: Boolean) {
+        isSaved.postValue(saved)
+    }
 
     //save
     fun saveMeal(data: ResponseDetail, date: String) = viewModelScope.launch {
@@ -48,15 +42,12 @@ class MealPlannerViewModel @Inject constructor(
         repository.local.savePlannedMeal(entity)
         setIsSaved(true)
     }
-    var isSaved = MutableLiveData<Boolean>()
-    fun setIsSaved(saved:Boolean){
-        isSaved.postValue(saved)
-    }
 
     fun deleteMeal(entity: MealPlannerEntity) = viewModelScope.launch {
         repository.local.deletePlannedMeal(entity)
     }
 
+    //livedata for meals for dayList
     private var _mealsForSundayList = MutableLiveData<List<MealPlannerEntity>>()
     val mealsForSundayList: LiveData<List<MealPlannerEntity>> get() = _mealsForSundayList
 
@@ -78,10 +69,9 @@ class MealPlannerViewModel @Inject constructor(
     private var _mealsForSaturdayList = MutableLiveData<List<MealPlannerEntity>>()
     val mealsForSaturdayList: LiveData<List<MealPlannerEntity>> get() = _mealsForSaturdayList
 
-
     fun readMealsOfEachDay(day: Int) = viewModelScope.launch(IO) {
         repository.local.loadPlannedMeals(dateStringList[day]).collect { mealsList ->
-            when(day){
+            when (day) {
                 0 -> _mealsForSundayList.postValue(mealsList)
                 1 -> _mealsForMondayList.postValue(mealsList)
                 2 -> _mealsForTuesdayList.postValue(mealsList)
@@ -90,10 +80,8 @@ class MealPlannerViewModel @Inject constructor(
                 5 -> _mealsForFridayList.postValue(mealsList)
                 6 -> _mealsForSaturdayList.postValue(mealsList)
             }
-
         }
     }
-
 
     //format dates
     fun formatDate(date: Date): String {
@@ -101,7 +89,7 @@ class MealPlannerViewModel @Inject constructor(
         return dateFormat.format(date)
     }
 
-     private fun formatDateWithMonthDay(date: Date): String {
+    private fun formatDateWithMonthDay(date: Date): String {
         val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         return dateFormat.format(date)
     }
@@ -130,6 +118,7 @@ class MealPlannerViewModel @Inject constructor(
         datesOfWeek.postValue(dates)
     }
 
+    //datesList in string form
     val dateList = mutableListOf<String>()
     fun updateDateList(datesOfWeek: List<Date>) {
         dateList.clear()
@@ -168,10 +157,6 @@ class MealPlannerViewModel @Inject constructor(
             else -> weekText.value = "${dateList[0]} - ${dateList[6]}"
         }
     }
-
-    var meals = emptyList<MealPlannerEntity>()
-
-    var recipeId = MutableLiveData<Int>()
 
     fun goToCurrentWeek() {
         val calendar = Calendar.getInstance()
