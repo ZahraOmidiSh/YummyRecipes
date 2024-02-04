@@ -96,10 +96,10 @@ class MealPlannerFragment : Fragment() {
             val today = viewModel.currentDate
             viewModel.setDatesOfWeek(today)
             updateDates()
+            //load Meals
             loadMealsForEachDay()
-
-            viewModel.isSaved.observe(viewLifecycleOwner){
-                if(it){
+            viewModel.isSaved.observe(viewLifecycleOwner) {
+                if (it) {
                     loadMealsForEveryDay()
                 }
             }
@@ -117,7 +117,7 @@ class MealPlannerFragment : Fragment() {
                 viewModel.goToCurrentWeek()
             }
 
-            //clickListeners
+            //add to days clickListeners
             addToSunday.setOnClickListener {
                 checkAndSaveMeal(0)
             }
@@ -143,7 +143,7 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun checkAndSaveMeal(weekday: Int){
+    private fun checkAndSaveMeal(weekday: Int) {
         if (viewModel.isTheDatePassed(viewModel.datesOfWeek.value!![weekday])) {
             Toast.makeText(
                 requireContext(),
@@ -155,7 +155,7 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
-    private fun showAddFlagObserver(){
+    private fun showAddFlagObserver() {
         showAddViewModel.showAddFlag.observe(requireActivity()) { showAddFlag ->
             if (showAddFlag == 1) {
                 loadMealDataFromApi()
@@ -214,7 +214,7 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun saveMeal(weekday: Int) {
-        viewModel.mealData.value?.let {mealData ->
+        viewModel.mealData.value?.let { mealData ->
             mealData.data?.let {
                 when (weekday) {
                     0 -> viewModel.saveMeal(it, viewModel.dateStringList[0])
@@ -230,7 +230,6 @@ class MealPlannerFragment : Fragment() {
 
         }
     }
-
 
 
     private fun initMealsRecycler(list: List<MealPlannerEntity>, day: Int) {
