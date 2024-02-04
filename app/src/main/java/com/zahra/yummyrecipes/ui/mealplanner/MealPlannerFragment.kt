@@ -100,7 +100,8 @@ class MealPlannerFragment : Fragment() {
             }
 
             //Show Current Week
-            val today = Date()
+//            viewModel.currentDate=Date()
+            val today = viewModel.currentDate
             viewModel.setDatesOfWeek(today)
             updateDates()
             loadMealsForEachDay()
