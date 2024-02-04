@@ -182,6 +182,6 @@ class MealPlannerViewModel @Inject constructor(
     }
 
     fun isTheDatePassed(date: Date): Boolean {
-        return date < today
+        return formatDateWithMonthDay(date) < formatDateWithMonthDay(today)
     }
 }

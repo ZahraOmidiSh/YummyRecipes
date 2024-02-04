@@ -135,7 +135,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(0)
-//                    loadMealsForSunday()
                 }
 
             }
@@ -148,7 +147,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(1)
-//                    loadMealsForMonday()
                 }
             }
             addToTuesday.setOnClickListener {
@@ -160,7 +158,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(2)
-//                    loadMealsForTuesday()
                 }
             }
             addToWednesday.setOnClickListener {
@@ -172,7 +169,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(3)
-//                    loadMealsForWednesday()
                 }
             }
             addToThursday.setOnClickListener {
@@ -184,7 +180,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(4)
-//                    loadMealsForThursday()
                 }
             }
             addToFriday.setOnClickListener {
@@ -196,7 +191,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(5)
-//                    loadMealsForFriday()
                 }
             }
             addToSaturday.setOnClickListener {
@@ -208,7 +202,6 @@ class MealPlannerFragment : Fragment() {
                     ).show()
                 } else {
                     saveMeal(6)
-//                    loadMealsForSaturday()
                 }
             }
 
@@ -274,7 +267,6 @@ class MealPlannerFragment : Fragment() {
                     5 -> viewModel.saveMeal(it, viewModel.dateStringList[5])
                     else -> viewModel.saveMeal(it, viewModel.dateStringList[6])
                 }
-//                loadMealsForEveryDay()
                 showAddViewModel.setShowAddFlag(0)
             }
 
