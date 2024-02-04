@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.cart.CartFragment">
 
+    <!--Back-->
+    <ImageView
+        android:id="@+id/backImg"
+        style="@style/DetailImageButtons"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--Name-->
+    <TextView
+        android:id="@+id/shoppingListTxt"
+        style="@style/TextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5mdp"
+        android:layout_marginVertical="@dimen/_5mdp"
+        android:textSize="@dimen/_17font_mdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/backImg"
+        app:layout_constraintTop_toBottomOf="@id/backImg"
+        tools:text="Shopping List" />
+    <!--Line 1-->
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1mdp"
+        android:layout_marginHorizontal="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:alpha="0.2"
+        android:background="@drawable/bg_rounded_big_foot_feet"
+        app:layout_constraintTop_toBottomOf="@id/shoppingListTxt" />
+
+    <!--Shopping List scroll view-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_2mdp"
+        android:clipToPadding="false"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_90mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Shopping List Recycler View-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shoppingListRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent" />
+            <!--Line 2-->
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1mdp"
+                android:layout_marginHorizontal="@dimen/_10mdp"
+                android:layout_marginTop="@dimen/_8mdp"
+                android:alpha="0.2"
+                android:background="@drawable/bg_rounded_big_foot_feet"
+                app:layout_constraintTop_toBottomOf="@id/shoppingListRecyclerView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
