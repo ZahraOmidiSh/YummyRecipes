@@ -252,32 +252,7 @@ class MealPlannerFragment : Fragment() {
     }
 
     private fun loadMealDataFromApi() {
-        // Check if the fragment is in a valid state
-//        if (!isAdded || view == null) {
-//            // Fragment is not attached or view is not created, handle accordingly
-//            return
-//        }
         viewModel.callMealApi(recipeId, setAPIKEY())
-//        binding.apply {
-//            viewModel.mealData.observe(viewLifecycleOwner) { response ->
-//                when (response) {
-//                    is NetworkRequest.Loading -> {
-//                    }
-//
-//                    is NetworkRequest.Success -> {
-//                        response.data?.let { data ->
-//                            Log.e("problem1", data.title.toString() )
-//                            viewModel.data.value=data
-//                            Log.e("problem2", viewModel.data.value?.title.toString() )
-//                        }
-//                    }
-//
-//                    is NetworkRequest.Error -> {
-//                        binding.root.showSnackBar(response.message!!)
-//                    }
-//                }
-//            }
-//        }
     }
 
     private fun saveMeal(weekday: Int) {
