@@ -11,7 +11,7 @@ data class ShoppingListEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val name: String,
-    val amount: Float,
+    val amount: Double,
     val unit: String,
     val image: String = ""
 )
