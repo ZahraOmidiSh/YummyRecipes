@@ -13,6 +13,7 @@ import com.zahra.yummyrecipes.utils.Constants.DETAIL_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.FAVORITE_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.MEAL_PLANNER_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.RECIPE_TABLE_NAME
+import com.zahra.yummyrecipes.utils.Constants.SHOPPING_LIST_TABLE_NAME
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -56,5 +57,15 @@ interface RecipeAppDao {
 
     @Query("SELECT * FROM $MEAL_PLANNER_TABLE_NAME WHERE CAST(id AS TEXT) LIKE :date || '%'")
     fun loadMeal(date: String): Flow<List<MealPlannerEntity>>
+
+    //Shopping List
+    @Insert(onConflict = REPLACE)
+    suspend fun saveShoppingList(entity: FavoriteEntity)
+
+    @Delete
+    suspend fun deleteShoppingList(entity: FavoriteEntity)
+
+    @Query("SELECT * FROM $SHOPPING_LIST_TABLE_NAME ORDER BY ID ASC")
+    fun loadShoppingList(): Flow<List<FavoriteEntity>>
 
 }
