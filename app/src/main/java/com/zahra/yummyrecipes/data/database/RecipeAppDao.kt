@@ -9,6 +9,7 @@ import com.zahra.yummyrecipes.data.database.entity.DetailEntity
 import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
+import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import com.zahra.yummyrecipes.utils.Constants.DETAIL_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.FAVORITE_TABLE_NAME
 import com.zahra.yummyrecipes.utils.Constants.MEAL_PLANNER_TABLE_NAME
@@ -60,12 +61,12 @@ interface RecipeAppDao {
 
     //Shopping List
     @Insert(onConflict = REPLACE)
-    suspend fun saveShoppingList(entity: FavoriteEntity)
+    suspend fun saveShoppingList(entity: ShoppingListEntity)
 
     @Delete
-    suspend fun deleteShoppingList(entity: FavoriteEntity)
+    suspend fun deleteShoppingList(entity: ShoppingListEntity)
 
     @Query("SELECT * FROM $SHOPPING_LIST_TABLE_NAME ORDER BY ID ASC")
-    fun loadShoppingList(): Flow<List<FavoriteEntity>>
+    fun loadShoppingList(): Flow<List<ShoppingListEntity>>
 
 }
