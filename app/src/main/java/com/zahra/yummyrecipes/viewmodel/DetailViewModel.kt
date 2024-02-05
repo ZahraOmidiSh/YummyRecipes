@@ -6,6 +6,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.zahra.yummyrecipes.data.database.entity.DetailEntity
 import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
+import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import com.zahra.yummyrecipes.data.repository.RecipeRepository
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseSimilar
@@ -73,7 +74,10 @@ class DetailViewModel @Inject constructor(private val repository:RecipeRepositor
         }
     }
 
-
+    //Shopping List
+    fun saveIngredientToShoppingList(entity: ShoppingListEntity)=viewModelScope.launch {
+        repository.local.saveShoppingList(entity)
+    }
 
 
 }
