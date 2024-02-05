@@ -5,6 +5,7 @@ import com.zahra.yummyrecipes.data.database.entity.DetailEntity
 import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.data.database.entity.RecipeEntity
+import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import javax.inject.Inject
 
 class LocalDataSource @Inject constructor(private val dao: RecipeAppDao) {
@@ -27,5 +28,10 @@ class LocalDataSource @Inject constructor(private val dao: RecipeAppDao) {
     suspend fun savePlannedMeal(entity: MealPlannerEntity) = dao.saveMeal(entity)
     suspend fun deletePlannedMeal(entity: MealPlannerEntity) = dao.deleteMeal(entity)
     fun loadPlannedMeals(date:String) = dao.loadMeal(date)
+
+    //Shopping List
+    suspend fun saveShoppingList(entity: ShoppingListEntity) = dao.saveShoppingList(entity)
+    suspend fun deleteShoppingList(entity: ShoppingListEntity) = dao.deleteShoppingList(entity)
+    fun loadShoppingList() = dao.loadShoppingList()
 
 }
