@@ -338,5 +338,13 @@
         <item name="android:background">@drawable/bg_shadow_meal_planner_light</item>
     </style>
 
+    <!--shopping list item background-->
+    <style name="ShoppingListItemBackground">
+        <item name="android:layout_margin">@dimen/_5mdp</item>
+        <item name="android:background">@drawable/bg_rounded_linen_stroke_very_light</item>
+        <item name="android:padding">@dimen/_5mdp</item>
+        <item name="tint">@color/big_foot_feet</item>
+    </style>
+
 
 </resources>
