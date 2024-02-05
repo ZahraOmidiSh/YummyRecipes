@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
+import com.zahra.yummyrecipes.data.database.entity.DetailEntity
+import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.ItemIngredientsBinding
+import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
@@ -46,8 +49,19 @@ class IngredientsAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
+                addToIngredientsButton.setOnClickListener {
+                    onAddClickListener?.let {
+                        it(item)
+                    }
+                }
             }
         }
+    }
+
+    var onAddClickListener: ((ExtendedIngredient) -> Unit)? = null
+
+    fun setOnAddClickListener(listener: (ExtendedIngredient) -> Unit) {
+        onAddClickListener = listener
     }
 
 
