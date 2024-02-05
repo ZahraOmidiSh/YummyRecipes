@@ -3,7 +3,6 @@ package com.zahra.yummyrecipes.ui.detail
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +27,7 @@ import com.zahra.yummyrecipes.adapter.IngredientsAdapter
 import com.zahra.yummyrecipes.adapter.InstructionsStepsAdapter
 import com.zahra.yummyrecipes.adapter.SimilarAdapter
 import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
+import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import com.zahra.yummyrecipes.databinding.FragmentDetailBinding
 import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step
@@ -40,8 +40,6 @@ import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
 import com.zahra.yummyrecipes.utils.Constants.setAPIKEY
 import com.zahra.yummyrecipes.viewmodel.DetailViewModel
-import com.zahra.yummyrecipes.viewmodel.MealPlannerViewModel
-import com.zahra.yummyrecipes.viewmodel.SearchViewModel
 import com.zahra.yummyrecipes.viewmodel.ShowAddViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -319,6 +317,10 @@ class DetailFragment : Fragment() {
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
                 ingredientsAdapter
             )
+            //click
+            ingredientsAdapter.setAnotherCustomClickListener {
+                saveToShoppingList(it)
+            }
         }
     }
 
@@ -460,6 +462,13 @@ class DetailFragment : Fragment() {
 
             }
         }
+    }
+
+    //Favorite
+    private fun saveToShoppingList(data: ExtendedIngredient) {
+        val image = "${Constants.BASE_URL_IMAGE_INGREDIENTS}${data.image}"
+        val entity = ShoppingListEntity(0, data.name!!, data.amount!!, data.unit!!, image)
+        viewModel.saveIngredientToShoppingList(entity)
     }
 
     override fun onDestroy() {

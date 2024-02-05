@@ -1,6 +1,8 @@
 package com.zahra.yummyrecipes.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,10 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.data.database.entity.DetailEntity
-import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.ItemIngredientsBinding
-import com.zahra.yummyrecipes.models.detail.ResponseDetail
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.ExtendedIngredient
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
@@ -21,9 +20,11 @@ class IngredientsAdapter @Inject constructor() :
     RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
     private lateinit var binding: ItemIngredientsBinding
     private var items = emptyList<ExtendedIngredient>()
+    private lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemIngredientsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        context = parent.context
         return ViewHolder()
     }
 
@@ -49,19 +50,31 @@ class IngredientsAdapter @Inject constructor() :
                     memoryCachePolicy(CachePolicy.ENABLED)
                     error(R.drawable.bg_rounded_white)
                 }
-                addToIngredientsButton.setOnClickListener {
-                    onAddClickListener?.let {
+                addToIngredientsButton.setOnClickListener { view ->
+                    customClickListener?.let {
                         it(item)
+                        if (isDarkTheme()) {
+                            view.setBackgroundResource(R.drawable.bg_below_rounded_deselected_dark_ingredients_add_button)
+                        } else {
+                            view.setBackgroundResource(R.drawable.bg_below_rounded_deselected_light_ingredients_add_button)
+                        }
+                        view.isEnabled = false
                     }
+
                 }
             }
         }
     }
 
-    var onAddClickListener: ((ExtendedIngredient) -> Unit)? = null
+    var customClickListener: ((ExtendedIngredient) -> Unit)? = null
 
-    fun setOnAddClickListener(listener: (ExtendedIngredient) -> Unit) {
-        onAddClickListener = listener
+    fun setAnotherCustomClickListener(listener: (ExtendedIngredient) -> Unit) {
+        customClickListener = listener
+    }
+
+    fun isDarkTheme(): Boolean {
+        return context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
 
