@@ -59,6 +59,7 @@
         tools:text="2" />
     <!--Add Button-->
     <ImageView
+        android:id="@+id/addToIngredientsButton"
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_20mdp"
         android:layout_marginTop="@dimen/_10mdp"
