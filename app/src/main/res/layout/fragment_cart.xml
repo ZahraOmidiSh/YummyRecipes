@@ -37,40 +37,14 @@
         android:background="@drawable/bg_rounded_big_foot_feet"
         app:layout_constraintTop_toBottomOf="@id/shoppingListTxt" />
 
-    <!--Shopping List scroll view-->
-    <ScrollView
+    <!--Shopping List Recycler View-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shoppingListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_2mdp"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/_90mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        android:layout_marginBottom="@dimen/_90mdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/line1">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!--Shopping List Recycler View-->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shoppingListRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent" />
-            <!--Line 2-->
-            <View
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1mdp"
-                android:layout_marginHorizontal="@dimen/_10mdp"
-                android:layout_marginTop="@dimen/_8mdp"
-                android:alpha="0.2"
-                android:background="@drawable/bg_rounded_big_foot_feet"
-                app:layout_constraintTop_toBottomOf="@id/shoppingListRecyclerView" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
+        app:layout_constraintTop_toBottomOf="@id/line1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
