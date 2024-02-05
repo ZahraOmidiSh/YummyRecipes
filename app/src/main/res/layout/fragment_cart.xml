@@ -41,10 +41,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shoppingListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/item_shopping_list"
         android:layout_marginTop="@dimen/_10mdp"
         android:layout_marginBottom="@dimen/_90mdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
