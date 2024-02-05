@@ -42,11 +42,26 @@
         android:id="@+id/shoppingListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        tools:listitem="@layout/item_shopping_list"
         android:layout_marginTop="@dimen/_10mdp"
         android:layout_marginBottom="@dimen/_90mdp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        tools:listitem="@layout/item_shopping_list" />
+
+    <!--Empty-->
+    <TextView
+        android:id="@+id/emptyTxt"
+        style="@style/FavoriteEmptyStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Ingredients"
+        android:textSize="@dimen/_16mdp"
+        android:visibility="invisible"
+        app:drawableTopCompat="@drawable/box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/line1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
