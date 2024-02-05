@@ -5,6 +5,6 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class CartRepository @Inject constructor(private val localDataSource: LocalDataSource) {
+class ShoppingListRepository @Inject constructor(private val localDataSource: LocalDataSource) {
     val local = localDataSource
 }
