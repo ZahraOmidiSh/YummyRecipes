@@ -16,16 +16,17 @@
     <!--Name-->
     <TextView
         android:id="@+id/shoppingListTxt"
-        style="@style/TextView1"
+        style="@style/SearchTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:layout_marginHorizontal="@dimen/_5mdp"
         android:layout_marginVertical="@dimen/_5mdp"
-        android:textSize="@dimen/_17font_mdp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/backImg"
-        app:layout_constraintTop_toBottomOf="@id/backImg"
-        android:text="Shopping List" />
+        android:gravity="center"
+        android:text="Shopping List"
+        android:textSize="@dimen/_18mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!--Line 1-->
     <View
         android:id="@+id/line1"
@@ -41,13 +42,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/shoppingListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10mdp"
-        android:layout_marginBottom="@dimen/_90mdp"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/line1"
-        tools:listitem="@layout/item_shopping_list" />
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/_6mdp"
+        android:paddingBottom="@dimen/_80mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1" />
 
     <!--Empty-->
     <TextView
