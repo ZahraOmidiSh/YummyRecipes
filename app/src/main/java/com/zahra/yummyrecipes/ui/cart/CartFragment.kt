@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.CartAdapter
@@ -42,6 +43,8 @@ class CartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //InitViews
         binding.apply {
+            //Back
+            backImg.setOnClickListener { findNavController().popBackStack() }
             //load Shopping List
             viewModel.readShoppingListData.observe(viewLifecycleOwner) {
                 if (it.isNotEmpty()) {
