@@ -126,5 +126,14 @@
         android:label="fragment_filters"
         tools:layout="@layout/fragment_filters" />
 
+    <action
+        android:id="@+id/actionToCart"
+        app:destination="@id/cartFragment" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.zahra.yummyrecipes.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+
 
 </navigation>

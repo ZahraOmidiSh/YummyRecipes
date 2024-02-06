@@ -131,10 +131,20 @@ class MainActivity : BaseActivity() {
                     }
                 }
 
+                R.id.cartFragment -> {
+                    visibilityBottomMenu(true)
+                    if (!callback.isEnabled) {
+                        callback.isEnabled = true
+                    }
+                }
+
                 else -> visibilityBottomMenu(true)
             }
         }
-
+        //Cart
+        binding.cartFab.setOnClickListener {
+            navHost.navController.navigate(R.id.actionToCart)
+        }
     }
 
     private fun visibilityBottomMenu(isVisibility: Boolean) {
