@@ -75,16 +75,12 @@
         <!--Delete image-->
         <ImageView
             android:id="@+id/deleteImg"
-            style="@style/DetailImageButtons"
-            android:layout_width="@dimen/_20mdp"
-            android:layout_height="@dimen/_20mdp"
-            android:layout_marginEnd="@dimen/_10mdp"
-            android:padding="@dimen/_4mdp"
+            style="@style/ShoppingListItemsStyle"
             android:rotation="45"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/plus" />
+            android:src="@drawable/plus" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

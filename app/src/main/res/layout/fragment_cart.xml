@@ -25,7 +25,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/backImg"
         app:layout_constraintTop_toBottomOf="@id/backImg"
-        tools:text="Shopping List" />
+        android:text="Shopping List" />
     <!--Line 1-->
     <View
         android:id="@+id/line1"

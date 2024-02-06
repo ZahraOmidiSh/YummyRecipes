@@ -38,17 +38,6 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
     override fun getItemViewType(position: Int) = position
 
     override fun getItemId(position: Int) = position.toLong()
-
-    override fun onViewAttachedToWindow(holder: ViewHolder) {
-        super.onViewAttachedToWindow(holder)
-        holder.initAnimation()
-    }
-
-    override fun onViewDetachedFromWindow(holder: ViewHolder) {
-        super.onViewDetachedFromWindow(holder)
-        holder.clearAnimation()
-    }
-
     inner class ViewHolder : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bind(item: ShoppingListEntity) {
@@ -73,14 +62,6 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
                     }
                 }
             }
-        }
-
-        fun initAnimation() {
-            binding.root.animation = AnimationUtils.loadAnimation(context, R.anim.item_anim)
-        }
-
-        fun clearAnimation() {
-            binding.root.clearAnimation()
         }
 
     }
