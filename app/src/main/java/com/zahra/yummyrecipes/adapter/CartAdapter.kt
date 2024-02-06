@@ -67,7 +67,8 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
                     }
                     //Click
                     deleteImg.setOnClickListener {
-                        onItemClickListener?.let { it(item.id) }
+                        onItemClickListener?.let {
+                            it(item) }
 
                     }
                 }
@@ -84,9 +85,9 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
 
     }
 
-    var onItemClickListener: ((Int) -> Unit)? = null
+    var onItemClickListener: ((ShoppingListEntity) -> Unit)? = null
 
-    fun setonItemClickListener(listener: (Int) -> Unit) {
+    fun setonItemClickListener(listener: (ShoppingListEntity) -> Unit) {
         onItemClickListener = listener
     }
 

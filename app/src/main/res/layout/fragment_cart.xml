@@ -51,7 +51,7 @@
 
     <!--Empty-->
     <TextView
-        android:id="@+id/emptyTxt"
+        android:id="@+id/emptyIngredientTxt"
         style="@style/FavoriteEmptyStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
