@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.zahra.yummyrecipes.adapter.CartAdapter
 import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import com.zahra.yummyrecipes.databinding.FragmentCartBinding
@@ -55,7 +54,7 @@ class CartFragment : Fragment() {
                         LinearLayoutManager(requireContext()), cartAdapter
                     )
                     //Delete
-                    cartAdapter.setonItemClickListener {entity->
+                    cartAdapter.setonItemClickListener { entity ->
                         deleteShoppingListItem(entity)
                     }
                 } else {
@@ -66,7 +65,7 @@ class CartFragment : Fragment() {
         }
     }
 
-    private fun deleteShoppingListItem(entity: ShoppingListEntity){
+    private fun deleteShoppingListItem(entity: ShoppingListEntity) {
         viewModel.deleteShoppingListItem(entity)
     }
 
