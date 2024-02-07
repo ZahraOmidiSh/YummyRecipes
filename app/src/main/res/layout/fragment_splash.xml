@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/animation_splash"
+        app:lottie_rawRes="@raw/animation"
         app:lottie_speed="1.5" />
     <!--Version-->
     <TextView

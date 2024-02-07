@@ -18,7 +18,7 @@
         <item name="android:background">@drawable/edittext_background_light</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/_45mdp</item>
-        <item name="android:layout_marginTop">@dimen/_22mdp</item>
+        <item name="android:layout_marginTop">@dimen/_8mdp</item>
         <item name="android:drawablePadding">@dimen/_6mdp</item>
         <item name="android:inputType">textPersonName</item>
         <item name="android:padding">@dimen/_2mdp</item>

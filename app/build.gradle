@@ -22,7 +22,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -33,8 +34,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
-        viewBinding  true
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -87,10 +88,9 @@ dependencies {
     implementation 'com.todkars:shimmer-recyclerview:0.4.1'
     implementation 'com.airbnb.android:lottie:5.2.0'
     implementation 'com.github.MrNouri:DynamicSizes:1.0'
-    implementation 'kr.co.prnd:readmore-textview:1.0.0'
-    implementation "com.jakewharton.threetenabp:threetenabp:1.3.0"
+
 
 }
-kapt{
+kapt {
     correctErrorTypes true
 }

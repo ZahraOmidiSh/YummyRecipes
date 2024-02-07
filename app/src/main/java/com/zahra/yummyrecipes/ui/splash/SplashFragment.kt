@@ -50,8 +50,8 @@ class SplashFragment : Fragment() {
             //Auto navigate
             lifecycleScope.launch {
                 withStarted {}
-//                delay(3000)
-                delay(50)
+                delay(3000)
+//                delay(50)
                 //Check user info
                 viewModel.readData.asLiveData().observe(viewLifecycleOwner) {
                     findNavController().popBackStack(R.id.splashFragment, true)
