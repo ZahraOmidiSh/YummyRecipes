@@ -69,6 +69,8 @@
 # With R8 full mode generic signatures are stripped for classes that are not kept.
 -keep,allowobfuscation,allowshrinking class retrofit2.Response
 
-
 # Keep class names of Hilt injected ViewModels since their name are used as a multibinding map key.
 -keepnames @dagger.hilt.android.lifecycle.HiltViewModel class * extends androidx.lifecycle.ViewModel
+
+-dontoptimize
+-dontobfuscate
