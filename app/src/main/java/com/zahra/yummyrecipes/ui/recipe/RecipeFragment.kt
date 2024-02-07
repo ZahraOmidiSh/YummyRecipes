@@ -40,14 +40,19 @@ class RecipeFragment : Fragment() {
 
     @Inject
     lateinit var suggestedAdapter: SuggestedAdapter
+
     @Inject
     lateinit var economicalAdapter: GeneralRecipesAdapter
+
     @Inject
     lateinit var quickAdapter: GeneralRecipesAdapter
+
     @Inject
     lateinit var veganAdapter: GeneralRecipesAdapter
+
     @Inject
     lateinit var healthyAdapter: GeneralRecipesAdapter
+
     @Inject
     lateinit var networkChecker: NetworkChecker
 
@@ -88,17 +93,17 @@ class RecipeFragment : Fragment() {
     }
 
     //Suggested
-    private fun callSuggestedData(){
+    private fun callSuggestedData() {
         initSuggestedRecycler()
         lifecycleScope.launch {
-            withStarted {  }
-            networkChecker.checkNetworkAvailability().collect{state ->
-                if(state){
+            withStarted { }
+            networkChecker.checkNetworkAvailability().collect { state ->
+                if (state) {
                     recipeViewModel.callSuggestedApi(recipeViewModel.suggestedQueries())
-                }else{
+                } else {
                     recipeViewModel.readSuggestedFromDb.onceObserve(viewLifecycleOwner) { database ->
-                        if(database.isNotEmpty()){
-                            database[0].response.results?.let {results ->
+                        if (database.isNotEmpty()) {
+                            database[0].response.results?.let { results ->
                                 fillSuggestedAdapter(results.toMutableList())
                             }
                         }
@@ -109,6 +114,7 @@ class RecipeFragment : Fragment() {
         }
 
     }
+
     private fun loadSuggestedData() {
         recipeViewModel.suggestedData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -134,10 +140,12 @@ class RecipeFragment : Fragment() {
             }
         }
     }
-    private fun fillSuggestedAdapter(results:MutableList<ResponseRecipes.Result>){
+
+    private fun fillSuggestedAdapter(results: MutableList<ResponseRecipes.Result>) {
         suggestedAdapter.setData(results)
         autoScrollSuggested(results)
     }
+
     private fun initSuggestedRecycler() {
         val snapHelper = LinearSnapHelper()
         binding.suggestedList.setupRecyclerview(
@@ -153,22 +161,24 @@ class RecipeFragment : Fragment() {
         }
 
     }
-    private fun autoScrollSuggested(list:List<ResponseRecipes.Result>){
+
+    private fun autoScrollSuggested(list: List<ResponseRecipes.Result>) {
         lifecycleScope.launch {
-            withStarted {  }
-            repeat(REPEAT_TIME){
+            withStarted { }
+            repeat(REPEAT_TIME) {
                 delay(DELAY_TIME)
-                val myLayoutManager: LinearLayoutManager = binding.suggestedList.layoutManager as LinearLayoutManager
+                val myLayoutManager: LinearLayoutManager =
+                    binding.suggestedList.layoutManager as LinearLayoutManager
                 val scrollPosition = myLayoutManager.findFirstVisibleItemPosition()
 
-                autoScrollIndex=scrollPosition
-                if(autoScrollIndex < list.size){
+                autoScrollIndex = scrollPosition
+                if (autoScrollIndex < list.size) {
                     autoScrollIndex++
-                }else{
-                    autoScrollIndex=0
+                } else {
+                    autoScrollIndex = 0
                 }
                 binding.suggestedList.smoothScrollToPosition(autoScrollIndex)
-                if(autoScrollIndex==10){
+                if (autoScrollIndex == 10) {
                     binding.suggestedList.smoothScrollToPosition(0)
                 }
 
@@ -178,20 +188,21 @@ class RecipeFragment : Fragment() {
     }
 
     //Economical
-    private fun callEconomicalData(){
+    private fun callEconomicalData() {
         initEconomicalRecycler()
-        recipeViewModel.readEconomicalFromDb.onceObserve(viewLifecycleOwner){database ->
-            if(database.isNotEmpty() && database.size>1){
-                database[1].response.results?.let {results ->
+        recipeViewModel.readEconomicalFromDb.onceObserve(viewLifecycleOwner) { database ->
+            if (database.isNotEmpty() && database.size > 1) {
+                database[1].response.results?.let { results ->
                     setupLoading(false, binding.mealsOnABudgetList)
                     economicalAdapter.setData(results)
                 }
-            }else{
+            } else {
                 recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries(10))
             }
 
         }
     }
+
     private fun loadEconomicalData() {
         recipeViewModel.economicalData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -234,20 +245,21 @@ class RecipeFragment : Fragment() {
     }
 
     //Quick
-    private fun callQuickData(){
+    private fun callQuickData() {
         initQuickRecycler()
-        recipeViewModel.readQuickFromDb.onceObserve(viewLifecycleOwner){database ->
-            if(database.isNotEmpty() && database.size>2){
-                database[2].response.results?.let {results ->
+        recipeViewModel.readQuickFromDb.onceObserve(viewLifecycleOwner) { database ->
+            if (database.isNotEmpty() && database.size > 2) {
+                database[2].response.results?.let { results ->
                     setupLoading(false, binding.quickAndEasyList)
                     quickAdapter.setData(results)
                 }
-            }else{
+            } else {
                 recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
             }
 
         }
     }
+
     private fun loadQuickData() {
         recipeViewModel.quickData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -273,6 +285,7 @@ class RecipeFragment : Fragment() {
             }
         }
     }
+
     private fun initQuickRecycler() {
         binding.quickAndEasyList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
@@ -289,20 +302,21 @@ class RecipeFragment : Fragment() {
 
 
     //Vegan
-    private fun callVeganData(){
+    private fun callVeganData() {
         initVeganRecycler()
-        recipeViewModel.readVeganFromDb.onceObserve(viewLifecycleOwner){database ->
-            if(database.isNotEmpty() && database.size>3){
-                database[3].response.results?.let {results ->
+        recipeViewModel.readVeganFromDb.onceObserve(viewLifecycleOwner) { database ->
+            if (database.isNotEmpty() && database.size > 3) {
+                database[3].response.results?.let { results ->
                     setupLoading(false, binding.veganList)
                     veganAdapter.setData(results)
                 }
-            }else{
+            } else {
                 recipeViewModel.callVeganApi(recipeViewModel.veganQueries())
             }
 
         }
     }
+
     private fun loadVeganData() {
         recipeViewModel.veganData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -328,6 +342,7 @@ class RecipeFragment : Fragment() {
             }
         }
     }
+
     private fun initVeganRecycler() {
         binding.veganList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
@@ -344,20 +359,21 @@ class RecipeFragment : Fragment() {
 
 
     //Healthy
-    private fun callHealthyData(){
+    private fun callHealthyData() {
         initHealthyRecycler()
-        recipeViewModel.readHealthyFromDb.onceObserve(viewLifecycleOwner){database ->
-            if(database.isNotEmpty() && database.size>4){
-                database[4].response.results?.let {results ->
+        recipeViewModel.readHealthyFromDb.onceObserve(viewLifecycleOwner) { database ->
+            if (database.isNotEmpty() && database.size > 4) {
+                database[4].response.results?.let { results ->
                     setupLoading(false, binding.healthyList)
                     healthyAdapter.setData(results)
                 }
-            }else{
+            } else {
                 recipeViewModel.callHealthyApi(recipeViewModel.healthyQueries())
             }
 
         }
     }
+
     private fun loadHealthyData() {
         recipeViewModel.healthyData.observe(viewLifecycleOwner) { response ->
             binding.apply {
@@ -383,6 +399,7 @@ class RecipeFragment : Fragment() {
             }
         }
     }
+
     private fun initHealthyRecycler() {
         binding.healthyList.setupRecyclerview(
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false),
