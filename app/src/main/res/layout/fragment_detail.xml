@@ -62,7 +62,7 @@
                 <ImageView
                     android:id="@+id/collectionImg"
                     style="@style/DetailImageButtons"
-                    android:src="@drawable/bookmark"
+                    android:src="@drawable/ic_heart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <!--Source-->
