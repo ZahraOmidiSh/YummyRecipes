@@ -35,8 +35,7 @@
     @retrofit2.http.* <methods>;
 }
 
-# Ignore annotation used for build tooling.
--dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+
 
 # Ignore JSR 305 annotations for embedding nullability information.
 -dontwarn javax.annotation.**
@@ -74,3 +73,11 @@
 
 -dontoptimize
 -dontobfuscate
+# -keepnames class com.zahra.yummyrecipes.models.detail.ResponseDetail
+# -keepnames class com.zahra.yummyrecipes.models.detail.ResponseDetail.Nutrition.Nutrient
+
+
+# prevent r8 from leaving data object members always null
+-keepclassmembers,allowobfuscation class * {
+  @com.zahra.yummyrecipes.models.detail.ResponseDetail.Nutrition.Nutrient <fields>;
+}

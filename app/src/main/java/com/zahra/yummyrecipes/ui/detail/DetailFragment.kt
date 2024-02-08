@@ -3,6 +3,7 @@ package com.zahra.yummyrecipes.ui.detail
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -291,7 +292,7 @@ class DetailFragment : Fragment() {
             //Diets
             setupChip(data.diets!!.toMutableList(), dietsChipGroup)
             //Nutrient
-            carbAmount.text = data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
+                carbAmount.text = data.nutrition?.nutrients?.get(2)?.amount.toString() + " g"
             proteinAmount.text = data.nutrition?.nutrients?.get(3)?.amount.toString() + " g"
             fatAmount.text = data.nutrition?.nutrients?.get(4)?.amount.toString() + " g"
 
