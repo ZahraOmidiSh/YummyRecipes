@@ -465,8 +465,14 @@ class MealPlannerFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        showAddViewModel.setShowAddFlag(0)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        showAddViewModel.setShowAddFlag(0)
         _binding = null
     }
 }
