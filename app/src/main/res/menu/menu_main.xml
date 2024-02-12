@@ -15,7 +15,7 @@
         android:title="" />
 
     <item android:id="@+id/collectionFragment"
-        android:title="@string/collection"
+        android:title="@string/favorites"
         android:icon="@drawable/ic_heart"/>
 
     <item android:id="@+id/mealPlannerFragment"
