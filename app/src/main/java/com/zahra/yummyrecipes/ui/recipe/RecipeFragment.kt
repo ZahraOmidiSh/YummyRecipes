@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -89,6 +90,16 @@ class RecipeFragment : Fragment() {
         loadQuickData()
         loadVeganData()
         loadHealthyData()
+
+        binding.apply {
+            fewIngredientLay.setOnClickListener {
+                Toast.makeText(requireContext(), "Please upgrade to Premium to use this feature!", Toast.LENGTH_SHORT).show()
+            }
+            kidFriendlyLay.setOnClickListener {
+                Toast.makeText(requireContext(), "Please upgrade to Premium to use this feature!", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
     }
 
