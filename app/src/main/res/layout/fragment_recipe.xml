@@ -140,14 +140,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--View All-->
-                <TextView
-                    android:id="@+id/viewAllMealsOnABudget"
-                    style="@style/View_All_Txt"
-                    app:layout_constraintBottom_toBottomOf="@id/mealsOnABudgetTxt"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/mealsOnABudgetTxt" />
-
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/mealsOnABudgetList"
                     style="@style/Recipe_Recycler_View"
@@ -172,14 +164,6 @@
                     android:text="@string/quick_and_easy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <!--View All-->
-                <TextView
-                    android:id="@+id/viewAllQuickAndEasy"
-                    style="@style/View_All_Txt"
-                    app:layout_constraintBottom_toBottomOf="@id/quickAndEasyTxt"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/quickAndEasyTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/quickAndEasyList"
@@ -238,13 +222,6 @@
                     android:text="@string/vegan"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--View All-->
-                <TextView
-                    android:id="@+id/viewAllVegan"
-                    style="@style/View_All_Txt"
-                    app:layout_constraintBottom_toBottomOf="@id/veganTxt"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/veganTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/veganList"
@@ -271,13 +248,6 @@
                     android:text="@string/healthy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--View All-->
-                <TextView
-                    android:id="@+id/viewAllHealthy"
-                    style="@style/View_All_Txt"
-                    app:layout_constraintBottom_toBottomOf="@id/healthyTxt"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/healthyTxt" />
 
                 <com.todkars.shimmer.ShimmerRecyclerView
                     android:id="@+id/healthyList"
