@@ -24,8 +24,8 @@
             <!--Cover-->
             <ImageView
                 android:id="@+id/coverImg"
-                android:layout_width="@dimen/_150mdp"
-                android:layout_height="@dimen/_150mdp"
+                android:layout_width="@dimen/_100mdp"
+                android:layout_height="@dimen/_100mdp"
                 android:adjustViewBounds="true"
                 android:layout_marginTop="@dimen/_10mdp"
                 android:layout_gravity="center"
