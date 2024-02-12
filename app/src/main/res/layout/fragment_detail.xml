@@ -70,7 +70,7 @@
                     android:id="@+id/sourceImg"
                     style="@style/DetailImageButtons"
                     android:src="@drawable/ic_book_sparkles"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/collectionImg" />
                 <!--MealPlanner-->
