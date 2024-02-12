@@ -24,10 +24,11 @@
             <!--Cover-->
             <ImageView
                 android:id="@+id/coverImg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_150mdp"
+                android:layout_height="@dimen/_150mdp"
                 android:adjustViewBounds="true"
                 android:layout_marginTop="@dimen/_10mdp"
+                android:layout_gravity="center"
                 android:padding="@dimen/_10mdp"
                 android:src="@drawable/yummy_recipe_logo" />
 
@@ -66,6 +67,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registerButton"
         android:layout_width="0dp"
+        app:backgroundTint="@color/big_foot_feet"
         android:layout_height="@dimen/_45mdp"
         android:layout_marginHorizontal="@dimen/_45mdp"
         android:layout_marginBottom="@dimen/_40mdp"
