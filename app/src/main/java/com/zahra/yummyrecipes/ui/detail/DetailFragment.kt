@@ -441,7 +441,7 @@ class DetailFragment : Fragment() {
         val entity = FavoriteEntity(data.id!!, data)
         viewModel.deleteFavorite(entity)
         binding.collectionImg.imageTintList =
-            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.onyx))
+            ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray))
     }
 
     private fun checkExistFavorite() {
@@ -458,7 +458,7 @@ class DetailFragment : Fragment() {
                 binding.collectionImg.imageTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.eerie_black
+                        R.color.gray
                     )
                 )
 
