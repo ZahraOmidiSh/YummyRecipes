@@ -252,6 +252,7 @@ class DetailFragment : Fragment() {
                 }
 
             }
+            Log.i("mahdis", "initViewsWithData: ${data.nutrition}")
             //Text
             heartTxt.text = data.aggregateLikes.toString()
             calorieTxt.text = data.nutrition?.nutrients?.get(0)?.amount.toString() + " Kcal"
