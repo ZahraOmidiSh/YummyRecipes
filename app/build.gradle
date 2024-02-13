@@ -8,14 +8,6 @@ plugins {
 }
 
 android {
-    signingConfigs {
-        release {
-            storeFile file('E:\\projects\\path\\yummy.jks')
-            storePassword '*Zo13680413'
-            keyPassword '*Zo13680413'
-            keyAlias 'key1'
-        }
-    }
     namespace 'com.zahra.yummyrecipes'
     compileSdk 33
 
@@ -33,7 +25,6 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
     compileOptions {
