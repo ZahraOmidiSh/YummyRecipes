@@ -32,7 +32,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 ## Dependencies 
 
 -   Kotlin Coroutines
--  Lifecycle
+-   Lifecycle
 -   View Binding
 -   LiveData
 -   ViewModel
