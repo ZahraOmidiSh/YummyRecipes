@@ -8,7 +8,8 @@ Yummy Recipes is a mobile application that makes cooking fun and hassle-free. Wi
 All recipe information is provided by [Spoonacular API.](https://spoonacular.com/food-api)
 
 Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Google Play](https://play.google.com/store/apps/details?id=com.sidechef.sidechef&hl=en&gl=US)) 
-###Sections
+
+## Sections
 
 -   **Home:** Explore a diverse array of recipes spanning various categories.
 -   **Search:** Discover recipes tailored to your preferences by searching for ingredients, cuisine, or dietary choices.
@@ -19,7 +20,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 -    **Web View:** Explore the original recipe website seamlessly using the built-in web view feature.
 
 
-### Features
+## Features
 -   **MVVM (Model-View-ViewModel) Architecture:**  Utilize a clean and modular architectural pattern to separate concerns and enhance maintainability.
 -    **Single Activity:** Embrace a single-activity architecture for improved navigation and resource optimization. 
 -    **Light and Dark themes support:** Offer a visually appealing user experience with support for both light and dark themes. 
@@ -28,7 +29,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 
 
 
-### Dependencies 
+## Dependencies 
 
 -   Kotlin Coroutines
 -  Lifecycle
@@ -46,7 +47,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 -   Lottie
 - DynamicSizes
 
-### Screenshots
+## Screenshots
 | ![Home](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app1.jpg) | ![Search_Light](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app3.jpg) |
 |----------|:-------------:|
 
