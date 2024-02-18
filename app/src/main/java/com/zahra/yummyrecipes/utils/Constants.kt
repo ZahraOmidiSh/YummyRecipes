@@ -11,16 +11,7 @@ object Constants {
     const val NETWORK_TIMEOUT = 60L
 
     fun setAPIKEY(): String {
-        var MY_API_KEY = ""
-        val randomNumber = Random.nextInt(1, 5)
-        when (randomNumber) {
-            1 -> MY_API_KEY = "da7a28daf8874c15be20272ffa0953c5"
-            2 -> MY_API_KEY = "a4b8ec5f10364b5ab29353dfd26175de"
-            3 -> MY_API_KEY = "82c37db267e047cdae8f0d81188a3357"
-            4 -> MY_API_KEY = "9c3b85f45aa5406790843f6fee6acfb2"
-        }
-        Log.e("MY_API_KEY", "randomNumber=$randomNumber --- MY_API_KEY=$MY_API_KEY")
-        return MY_API_KEY
+        return "da7a28daf8874c15be20272ffa0953c5"
     }
 
     //APIs key
@@ -85,6 +76,4 @@ object Constants {
     const val REPEAT_TIME = 100
     const val DELAY_TIME = 5000L
 
-    //Search
-    const val INGREDIENTS = "ingredients"
 }
