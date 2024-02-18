@@ -11,7 +11,7 @@ import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 
 @Database(
     entities = [RecipeEntity::class, DetailEntity::class, FavoriteEntity::class, MealPlannerEntity::class, ShoppingListEntity::class],
-    version = 3,
+    version = 1,
     exportSchema = false
 )
 @TypeConverters(RecipeAppTypeConverter::class)

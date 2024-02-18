@@ -35,7 +35,3 @@ object DataStoreModule {
             produceFile = { appContext.preferencesDataStoreFile(REGISTER_USER_INFO) }
         )
 }
-//corruptionHandler (optional) — invoked if a CorruptionException is thrown by the serializer when the data cannot be de-serialized which instructs DataStore how to replace the corrupted data
-//migrations (optional) — a list of DataMigration for moving previous data into DataStore
-//scope (optional) — the scope in which IO operations and transform functions will execute; in this case, we’re reusing the same scope as the DataStore API default one
-//produceFile — generates the File object for Preferences DataStore based on the provided Context and name, stored in this.applicationContext.filesDir + datastore/ subdirectory

@@ -9,7 +9,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object BodyModule {
-
     @Provides
     fun bodyRegister() = BodyRegister()
 }

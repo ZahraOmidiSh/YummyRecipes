@@ -22,7 +22,7 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideBaseUrl()= BASE_URL
+    fun provideBaseUrl() = BASE_URL
 
     @Provides
     @Singleton
@@ -50,7 +50,7 @@ object NetworkProvider {
 
     @Provides
     @Singleton
-    fun provideRetrofit(baseUrl:String,client:OkHttpClient , gson :Gson): ApiServices =
+    fun provideRetrofit(baseUrl: String, client: OkHttpClient, gson: Gson): ApiServices =
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)

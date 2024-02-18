@@ -25,5 +25,5 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDao(database: RecipeAppDatabase)=database.dao()
+    fun provideDao(database: RecipeAppDatabase) = database.dao()
 }

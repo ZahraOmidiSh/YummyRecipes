@@ -27,7 +27,7 @@ class LocalDataSource @Inject constructor(private val dao: RecipeAppDao) {
     //Meal
     suspend fun savePlannedMeal(entity: MealPlannerEntity) = dao.saveMeal(entity)
     suspend fun deletePlannedMeal(entity: MealPlannerEntity) = dao.deleteMeal(entity)
-    fun loadPlannedMeals(date:String) = dao.loadMeal(date)
+    fun loadPlannedMeals(date: String) = dao.loadMeal(date)
 
     //Shopping List
     suspend fun saveShoppingList(entity: ShoppingListEntity) = dao.saveShoppingList(entity)

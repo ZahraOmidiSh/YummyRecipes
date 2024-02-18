@@ -1,8 +1,5 @@
 package com.zahra.yummyrecipes.utils
 
-import android.util.Log
-import kotlin.random.Random
-
 object Constants {
     const val BASE_URL = "https://api.spoonacular.com/"
     const val BASE_URL_IMAGE_INGREDIENTS = "https://spoonacular.com/cdn/ingredients_250x250/"

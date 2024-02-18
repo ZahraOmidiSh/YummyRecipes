@@ -12,7 +12,6 @@ import com.zahra.yummyrecipes.databinding.ItemEquipmentBinding
 import com.zahra.yummyrecipes.models.detail.ResponseDetail.AnalyzedInstruction.Step.Equipment
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_EQUIPMENT
-import com.zahra.yummyrecipes.utils.Constants.BASE_URL_IMAGE_INGREDIENTS
 import javax.inject.Inject
 
 class EquipmentsAdapter @Inject constructor() :

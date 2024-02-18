@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.ui.recipe
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +27,6 @@ import com.zahra.yummyrecipes.utils.showSnackBar
 import com.zahra.yummyrecipes.viewmodel.RecipeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -93,10 +91,18 @@ class RecipeFragment : Fragment() {
 
         binding.apply {
             fewIngredientLay.setOnClickListener {
-                Toast.makeText(requireContext(), "Please upgrade to Premium to use this feature!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please upgrade to Premium to use this feature!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
             kidFriendlyLay.setOnClickListener {
-                Toast.makeText(requireContext(), "Please upgrade to Premium to use this feature!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please upgrade to Premium to use this feature!",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         }
@@ -120,10 +126,8 @@ class RecipeFragment : Fragment() {
                         }
                     }
                 }
-
             }
         }
-
     }
 
     private fun loadSuggestedData() {
@@ -192,10 +196,8 @@ class RecipeFragment : Fragment() {
                 if (autoScrollIndex == 10) {
                     binding.suggestedList.smoothScrollToPosition(0)
                 }
-
             }
         }
-
     }
 
     //Economical
@@ -210,7 +212,6 @@ class RecipeFragment : Fragment() {
             } else {
                 recipeViewModel.callEconomicalApi(recipeViewModel.economicalQueries(10))
             }
-
         }
     }
 
@@ -252,7 +253,6 @@ class RecipeFragment : Fragment() {
             val action = RecipeFragmentDirections.actionToDetail(it)
             findNavController().navigate(action)
         }
-
     }
 
     //Quick
@@ -267,7 +267,6 @@ class RecipeFragment : Fragment() {
             } else {
                 recipeViewModel.callQuickApi(recipeViewModel.quickQueries())
             }
-
         }
     }
 
@@ -324,7 +323,6 @@ class RecipeFragment : Fragment() {
             } else {
                 recipeViewModel.callVeganApi(recipeViewModel.veganQueries())
             }
-
         }
     }
 
@@ -365,7 +363,6 @@ class RecipeFragment : Fragment() {
             val action = RecipeFragmentDirections.actionToDetail(it)
             findNavController().navigate(action)
         }
-
     }
 
 
@@ -381,7 +378,6 @@ class RecipeFragment : Fragment() {
             } else {
                 recipeViewModel.callHealthyApi(recipeViewModel.healthyQueries())
             }
-
         }
     }
 
@@ -450,5 +446,4 @@ class RecipeFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

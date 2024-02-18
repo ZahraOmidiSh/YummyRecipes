@@ -60,7 +60,6 @@ class IngredientsAdapter @Inject constructor() :
                         }
                         view.isEnabled = false
                     }
-
                 }
             }
         }
@@ -76,7 +75,6 @@ class IngredientsAdapter @Inject constructor() :
         return context.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
-
 
     fun setData(data: List<ExtendedIngredient>) {
         val adapterDiffUtils = BaseDiffUtils(items, data)

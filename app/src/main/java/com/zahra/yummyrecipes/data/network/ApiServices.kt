@@ -16,17 +16,25 @@ import retrofit2.http.QueryMap
 
 interface ApiServices {
     @POST("users/connect")
-    suspend fun postRegister(@Query(API_KEY) apikey: String, @Body body: BodyRegister
+    suspend fun postRegister(
+        @Query(API_KEY) apikey: String, @Body body: BodyRegister
     ): Response<ResponseRegister>
 
     @GET("recipes/complexSearch")
-    suspend fun getRecipe(@QueryMap queries : Map<String,String>):Response<ResponseRecipes>
+    suspend fun getRecipe(@QueryMap queries: Map<String, String>): Response<ResponseRecipes>
 
-    @GET ("recipes/{id}/information")
-    suspend fun getDetail(@Path ("id") id:Int , @Query (API_KEY) apikey: String,@Query ("includeNutrition") includeNutrition : Boolean):Response<ResponseDetail>
+    @GET("recipes/{id}/information")
+    suspend fun getDetail(
+        @Path("id") id: Int,
+        @Query(API_KEY) apikey: String,
+        @Query("includeNutrition") includeNutrition: Boolean
+    ): Response<ResponseDetail>
 
-    @GET ("recipes/{id}/similar")
-    suspend fun getSimilarRecipes(@Path ("id") id:Int , @Query (API_KEY) apikey: String):Response<ResponseSimilar>
+    @GET("recipes/{id}/similar")
+    suspend fun getSimilarRecipes(
+        @Path("id") id: Int,
+        @Query(API_KEY) apikey: String
+    ): Response<ResponseSimilar>
 
 
 }
