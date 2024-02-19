@@ -48,10 +48,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 - DynamicSizes
 
 ## Screenshots
-| ![Home](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app1.jpg) | ![Search_Light](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app3.jpg) |
-|----------|:-------------:|
+![Home](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app1.jpg) ![Search_Light](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app3.jpg) ![Search_Dark](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app4.jpg) ![Detail](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app5.jpg)
 
-|![Search_Dark](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app4.jpg) | ![Detail](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app5.jpg) |
-|----------|:-------------:|
 
 
