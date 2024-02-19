@@ -68,7 +68,6 @@ class FavoriteAdapter @Inject constructor() : RecyclerView.Adapter<FavoriteAdapt
                     //Click
                     root.setOnClickListener {
                         onItemClickListener?.let { it(item.id!!) }
-
                     }
                 }
             }

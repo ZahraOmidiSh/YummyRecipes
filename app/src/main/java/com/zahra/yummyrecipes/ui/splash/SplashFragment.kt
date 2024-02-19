@@ -45,13 +45,11 @@ class SplashFragment : Fragment() {
         //InitViews
         binding.apply {
             //Application Version
-//            versionTxt.text = "version : ${BuildConfig.VERSION_NAME}"
             versionTxt.text = "${getString(R.string.version)} : ${BuildConfig.VERSION_NAME}"
             //Auto navigate
             lifecycleScope.launch {
                 withStarted {}
                 delay(3000)
-//                delay(50)
                 //Check user info
                 viewModel.readData.asLiveData().observe(viewLifecycleOwner) {
                     findNavController().popBackStack(R.id.splashFragment, true)
@@ -62,8 +60,6 @@ class SplashFragment : Fragment() {
                     }
                 }
             }
-
-
         }
     }
 

@@ -51,7 +51,6 @@ class SearchFragment : Fragment() {
     private var isThemeChanged: Boolean = false
     private lateinit var viewModel: SearchViewModel
 
-    //    private var isNetworkAvailable by Delegates.notNull<Boolean>()
     private var isNetworkAvailable: Boolean? = null
     private var searchString = ""
 
@@ -328,7 +327,6 @@ class SearchFragment : Fragment() {
                 )
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -407,7 +405,6 @@ class SearchFragment : Fragment() {
                 )
             }
         }
-
     }
 
     private fun checkInternet() {

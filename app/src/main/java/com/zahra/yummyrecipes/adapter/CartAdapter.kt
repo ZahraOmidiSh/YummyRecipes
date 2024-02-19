@@ -4,19 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
-import com.zahra.yummyrecipes.data.database.entity.FavoriteEntity
 import com.zahra.yummyrecipes.data.database.entity.ShoppingListEntity
 import com.zahra.yummyrecipes.databinding.ItemShoppingListBinding
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
-import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.Constants.OLD_IMAGE_SIZE
-import com.zahra.yummyrecipes.utils.minToHour
 import javax.inject.Inject
 
 class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
@@ -42,7 +37,7 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
         @SuppressLint("SetTextI18n")
         fun bind(item: ShoppingListEntity) {
             binding.apply {
-                item.let {ingredient ->
+                item.let { ingredient ->
                     //Text
                     ingredientNameTxt.text = ingredient.name
                     ingredientAmountTxt.text = ingredient.amount.toString()
@@ -57,8 +52,8 @@ class CartAdapter @Inject constructor() : RecyclerView.Adapter<CartAdapter.ViewH
                     //Click
                     deleteImg.setOnClickListener {
                         onItemClickListener?.let {
-                            it(item) }
-
+                            it(item)
+                        }
                     }
                 }
             }

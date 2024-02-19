@@ -1,7 +1,6 @@
 package com.zahra.yummyrecipes.models.search
 
 import androidx.room.PrimaryKey
-import com.zahra.yummyrecipes.R
 
 data class IngredientsModel(
     @PrimaryKey(autoGenerate = false)

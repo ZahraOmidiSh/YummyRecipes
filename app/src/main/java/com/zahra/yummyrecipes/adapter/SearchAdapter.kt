@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -42,28 +41,24 @@ class SearchAdapter @Inject constructor() : RecyclerView.Adapter<SearchAdapter.V
         @SuppressLint("SetTextI18n")
         fun bind(item: Result) {
             binding.apply {
-                    //Text
-                    suggestedTitleTxt.text = item.title
-                    suggestedTimeTxt.text = item.readyInMinutes!!.minToHour()
-                    suggestedHeartTxt.text = item.aggregateLikes.toString()
-                    //Image
-                    val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
-                    suggestedImg.load(imageSize) {
-                        crossfade(true)
-                        crossfade(800)
-                        memoryCachePolicy(CachePolicy.ENABLED)
-                        error(R.drawable.salad)
-                    }
-                    //Click
-                    root.setOnClickListener {
-                        onItemClickListener?.let { it(item.id!!) }
-
-                    }
-
+                //Text
+                suggestedTitleTxt.text = item.title
+                suggestedTimeTxt.text = item.readyInMinutes!!.minToHour()
+                suggestedHeartTxt.text = item.aggregateLikes.toString()
+                //Image
+                val imageSize = item.image!!.replace(OLD_IMAGE_SIZE, NEW_IMAGE_SIZE)
+                suggestedImg.load(imageSize) {
+                    crossfade(true)
+                    crossfade(800)
+                    memoryCachePolicy(CachePolicy.ENABLED)
+                    error(R.drawable.salad)
+                }
+                //Click
+                root.setOnClickListener {
+                    onItemClickListener?.let { it(item.id!!) }
+                }
             }
         }
-
-
     }
 
     var onItemClickListener: ((Int) -> Unit)? = null

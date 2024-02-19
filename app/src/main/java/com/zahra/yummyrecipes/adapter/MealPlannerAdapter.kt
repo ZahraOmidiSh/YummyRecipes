@@ -10,11 +10,9 @@ import coil.request.CachePolicy
 import com.zahra.yummyrecipes.R
 import com.zahra.yummyrecipes.data.database.entity.MealPlannerEntity
 import com.zahra.yummyrecipes.databinding.ItemPlannedMealsBinding
-import com.zahra.yummyrecipes.databinding.ItemSimilarBinding
 import com.zahra.yummyrecipes.utils.BaseDiffUtils
 import com.zahra.yummyrecipes.utils.Constants
 import com.zahra.yummyrecipes.utils.Constants.NEW_IMAGE_SIZE
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MealPlannerAdapter @Inject constructor() :

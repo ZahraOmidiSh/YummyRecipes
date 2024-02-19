@@ -292,7 +292,6 @@ class SearchAllIngredientsFragment : BottomSheetDialogFragment() {
         }
         // Set the position of your view
         binding.searchWithIngredientsButton.y = desiredPosition.toFloat()
-
     }
 
     private fun isDarkTheme(): Boolean {

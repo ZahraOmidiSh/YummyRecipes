@@ -55,16 +55,16 @@ fun <T> LiveData<T>.onceObserve(owner: LifecycleOwner, observe: Observer<T>) {
     })
 }
 
-fun View.isVisible(isShownLoading:Boolean , container :View){
-    if(isShownLoading){
-        this.isVisible=true
-        container.isVisible=false
-    }else{
-        this.isVisible=false
-        container.isVisible=true
+fun View.isVisible(isShownLoading: Boolean, container: View) {
+    if (isShownLoading) {
+        this.isVisible = true
+        container.isVisible = false
+    } else {
+        this.isVisible = false
+        container.isVisible = true
     }
 
-    fun ImageView.setTint(color:Int){
-        imageTintList= ColorStateList.valueOf(ContextCompat.getColor(context,color))
+    fun ImageView.setTint(color: Int) {
+        imageTintList = ColorStateList.valueOf(ContextCompat.getColor(context, color))
     }
 }

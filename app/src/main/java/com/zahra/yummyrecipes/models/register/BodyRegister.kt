@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class BodyRegister(
     @SerializedName("email")
-    var email: String?=null, // your user's email
+    var email: String? = null,
     @SerializedName("firstName")
-    var firstName: String?=null, // your user's first name
+    var firstName: String? = null,
     @SerializedName("lastName")
-    var lastName: String?=null, // your user's last name
+    var lastName: String? = null,
     @SerializedName("username")
-    var username: String?=null // your user's name
+    var username: String? = null
 )

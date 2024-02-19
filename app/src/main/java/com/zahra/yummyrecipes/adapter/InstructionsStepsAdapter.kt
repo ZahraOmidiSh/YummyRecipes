@@ -39,7 +39,6 @@ class InstructionsStepsAdapter @Inject constructor() :
                     timeTxt.text = item.length.number!!.minToHour()
                 }
                 infoTxt.text = item.step
-
             }
         }
     }

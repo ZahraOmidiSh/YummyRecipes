@@ -3,7 +3,7 @@ package com.zahra.yummyrecipes.models.detail
 
 import com.google.gson.annotations.SerializedName
 
-class ResponseSimilar : ArrayList<ResponseSimilar.ResponseSimilarItem>(){
+class ResponseSimilar : ArrayList<ResponseSimilar.ResponseSimilarItem>() {
     data class ResponseSimilarItem(
         @SerializedName("id")
         val id: Int?, // 9751

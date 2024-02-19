@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class SearchRepository @Inject constructor(private val remote: RemoteDataSource) {
-    suspend fun getSearchRecipes(queries :Map<String,String>)=remote.getRecipe(queries)
+    suspend fun getSearchRecipes(queries: Map<String, String>) = remote.getRecipe(queries)
 }

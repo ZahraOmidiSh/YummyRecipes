@@ -52,7 +52,6 @@ class GeneralRecipesAdapter @Inject constructor() :
                 //Click
                 root.setOnClickListener {
                     onItemClickListener?.let { it(item.id!!) }
-
                 }
             }
         }
