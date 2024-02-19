@@ -24,6 +24,7 @@ DynamicSize<br>
 Light & Dark Themes<br><br>
 
 
+
 This application is single activity and has different pages including:<br>
 1-Splash :Shows An Animation<br>
 2-Register: for registering in App<br>
