@@ -45,7 +45,7 @@ Design inspired by [SideChef App]([SideChef: Recipes & Meal Plans - Apps on Goog
 -   DataStore
 -   Shimmer
 -   Lottie
--  <a href="https://github.com/MrNouri/DynamicSizes">DynamicSizes</>
+-  <a href="https://github.com/MrNouri/DynamicSizes">DynamicSizes</a>
 
 ## Screenshots
 | ![Home](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app1.jpg) | ![Search_Light](https://github.com/ZahraOmidiSh/YummyRecipes/blob/master/app/src/main/res/drawable/app3.jpg) |
